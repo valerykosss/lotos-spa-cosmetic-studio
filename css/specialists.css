@@ -1,0 +1,440 @@
+/*--------------------------------------HEADER WHITE-------------------------------------------*/
+.header-white {
+	background-color: #fff;
+}
+
+.header-white:before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	background-color: #355D48;
+}
+
+.header__body {
+	padding: 40px 0px;
+}
+
+.li-header-logo{
+	height: 65px;
+	text-align: center;
+}
+
+.header__logo {
+	overflow: hidden;
+	text-decoration: none;
+	position: relative;
+	top: -20px;
+}
+
+.header__logo img {
+	/* width: 178px;
+    height: 68px; */
+}
+
+.header__burger {
+	display: none;
+}
+
+.header__list-white {
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+	font-size: 28px;
+	font-weight: 200;
+	/*extra light*/
+	text-transform: uppercase;
+}
+
+.header__list-white li {
+	position: relative;
+	padding: 10px 24px;
+}
+
+.header__link-white {
+	color: #232323;
+	text-decoration: none;
+}
+
+/*for sub-menu*/
+.header__list-white ul>li {
+	border-bottom: 0.5px solid #232323;
+}
+
+.header__list-white ul>li:last-child {
+	border-bottom: none
+}
+
+.header__menu__sub-list-white {
+	background-color: #fff;
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+	list-style: none;
+	top: 100%;
+	right: 0;
+	left: 0;
+	pointer-events: none;
+	transition: 0.5s ease-in-out;
+	width: 310px;
+	z-index: 20;
+}
+
+.header__body ul li:hover .header__menu__sub-list-white {
+	visibility: visible;
+	opacity: 1;
+	pointer-events: auto;
+	transition: 0.5s ease-in-out;
+}
+
+.header__menu__sub-link-white {
+	color: #232323;
+	text-decoration: none;
+}
+
+/* @media(max-width: 840px){
+	body.lock{
+		overflow: hidden;
+	}
+	.header__body {
+		display: flex;
+		justify-content: space-between;
+	}
+	.header__logo{
+		flex: 2;
+	}
+	.header__burger{
+		display: block;
+		position: relative;
+		width: 35px;
+		height: 20px;
+	}
+	.header__burger span {
+		position: absolute;
+		background-color: #668B5D;
+		left: 0;
+		width: 100%;
+		height: 3px;
+		top: 9px;
+		transition: all 0.3s ease 0s;
+	}
+	.header__burger:before,
+	.header__burger:after{
+		content: '';
+		background-color: #668B5D;
+		position: absolute;
+		width: 100%;
+		height: 3px;
+		left: 0;
+		transition: all 0.3s ease 0s;
+	}
+	.header__burger:before{
+		top: 0;
+	}
+	.header__burger:after{
+		bottom: 0;
+	}
+	.header__burger.active span{
+		transform: scale(0);
+	}
+	.header__burger.active:before{
+		transform: rotate(45deg);
+		top: 9px;
+	}
+	.header__burger.active:after{
+		transform: rotate(-45deg);
+		bottom: 9px;
+	}
+	.header__menu{
+		position: fixed;
+		top: -100%;
+		left: 0;
+		width: 100%;
+		height: 80%;
+		background-color: #ECF0E9;
+		padding: 115px 0px 0px 35px;
+		overflow: auto;
+	}
+	.header__menu.active{
+		top: 0;
+        display:flex;
+	}
+	.header__list{
+	    margin: 10px 0px 0px 5px;
+        display: block;
+        min-width:200px;
+	}
+    .header__body ul li:hover .header__menu__sub-list{
+        position: relative;
+        margin: 10px 0px -20px 30px;
+        opacity: 1;
+        transition: visibility 3s, opacity 1.2s linear;
+        visibility: visible;
+	}
+    .header__menu__sub-list{
+        position: absolute;
+        transition: visibility 0s, opacity 0.7s linear;
+        opacity: 0;
+        visibility: hidden;
+        background-color: #ECF0E9;
+    }
+	.header__list li{
+		margin: 0px 0px 10px 0px;
+        
+	}
+    .header__list ul > li{
+        border-bottom: 0px;
+    }
+	.header__link{
+        font-size: 20px;
+    }
+} */
+
+
+/*--------------------------------------SPECIALISTS GENERAL INFO-------------------------------------------*/
+.page__speialists-page {
+    padding-top: 50px;
+}
+
+.specialists-page__body {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.specialists-page__info-block {
+	display: flex;
+	flex-direction: column;
+	width: 38%;
+}
+
+.specialists-header {
+	font-size: 78px;
+	text-transform: uppercase;
+	padding-bottom: 15px;
+}
+
+.specialists-text {
+	font-family: "SF Pro Text";
+	font-weight: 300;
+	line-height: 170%;
+	font-size: 15px;
+	margin-bottom: 45px;
+}
+
+.specialists-button{
+	margin-bottom: 40px;
+}
+
+/*-------------------FILTERS-------------------*/
+.filters-block{
+	margin-bottom: 40px;
+}
+.filters-block__body{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.filters__body{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 55%;
+}
+
+.filter__body-item{
+	margin-right: 10px;
+}
+
+.filter__body-item p{
+	font-family: 'Gilroy';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 22px;
+	color: #232323;
+	margin-bottom: 10px;
+	margin-right: 5px;
+}
+.filter__body-item input[type="text"]{
+	padding: 8px 40px 8px 20px;
+    color: #C6C6C6;
+	width: auto;
+	min-width: 1px;
+    background-color: #E9E9E9;
+	font-family: "SF Pro Text";
+	font-weight: 600;
+    font-size: 15px;
+    border-radius: 40px;
+
+	/* Добавляем фоновое изображение справа */
+    background-image: url('../images/search-select.svg'); /* Путь к вашему изображению со стрелкой */
+    background-repeat: no-repeat;
+    background-position: right center; /* Выравниваем изображение справа и по центру вертикально */
+    background-size: auto 100%; /* Автоматически масштабируем изображение по высоте */
+}
+
+.filter__body-item select{
+	font-family: "SF Pro Text";
+	font-weight: 600;
+	width: auto;
+	background-color: #E9E9E9;
+	color: #232323;
+	padding: 8px 40px 8px 20px;
+	font-size: 15px;
+	border-radius: 40px;
+    appearance: none;
+	/* Добавляем фоновое изображение справа */
+    background-image: url('../images/arrow-select.svg'); /* Путь к вашему изображению со стрелкой */
+    background-repeat: no-repeat;
+    background-position: right center; /* Выравниваем изображение справа и по центру вертикально */
+    background-size: auto 100%; /* Автоматически масштабируем изображение по высоте */
+}
+
+.reset-button {
+	display: inline-flex;
+	align-items: center;
+	font-size: 15px;
+	cursor: pointer;
+	border: none;
+	background-color: transparent;
+	color: #C6C6C6;
+	padding: 8px 16px;
+	font-family: "SF Pro Text";
+	font-weight: 500;
+  }
+
+  /* Стили для SVG-иконки крестика */
+  .reset-icon {
+	width: 16px;
+	height: 16px;
+	margin-left: 8px;
+	background-image: url('../images/delete-filters-icon.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+  }
+
+
+
+/*-------------------PAGINATION-------------------*/
+
+.hidden {
+    display: none !important;
+}
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    bottom: 0;
+    padding: 90px 0 100px 0;
+    justify-content: center;
+}
+
+.pagination-number,
+.pagination-button {
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    margin: 0.25rem 0.25rem;
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: .2rem;
+    color: #949494;
+	font-family: "SF Pro Text";
+	font-weight: 300;
+}
+
+.pagination-button {
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    margin: 0.25rem 0.25rem;
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: .2rem;
+    color: #232323;
+}
+
+.pagination-number.active {
+    color: #232323;
+}
+
+.pagination-button.disabled{
+    color: #949494;
+}
+
+/*-------------------CARD-------------------*/
+
+.specialists-catalog__body{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.card-specialist__body {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	margin-right: 20px;
+}
+
+/*все кроме третьего слайда с отступом справа*/
+
+.specialist-name {
+	margin-top: 30px;
+	font-size: 25px;
+	text-transform: uppercase;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.specialist-description {
+	font-family: "SF Pro Text";
+	font-weight: 300;
+	font-size: 15px;
+	text-align: center;
+}
+
+.specialist-button {
+	align-self: center;
+	margin-bottom: 30px;
+}
+
+/*--------------------------------------NEED COUSULTATION BLOCK-------------------------------------------*/
+.page__need-consult-block{
+	margin-bottom: 78px;
+}
+.need-consult__body{
+	background-color: #355D48;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.need-consult-title{
+	padding-top: 52px;
+	font-size: 60px;
+	text-transform: uppercase;
+	text-align: center;
+	padding-bottom: 15px;
+	color: #fff;
+}
+
+.need-consult-text{
+	font-family: "SF Pro Text";
+	font-weight: 300;
+	font-size: 15px;
+	text-align: center;
+	line-height: 160%;
+	padding-bottom: 35px;
+	color: #fff;
+}
+
+.need-consult-button{
+	margin-bottom: 52px;
+}
+

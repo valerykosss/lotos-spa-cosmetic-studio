@@ -1,0 +1,123 @@
+#open__log-in__button{
+    cursor: pointer;
+}
+
+#sign-in__form {
+    width: 550px;
+    height: 480px;
+    padding: 50px; 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.form__window-title{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#sign-up__form {
+    width: 550px;
+    height: 700px;
+    padding: 50px; 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.close__form {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    align-self: flex-end;
+    top: 10px;
+    right: 10px;
+}
+
+#sign-in__window,
+#sign-up__window {
+    z-index: 100;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#sign-in__window:target,
+#sign-up__window:target {
+    display: block;
+}
+
+#form__data input {
+    font-family: Montserrat;
+    height: 45px;
+    width: 350px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    color: black;
+    position: relative;
+}
+
+.form__retransfer-text{
+    font-size: 12px;
+}
+
+#sign-in__button {
+    padding: 0px 80px;
+    height: 45px;
+    border: none;
+    cursor: pointer;
+}
+
+#sign-up__button {
+    padding: 0px 80px;
+    height: 45px;
+    border: none;
+    cursor: pointer;
+}
+
+p #sign-in__link {
+    padding: 0px 0px;
+    cursor: pointer;
+    color: #dddddd;
+}
+
+p #sign-up__link {
+    padding: 0px 0px;
+    cursor: pointer;
+    color: #dddddd;
+}
+
+.error {
+    border-bottom: 1px solid red;
+}
+
+#form__data p {
+    height: 20px;
+    font-size: 10px;
+    margin-bottom: 25px;
+}
+
+.data-label__text{
+    font-size: 14px;
+}

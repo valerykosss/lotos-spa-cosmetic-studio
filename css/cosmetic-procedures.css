@@ -1,0 +1,114 @@
+/*--------------------------------------SPECIALISTS GENERAL INFO-------------------------------------------*/
+body{
+    background-color: #355D48;
+}
+
+.page__services-page {
+    padding-top: 50px;
+}
+
+.services-page__body {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.services-page__info-block {
+	display: flex;
+	flex-direction: column;
+	width: 38%;
+}
+
+.services-header {
+	font-size: 78px;
+	text-transform: uppercase;
+	padding-bottom: 15px;
+    color: #fff;
+}
+
+.services-text {
+	font-family: "SF Pro Text";
+	font-weight: 300;
+	line-height: 170%;
+	font-size: 15px;
+	margin-bottom: 45px;
+    color: #fff;
+}
+
+/*-------------------CARD-------------------*/
+
+.services-catalog__body{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.card-service__body {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	margin-right: 20px;
+}
+
+.service-name {
+	margin-top: 30px;
+	font-size: 25px;
+	text-transform: uppercase;
+	text-align: center;
+	margin-bottom: 20px;
+    color: #fff;
+	width: 380px
+}
+
+.service-description {
+	font-family: "SF Pro Text";
+	font-weight: 300;
+	font-size: 15px;
+	text-align: center;
+    color: #fff;
+	width: 260px;
+	line-height: 160%;
+	text-align: center;
+	align-self: center;
+
+}
+
+.service-button {
+	align-self: center;
+	margin-bottom: 30px;
+}
+
+/*--------------------------------------NEED COUSULTATION BLOCK-------------------------------------------*/
+.page__need-consult-block{
+    margin-top: 100px;
+	margin-bottom: 78px;
+}
+.need-consult-gray__body{
+	background-color: #F6F6F6;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.need-consult-title-gray{
+	padding-top: 52px;
+	font-size: 60px;
+	text-transform: uppercase;
+	text-align: center;
+	padding-bottom: 15px;
+}
+
+.need-consult-text-gray{
+	font-family: "SF Pro Text";
+	font-weight: 300;
+	font-size: 15px;
+	text-align: center;
+	line-height: 160%;
+	padding-bottom: 35px;
+}
+
+.need-consult-button{
+	margin-bottom: 52px;
+}
+

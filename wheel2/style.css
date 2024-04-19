@@ -1,0 +1,56 @@
+* {margin: 0;}
+
+#wheel-wrapper {
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+  width: 90vmin;
+  aspect-ratio: 1;
+  display: flex;
+  /* rotate: -0.25turn; */
+}
+
+#wheel {
+  position: relative;
+  margin: auto;
+  width: 90%;
+  aspect-ratio: 1;
+  background-image: url(https://i.postimg.cc/nLnSmp2G/Group-2.png);
+  background-size: cover;
+  border-radius: 50%;
+}
+
+#wheel-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 10%;
+  background: red;
+  height: 1%;
+  transform: translateY(-50%);
+  top: 50%;
+}
+#center-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px; /* Задайте размер кнопки по вашему усмотрению */
+    height: 150px; /* Задайте размер кнопки по вашему усмотрению */
+    border: none;
+    background: none;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1; /* Чтобы кнопка находилась поверх вращающегося колеса */
+}
+
+#center-button img {
+    width: 100%; /* Чтобы иконка вписывалась в круглую кнопку */
+    height: 100%; /* Чтобы иконка вписывалась в круглую кнопку */
+    border-radius: 50%;
+}
+
+#wheel {
+    position: relative;
+}
