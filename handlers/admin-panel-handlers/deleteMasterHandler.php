@@ -14,5 +14,5 @@
     echo $queryToDelete;
    
     require '../../partials/table-master-admin-panel.php';
-    
+      
 ?>
