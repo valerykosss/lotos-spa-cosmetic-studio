@@ -681,13 +681,18 @@ body {
 	color: #fff;
 	width: 50%;
 	line-height: 160%;
-	padding-bottom: 35px;
+	padding-bottom: 32px;
+}
+
+.wheel__left-column{
+	width: 50%;
 }
 
 .wheel__right-column{
 	position: relative;
-	top: -115px;
+	top: -70px;
 	height: 380px;
+	width: 50%;
 }
 
 /*--------------------------------------QUIZ BLOCK-------------------------------------------*/

@@ -20,6 +20,8 @@ require_once "../handlers/isAdmin.php";
     <script src="../libraries/splide-extension-auto-scroll.min.js"></script>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/sign-in-up.css">
+
+    <link rel="stylesheet" href="../css/wheel.css">
 </head>
 
 <body>
@@ -263,9 +265,18 @@ require_once "../handlers/isAdmin.php";
                 <div class="wheel__left-column">
                     <div class="wheel-title">Вращай колесо — <br>выигрывай подарки!</div>
                     <div class="wheel-text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более.</div>
+                    <button class="btn-spin">Испытай удачу</button>
                 </div>
                 <div class="wheel__right-column">
-                    <img class="wheel" src="../images/wheel.png">
+                    <!-- <img class="wheel" src="../images/wheel.png"> -->
+                    
+                    <!-- главный блок -->
+                    <div class="deal-wheel">
+                        <!-- блок с призами -->
+                        <ul class="spinner"></ul>
+                        <!-- язычок барабана -->
+                        <div class="ticker"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -292,6 +303,8 @@ require_once "../handlers/isAdmin.php";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <script src="../js/header.js"></script>
+
+    <script src="../js/wheel.js"></script>
 </body>
 
 </html>
