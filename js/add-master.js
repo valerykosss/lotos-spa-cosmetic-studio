@@ -79,7 +79,7 @@ function addMaster(master_name, master_surname, master_photo, education, work_ex
                 var tableBody = $('.table__to-update-delete').find('tbody'); // находим tbody во второй таблице
 
                 // Создаем новую строку для мастера
-                var newRow = $('<tr></tr>');
+                var newRow = $('<tr id="' + newMaster.id+'"></tr>');
 
                 // Создаем ячейки для новой строки
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.master_name + '</textarea></td>');
@@ -100,6 +100,7 @@ function addMaster(master_name, master_surname, master_photo, education, work_ex
                 $('.education').val('');
                 $('.work_experience').val('');
                 $('.position').val('');
+
             } else {
                 console.error('Произошла ошибка при добавлении мастера');
             }
@@ -109,5 +110,3 @@ function addMaster(master_name, master_surname, master_photo, education, work_ex
         }
     });
 }
-
-

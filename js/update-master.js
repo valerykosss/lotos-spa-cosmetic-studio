@@ -1,3 +1,5 @@
+
+//одновление мастера
 $(document).on('click', '.change-master__button', function () {
     var masterId = $(this).attr('id');
     var master_name = $('tr#' + masterId + ' textarea').eq(0).val();
