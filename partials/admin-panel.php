@@ -168,29 +168,7 @@
                     <div class="tab-content-admin-panel" id="content-2">
                         <p class="sub-header">Введите данные нового мастера: </p>
                         <table class="table__to-add">
-                            <tr>
-                                <th>Имя</th>
-                                <th>Фамилия</th>
-                                <th>Фото</th>
-                                <th>Курсы</th>
-                                <th>Опыт работы</th>
-                                <th>Специализация</th>
-                            </tr>
-                            <tr>
-                                    <td><textarea class="master_name"></textarea></td>
-                                    <td><textarea class="master_surname"></textarea></td>
-                                    <td><textarea class="master_photo"></textarea></td>
-                                    <td><textarea class="education"></textarea></td>
-                                    <td><textarea class="work_experience"></textarea></td>
-                                    <td><textarea class="position"></textarea></td>
-                                    <td>
-                                        <button class='add-master__button'></button>
-                                    </td>
-                            </tr>
-                        </table>
-
-                        <p class="sub-header">Все мастера: </p>
-                        <table class="table__to-update-delete">
+                            <thead>
                                 <tr>
                                     <th>Имя</th>
                                     <th>Фамилия</th>
@@ -199,14 +177,41 @@
                                     <th>Опыт работы</th>
                                     <th>Специализация</th>
                                 </tr>
-                                <?php
+                            </thead>
+                            <tbody>
+                                <tr>
+                                        <td><textarea class="master_name"></textarea></td>
+                                        <td><textarea class="master_surname"></textarea></td>
+                                        <td><textarea class="master_photo"></textarea></td>
+                                        <td><textarea class="education"></textarea></td>
+                                        <td><textarea class="work_experience"></textarea></td>
+                                        <td><textarea class="position"></textarea></td>
+                                        <td>
+                                            <button class='add-master__button'></button>
+                                        </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
+                        <p class="sub-header">Все мастера: </p>
+                        <table class="table__to-update-delete">
+                            <thead>
+                                <tr>
+                                    <th>Имя</th>
+                                    <th>Фамилия</th>
+                                    <th>Фото</th>
+                                    <th>Курсы</th>
+                                    <th>Опыт работы</th>
+                                    <th>Специализация</th>
+                                </tr>
+                            </thead>
+                                <?php
                                     $query = 'SELECT * from master';
 
+                                    echo "<tbody>";
                                     $trBlock = '';
 
                                     $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
-
                                     if ($result) {
                                         for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                                             $row = mysqli_fetch_row($result);
@@ -228,6 +233,7 @@
                                         }
                                     }
                                     echo $trBlock;
+                                    echo "</tbody>";
                                 ?>
 
                         </table>
