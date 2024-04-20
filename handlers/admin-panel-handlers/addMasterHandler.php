@@ -10,10 +10,9 @@
         $work_experience = $_POST['work_experience'];
         $position = $_POST['position'];
 
-    
-        // SQL-запрос для добавления данных в таблицу master
-        $queryToInsert = "INSERT INTO master (master_name, master_surname, master_photo, education, work_experience, position) 
-                  VALUES ('$master_name', '$master_surname', '$master_photo', '$education', '$work_experience', '$position')";
+
+        $queryToInsert = mysqli_query($link, "INSERT INTO master (master_name, master_surname, master_photo, education, work_experience, position) 
+        VALUES ('$master_name', '$master_surname', '$master_photo', '$education', '$work_experience', '$position')");
 
         echo $queryToInsert;
    

@@ -222,7 +222,7 @@
                                                     
                                                     <td>
                                                         <button class='change-master__button' id='".$row[0]."'></button>
-                                                        <button class='delete-master__button' id='".$row[0]."'></button>
+                                                        <button class='delete-master__button' id='" . $row[0] . "'></button>
                                                     </td>
                                                 </tr>";
                                         }
@@ -281,7 +281,6 @@
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="../libraries/swiper-bundle.min.js"></script>
 
     <script src="../js/tabs-admin-panel.js"></script>
 

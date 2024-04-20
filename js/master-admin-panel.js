@@ -31,18 +31,41 @@ $( ".add-master__button" ).click(function() {
         });
 });
 
-$( ".delete-master__button" ).click(function() {
-    let id_master_to_delete = $(this).attr("id");
+// $( ".delete-master__button" ).click(function() {
+//     let id_master_to_delete = $(this).attr("id");
 
+//         $.ajax({
+//             url: "../handlers/admin-panel-handlers/deleteMasterHandler.php",
+//             method: "POST",
+//             data: {
+//                 id_master_to_delete: id_master_to_delete,
+//             },
+//             success: function (data) { // запустится после получения результатов
+//                 alert("Мастер удален!");
+//                 $(".table__to-update-delete").html(data);
+//             }
+//         });
+// });
+
+    $('.delete-master__button').click(function() {
+        let id_master_to_delete = $(this).attr('id'); // Предполагая, что id_master_to_delete хранится в атрибуте id
+        deleteMaster(id_master_to_delete, $(this)); // Передаем ссылку на кнопку вместе с id_master_to_delete
+    });
+
+    function deleteMaster(id_master_to_delete, button) {
         $.ajax({
-            url: "../handlers/admin-panel-handlers/deleteMasterHandler.php",
-            method: "POST",
+            url: '../handlers/admin-panel-handlers/deleteMasterHandler.php',
+            type: 'POST',
             data: {
-                id_master_to_delete: id_master_to_delete,
+                id_master_to_delete: id_master_to_delete
             },
-            success: function (data) { // запустится после получения результатов
+            success: function(response) {
+                let masterRow = button.closest('tr'); // Используем closest для поиска ближайшего <tr>
+                masterRow.remove();
                 alert("Мастер удален!");
-                $(".table__to-update-delete").html(data);
+            },
+            error: function() {
+                console.error('Произошла ошибка при удалении пользователя');
             }
         });
-});
+    }
