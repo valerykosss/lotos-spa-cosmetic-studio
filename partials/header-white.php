@@ -41,15 +41,17 @@
                     </li>
                     <li>
                         <?php
-                        if (empty($_SESSION['Name'])) {
+                        if (empty($_SESSION['UserID'])) {
                             echo "<a class=\"header__link-white\" id=\"open__log-in__button\">
                             <img src=\"../images/icons/profile-icon-white.svg\" alt=\"\"> ВОЙТИ
                             </a>";
                         } else {
                             echo "<a class=\"header__link-white\" id=\"logout__button\" href=\"../handlers/logout.php\">
-                            <img src=\"../images/icons/profile-icon-white.svg\" alt=\"\"> ВЫЙТИ
+                            <img src=\"../images/icons/profile-icon-white.svg\" alt=\"\">".$_SESSION["Name"]."
                             </a>";
                         }
+
+                        // require_once '../handlers/isAdmin.php';
                     ?>
 
                     </li>

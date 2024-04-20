@@ -52,7 +52,7 @@ $('#sign-in__button').click(function (e) {
         },
         success(data) {
             if (data.status) { //если авторизовался(status===true)
-                function reload() { top.location = '../partials/index.php' };
+                function reload() { top.location = '../index.php' };
                 setTimeout(reload(), 0);
             }
             else {

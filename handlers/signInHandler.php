@@ -59,10 +59,12 @@ if ($passwordResult) {
             $_SESSION["Name"] = $nameRow[1];
             $_SESSION["UserID"] = $nameRow[0];
             $_SESSION["UserTel"] = $nameRow[3];
+            $_SESSION["RoleID"] = $nameRow[5];
         }
         $response = [
             "status" => true,
-            "user_id" => $_SESSION["UserID"]
+            "user_id" => $_SESSION["UserID"],
+            "role_id" => $_SESSION["RoleID"],
         ];
         echo json_encode($response);
     } else {

@@ -8,7 +8,7 @@
                     <li>
                         <?php
                         if (empty($_SESSION['Name'])) {
-                            echo "<a class=\"header__link-white\" id=\"open__log-in__button\">
+                            echo "<a class=\"header__link-white\" id='open__log-in__button'>
                             <img src=\"../images/icons/profile-icon-white.svg\" alt=\"\"> ВОЙТИ
                             </a>";
                         } else {

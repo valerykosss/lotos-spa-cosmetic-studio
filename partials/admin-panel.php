@@ -16,15 +16,15 @@
 
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/sign-in-up.css">
     <link rel="stylesheet" href="../css/header-white-admin-master.css">
     <link rel="stylesheet" href="../css/admin-panel.css">
-    <link rel="stylesheet" href="../css/sign-in-up.css">
 </head>
 
 <body>
 
     <?php 
-        require 'header-white-admin-master.php' 
+        require 'header-white-admin-master.php';
     ?>
 
     <!-- <main class="page">
@@ -296,7 +296,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     
 
-    <script src="../../js/header.js"></script>
+    <script src="../js/header.js"></script>
 
     <script src="../js/admin-panel-ajax/add-master.js"></script>
     <script src="../js/admin-panel-ajax/delete-master.js"></script>

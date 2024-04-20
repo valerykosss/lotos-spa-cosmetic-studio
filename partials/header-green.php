@@ -41,15 +41,16 @@
                     </li>
                     <li>
                         <?php
-                        if (empty($_SESSION['Name'])) {
+                        if (empty($_SESSION['UserID'])) {
                             echo "<a class=\"header__link\" id=\"open__log-in__button\">
                             <img src=\"../images/icons/profile-icon.svg\" alt=\"\"> ВОЙТИ
                             </a>";
                         } else {
                             echo "<a class=\"header__link\" id=\"logout__button\" href=\"../handlers/logout.php\">
-                            <img src=\"../images/icons/profile-icon.svg\" alt=\"\"> ВЫЙТИ
+                            <img src=\"../images/icons/profile-icon.svg\" alt=\"\"> ".$_SESSION["Name"]."
                             </a>";
                         }
+
                     ?>
                         <!-- <a href="#" class="header__link">
                             <img src="../images/icons/profile-icon.svg" alt="">
