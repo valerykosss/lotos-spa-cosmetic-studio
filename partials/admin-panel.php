@@ -217,7 +217,7 @@
                                             $row = mysqli_fetch_row($result);
 
                                             $trBlock .= "
-                                                <tr>
+                                                <tr id='$row[0]'>
                                                     <td><textarea id='". $row[0] ."'>" . $row[1] . "</textarea></td>
                                                     <td><textarea id='". $row[0] ."'>" . $row[2] . "</textarea></td>
                                                     <td><textarea id='". $row[0] ."'>" . $row[3] . "</textarea></td>
@@ -297,7 +297,9 @@
     
 
     <script src="../js/header.js"></script>
-    <script src="../js/master-admin-panel.js"></script>
+    <script src="../js/add-master.js"></script>
+    <script src="../js/delete-master.js"></script>
+    <script src="../js/update-master.js"></script>
 
 </body>
 

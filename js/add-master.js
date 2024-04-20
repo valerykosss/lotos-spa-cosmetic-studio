@@ -111,26 +111,3 @@ function addMaster(master_name, master_surname, master_photo, education, work_ex
 }
 
 
-//удаление мастера
-$('.delete-master__button').click(function () {
-    let id_master_to_delete = $(this).attr('id'); // Предполагая, что id_master_to_delete хранится в атрибуте id
-    deleteMaster(id_master_to_delete, $(this)); // Передаем ссылку на кнопку вместе с id_master_to_delete
-});
-
-function deleteMaster(id_master_to_delete, button) {
-    $.ajax({
-        url: '../handlers/admin-panel-handlers/deleteMasterHandler.php',
-        type: 'POST',
-        data: {
-            id_master_to_delete: id_master_to_delete
-        },
-        success: function (response) {
-            let masterRow = button.closest('tr'); // Используем closest для поиска ближайшего <tr>
-            masterRow.remove();
-            alert("Мастер удален!");
-        },
-        error: function () {
-            console.error('Произошла ошибка при удалении пользователя');
-        }
-    });
-}
