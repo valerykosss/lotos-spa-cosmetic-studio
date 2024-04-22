@@ -136,9 +136,34 @@ const runTickerAnimation = () => {
 const selectPrize = () => {
     const selected = Math.floor(rotation / prizeSlice);
     const selectedId = prizeNodes[selected].getAttribute('data-id');
+
+    $(".btn-spin").prop('disabled', true);
+
+    $.ajax({
+        url: '../handlers/addDiscountIntoUserTable.php',
+        type: 'POST',
+        dataType: 'json',
+        data: { 
+            selectedId: selectedId
+        },
+        success: function(response) {
+            if (response.success) {
+                // Выводим сообщение об успешном сохранении
+                alert('ID успешно сохранен в базе данных.');
+            } else {
+                // Выводим сообщение об ошибке
+                alert('Ошибка при сохранении ID в базе данных.');
+
+            }
+        },
+        error: function(error) {
+            console.error('Error saving data:', error);
+        }
+    });
     
     // Выводим ID сектора в alert
-    alert(`Колесо остановилось на секторе с ID: ${selectedId}`);
+    // alert(`Колесо остановилось на секторе с ID: ${selectedId}`);
+    
 };
 
 // отслеживаем нажатие на кнопку
@@ -171,6 +196,4 @@ spinner.addEventListener("transitionend", () => {
     wheel.classList.remove(spinClass);
     // отправляем в CSS новое положение поворота колеса
     spinner.style.setProperty("--rotate", rotation);
-    // делаем кнопку снова активной
-    trigger.disabled = false;
 });

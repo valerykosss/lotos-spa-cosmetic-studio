@@ -1,6 +1,7 @@
 <?php
 
 require_once "../handlers/isAdmin.php";
+require_once "../handlers/isWheelSpinned.php";
 ?>
 
 <!DOCTYPE html>
@@ -260,26 +261,31 @@ require_once "../handlers/isAdmin.php";
                 </div>
             </div>
         </section>
-        <section class="page__wheel">
-            <div class="wheel__body _container">
-                <div class="wheel__left-column">
-                    <div class="wheel-title">Вращай колесо — <br>выигрывай подарки!</div>
-                    <div class="wheel-text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более.</div>
-                    <button class="btn-spin">Испытай удачу</button>
-                </div>
-                <div class="wheel__right-column">
-                    <!-- <img class="wheel" src="../images/wheel.png"> -->
-                    
-                    <!-- главный блок -->
-                    <div class="deal-wheel">
-                        <!-- блок с призами -->
-                        <ul class="spinner"></ul>
-                        <!-- язычок барабана -->
-                        <div class="ticker"></div>
+        <?php
+            if(isset($_SESSION["UserID"])&&$isSpinned==false){?>
+            <section class="page__wheel">
+                <div class="wheel__body _container">
+                    <div class="wheel__left-column">
+                        <div class="wheel-title">Вращай колесо — <br>выигрывай подарки!</div>
+                        <div class="wheel-text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более.</div>
+                        <button class="btn-spin">Испытай удачу</button>
+                    </div>
+                    <div class="wheel__right-column">
+                        <!-- <img class="wheel" src="../images/wheel.png"> -->
+                        
+                        <!-- главный блок -->
+                        <div class="deal-wheel">
+                            <!-- блок с призами -->
+                            <ul class="spinner"></ul>
+                            <!-- язычок барабана -->
+                            <div class="ticker"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            <?php }        
+        ?>
+        
         <section class="page__quiz-block">
             <div class="quiz-block__body _container">
                 <div class="quiz-block-title">Не подобрали<br>подходящую процедуру?</div>
