@@ -1,36 +1,3 @@
-/* #sign-up-for-procedure {
-    width: 550px;
-    height: 480px;
-    padding: 50px; 
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background-color: white;
-}
-
-#sign-up-for-procedure__form {
-    width: 550px;
-    height: 700px;
-    padding: 50px; 
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background-color: white;
-} */
 
 #sign-up-for-procedure__window {
     z-index: 100;
@@ -58,7 +25,7 @@
 
 #sign-up-for-procedure__form {
     width: 550px;
-    height: 500px;
+    height: 700px;
     padding: 50px;
     display: flex;
     flex-direction: column;
@@ -77,22 +44,11 @@
     right: 10px;
 }
 
-/* #sign-up-for-procedure__window {
-    z-index: 100;
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-} */
-
 #sign-up-for-procedure__window:target {
     display: block;
 }
 
-#sign-up-for-procedure__data input, select {
+#sign-up-for-procedure__data select {
     font-family: Montserrat;
     height: 45px;
     width: 450px;
@@ -109,4 +65,8 @@
     height: 45px;
     border: none;
     cursor: pointer;
+}
+
+#calendar{
+    margin-top: 10px;
 }

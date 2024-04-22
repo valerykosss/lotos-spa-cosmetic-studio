@@ -10,14 +10,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Лотос - Специалисты</title>
+    <title>Лотос - Специалист</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/specialist-page.css">
     <link rel="stylesheet" href="../css/sign-in-up.css">
     <link rel="stylesheet" href="../css/sign-up-for-procedure-windows.css">
 
-    <script src="../libraries/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/ru.js"></script>
 </head>
 
 <body>
@@ -98,6 +106,7 @@
             <div id="sign-up-for-procedure__data"> 
                 <select id="masters__data"></select>
                 <select id="services__data"></select>
+                <div id="calendar"></div>
 
             </div>
             <button id="sign-up-for-procedure__button" type="submit">Записаться</button>
@@ -109,11 +118,18 @@
 
     <?php require 'footer-white.php' ?>
 
-    <script src ="../libraries/jquery-3.6.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-    <script src="../js/header.js"></script>
+<!-- ... -->
 
-    <script src="../js/signUpForProcedureFromMaster.js"></script>
+
+<!-- Далее ваши остальные скрипты -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+
+<script src="../js/header.js"></script>
+<script src="../js/signUpForProcedureFromMaster.js"></script>
+
+
+<!-- ... -->
+
+
 </body>
 </html>
