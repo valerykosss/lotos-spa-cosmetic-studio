@@ -6,7 +6,7 @@ if (isset($_GET['id_master'])) {
 
     try {
         // Запрос к базе данных для получения данных о процедурах для выбранного мастера
-        $sql = "SELECT s.id_service, s.service_name FROM master_service ms
+        $sql = "SELECT s.id_service, s.service_name, s.duration, s.price FROM master_service ms
                 JOIN service s ON ms.id_service = s.id_service
                 WHERE ms.id_master = ?";
         
@@ -18,7 +18,12 @@ if (isset($_GET['id_master'])) {
         $services = [];
 
         while ($row = $result->fetch_assoc()) {
-            $services[] = $row;
+            $services[] = [
+                'id_service' => $row['id_service'],
+                'service_name' => $row['service_name'],
+                'duration' => $row['duration'],
+                'price' => $row['price']
+            ];
         }
 
         // Отправка данных в формате JSON
