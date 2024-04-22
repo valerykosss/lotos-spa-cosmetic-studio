@@ -80,7 +80,7 @@ table {
 
 }
 td {
-    border: 1px solid;
+    border: 1px solid #DDDDDD;
     padding: 24px;
 }
 
@@ -100,6 +100,7 @@ th{
 	text-transform: uppercase;
 }
 
+/*--------------------------------------BUTTONS FOR MASTERS-------------------------------------------*/
 .add-master__button {
     width: 18px;
     height: 18px;
@@ -132,4 +133,44 @@ th{
     cursor: pointer;
 
 	margin-bottom: 10px;
+}
+
+/*--------------------------------------BUTTONS FOR SERVICE-------------------------------------------*/
+.add-service__button{
+    width: 18px;
+    height: 18px;
+    background-image: url('../images/icons/add-icon.svg');
+    background-size: cover;
+	background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.change-service__button {
+    width: 18px;
+    height: 18px;
+    background-image: url('../images/icons/renew-icon.svg');
+    background-size: cover;
+	background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+	margin-bottom: 10px;
+}
+
+.delete-service__button {
+    width: 18px;
+    height: 18px;
+    background-image: url('../images/icons/trash.svg');
+    background-size: cover;
+	background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+	margin-bottom: 10px;
+}
+
+select{
+    font-size: 15px;
+    font-family: 'SF Pro Text';
 }

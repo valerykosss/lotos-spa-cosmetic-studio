@@ -132,9 +132,77 @@ require_once "../handlers/isAdmin.php";
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-2">
-                        Содержимое 1... Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique eaque iure
-                        debitis nostrum, vero ad totam ratione sequi! Suscipit, labore repellat cum soluta ullam
-                        dignissimos perspiciatis sequi rerum sapiente ex.
+                    <p class="sub-header">Введите данные новой услуги: </p>
+                        <table class="table__to-add">
+                            <thead>
+                                <tr>
+                                    <th>Тип услуги</th>
+                                    <th>Название услуги</th>
+                                    <th>Фото</th>
+                                    <th>Описание</th>
+                                    <th>Длительность</th>
+                                    <th>Стоимость (руб)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                        <td><select class="id_service_type"></select></td>
+                                        <td><textarea class="service_name"></textarea></td>
+                                        <td><textarea class="service_image"></textarea></td>
+                                        <td><textarea class="service_description"></textarea></td>
+                                        <td><textarea class="duration"></textarea></td>
+                                        <td><textarea class="price"></textarea></td>
+                                        <td>
+                                            <button class='add-service__button'></button>
+                                        </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p class="sub-header">Все услуги: </p>
+                        <table class="table__to-update-delete">
+                            <thead>
+                                <tr>
+                                <th>Тип услуги</th>
+                                    <th>Название услуги</th>
+                                    <th>Фото</th>
+                                    <th>Описание</th>
+                                    <th>Длительность</th>
+                                    <th>Стоимость (руб)</th>
+                                </tr>
+                            </thead>
+                                <?php
+                                    $query = 'SELECT * from service';
+
+                                    echo "<tbody>";
+                                    $trBlock = '';
+
+                                    $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                                    if ($result) {
+                                        for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                            $row = mysqli_fetch_row($result);
+
+                                            $trBlock .= "
+                                                <tr id='$row[0]'>
+                                                    <td><select class='id_service_type'></select></td>
+                                                    <td><textarea>" . $row[2] . "</textarea></td>
+                                                    <td><textarea>" . $row[3] . "</textarea></td>
+                                                    <td><textarea>" . $row[4] . "</textarea></td>
+                                                    <td><textarea>" . $row[5] . "</textarea></td>
+                                                    <td><textarea>" . $row[6] . "</textarea></td>
+                                                    
+                                                    <td>
+                                                        <button class='change-service__button' id='".$row[0]."'></button>
+                                                        <button class='delete-service__button' id='" . $row[0] . "'></button>
+                                                    </td>
+                                                </tr>";
+                                        }
+                                    }
+                                    echo $trBlock;
+                                    echo "</tbody>";
+                                ?>
+
+                        </table>
                     </div>
                     <div class="tab-content-admin-panel" id="content-3">
                         Содержимое 1... Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique eaque iure
@@ -198,6 +266,12 @@ require_once "../handlers/isAdmin.php";
     <script src="../js/admin-panel-ajax/add-master.js"></script>
     <script src="../js/admin-panel-ajax/delete-master.js"></script>
     <script src="../js/admin-panel-ajax/update-master.js"></script>
+
+    <script src="../js/admin-panel-ajax/service-type-for-service.js"></script>
+
+    <script src="../js/admin-panel-ajax/add-service.js"></script>
+    <script src="../js/admin-panel-ajax/delete-service.js"></script>
+    <script src="../js/admin-panel-ajax/update-service.js"></script>
 
 </body>
 

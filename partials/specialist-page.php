@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/specialist-page.css">
     <link rel="stylesheet" href="../css/sign-in-up.css">
+    <link rel="stylesheet" href="../css/sign-up-for-procedure-windows.css">
 
     <script src="../libraries/jquery-3.6.0.min.js"></script>
 </head>
@@ -80,7 +81,7 @@
                         </div>
                     </div>
 
-                    <div class="specialist-button green-button">
+                    <div class="specialist-button green-button" id="1">
                         <span class="details">ЗАПИСАТЬСЯ</span>
                     </div>
 
@@ -88,11 +89,31 @@
             </div>
         </section>
     </main>
+
+        <div id="sign-up-for-procedure__window">
+        <form id="sign-up-for-procedure__form">
+            <a href="#" class="close__form"> 
+                <img class="close__form-image" height="35px" width="35px" src="../images/icons/cross.svg" /> 
+            </a>
+            <div id="sign-up-for-procedure__data"> 
+                <select id="masters__data"></select>
+                <select id="services__data"></select>
+
+            </div>
+            <button id="sign-up-for-procedure__button" type="submit">Записаться</button>
+        </form>
+    </div>
+    
+    <?php require 'sign-in.php' ?>
+
+
     <?php require 'footer-white.php' ?>
 
     <script src ="../libraries/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <script src="../js/header.js"></script>
+
+    <script src="../js/signUpForProcedureFromMaster.js"></script>
 </body>
 </html>

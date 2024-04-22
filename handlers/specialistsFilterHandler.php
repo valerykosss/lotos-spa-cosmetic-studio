@@ -24,18 +24,26 @@ error_reporting(E_ALL);
             // JOIN master m ON ms.id_master = m.id_master
             // ORDER BY sub.count_services DESC, ms.id_master";
 
-            $query1 = 'SELECT m.id_master, m.master_name, m.master_surname, m.master_photo, m.position
-            FROM (
-                SELECT ms.id_master, m.master_name, m.master_surname, m.position,
-                       MIN(ms.id_master_service) as min_id_master_service
-                FROM master_service ms
-                JOIN master m ON ms.id_master = m.id_master ';
+            $query1 = 'SELECT 
+            m.id_master,
+            m.master_name,
+            m.master_surname,
+            m.master_photo,
+            m.position,
+            COUNT(pr.id_record) AS total_records
+        FROM 
+            master m
+        LEFT JOIN 
+            master_service ms ON m.id_master = ms.id_master
+        LEFT JOIN 
+            procedure_record pr ON ms.id_master_service = pr.id_master_service ';
 
-             $query3 = ' GROUP BY ms.id_master, m.master_name, m.master_surname, m.position
-             ) as RankedMasterService
-             JOIN master_service ms ON RankedMasterService.min_id_master_service = ms.id_master_service
-             JOIN master m ON RankedMasterService.id_master = m.id_master
-             ORDER BY RankedMasterService.id_master;';
+             $query3 = ' GROUP BY 
+             m.id_master,
+             m.master_name,
+             m.master_surname
+         ORDER BY 
+             total_records DESC;';
 
         } else if ($sort1 === 'rating') {
             // $masters_sorted = mysqli_query($link, "SELECT mr.id_master, m.master_name, m.master_surname, m.position, AVG(mr.master_rating) as avg_rating

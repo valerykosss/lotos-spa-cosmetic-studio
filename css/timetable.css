@@ -33,3 +33,8 @@ h2, h4{
 .modal-dialog{
     font-family: "SF Pro Text";
 }
+
+.fc-event, .fc-event-dot{
+    background-color: #38624C; /* красный цвет фона */
+    border: 1px solid #38624C;
+}

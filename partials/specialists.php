@@ -75,16 +75,24 @@
             <div class="specialists-catalog__body _container" id="paginated-list" data-current-page="1" aria-live="polite">
                 <?php
 
-                    $query = "SELECT m.id_master, m.master_name, m.master_surname, m.master_photo, m.position
-                    FROM (
-                        SELECT ms.id_master, m.master_name, m.master_surname, m.position,
-                               MIN(ms.id_master_service) as min_id_master_service
-                        FROM master_service ms
-                        JOIN master m ON ms.id_master = m.id_master GROUP BY ms.id_master, m.master_name, m.master_surname, m.position
-                    ) as RankedMasterService
-                    JOIN master_service ms ON RankedMasterService.min_id_master_service = ms.id_master_service
-                    JOIN master m ON RankedMasterService.id_master = m.id_master
-                    ORDER BY RankedMasterService.id_master;";
+                    $query = "SELECT 
+                    m.id_master,
+                    m.master_name,
+                    m.master_surname,
+                    m.master_photo,
+                    m.position,
+                    COUNT(pr.id_record) AS total_records
+                FROM 
+                    master m
+                LEFT JOIN 
+                    master_service ms ON m.id_master = ms.id_master
+                LEFT JOIN 
+                    procedure_record pr ON ms.id_master_service = pr.id_master_service GROUP BY 
+             m.id_master,
+             m.master_name,
+             m.master_surname
+         ORDER BY 
+             total_records DESC;";
                     require 'specialistCards.php'
                 ?>
                 <!-- <div class="card-specialist__body">
