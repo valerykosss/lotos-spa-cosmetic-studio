@@ -88,14 +88,27 @@ $(document).ready(function () {
                     }).text(service.service_name);
 
                     $('#services__data').append(option);
+
+                    
                 });
+
+                 // Проверка атрибутов после добавления option
+                $('#services__data option').each(function() {
+                    console.log('Value:', $(this).val());
+                    console.log('Data duration:', $(this).data('duration'));
+                    console.log('Data price:', $(this).data('price'));
+                });
+
+                var id_service_selected = $('#services__data').val(services[0].id_service).trigger('change');
+                duration_service_selected = $(this).find(':selected').data('duration');
+
+
             },
             error: function (error) {
                 console.error('Ошибка при загрузке данных:', error);
             }
-        });
 
-        var service_duration = $('#services__data option:selected').data('duration');
+        });
 
 
         // Функция для получения рабочего графика мастера ПРАВИЛЬНО++++++++++++++++++++++++++++++++++++++++++++++
@@ -147,26 +160,27 @@ $(document).ready(function () {
             //     var masterEnd = moment(slot.end);
 
             const available_slots = [];
+            var slotsCount = Math.ceil(service_duration / 30);
 
             master_timetable.forEach(function (slot) {
 
                 let masterStart = moment(slot.start);
-                console.log('');
-                console.log("masterStart");
-                console.log(masterStart.format('YYYY-MM-DD HH:mm:ss'));
+                // console.log('');
+                // console.log("masterStart");
+                // console.log(masterStart.format('YYYY-MM-DD HH:mm:ss'));
 
                 const masterEnd = moment(slot.end);
-                console.log('');
-                console.log("masterEnd");
-                console.log(masterEnd.format('YYYY-MM-DD HH:mm:ss'));
+                // console.log('');
+                // console.log("masterEnd");
+                // console.log(masterEnd.format('YYYY-MM-DD HH:mm:ss'));
 
 
                 while (masterStart.isBefore(masterEnd)) {
                     const slotEnd = moment(masterStart).add(service_duration, 'minutes');
-                    console.log('');
-                    console.log("slotEnd");
+                    // console.log('');
+                    // console.log("slotEnd");
 
-                    console.log(slotEnd.format('YYYY-MM-DD HH:mm:ss'));
+                    // console.log(slotEnd.format('YYYY-MM-DD HH:mm:ss'));
 
                     if (slotEnd.isAfter(masterEnd)) {
                         break;
@@ -175,19 +189,19 @@ $(document).ready(function () {
                     let isAvailable = true;
 
                     // Проверяем тройные слоты
-                    for (let j = 0; j < 3; j++) {
-                        console.log('');
-                        console.log('j:');
-                        console.log(j);
+                    for (let j = 0; j < slotsCount; j++) {
+                        // console.log('');
+                        // console.log('j:');
+                        // console.log(j);
                         const currentSlotStart = moment(masterStart).add(j * 30, 'minutes');
                         const currentSlotEnd = moment(currentSlotStart).add(30, 'minutes');
-                        console.log('');
-                        console.log("currentSlotStart:");
-                        console.log(currentSlotStart.format('YYYY-MM-DD HH:mm:ss'));
+                        // console.log('');
+                        // console.log("currentSlotStart:");
+                        // console.log(currentSlotStart.format('YYYY-MM-DD HH:mm:ss'));
 
-                        console.log('');
-                        console.log("currentSlotEnd:");
-                        console.log(currentSlotEnd.format('YYYY-MM-DD HH:mm:ss'));
+                        // console.log('');
+                        // console.log("currentSlotEnd:");
+                        // console.log(currentSlotEnd.format('YYYY-MM-DD HH:mm:ss'));
 
                         for (let i = 0; i < booked_slots.length; i++) {
                             const bookedSlotStart = moment(booked_slots[i].record_date + ' ' + booked_slots[i].record_time);
@@ -221,19 +235,15 @@ $(document).ready(function () {
         }
 
 
-        function loadAvailableDates(id_master) {
-            //service_duration = $('#services__data option:selected').data('duration');
-            //var service_duration = 90;
-
-            console.log(service_duration);
+        function loadAvailableDates(id_master, duration_service_selected) {
+            // console.log(duration_service_selected);
+            var service_duration = duration_service_selected;
 
             getMasterTimetable(id_master, moment().format('YYYY-MM-DD HH:mm'), moment().add(1, 'months').format('YYYY-MM-DD  HH:mm'))
                 .then(function (master_timetable) {
                     return getBookedSlots(id_master, moment().format('YYYY-MM-DD'), moment().add(1, 'months').format('YYYY-MM-DD'))
                         .then(function (booked_slots) {
                             var available_slots = getAvailableSlots(master_timetable, booked_slots, service_duration);
-                            var test = getAvailableSlots(master_timetable, booked_slots, 90);
-                            console.log(test);
                             updateCalendarWithAvailableSlots(available_slots);
 
                         });
@@ -263,6 +273,16 @@ $(document).ready(function () {
             });
         }
 
-        loadAvailableDates(id_master);
+        loadAvailableDates(id_master, duration_service_selected);
+        var duration_service_selected;
+        $('#services__data').change(function() {
+            var id_service = $(this).val(); // Получаем выбранный id_service
+            duration_service_selected = $(this).find(':selected').data('duration');
+            console.log('Выбранный ID услуги:', id_service);
+            console.log('Продолжительность выбранной услуги:', duration_service_selected);
+
+            loadAvailableDates(id_master, duration_service_selected); // Передаем id_service в функцию
+            console.log(duration_service_selected);
+        });
     });
 });
