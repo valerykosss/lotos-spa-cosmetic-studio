@@ -95,6 +95,8 @@ $(document).ready(function () {
             }
         });
 
+        var service_duration = $('#services__data option:selected').data('duration');
+
 
         // Функция для получения рабочего графика мастера ПРАВИЛЬНО++++++++++++++++++++++++++++++++++++++++++++++
         function getMasterTimetable(id_master, start_date, end_date) {
@@ -220,8 +222,8 @@ $(document).ready(function () {
 
 
         function loadAvailableDates(id_master) {
-            // var service_duration = $('#services__data option:selected').data('duration');
-            var service_duration = 90;
+            //service_duration = $('#services__data option:selected').data('duration');
+            //var service_duration = 90;
 
             console.log(service_duration);
 
