@@ -139,95 +139,91 @@ $(document).ready(function () {
 
 
 
-        function getAvailableSlots(master_timetable, booked_slots, service_duratio) {
-            var available_slots = [];
+        function getAvailableSlots(master_timetable, booked_slots, service_duration) {
 
-            // master_timetable.forEach(function (slot) {
-            //     //видимо тут нужно брать слот не глобальный, а локальный по длительности процедуры 
-            //     var slotStart = moment(slot.start);
-            //     var slotEnd = moment(slot.end);
+            // var masterStart = moment(slot.start);
+            //     var masterEnd = moment(slot.end);
 
-            //     // console.log(slotStart); 
-            //     //console.log(slotEnd); //ПРАВИЛЬНО. ПОЛУЧАЕТ НАЧАЛА И КОНЦЫ ВРЕМЕНИ РАБОТЫ МАСТЕРА++++++++++++++++++++++++++++++++++++++++++++++
+            const available_slots = [];
 
+            master_timetable.forEach(function (slot) {
 
-            //     var isAvailable = true;
+                let masterStart = moment(slot.start);
+                console.log('');
+                console.log("masterStart");
+                console.log(masterStart.format('YYYY-MM-DD HH:mm:ss'));
 
-            //     booked_slots.forEach(function (bookedSlot) {
-
-            //         var bookedSlotStart = moment(bookedSlot.record_date + ' ' + bookedSlot.record_time);
-            //         var bookedSlotEnd = moment(bookedSlotStart).add(parseInt(bookedSlot.duration), 'minutes');
-
-            //         console.log("bookedSlotStart");
-            //         console.log(bookedSlotStart.format('YYYY-MM-DD HH:mm:ss'));
-
-            //         console.log("bookedSlotEnd");
-            //         console.log(bookedSlotEnd.format('YYYY-MM-DD HH:mm:ss')); //ПРАВИЛЬНО. ПРИБАВЛЯЕТ ТЕПЕРЬ КОРРЕКТНО ДЛИТЕЛЬНОСТЬ++++++++++++++++++++++++++++++++++++++++++++++
+                const masterEnd = moment(slot.end);
+                console.log('');
+                console.log("masterEnd");
+                console.log(masterEnd.format('YYYY-MM-DD HH:mm:ss'));
 
 
-            //         if (slotStart.isBetween(bookedSlotStart, bookedSlotEnd) || slotEnd.isBetween(bookedSlotStart, bookedSlotEnd)) {
-            //             isAvailable = false;
-            //             return false;
-            //         }
-            //     });
+                while (masterStart.isBefore(masterEnd)) {
+                    const slotEnd = moment(masterStart).add(service_duration, 'minutes');
+                    console.log('');
+                    console.log("slotEnd");
 
-            //     if (isAvailable) {
-            //         available_slots.push({
-            //             start: slotStart.format('YYYY-MM-DD HH:mm'),
-            //             end: slotEnd.format('YYYY-MM-DD HH:mm')
-            //         });
-            //     }
-            // });
+                    console.log(slotEnd.format('YYYY-MM-DD HH:mm:ss'));
 
-            // return available_slots;
-
-            var available_slots = [];
-
-            // Преобразование времени работы мастера в объекты Moment
-            var masterStart = moment(master_timetable.start);
-            var masterEnd = moment(master_timetable.end);
-
-            // Проход по рабочему графику мастера
-            while (masterStart.isBefore(masterEnd)) {
-                var slotEnd = moment(masterStart).add(service_duration, 'minutes');
-
-                var isAvailable = true;
-
-                // Проверка пересечения со забронированными слотами
-                for (var i = 0; i < booked_slots.length; i++) {
-                    var bookedSlotStart = moment(booked_slots[i].record_date + ' ' + booked_slots[i].record_time);
-                    var bookedSlotEnd = moment(bookedSlotStart).add(booked_slots[i].duration, 'minutes');
-
-                    if (masterStart.isBetween(bookedSlotStart, bookedSlotEnd) || slotEnd.isBetween(bookedSlotStart, bookedSlotEnd)) {
-                        isAvailable = false;
+                    if (slotEnd.isAfter(masterEnd)) {
                         break;
                     }
-                }
 
-                // Если слот доступен, добавляем его в список доступных слотов
-                if (isAvailable) {
-                    available_slots.push({
-                        start: masterStart.format('YYYY-MM-DD HH:mm'),
-                        end: slotEnd.format('YYYY-MM-DD HH:mm')
-                    });
-                }
+                    let isAvailable = true;
 
-                // Переход к следующему слоту
-                masterStart.add(1, 'minutes');
-            }
+                    // Проверяем тройные слоты
+                    for (let j = 0; j < 3; j++) {
+                        console.log('');
+                        console.log(j);
+                        const currentSlotStart = moment(masterStart).add(j * 30, 'minutes');
+                        const currentSlotEnd = moment(currentSlotStart).add(30, 'minutes');
+
+                        for (let i = 0; i < booked_slots.length; i++) {
+                            const bookedSlotStart = moment(booked_slots[i].record_date + ' ' + booked_slots[i].record_time);
+                            const bookedSlotEnd = moment(bookedSlotStart).add(booked_slots[i].duration, 'minutes');
+
+                            // (), []
+                            if (currentSlotStart.isBetween(bookedSlotStart, bookedSlotEnd, null, '[)') ||
+                                currentSlotEnd.isBetween(bookedSlotStart, bookedSlotEnd, null, '[)')) {
+                                isAvailable = false;
+                                break;
+                            }
+                        }
+
+                        if (!isAvailable) {
+                            break;
+                        }
+                    }
+
+                    if (isAvailable) {
+                        available_slots.push({
+                            start: masterStart.clone().format('YYYY-MM-DD HH:mm'),
+                            end: slotEnd.clone().format('YYYY-MM-DD HH:mm')
+                        });
+                    }
+                       // Переход к следующему слоту
+                masterStart.add(30, 'minutes');
+                }
+            });
 
             return available_slots;
         }
 
+
         function loadAvailableDates(id_master) {
-            var service_duration = $('#services__data option:selected').data('duration');
+            // var service_duration = $('#services__data option:selected').data('duration');
+            var service_duration = 90;
+
+            console.log(service_duration);
 
             getMasterTimetable(id_master, moment().format('YYYY-MM-DD HH:mm'), moment().add(1, 'months').format('YYYY-MM-DD  HH:mm'))
                 .then(function (master_timetable) {
                     return getBookedSlots(id_master, moment().format('YYYY-MM-DD'), moment().add(1, 'months').format('YYYY-MM-DD'))
                         .then(function (booked_slots) {
                             var available_slots = getAvailableSlots(master_timetable, booked_slots, service_duration);
-                            // console.log(available_slots);
+                            var test = getAvailableSlots(master_timetable, booked_slots, 90);
+                            console.log(test);
                             updateCalendarWithAvailableSlots(available_slots);
 
                         });
