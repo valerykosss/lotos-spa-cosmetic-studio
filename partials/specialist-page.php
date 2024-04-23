@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="../css/sign-in-up.css">
     <link rel="stylesheet" href="../css/sign-up-for-procedure-windows.css">
 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -28,19 +27,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/ru.js"></script>
 
     <style>
-        /* Доступные даты */
-        .available-date {
-            background-color: #e0f7fa; /* Цвет фона для доступных дат */
-            cursor: pointer; /* Изменение курсора при наведении */
+        .fc-event, .fc-event-dot{
+        background-color: #38624C; /* красный цвет фона */
+        border: 1px solid #38624C;
         }
 
-        /* Недоступные даты */
-        .unavailable-date {
-            background-color: #f5f5f5; /* Цвет фона для недоступных дат */
-            cursor: not-allowed; /* Изменение курсора на "не доступно" */
-            opacity: 0.5; /* Уменьшаем прозрачность для недоступных дат */
+        .light-grey-background {
+            background-color: lightgrey !important;
         }
     </style>
+
+
 </head>
 
 <body>

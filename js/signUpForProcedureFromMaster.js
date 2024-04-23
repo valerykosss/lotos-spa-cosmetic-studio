@@ -27,13 +27,14 @@
 // });
 
 $(document).ready(function () {
+
     $(".close__form").mousedown(function () {
         clear();
         $("#sign-up-for-procedure__window").css("display", "none");
     });
-
     // Обработчик события клика по кнопке
     $('.specialist-button').click(function () {
+        
         // Отображение блока
         $('#sign-up-for-procedure__window').show();
 
@@ -86,10 +87,7 @@ $(document).ready(function () {
                         'data-duration': service.duration,
                         'data-price': service.price
                     }).text(service.service_name);
-
                     $('#services__data').append(option);
-
-                    
                 });
 
                  // Проверка атрибутов после добавления option
@@ -245,7 +243,6 @@ $(document).ready(function () {
                         .then(function (booked_slots) {
                             var available_slots = getAvailableSlots(master_timetable, booked_slots, service_duration);
                             updateCalendarWithAvailableSlots(available_slots);
-
                         });
                 })
                 .catch(function (error) {
@@ -263,43 +260,51 @@ $(document).ready(function () {
                     return {
                         start: slot.start,
                         end: slot.end,
-                        allDay: false
+                        allDay: false,
                     };
                 }),
-                selectable: true,
-                select: function (start, end) {
-                    console.log('Выбранная дата:', start.format());
-                },
-            });
-            // $('#sign-up-for-procedure__button').click(function() {
-            //     if (selectedDate) { // проверяем, выбрана ли дата
-            //         console.log('Выбранная дата для записи:', selectedDate);
+
+                eventClick: function(event) {
                     
-            //         // Пример AJAX-запроса для отправки данных на сервер
-            //         $.ajax({
-            //             url: '../handlers/recordAppointment.php',
-            //             type: 'POST',
-            //             dataType: 'json',
-            //             data: {
-            //                 selectedDate: selectedDate,
-            //                 // другие данные для отправки на сервер
-            //             },
-            //             success: function(response) {
-            //                 if (response.success) {
-            //                     console.log('Запись успешно сохранена');
-            //                     // здесь вы можете выполнить дополнительные действия после успешного сохранения записи
-            //                 } else {
-            //                     console.error('Ошибка при сохранении записи:', response.error);
-            //                 }
-            //             },
-            //             error: function(error) {
-            //                 console.error('Ошибка при выполнении AJAX-запроса:', error);
-            //             }
-            //         });
-            //     } else {
-            //         console.warn('Дата не выбрана');
-            //     }
-            // });
+                    var startDate = event.start.format('YYYY-MM-DD HH:mm');
+            
+                    var endDate = event.end ? event.end.format('YYYY-MM-DD HH:mm') : '';
+            
+                    console.log('Выбранное событие:');
+                    console.log('Начало:', startDate);
+                    console.log('Окончание:', endDate);
+            
+                    // Здесь вы можете выполнить дополнительные действия с выбранным событием
+
+
+                },
+                
+            });
+            // Функция для сброса стилей у всех кнопок
+            function resetStyles() {
+                const buttons = document.querySelectorAll('.fc-day-grid-event');
+                buttons.forEach(button => {
+                    button.style.backgroundColor = '';
+                });
+            }
+
+            // Функция для применения стилей к нажатой кнопке
+            function applyStylesToClickedButton(button) {
+                button.style.backgroundColor = 'gray';
+            }
+
+            // Получаем все кнопки с классом 'fc-day-grid-event'
+            const buttons = document.querySelectorAll('.fc-day-grid-event');
+
+            // Добавляем обработчик клика для каждой кнопки
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Сбрасываем стили у всех кнопок
+                    resetStyles();
+                    // Применяем стили к нажатой кнопке
+                    applyStylesToClickedButton(button);
+                });
+            });
             
         }
 
@@ -314,5 +319,42 @@ $(document).ready(function () {
             loadAvailableDates(id_master, duration_service_selected); // Передаем id_service в функцию
             console.log(duration_service_selected);
         });
+        
+    });
+
+    $('#sign-up-for-procedure__button').click(function() {
+        // Получаем выбранную дату из календаря
+
+        if (selectedDate) { // проверяем, выбрана ли дата
+            console.log('Выбранная дата для записи:', selectedDate.format());
+
+            try {
+                const response = $.ajax({
+                    url: '../handlers/recordAppointment.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        selectedDate: selectedDate.format(),
+                        // другие данные для отправки на сервер
+                    }
+                });
+
+                if (response.success) {
+                    console.log('Запись успешно сохранена');
+                    // здесь вы можете выполнить дополнительные действия после успешного сохранения записи
+                    alert('Запись успешно сохранена');
+                    $("#sign-up-for-procedure__window").css("display", "none"); // закрываем окно после успешной записи
+                } else {
+                    console.error('Ошибка при сохранении записи:', response.error);
+                    alert('Ошибка при сохранении записи: ' + response.error);
+                }
+            } catch (error) {
+                console.error('Ошибка при выполнении AJAX-запроса:', error);
+                alert('Ошибка при выполнении AJAX-запроса');
+            }
+        } else {
+            console.warn('Дата не выбрана');
+            alert('Дата не выбрана');
+        }
     });
 });
