@@ -2,6 +2,34 @@
     require '../database/db.php';
     if (session_id() == '')
     session_start();
+
+    $master_id=$_GET['spec_id'];
+
+    $master_data=mysqli_query($link, "SELECT * FROM `master` WHERE `id_master`=$master_id");
+    $master_data=mysqli_fetch_assoc($master_data);
+
+    $master_services=mysqli_query($link, "SELECT `service_type`.`service_type_name` FROM `master_service`
+                                            inner join `service` on `master_service`.`id_service`=`service`.`id_service`
+                                            inner join `service_type` on `service`.`id_service_type`=`service_type`.`id_service_type`
+                                            WHERE `id_master`=$master_id");
+    $master_services=mysqli_fetch_all($master_services);
+
+    $master_rating=mysqli_query($link, "SELECT * FROM `master_rating` WHERE `id_master`=$master_id");
+    $master_rating=mysqli_fetch_all($master_rating);
+
+    $all_rating=0;
+    $rating=0;
+    $rating_length=count($master_rating);
+
+    if($rating_length!=0){
+        foreach($master_rating as $item){
+            $all_rating=$all_rating+(int)$item[3];
+        }
+        $rating=$all_rating/$rating_length;
+    }
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -46,22 +74,22 @@
         <section class="page__speialist-profile">
             <div class="specialist-profile__body _container">
                 <div class="specialist-profile__photo">
-                    <img src="../images/specialist-profile/specialist-profile-image.png" alt="">
+                    <img src="..<?php echo($master_data['master_photo']);?>" alt="">
                 </div>
                 <div class="specialist-profile__info-block">
-                    <p class="info-block-name">ВАЛЕРИЯ КОСС</p>
+                    <p class="info-block-name"><?php echo($master_data['master_name']." ".$master_data['master_surname']);?></p>
                     <div class="info-block-rating-stars">
-                        <p class="info-block-rating"> 4.7 </p>
+                        <p class="info-block-rating"> <?php echo($rating);?> </p>
                         <div class="info-block-star"></div>
                     </div>
-                    <p class="info-block-specialization">Косметолог-эстетист с медицинским образованием</p>
-                    <p class="info-block-description">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях.</p>
+                    <p class="info-block-specialization"><?php echo($master_data['position']);?></p>
+                    <!-- <p class="info-block-description">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях.</p> -->
 
                     <div class="info-block-gray">
-                        <p class="info-block-gray-title">Образование:</p>
+                        <p class="info-block-gray-title">Профессиональная подготовка:</p>
                         <div class="info-block-checkmark-text">
                             <div class="info-block-checkmark"></div>
-                            <div class="info-block-text">Белорусский государственный университет физической <br> культуры, инструктор-методист ЛФК</div>
+                            <div class="info-block-text"><?php echo($master_data['education']);?></div>
                         </div>
                     </div>
 
@@ -69,39 +97,26 @@
                         <p class="info-block-gray-title">Профессиональный стаж:</p>
                         <div class="info-block-checkmark-text">
                             <div class="info-block-checkmark"></div>
-                            <div class="info-block-text">Более 8 лет</div>
+                            <div class="info-block-text"><?php echo($master_data['work_experience']);?> лет</div>
                         </div>
                     </div>
 
                     <div class="info-block-gray">
                         <p class="info-block-gray-title">Cпециализации:</p>
-                        <div class="info-block-checkmark-text">
-                            <div class="info-block-checkmark"></div>
-                            <div class="info-block-text">Массаж</div>
-                        </div>
+                        <?php
+                            foreach($master_services as $master_service){
+                                echo("
+                                    <div class='info-block-checkmark-text'>
+                                        <div class='info-block-checkmark'></div>
+                                        <div class='info-block-text'>".$master_service[0]."</div>
+                                    </div>
+                                ");
+                            }
+                        ?>
 
-                        <div class="info-block-checkmark-text">
-                            <div class="info-block-checkmark"></div>
-                            <div class="info-block-text">Лечение акне</div>
-                        </div>
-
-                        <div class="info-block-checkmark-text">
-                            <div class="info-block-checkmark"></div>
-                            <div class="info-block-text">Пилинг</div>
-                        </div>
-
-                        <div class="info-block-checkmark-text">
-                            <div class="info-block-checkmark"></div>
-                            <div class="info-block-text">Анти-возрастные процедуры</div>
-                        </div>
-
-                        <div class="info-block-checkmark-text">
-                            <div class="info-block-checkmark"></div>
-                            <div class="info-block-text">Косметический массаж лица</div>
-                        </div>
                     </div>
-
-                    <div class="specialist-button green-button" id="1">
+<!-- dwsiojeiodcdosckmo -->
+                    <div class="specialist-button green-button" id="<?php echo($master_id);?>">
                         <span class="details">ЗАПИСАТЬСЯ</span>
                     </div>
 
