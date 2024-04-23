@@ -124,7 +124,7 @@
                 <div id="calendar"></div>
 
             </div>
-            <button id="sign-up-for-procedure__button" type="submit">Записаться</button>
+            <button id="sign-up-for-procedure__button">Записаться</button>
         </form>
     </div>
     

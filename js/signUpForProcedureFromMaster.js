@@ -259,18 +259,48 @@ $(document).ready(function () {
             $('#calendar').fullCalendar({
                 defaultView: 'month',
                 editable: true,
-                selectable: true,
-                select: function (start, end) {
-                    console.log('Выбранная дата:', start.format());
-                },
                 events: available_slots.map(function (slot) {
                     return {
                         start: slot.start,
                         end: slot.end,
                         allDay: false
                     };
-                })
+                }),
+                selectable: true,
+                select: function (start, end) {
+                    console.log('Выбранная дата:', start.format());
+                },
             });
+            // $('#sign-up-for-procedure__button').click(function() {
+            //     if (selectedDate) { // проверяем, выбрана ли дата
+            //         console.log('Выбранная дата для записи:', selectedDate);
+                    
+            //         // Пример AJAX-запроса для отправки данных на сервер
+            //         $.ajax({
+            //             url: '../handlers/recordAppointment.php',
+            //             type: 'POST',
+            //             dataType: 'json',
+            //             data: {
+            //                 selectedDate: selectedDate,
+            //                 // другие данные для отправки на сервер
+            //             },
+            //             success: function(response) {
+            //                 if (response.success) {
+            //                     console.log('Запись успешно сохранена');
+            //                     // здесь вы можете выполнить дополнительные действия после успешного сохранения записи
+            //                 } else {
+            //                     console.error('Ошибка при сохранении записи:', response.error);
+            //                 }
+            //             },
+            //             error: function(error) {
+            //                 console.error('Ошибка при выполнении AJAX-запроса:', error);
+            //             }
+            //         });
+            //     } else {
+            //         console.warn('Дата не выбрана');
+            //     }
+            // });
+            
         }
 
         loadAvailableDates(id_master, duration_service_selected);
