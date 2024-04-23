@@ -95,30 +95,43 @@ $(document).ready(function () {
             }
         });
 
-        // Функция для получения рабочего графика мастера
-        function getMasterTimetable(id_master, start, end) {
+        // Функция для получения рабочего графика мастера НАПИСАЛИ
+        function getMasterTimetable(id_master, start_date, end_date) {
             return $.ajax({
                 url: '../handlers/getMasterTimetable.php',
                 type: 'GET',
                 dataType: 'json',
                 data: {
                     id_master: id_master,
-                    start: start,
-                    end: end
+                    start_date: start_date,
+                    end_date: end_date
+                },
+                success: function(response) {
+                    if (response.error) {
+                        console.error('Ошибка при загрузке графика работы мастера:', response.error);
+                    }
+                },
+                error: function(error) {
+                    console.error('Ошибка при выполнении запроса на загрузку графика работы мастера:', error);
                 }
             });
         }
+        
 
         // Функция для получения занятых слотов времени
-        function getBookedSlots(id_master, start, end) {
+        function getBookedSlots(id_master, start_date, end_date) {
             return $.ajax({
                 url: '../handlers/getBookedSlots.php',
                 type: 'GET',
                 dataType: 'json',
                 data: {
                     id_master: id_master,
-                    start: start,
-                    end: end
+                    start_date: start_date,
+                    end_date: end_date
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Ошибка при загрузке занятых слотов:', textStatus, errorThrown);
+                    return Promise.reject('Ошибка при загрузке занятых слотов');
                 }
             });
         }
@@ -134,6 +147,7 @@ $(document).ready(function () {
             var available_dates = getAvailableDates(master_timetable, booked_slots, service_duration);
 
             $('#calendar').fullCalendar('destroy'); // Уничтожаем текущий календарь
+
             $('#calendar').fullCalendar({
                 defaultView: 'month',
                 editable: true,
@@ -155,7 +169,7 @@ $(document).ready(function () {
         // Загрузка и обработка доступных дат
         function loadAvailableDates(id_master) {
             var service_duration = $('#services__data option:selected').data('duration');
-            getMasterTimetable(id_master, moment().format('YYYY-MM-DD'), moment().add(1, 'months').format('YYYY-MM-DD'))
+            getMasterTimetable(id_master, moment().format('YYYY-MM-DD HH:mm'), moment().add(1, 'months').format('YYYY-MM-DD  HH:mm'))
                 .then(function (master_timetable) {
                     return getBookedSlots(id_master, moment().format('YYYY-MM-DD'), moment().add(1, 'months').format('YYYY-MM-DD'))
                         .then(function (booked_slots) {

@@ -26,6 +26,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/ru.js"></script>
+
+    <style>
+        /* Доступные даты */
+        .available-date {
+            background-color: #e0f7fa; /* Цвет фона для доступных дат */
+            cursor: pointer; /* Изменение курсора при наведении */
+        }
+
+        /* Недоступные даты */
+        .unavailable-date {
+            background-color: #f5f5f5; /* Цвет фона для недоступных дат */
+            cursor: not-allowed; /* Изменение курсора на "не доступно" */
+            opacity: 0.5; /* Уменьшаем прозрачность для недоступных дат */
+        }
+    </style>
 </head>
 
 <body>
