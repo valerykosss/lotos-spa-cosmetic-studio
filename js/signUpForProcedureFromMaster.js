@@ -175,17 +175,25 @@ $(document).ready(function () {
                     // Проверяем тройные слоты
                     for (let j = 0; j < 3; j++) {
                         console.log('');
+                        console.log('j:');
                         console.log(j);
                         const currentSlotStart = moment(masterStart).add(j * 30, 'minutes');
                         const currentSlotEnd = moment(currentSlotStart).add(30, 'minutes');
+                        console.log('');
+                        console.log("currentSlotStart:");
+                        console.log(currentSlotStart.format('YYYY-MM-DD HH:mm:ss'));
+
+                        console.log('');
+                        console.log("currentSlotEnd:");
+                        console.log(currentSlotEnd.format('YYYY-MM-DD HH:mm:ss'));
 
                         for (let i = 0; i < booked_slots.length; i++) {
                             const bookedSlotStart = moment(booked_slots[i].record_date + ' ' + booked_slots[i].record_time);
                             const bookedSlotEnd = moment(bookedSlotStart).add(booked_slots[i].duration, 'minutes');
 
                             // (), []
-                            if (currentSlotStart.isBetween(bookedSlotStart, bookedSlotEnd, null, '[)') ||
-                                currentSlotEnd.isBetween(bookedSlotStart, bookedSlotEnd, null, '[)')) {
+                            if (currentSlotStart.isBetween(bookedSlotStart, bookedSlotEnd, null, '()') ||
+                                currentSlotEnd.isBetween(bookedSlotStart, bookedSlotEnd, null, '(]')) {
                                 isAvailable = false;
                                 break;
                             }
