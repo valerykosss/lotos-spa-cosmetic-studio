@@ -95,6 +95,7 @@ $(document).ready(function () {
             }
         });
 
+
         // Функция для получения рабочего графика мастера НАПИСАЛИ
         function getMasterTimetable(id_master, start_date, end_date) {
             return $.ajax({
@@ -106,17 +107,17 @@ $(document).ready(function () {
                     start_date: start_date,
                     end_date: end_date
                 },
-                success: function(response) {
+                success: function (response) {
                     if (response.error) {
                         console.error('Ошибка при загрузке графика работы мастера:', response.error);
                     }
                 },
-                error: function(error) {
+                error: function (error) {
                     console.error('Ошибка при выполнении запроса на загрузку графика работы мастера:', error);
                 }
             });
         }
-        
+
 
         // Функция для получения занятых слотов времени
         function getBookedSlots(id_master, start_date, end_date) {
@@ -129,18 +130,104 @@ $(document).ready(function () {
                     start_date: start_date,
                     end_date: end_date
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function (jqXHR, textStatus, errorThrown) {
                     console.error('Ошибка при загрузке занятых слотов:', textStatus, errorThrown);
                     return Promise.reject('Ошибка при загрузке занятых слотов');
                 }
             });
         }
 
+        function getServiceDuration() {
+            return $('#services__data option:selected').data('duration');
+        }
+
         // Функция для формирования списка доступных слотов
         function getAvailableSlots(master_timetable, booked_slots, service_duration) {
-            // Здесь реализуем ваш алгоритм для поиска доступных слотов
-            // Вернем список доступных слотов
+            var available_slots = [];
+            // alert(available_slots);
+
+            // Перебираем рабочий график мастера
+            master_timetable.forEach(function (slot) {
+                var slotStart = moment(slot.start);
+                var slotEnd = moment(slot.end);
+
+                // Проверяем, свободен ли текущий слот времени
+                var isAvailable = true;
+                booked_slots.forEach(function (bookedSlot) {
+                    var bookedSlotStart = moment(bookedSlot.record_date + ' ' + bookedSlot.record_time);
+                    var bookedSlotEnd = moment(bookedSlot.record_date + ' ' + bookedSlot.record_time).add(bookedSlot.service_duration, 'minutes');
+
+                    if (slotStart.isBetween(bookedSlotStart, bookedSlotEnd) || slotEnd.isBetween(bookedSlotStart, bookedSlotEnd)) {
+                        isAvailable = false;
+                        return false; // Выходим из цикла, если слот уже занят
+                    }
+                });
+
+                // Проверяем, достаточно ли длительности слота для выбранной услуги
+                if (isAvailable && slotEnd.diff(slotStart, 'minutes') >= service_duration) {
+                    available_slots.push({
+                        start: slotStart.format('YYYY-MM-DD HH:mm'),
+                        end: slotEnd.format('YYYY-MM-DD HH:mm')
+                    });
+                }
+            });
+            return available_slots;
         }
+
+        function getAvailableDates(master_timetable, booked_slots, service_duration) {
+            var available_dates = [];
+
+            // Преобразуем рабочий график мастера в объекты moment
+            var workingDays = master_timetable.map(function (slot) {
+                return {
+                    start: moment(slot.start),
+                    end: moment(slot.end)
+                };
+            });
+
+            console.log("workingDays со скольки до скольки");
+            console.log(workingDays); //это получает в формате занятого дня мастера c '2024-04-25 10:00' до '2024-04-25 18:00' 
+
+            // Преобразуем занятые слоты в объекты moment ТУТ ОШИБКА
+            var busySlots = booked_slots.map(function (bookedSlot) {
+                return {
+                    start: moment(bookedSlot.record_date + ' ' + bookedSlot.record_time),
+                    end: moment(bookedSlot.record_date + ' ' + bookedSlot.record_time).add(service_duration, 'minutes')
+                };
+            });
+
+            console.log("busySlots со скольки до скольки");
+            console.log(busySlots);  //это получает в формате занятых времен в днях мастера '2024-04-25 14:00', '2024-04-25 16:00'
+
+            // Перебираем даты в рабочем графике мастера
+            workingDays.forEach(function (day) {
+                var currentDate = day.start.clone();
+                console.log(currentDate);
+
+                while (currentDate.isSameOrBefore(day.end)) {
+                    var isAvailable = true;
+
+                    // Проверяем, свободен ли текущий слот времени
+                    busySlots.forEach(function (busySlot) {
+                        if (currentDate.isBetween(busySlot.start, busySlot.end)) {
+                            isAvailable = false;
+                            return false; // Выходим из цикла, если слот уже занят
+                        }
+                    });
+
+                    // Проверяем, достаточно ли длительности слота для выбранной услуги
+                    if (isAvailable && day.end.diff(currentDate, 'minutes') >= service_duration) {
+                        available_dates.push(currentDate.format('YYYY-MM-DD'));
+                    }
+
+                    // Переходим к следующему слоту
+                    currentDate.add(30, 'minutes');
+                }
+            });
+            // Возвращаем уникальные даты
+            return [...new Set(available_dates)];
+        }
+
 
         // Функция для обновления календаря с доступными датами
         function updateCalendarWithAvailableDates(master_timetable, booked_slots, service_duration) {
@@ -166,6 +253,7 @@ $(document).ready(function () {
             });
         }
 
+
         // Загрузка и обработка доступных дат
         function loadAvailableDates(id_master) {
             var service_duration = $('#services__data option:selected').data('duration');
@@ -177,7 +265,7 @@ $(document).ready(function () {
                         });
                 })
                 .catch(function (error) {
-                    console.error('Ошибка при загрузке данных:', error);
+                    console.error('Ошибка при загрузке доступных дат:', error);
                 });
         }
 

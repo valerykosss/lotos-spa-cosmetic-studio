@@ -7,8 +7,10 @@ if (isset($_GET['id_master'], $_GET['start_date'], $_GET['end_date'])) {
     $end_date = $_GET['end_date'];
 
     try {
-        $sql = "SELECT record_date, record_time FROM procedure_record
-                WHERE id_master = ? AND record_date BETWEEN ? AND ?";
+        $sql = "SELECT pr.record_date, pr.record_time 
+        FROM procedure_record pr
+        JOIN master_service ms ON pr.id_master_service = ms.id_master_service
+        WHERE ms.id_master = ? AND pr.record_date BETWEEN ? AND ?";
         
         $stmt = $link->prepare($sql);
         $stmt->bind_param('iss', $id_master, $start_date, $end_date);
