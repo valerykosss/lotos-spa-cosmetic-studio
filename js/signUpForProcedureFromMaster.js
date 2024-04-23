@@ -96,7 +96,7 @@ $(document).ready(function () {
         });
 
 
-        // Функция для получения рабочего графика мастера НАПИСАЛИ
+        // Функция для получения рабочего графика мастера ПРАВИЛЬНО++++++++++++++++++++++++++++++++++++++++++++++
         function getMasterTimetable(id_master, start_date, end_date) {
             return $.ajax({
                 url: '../handlers/getMasterTimetable.php',
@@ -119,7 +119,7 @@ $(document).ready(function () {
         }
 
 
-        // Функция для получения занятых слотов времени
+        // Функция для получения занятых слотов времени ПРАВИЛЬНО++++++++++++++++++++++++++++++++++++++++++++++
         function getBookedSlots(id_master, start_date, end_date) {
             return $.ajax({
                 url: '../handlers/getBookedSlots.php',
@@ -137,104 +137,114 @@ $(document).ready(function () {
             });
         }
 
-        // Функция для формирования списка доступных слотов
-        function getAvailableSlots(master_timetable, booked_slots, service_duration) {
+
+
+        function getAvailableSlots(master_timetable, booked_slots, service_duratio) {
             var available_slots = [];
-        
-            // Перебираем рабочий график мастера
-            master_timetable.forEach(function (slot) {
-                var slotStart = moment(slot.start);
-                var slotEnd = moment(slot.start).add(service_duration, 'minutes');
-        
-                // Проверяем, свободен ли текущий слот времени
+
+            // master_timetable.forEach(function (slot) {
+            //     //видимо тут нужно брать слот не глобальный, а локальный по длительности процедуры 
+            //     var slotStart = moment(slot.start);
+            //     var slotEnd = moment(slot.end);
+
+            //     // console.log(slotStart); 
+            //     //console.log(slotEnd); //ПРАВИЛЬНО. ПОЛУЧАЕТ НАЧАЛА И КОНЦЫ ВРЕМЕНИ РАБОТЫ МАСТЕРА++++++++++++++++++++++++++++++++++++++++++++++
+
+
+            //     var isAvailable = true;
+
+            //     booked_slots.forEach(function (bookedSlot) {
+
+            //         var bookedSlotStart = moment(bookedSlot.record_date + ' ' + bookedSlot.record_time);
+            //         var bookedSlotEnd = moment(bookedSlotStart).add(parseInt(bookedSlot.duration), 'minutes');
+
+            //         console.log("bookedSlotStart");
+            //         console.log(bookedSlotStart.format('YYYY-MM-DD HH:mm:ss'));
+
+            //         console.log("bookedSlotEnd");
+            //         console.log(bookedSlotEnd.format('YYYY-MM-DD HH:mm:ss')); //ПРАВИЛЬНО. ПРИБАВЛЯЕТ ТЕПЕРЬ КОРРЕКТНО ДЛИТЕЛЬНОСТЬ++++++++++++++++++++++++++++++++++++++++++++++
+
+
+            //         if (slotStart.isBetween(bookedSlotStart, bookedSlotEnd) || slotEnd.isBetween(bookedSlotStart, bookedSlotEnd)) {
+            //             isAvailable = false;
+            //             return false;
+            //         }
+            //     });
+
+            //     if (isAvailable) {
+            //         available_slots.push({
+            //             start: slotStart.format('YYYY-MM-DD HH:mm'),
+            //             end: slotEnd.format('YYYY-MM-DD HH:mm')
+            //         });
+            //     }
+            // });
+
+            // return available_slots;
+
+            var available_slots = [];
+
+            // Преобразование времени работы мастера в объекты Moment
+            var masterStart = moment(master_timetable.start);
+            var masterEnd = moment(master_timetable.end);
+
+            // Проход по рабочему графику мастера
+            while (masterStart.isBefore(masterEnd)) {
+                var slotEnd = moment(masterStart).add(service_duration, 'minutes');
+
                 var isAvailable = true;
-                booked_slots.forEach(function (bookedSlot) {
-                    var bookedSlotStart = moment(bookedSlot.record_date + ' ' + bookedSlot.record_time);
-                    var bookedSlotEnd = moment(bookedSlot.record_date + ' ' + bookedSlot.record_time).add(bookedSlot.duration, 'minutes');
-        
-                    if (slotStart.isBetween(bookedSlotStart, bookedSlotEnd) || slotEnd.isBetween(bookedSlotStart, bookedSlotEnd)) {
+
+                // Проверка пересечения со забронированными слотами
+                for (var i = 0; i < booked_slots.length; i++) {
+                    var bookedSlotStart = moment(booked_slots[i].record_date + ' ' + booked_slots[i].record_time);
+                    var bookedSlotEnd = moment(bookedSlotStart).add(booked_slots[i].duration, 'minutes');
+
+                    if (masterStart.isBetween(bookedSlotStart, bookedSlotEnd) || slotEnd.isBetween(bookedSlotStart, bookedSlotEnd)) {
                         isAvailable = false;
-                        return false; // Выходим из цикла, если слот уже занят
+                        break;
                     }
-                });
-        
-                // Проверяем, достаточно ли длительности слота для выбранной услуги
+                }
+
+                // Если слот доступен, добавляем его в список доступных слотов
                 if (isAvailable) {
                     available_slots.push({
-                        start: slotStart.format('YYYY-MM-DD HH:mm'),
+                        start: masterStart.format('YYYY-MM-DD HH:mm'),
                         end: slotEnd.format('YYYY-MM-DD HH:mm')
                     });
                 }
-            });
+
+                // Переход к следующему слоту
+                masterStart.add(1, 'minutes');
+            }
+
             return available_slots;
         }
-        
 
-        // function getAvailableDates(master_timetable, booked_slots, service_duration) {
-        //     var available_dates = [];
+        function loadAvailableDates(id_master) {
+            var service_duration = $('#services__data option:selected').data('duration');
 
-        //     // Преобразуем рабочий график мастера в объекты moment
-        //     var workingDays = master_timetable.map(function (slot) {
-        //         return {
-        //             start: moment(slot.start),
-        //             end: moment(slot.end)
-        //         };
-        //     });
+            getMasterTimetable(id_master, moment().format('YYYY-MM-DD HH:mm'), moment().add(1, 'months').format('YYYY-MM-DD  HH:mm'))
+                .then(function (master_timetable) {
+                    return getBookedSlots(id_master, moment().format('YYYY-MM-DD'), moment().add(1, 'months').format('YYYY-MM-DD'))
+                        .then(function (booked_slots) {
+                            var available_slots = getAvailableSlots(master_timetable, booked_slots, service_duration);
+                            // console.log(available_slots);
+                            updateCalendarWithAvailableSlots(available_slots);
 
-        //     console.log("workingDays со скольки до скольки");
-        //     console.log(workingDays); //это получает в формате занятого дня мастера c '2024-04-25 10:00' до '2024-04-25 18:00' 
+                        });
+                })
+                .catch(function (error) {
+                    console.error('Ошибка при загрузке доступных дат:', error);
+                });
+        }
 
-        //     // Преобразуем занятые слоты в объекты moment ТУТ ОШИБКА !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //     var busySlots = booked_slots.map(function (bookedSlot) {
-        //         return {
-        //             start: moment(bookedSlot.record_date + ' ' + bookedSlot.record_time),
-        //             end: moment(bookedSlot.record_date + ' ' + bookedSlot.record_time).add(service_duration, 'minutes')
-        //         };
-        //     });
-
-        //     console.log("busySlots со скольки до скольки");
-        //     console.log(busySlots);  //это получает в формате занятых времен в днях мастера '2024-04-25 14:00', '2024-04-25 16:00'
-
-        //     // Перебираем даты в рабочем графике мастера
-        //     workingDays.forEach(function (day) {
-        //         var currentDate = day.start.clone();
-        //         console.log(currentDate);
-
-        //         while (currentDate.isSameOrBefore(day.end)) {
-        //             var isAvailable = true;
-
-        //             // Проверяем, свободен ли текущий слот времени
-        //             busySlots.forEach(function (busySlot) {
-        //                 if (currentDate.isBetween(busySlot.start, busySlot.end)) {
-        //                     isAvailable = false;
-        //                     return false; // Выходим из цикла, если слот уже занят
-        //                 }
-        //             });
-
-        //             // Проверяем, достаточно ли длительности слота для выбранной услуги
-        //             if (isAvailable && day.end.diff(currentDate, 'minutes') >= service_duration) {
-        //                 available_dates.push(currentDate.format('YYYY-MM-DD'));
-        //             }
-
-        //             // Переходим к следующему слоту
-        //             currentDate.add(30, 'minutes');
-        //         }
-        //     });
-        //     // Возвращаем уникальные даты
-        //     return [...new Set(available_dates)];
-        // }
-
-
-        // Функция для обновления календаря с доступными слотами
         function updateCalendarWithAvailableSlots(available_slots) {
-            $('#calendar').fullCalendar('destroy'); // Уничтожаем текущий календарь
+            $('#calendar').fullCalendar('destroy');
 
             $('#calendar').fullCalendar({
                 defaultView: 'month',
                 editable: true,
                 selectable: true,
                 select: function (start, end) {
-                    // Здесь можно обработать выбор пользователя
                     console.log('Выбранная дата:', start.format());
                 },
                 events: available_slots.map(function (slot) {
@@ -247,33 +257,6 @@ $(document).ready(function () {
             });
         }
 
-
-        // Загрузка и обработка доступных дат
-        function loadAvailableDates(id_master) {
-            var service_duration = $('#services__data option:selected').data('duration');
-
-            // Загрузка рабочего графика мастера
-            getMasterTimetable(id_master, moment().format('YYYY-MM-DD HH:mm'), moment().add(1, 'months').format('YYYY-MM-DD  HH:mm'))
-                .then(function (master_timetable) {
-                    // Загрузка забронированных слотов
-                    return getBookedSlots(id_master, moment().format('YYYY-MM-DD'), moment().add(1, 'months').format('YYYY-MM-DD'))
-                        .then(function (booked_slots) {
-                            // Получение доступных слотов
-                            var available_slots = getAvailableSlots(master_timetable, booked_slots, service_duration);
-
-                            // Обновление календаря с доступными слотами
-                            updateCalendarWithAvailableSlots(available_slots);
-                        });
-                })
-                .catch(function (error) {
-                    console.error('Ошибка при загрузке доступных дат:', error);
-                });
-        }
-
-        $('.specialist-button.selected').removeClass('selected');
-        $(this).addClass('selected');
-
-        var id_master = $(this).attr('id');
         loadAvailableDates(id_master);
     });
 });
