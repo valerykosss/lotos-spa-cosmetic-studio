@@ -1,8 +1,16 @@
-<!-- <?php
+<?php
     require '../database/db.php';
     if (session_id() == '')
     session_start();
-?> -->
+
+    $stype_id=$_GET['stype_id'];
+
+    $stype=mysqli_query($link, "SELECT * FROM `service_type` WHERE `id_service_type`=$stype_id");
+    $stype=mysqli_fetch_assoc($stype);
+
+    $service_info=mysqli_query($link, "SELECT * FROM service WHERE id_service_type = $stype_id");
+    $service_info=mysqli_fetch_assoc($service_info);
+?>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -28,12 +36,12 @@
         <section class="page__services-page">
             <div class="services-page__body _container">
                 <div class="services-page__info-block">
-                    <p class="services-header">Косметические услуги</p>
-                    <p class="services-text">
+                    <p class="services-header" style="margin-bottom:40px"><?php echo($stype['service_type_name'])?></p>
+                    <!-- <p class="services-text">
                         Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более
                         менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных
                         выступлений в домашних условиях.
-                    </p>
+                    </p> -->
                 </div>
             </div>
             </div>
@@ -41,8 +49,7 @@
         <section class="page__services-catalog">
             <div class="services-catalog__body _container">
                 <?php
-
-                    $query = "SELECT * FROM service WHERE id_service_type = 1";
+                    $query = "SELECT * FROM service WHERE id_service_type = $stype_id";
                     require 'serviceCards.php'
                 ?>
 

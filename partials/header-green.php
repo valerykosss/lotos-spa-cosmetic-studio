@@ -1,3 +1,9 @@
+<?php
+    if (session_id() == ''){
+        session_start();
+    }
+    require_once "../handlers/get_header_info_script.php";
+?>
 <header class="header">
         <div class="header__body _container">
             <div class="header__burger">
@@ -8,21 +14,15 @@
                     <li>
                         <a href="#" class="header__link">Услуги<i class="fa fa-angle-down"></i></a>
                         <ul class="header__menu__sub-list">
-                            <li>
-                                <a href="cosmetic-procedures.php" class="header__menu__sub-link">Косметические услуги</a>
-                            </li>
-                            <li>
-                                <a href="#" class="header__menu__sub-link">Спа-программы</a>
-                            </li>
-                            <li>
-                                <a href="#" class="header__menu__sub-link">Спа-программы <br> для двоих</a>
-                            </li>
-                            <li>
-                                <a href="#" class="header__menu__sub-link">Массаж лица</a>
-                            </li>
-                            <li>
-                                <a href="#" class="header__menu__sub-link">Массаж тела</a>
-                            </li>
+                            <?php
+                                foreach($service_types as $service_type){
+                                    echo("
+                                    <li>
+                                        <a href='cosmetic-procedures.php?stype_id=".$service_type[0]."' class='header__menu__sub-link'>".$service_type[1]."</a>
+                                    </li>
+                                    ");
+                                }
+                            ?>
                         </ul>
                     </li>
                     <li>
