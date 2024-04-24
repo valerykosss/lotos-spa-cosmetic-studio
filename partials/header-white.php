@@ -44,7 +44,7 @@
                         <a href="about-us.php" class="header__link-white">О нас</a>
                     </li>
                     <li>
-                        <a href="#" class="header__link-white">Контакты</a>
+                        <a href="contact-page.php" class="header__link-white">Контакты</a>
                     </li>
                     <li>
                         <?php

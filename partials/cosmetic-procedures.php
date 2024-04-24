@@ -63,7 +63,7 @@
                 </div> -->
             </div>
         </section>
-        <section class="page__need-consult-block">
+        <!-- <section class="page__need-consult-block">
             <div class="need-consult-gray__body _container">
                 <div class="need-consult-title-gray">необходима консультация?</div>
                 <div class="need-consult-text-gray">Оставьте заявку на сайте наш специалист свяжется с вами и
@@ -72,7 +72,7 @@
                     <span class="details">ПОДРОБНЕЕ</span>
                 </div>
             </div>
-        </section>
+        </section> -->
     </main>
 
     <?php require 'footer-green.php' ?>

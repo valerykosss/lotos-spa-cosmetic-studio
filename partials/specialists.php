@@ -29,13 +29,11 @@
                 <div class="specialists-page__info-block">
                     <p class="specialists-header">специалисты</p>
                     <p class="specialists-text">
-                        Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более
-                        менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных
-                        выступлений в домашних условиях.
+                    Специалисты центра массажа и косметологии "Лотос" — это высококвалифицированные профессионалы, обладающие глубокими знаниями и опытом в области оздоровления и красоты. Наша команда состоит из сертифицированных массажистов, косметологов и терапевтов, которые постоянно совершенствуют свои навыки и следят за последними тенденциями и инновациями в сфере SPA-ухода.
                     </p>
-                    <div class="specialists-button green-button" class="button">
+                    <!-- <div class="specialists-button green-button" class="button">
                         <span class="details">ПОДРОБНЕЕ</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             </div>
@@ -142,32 +140,6 @@
     <script src="../js/header.js"></script>
 
     <script src="../js/specialistsFilter.js"></script>
-
-    <script>
-      $('.specialist-button.button').click(function(event) {
-    event.preventDefault(); // Отменяем стандартное действие ссылки
-    
-    var id = $(this).attr('id');
-    // $_SESSION["id_master"]=id;
-    
-    var form = $('<form>', {
-        method: 'post',
-        action: 'specialist-page.php' // Адрес страницы, куда отправлять данные
-    });
-
-    var input = $('<input>', {
-        type: 'hidden',
-        name: 'id',
-        value: id
-    });
-    
-    form.append(input);
-    $('body').append(form);
-    
-    form.submit();
-});
-
-    </script>
 </body>
 
 </html>

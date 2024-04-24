@@ -16,12 +16,12 @@
 
             <div class="data-label__text">Введите пароль</div>
             <!--type="password"-->
-            <input type="text" placeholder="Пароль" name="first_password" autocomplete="off" title = 'Пароль не менее 8 символов, содержащий минимум одну букву в нижнем и верхнем регистрах, цифру и специальный символ'/>
+            <input type="password" placeholder="Пароль" name="first_password" autocomplete="off" title = 'Пароль не менее 8 символов, содержащий минимум одну букву в нижнем и верхнем регистрах, цифру и специальный символ'/>
             <p id="first_passwordError"></p>
 
             <div class="data-label__text">Повторите пароль</div>
             <!--type="password"-->
-            <input type="text" placeholder="Повторите пароль" name="second_password" autocomplete="off"/>
+            <input type="password" placeholder="Повторите пароль" name="second_password" autocomplete="off"/>
             <p id="second_passwordError"></p>
         </div>
         <p class="form__retransfer-text">Есть аккаунт? <span id="sign-in__link">Авторизуйтесь</span></p>

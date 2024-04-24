@@ -174,3 +174,14 @@ select{
     font-size: 15px;
     font-family: 'SF Pro Text';
 }
+
+/*--------------------------------------BUTTONS FOR SERVICE-------------------------------------------*/
+.add-master__button {
+    width: 18px;
+    height: 18px;
+    background-image: url('../images/icons/add-icon.svg');
+    background-size: cover;
+	background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

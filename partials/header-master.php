@@ -6,10 +6,10 @@
             <nav class="header__menu">
                 <ul class="header__list-white__admin-master">
                     <li>
-                        <a href="admin-panel.php" class="header__link-white">Таблицы</a>
+                        <a href="master-panel.php" class="header__link-white">Мои записи</a>
                     </li>
                     <li>
-                        <a href="timetable.php" class="header__link-white">Назначить расписание</a>
+                        <a href="timetable-master.php" class="header__link-white">Посмотреть расписание</a>
                     </li>
                     <li>
                         <?php

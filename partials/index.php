@@ -142,16 +142,13 @@ require_once "../handlers/get_swiper_data_script.php";
                 <div class="about-us__info-block">
                     <p class="info-block__header">lotos &mdash;</p>
                     <p class="info-block__text">
-                        Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более
-                        менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных
-                        выступлений в домашних условиях. При создании генератора мы использовали небезизвестный
-                        универсальный код речей. Текст генерируется абзацами случайным образом от двух до десяти
-                        предложений в абзаце, что позволяет сделать текст более привлекательным и живым для
-                        визуально-слухового восприятия.
+                    Наша миссия – помочь вам обрести гармонию и баланс в жизни, достигнуть внутреннего равновесия и спокойствия. "Центр Лотос" предлагает широкий спектр услуг для улучшения физического и психологического состояния. Отдайте время себе, позвольте себе расслабиться и восстановить силы в нашем уютном и спокойном центре.
                     </p>
-                    <div class="info-block__button button">
-                        <span class="details">ПОДРОБНЕЕ</span>
-                    </div>
+                    <a href="about-us.php">
+                        <div class="info-block__button button">
+                            <span class="details">ПОДРОБНЕЕ</span>
+                        </div>
+                    </a>
                 </div>
             </div>
             </div>
@@ -189,10 +186,7 @@ require_once "../handlers/get_swiper_data_script.php";
                                                         alt=''>
                                                     <p class='slide-name'>".$master[1]." ".$master[2]."</p>
                                                     <p class='slide-description'>".$master[6]."</p>
-                                                    <a href='specialist-page.php?spec_id=".$master[0]."'>
-                                                        <div class='slide-button button'>
-                                                            <span class='details'>ПОДРОБНЕЕ</span>
-                                                        </div>  
+                                                    <a style='display: flex; justify-content: center; href='specialist-page.php?spec_id=".$master[0]."'> 
                                                     </a>
                                                 </li>
                                                 ");
@@ -245,7 +239,7 @@ require_once "../handlers/get_swiper_data_script.php";
                                                             alt=''>
                                                         <p class='slide-name'>".$master[1]." ".$master[2]."</p>
                                                         <p class='slide-description'>".$master[4]."</p>
-                                                        <a href='specialist-page.php?spec_id=".$master[0]."'>
+                                                        <a style='display: flex; justify-content: center; href='specialist-page.php?spec_id=".$master[0]."'>
                                                             <div class='slide-button button'>
                                                                 <span class='details'>ПОДРОБНЕЕ</span>
                                                             </div>
@@ -283,7 +277,7 @@ require_once "../handlers/get_swiper_data_script.php";
                                                             alt=''>
                                                         <p class='slide-name'>".$master[1]." ".$master[2]."</p>
                                                         <p class='slide-description'>".$master[4]."</p>
-                                                        <a href='specialist-page.php?spec_id=".$master[0]."'>
+                                                        <a style='display: flex; justify-content: center; href='specialist-page.php?spec_id=".$master[0]."'>
                                                             <div class='slide-button button'>
                                                                 <span class='details'>ПОДРОБНЕЕ</span>
                                                             </div>
@@ -312,7 +306,7 @@ require_once "../handlers/get_swiper_data_script.php";
                                                             alt=''>
                                                         <p class='slide-name'>".$master[1]." ".$master[2]."</p>
                                                         <p class='slide-description'>".$master[4]."</p>
-                                                        <a href='specialist-page.php?spec_id=".$master[0]."'>
+                                                        <a style='display: flex; justify-content: center; href='specialist-page.php?spec_id=".$master[0]."'>
                                                             <div class='slide-button button'>
                                                                 <span class='details'>ПОДРОБНЕЕ</span>
                                                             </div>
@@ -373,7 +367,7 @@ require_once "../handlers/get_swiper_data_script.php";
             <?php }        
         ?>
         
-        <section class="page__quiz-block">
+        <!-- <section class="page__quiz-block">
             <div class="quiz-block__body _container">
                 <div class="quiz-block-title">Не подобрали<br>подходящую процедуру?</div>
                 <div class="quiz-block-text">Пройдите тест и выберите ту процедуру, которая подходит именно вам!</div>
@@ -381,7 +375,7 @@ require_once "../handlers/get_swiper_data_script.php";
                     <span class="details">ПРОЙТИ ТЕСТ</span>
                 </div>
             </div>
-        </section>
+        </section> -->
     </main>
 
     <?php require 'footer-white.php' ?>

@@ -21,6 +21,18 @@ require_once "../handlers/isAdmin.php";
     <link rel="stylesheet" href="../css/sign-in-up.css">
     <link rel="stylesheet" href="../css/header-white-admin-master.css">
     <link rel="stylesheet" href="../css/admin-panel.css">
+
+    <style>
+        .add-wheel__button{
+            width: 18px;
+            height: 18px;
+            background-image: url('../images/icons/add-icon.svg');
+            background-size: cover;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -132,6 +144,7 @@ require_once "../handlers/isAdmin.php";
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-2">
+
                     <p class="sub-header">Введите данные новой услуги: </p>
                         <table class="table__to-add">
                             <thead>
@@ -217,9 +230,63 @@ require_once "../handlers/isAdmin.php";
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-5">
-                        Содержимое 5... Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique eaque iure
-                        debitis nostrum, vero ad totam ratione sequi! Suscipit, labore repellat cum soluta ullam
-                        dignissimos perspiciatis sequi rerum sapiente ex.
+                    <p class="sub-header">Введите данные нового сектора колеса: </p>
+                        <table class="table__to-add">
+                            <thead>
+                                <tr>
+                                    <th>Название скидки</th>
+                                    <th>Цвет сектора</th>
+                                    <th>Относящаяся к скидке процедура</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                        <td><textarea class="discount_name"></textarea></td>
+                                        <td><textarea class="sector_wheel_color"></textarea></td>
+                                        <td><textarea class="id_service"></textarea></td>
+                                        <td>
+                                            <button class='add-wheel__button'></button>
+                                        </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p class="sub-header">Все секторы колеса: </p>
+                        <table class="table__to-update-delete wheel">
+                            <thead>
+                                <tr>
+                                    <th>Название скидки</th>
+                                    <th>Цвет сектора</th>
+                                    <th>Относящаяся к скидке процедура</th>
+                                </tr>
+                            </thead>
+                                <?php
+                                    $query = 'SELECT * from wheel_discount';
+
+                                    echo "<tbody>";
+                                    $trBlock = '';
+
+                                    $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                                    if ($result) {
+                                        for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                            $row = mysqli_fetch_row($result);
+
+                                            $trBlock .= "
+                                                <tr id='$row[0]'>
+                                                    <td><textarea>" . $row[1] . "</textarea></td>
+                                                    <td><textarea>" . $row[2] . "</textarea></td>
+                                                    <td><textarea>" . $row[3] . "</textarea></td>
+                                                    <td>
+                                                        <button class='change-wheel__button' id='".$row[0]."'></button>
+                                                        <button class='delete-wheel__button' id='" . $row[0] . "'></button>
+                                                    </td>
+                                                </tr>";
+                                        }
+                                    }
+                                    echo $trBlock;
+                                    echo "</tbody>";
+                                ?>
+                        </table>
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-6">
@@ -269,9 +336,11 @@ require_once "../handlers/isAdmin.php";
 
     <script src="../js/admin-panel-ajax/service-type-for-service.js"></script>
 
-    <script src="../js/admin-panel-ajax/add-service.js"></script>
+    <script src="../js/admin-panel-ajax/add-wheel.js"></script>
+
+    <!-- <script src="../js/admin-panel-ajax/add-service.js"></script>
     <script src="../js/admin-panel-ajax/delete-service.js"></script>
-    <script src="../js/admin-panel-ajax/update-service.js"></script>
+    <script src="../js/admin-panel-ajax/update-service.js"></script> -->
 
 </body>
 

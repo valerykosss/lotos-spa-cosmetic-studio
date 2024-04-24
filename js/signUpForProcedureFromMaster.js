@@ -300,7 +300,8 @@ $(document).ready(function () {
                                 success: function(response) {
                                     if (response.success) {
                                         console.log('Запись успешно добавлена');
-                                        // Здесь вы можете выполнить дополнительные действия после успешного добавления записи
+                                        $("#sign-up-for-procedure__window").css("display", "none");
+
                                         alert('Запись успешно добавлена');
                                     } else {
                                         console.error('Ошибка при добавлении записи:', response.error);

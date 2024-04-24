@@ -109,7 +109,7 @@ $user_phone = mysqli_fetch_assoc($user_phone);
                 </div>
             </div>
         </section>
-        <section class="callback">
+        <section class="callback _container">
             <form id="contactForm">
                 <div>
                     <label>

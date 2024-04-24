@@ -3,8 +3,8 @@
     if (session_id() == '')
     session_start();
 
-    // $master_id=$_GET['spec_id'];
-    $master_id = $_POST['id'];
+    $master_id=$_GET['spec_id'];
+    //$master_id = $_POST['id'];
     //$master_id=$_SESSION['id_master'];
 
     $master_data=mysqli_query($link, "SELECT * FROM `master` WHERE `id_master`=$master_id");
@@ -117,10 +117,13 @@
                         ?>
 
                     </div>
-<!-- dwsiojeiodcdosckmo -->
-                    <div class="specialist-button green-button" id="<?php echo($master_id);?>">
-                        <span class="details">ЗАПИСАТЬСЯ</span>
-                    </div>
+                    <?php
+                    if(isset($_SESSION['UserID'])) {
+                        echo "<div class='specialist-button green-button' id=". $master_id.">
+                        <span class='details'>ЗАПИСАТЬСЯ</span>
+                    </div>";
+                    }
+                    ?>
 
                 </div>
             </div>
