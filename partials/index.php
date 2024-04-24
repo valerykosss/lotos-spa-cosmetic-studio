@@ -2,6 +2,7 @@
 
 require_once "../handlers/isAdmin.php";
 require_once "../handlers/isWheelSpinned.php";
+require_once "../handlers/get_swiper_data_script.php";
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +41,10 @@ require_once "../handlers/isWheelSpinned.php";
                     <div class="swiper-slide background"
                         style="background-image: url('../images/main-page-slider/spa-programmy-fon.png'); background-size: cover;"></div>
                     <div class="swiper-slide background"
-                        style="background-image: url('../images/main-page-slider/kosmeticheskie-proczedury-fon.png'); background-size: cover;">
+                        style="background-image: url('../images/main-page-slider/massage-lica-fon.png'); background-size: cover;">
+                    </div>
+                    <div class="swiper-slide background"
+                        style="background-image: url('../images/main-page-slider/massage-tela-fon.png'); background-size: cover;">
                     </div>
                 </div>
 
@@ -60,15 +64,25 @@ require_once "../handlers/isWheelSpinned.php";
             <!-- Second Swiper -->
             <div class="swiper-container swiper2 _container-main-slider">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide front"
-                        style="background-image: url('../images/main-page-slider/kosmeticheskie-proczedury-glavnaya.png'); background-size: cover;">
-                        <p>Косметические услуги</p>
+                    <?php
+                        foreach($first_swiper as $item){
+                            echo("
+                                <div class='swiper-slide front'
+                                    style='background-image: url(..".$item[2]."); background-size: cover;'>
+                                    <p>".$item[1]."</p>
+            
+                                    <div class='button'>
+                                        <a href='cosmetic-procedures.php?stype_id=".$item[0]."' style='color: #333; text-decoration:none'>
+                                            <span class='details'>ПОДРОБНЕЕ</span>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                            ");
+                        }
+                    ?>
 
-                        <div class="button">
-                            <span class="details">ПОДРОБНЕЕ</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide front"
+                    <!-- <div class="swiper-slide front"
                         style="background-image: url('../images/main-page-slider/spa-programmy-glavnaya.png'); background-size: cover;">
                         <p>Cпа-программы</p>
 
@@ -77,13 +91,21 @@ require_once "../handlers/isWheelSpinned.php";
                         </div>
                     </div>
                     <div class="swiper-slide front"
-                        style="background-image: url('../images/main-page-slider/kosmeticheskie-proczedury-glavnaya.png'); background-size: cover;">
-                        <p>Косметические услуги</p>
+                        style="background-image: url('../images/main-page-slider/massage-lica-glavnaya.png'); background-size: cover;">
+                        <p>Массаж лица</p>
 
                         <div class="button">
                             <span class="details">ПОДРОБНЕЕ</span>
                         </div>
                     </div>
+                    <div class="swiper-slide front"
+                        style="background-image: url('../images/main-page-slider/massage-tela-glavnaya.png'); background-size: cover;">
+                        <p>Массаж тела</p>
+
+                        <div class="button">
+                            <span class="details">ПОДРОБНЕЕ</span>
+                        </div>
+                    </div> -->
                 </div>
             </div>
         </section>
