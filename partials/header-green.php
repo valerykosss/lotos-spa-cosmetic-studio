@@ -28,6 +28,12 @@
                     <li>
                         <a href="specialists.php" class="header__link">Специалисты</a>
                     </li>
+                    <?php
+                        if(isset($_SESSION['UserID'])){
+                        echo "<li>
+                            <a href='account.php' class='header__link'>Профиль</a>
+                        </li>";
+                    } ?>
                     <li class="li-header-logo">
                         <a href="index.php" class="header__logo">
                             <img src="../images/logo-lotus-header-white.svg" alt="">

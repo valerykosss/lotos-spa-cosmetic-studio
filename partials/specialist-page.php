@@ -3,7 +3,9 @@
     if (session_id() == '')
     session_start();
 
-    $master_id=$_GET['spec_id'];
+    // $master_id=$_GET['spec_id'];
+    $master_id = $_POST['id'];
+    //$master_id=$_SESSION['id_master'];
 
     $master_data=mysqli_query($link, "SELECT * FROM `master` WHERE `id_master`=$master_id");
     $master_data=mysqli_fetch_assoc($master_data);
@@ -136,7 +138,7 @@
                 <div id="calendar"></div>
 
             </div>
-            <button id="sign-up-for-procedure__button">Записаться</button>
+            <a id="sign-up-for-procedure__button">Записаться</a>
         </form>
     </div>
     

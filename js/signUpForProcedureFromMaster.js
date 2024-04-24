@@ -28,6 +28,9 @@
 
 $(document).ready(function () {
 
+    // var startDate;     
+    // var endDate;
+
     $(".close__form").mousedown(function () {
         clear();
         $("#sign-up-for-procedure__window").css("display", "none");
@@ -266,6 +269,7 @@ $(document).ready(function () {
 
                 eventClick: function(event) {
                     
+
                     var startDate = event.start.format('YYYY-MM-DD HH:mm');
             
                     var endDate = event.end ? event.end.format('YYYY-MM-DD HH:mm') : '';
@@ -273,8 +277,46 @@ $(document).ready(function () {
                     console.log('Выбранное событие:');
                     console.log('Начало:', startDate);
                     console.log('Окончание:', endDate);
-            
-                    // Здесь вы можете выполнить дополнительные действия с выбранным событием
+
+                    $('#sign-up-for-procedure__button').click(function() {
+                        if (startDate) { // проверяем, выбрана ли дата
+                            console.log('Выбранная дата для записи:', startDate);
+                    
+                            // Получение данных для отправки
+                            var id_master = $('#masters__data').val();
+                            var id_service = $('#services__data').val();
+                    
+                            // Отправка данных на сервер
+                            $.ajax({
+                                url: '../handlers/recordAppointment.php', // Замените на путь к вашему PHP-обработчику
+                                type: 'POST',
+                                dataType: 'json',
+                                data: {
+                                    id_master: id_master,
+                                    id_service: id_service,
+                                    startDate: startDate,
+                                    endDate: endDate
+                                },
+                                success: function(response) {
+                                    if (response.success) {
+                                        console.log('Запись успешно добавлена');
+                                        // Здесь вы можете выполнить дополнительные действия после успешного добавления записи
+                                        alert('Запись успешно добавлена');
+                                    } else {
+                                        console.error('Ошибка при добавлении записи:', response.error);
+                                        alert('Ошибка при добавлении записи: ' + response.error);
+                                    }
+                                },
+                                error: function(error) {
+                                    console.error('Ошибка при выполнении AJAX-запроса:', error);
+                                    alert('Ошибка при выполнении AJAX-запроса');
+                                }
+                            });
+                        } else {
+                            console.warn('Дата не выбрана');
+                            alert('Дата не выбрана');
+                        }
+                    });
 
 
                 },
@@ -322,39 +364,44 @@ $(document).ready(function () {
         
     });
 
-    $('#sign-up-for-procedure__button').click(function() {
-        // Получаем выбранную дату из календаря
-
-        if (selectedDate) { // проверяем, выбрана ли дата
-            console.log('Выбранная дата для записи:', selectedDate.format());
-
-            try {
-                const response = $.ajax({
-                    url: '../handlers/recordAppointment.php',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        selectedDate: selectedDate.format(),
-                        // другие данные для отправки на сервер
-                    }
-                });
-
-                if (response.success) {
-                    console.log('Запись успешно сохранена');
-                    // здесь вы можете выполнить дополнительные действия после успешного сохранения записи
-                    alert('Запись успешно сохранена');
-                    $("#sign-up-for-procedure__window").css("display", "none"); // закрываем окно после успешной записи
-                } else {
-                    console.error('Ошибка при сохранении записи:', response.error);
-                    alert('Ошибка при сохранении записи: ' + response.error);
-                }
-            } catch (error) {
-                console.error('Ошибка при выполнении AJAX-запроса:', error);
-                alert('Ошибка при выполнении AJAX-запроса');
-            }
-        } else {
-            console.warn('Дата не выбрана');
-            alert('Дата не выбрана');
-        }
-    });
+    // $('#sign-up-for-procedure__button').click(function() {
+    //     if (startDate) { // проверяем, выбрана ли дата
+    //         console.log('Выбранная дата для записи:', startDate.format());
+    
+    //         // Получение данных для отправки
+    //         var id_master = $('#masters__data').val();
+    //         var id_service = $('#services__data').val();
+    
+    //         // Отправка данных на сервер
+    //         $.ajax({
+    //             url: '../handlers/recordAppointment.php', // Замените на путь к вашему PHP-обработчику
+    //             type: 'POST',
+    //             dataType: 'json',
+    //             data: {
+    //                 id_master: id_master,
+    //                 id_service: id_service,
+    //                 startDate: startDate.format(),
+    //                 endDate: endDate.format()
+    //             },
+    //             success: function(response) {
+    //                 if (response.success) {
+    //                     console.log('Запись успешно добавлена');
+    //                     // Здесь вы можете выполнить дополнительные действия после успешного добавления записи
+    //                     alert('Запись успешно добавлена');
+    //                 } else {
+    //                     console.error('Ошибка при добавлении записи:', response.error);
+    //                     alert('Ошибка при добавлении записи: ' + response.error);
+    //                 }
+    //             },
+    //             error: function(error) {
+    //                 console.error('Ошибка при выполнении AJAX-запроса:', error);
+    //                 alert('Ошибка при выполнении AJAX-запроса');
+    //             }
+    //         });
+    //     } else {
+    //         console.warn('Дата не выбрана');
+    //         alert('Дата не выбрана');
+    //     }
+    // });
+    
 });

@@ -142,6 +142,32 @@
     <script src="../js/header.js"></script>
 
     <script src="../js/specialistsFilter.js"></script>
+
+    <script>
+      $('.specialist-button.button').click(function(event) {
+    event.preventDefault(); // Отменяем стандартное действие ссылки
+    
+    var id = $(this).attr('id');
+    // $_SESSION["id_master"]=id;
+    
+    var form = $('<form>', {
+        method: 'post',
+        action: 'specialist-page.php' // Адрес страницы, куда отправлять данные
+    });
+
+    var input = $('<input>', {
+        type: 'hidden',
+        name: 'id',
+        value: id
+    });
+    
+    form.append(input);
+    $('body').append(form);
+    
+    form.submit();
+});
+
+    </script>
 </body>
 
 </html>
