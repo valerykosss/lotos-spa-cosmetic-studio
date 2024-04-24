@@ -159,4 +159,34 @@ document.addEventListener('DOMContentLoaded', function () {
   splide.mount(window.splide.Extensions);
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+  var splide = new Splide('#splide-autoscroll-3', {
+    type   : 'loop',
+    drag   : 'free',
+    focus  : 'center',
+    arrows: false, 
+    perPage: 3.5,
+    autoScroll: {
+      speed: -1,
+    },
+  } );
+
+  splide.mount(window.splide.Extensions);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var splide = new Splide('#splide-autoscroll-4', {
+    type   : 'loop',
+    drag   : 'free',
+    focus  : 'center',
+    arrows: false, 
+    perPage: 3.5,
+    autoScroll: {
+      speed: -1,
+    },
+  } );
+
+  splide.mount(window.splide.Extensions);
+});
+
 /*--------------------------------------------WHEEL--------------------------------------------*/

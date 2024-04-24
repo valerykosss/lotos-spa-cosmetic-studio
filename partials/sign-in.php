@@ -12,7 +12,7 @@
 
             <div class="data-label__text">Введите пароль</div>
              <!--type="password"-->
-            <input type="text" name="password" placeholder="Пароль" autocomplete="off" />
+            <input type="password" name="password" placeholder="Пароль" autocomplete="off" />
             <p id="passwordError"></p>
         </div>
         <p class="form__retransfer-text">Нет аккаунта? <span id="sign-up__link">Зарегистрируйтесь</span></p>

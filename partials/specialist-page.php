@@ -8,7 +8,7 @@
     $master_data=mysqli_query($link, "SELECT * FROM `master` WHERE `id_master`=$master_id");
     $master_data=mysqli_fetch_assoc($master_data);
 
-    $master_services=mysqli_query($link, "SELECT `service_type`.`service_type_name` FROM `master_service`
+    $master_services=mysqli_query($link, "SELECT distinct `service_type`.`service_type_name` FROM `master_service`
                                             inner join `service` on `master_service`.`id_service`=`service`.`id_service`
                                             inner join `service_type` on `service`.`id_service_type`=`service_type`.`id_service_type`
                                             WHERE `id_master`=$master_id");

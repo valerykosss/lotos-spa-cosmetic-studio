@@ -181,16 +181,25 @@ require_once "../handlers/get_swiper_data_script.php";
                             <div id="splide-autoscroll-1" class="splide">
                                 <div class="splide__track">
                                     <ul class="splide__list">
-                                        <li class="splide__slide">
-                                            <img class="slide-img" src="../images/specialist-slider/specialist-1.png"
-                                                alt="">
-                                            <p class="slide-name">Валерия Косс</p>
-                                            <p class="slide-description">Косметолог</p>
-                                            <div class="slide-button button">
-                                                <span class="details">ПОДРОБНЕЕ</span>
-                                            </div>  
-                                        </li>
-                                        <li class="splide__slide">
+                                        <?php
+                                            foreach($all_masters as $master){
+                                                echo("
+                                                <li class='splide__slide'>
+                                                    <img class='slide-img' src='..".$master[3]."'
+                                                        alt=''>
+                                                    <p class='slide-name'>".$master[1]." ".$master[2]."</p>
+                                                    <p class='slide-description'>".$master[6]."</p>
+                                                    <a href='specialist-page.php?spec_id=".$master[0]."'>
+                                                        <div class='slide-button button'>
+                                                            <span class='details'>ПОДРОБНЕЕ</span>
+                                                        </div>  
+                                                    </a>
+                                                </li>
+                                                ");
+                                            }
+                                        ?>
+                                        
+                                        <!-- <li class="splide__slide">
                                             <img class="slide-img" src="../images/specialist-slider/specialist-2.png"
                                                 alt="">
                                             <p class="slide-name">Валерия Косс</p>
@@ -216,7 +225,7 @@ require_once "../handlers/get_swiper_data_script.php";
                                             <div class="slide-button button">
                                                 <span class="details">ПОДРОБНЕЕ</span>
                                             </div>  
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -228,16 +237,26 @@ require_once "../handlers/get_swiper_data_script.php";
                             <div id="splide-autoscroll-2" class="splide">
                                 <div class="splide__track">
                                     <ul class="splide__list">
-                                        <li class="splide__slide">
-                                            <img class="slide-img" src="../images/specialist-slider/specialist-1.png"
-                                                alt="">
-                                            <p class="slide-name">Валерия Косс</p>
-                                            <p class="slide-description">Косметолог</p>
-                                            <div class="slide-button button">
-                                                <span class="details">ПОДРОБНЕЕ</span>
-                                            </div>  
-                                        </li>
-                                        <li class="splide__slide">
+                                        <?php
+                                            foreach($all_masters_cosmetic as $master){
+                                                echo("
+                                                    <li class='splide__slide'>
+                                                        <img class='slide-img' src='..".$master[3]."'
+                                                            alt=''>
+                                                        <p class='slide-name'>".$master[1]." ".$master[2]."</p>
+                                                        <p class='slide-description'>".$master[4]."</p>
+                                                        <a href='specialist-page.php?spec_id=".$master[0]."'>
+                                                            <div class='slide-button button'>
+                                                                <span class='details'>ПОДРОБНЕЕ</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                ");
+                                                
+                                            }
+                                        ?>
+
+                                        <!-- <li class="splide__slide">
                                             <img class="slide-img" src="../images/specialist-slider/specialist-2.png"
                                                 alt="">
                                             <p class="slide-name">Валерия Косс</p>
@@ -245,22 +264,68 @@ require_once "../handlers/get_swiper_data_script.php";
                                             <div class="slide-button button">
                                                 <span class="details">ПОДРОБНЕЕ</span>
                                             </div>  
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="tab-content" id="content-3">
-                        Содержимое 3... Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique eaque iure
-                        debitis nostrum, vero ad totam ratione sequi! Suscipit, labore repellat cum soluta ullam
-                        dignissimos perspiciatis sequi rerum sapiente ex.
+                        <div class="auto-scroll-wrap">
+                            <div id="splide-autoscroll-3" class="splide">
+                                <div class="splide__track">
+                                    <ul class="splide__list">
+                                        <?php
+                                            foreach($all_masters_spa as $master){
+                                                echo("
+                                                    <li class='splide__slide'>
+                                                        <img class='slide-img' src='..".$master[3]."'
+                                                            alt=''>
+                                                        <p class='slide-name'>".$master[1]." ".$master[2]."</p>
+                                                        <p class='slide-description'>".$master[4]."</p>
+                                                        <a href='specialist-page.php?spec_id=".$master[0]."'>
+                                                            <div class='slide-button button'>
+                                                                <span class='details'>ПОДРОБНЕЕ</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                ");
+                                                
+                                            }
+                                        ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="tab-content" id="content-4">
-                        Содержимое 4... Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique eaque iure
-                        debitis nostrum, vero ad totam ratione sequi! Suscipit, labore repellat cum soluta ullam
-                        dignissimos perspiciatis sequi rerum sapiente ex.
+                        <div class="auto-scroll-wrap">
+                            <div id="splide-autoscroll-4" class="splide">
+                                <div class="splide__track">
+                                    <ul class="splide__list">
+                                        <?php
+                                            foreach($all_masters_massage as $master){
+                                                echo("
+                                                    <li class='splide__slide'>
+                                                        <img class='slide-img' src='..".$master[3]."'
+                                                            alt=''>
+                                                        <p class='slide-name'>".$master[1]." ".$master[2]."</p>
+                                                        <p class='slide-description'>".$master[4]."</p>
+                                                        <a href='specialist-page.php?spec_id=".$master[0]."'>
+                                                            <div class='slide-button button'>
+                                                                <span class='details'>ПОДРОБНЕЕ</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                ");
+                                                
+                                            }
+                                        ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- <div class="auto-scroll-wrap">
