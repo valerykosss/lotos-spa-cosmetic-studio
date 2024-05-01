@@ -13,9 +13,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Лотос - Специалисты</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/generalStyles.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header-white.css">
     <link rel="stylesheet" href="../css/specialists.css">
     <link rel="stylesheet" href="../css/sign-in-up.css">
+    <link rel="stylesheet" href="../css/footer-white.css">
 
     <script src="../libraries/jquery-3.6.0.min.js"></script>
 </head>
@@ -31,9 +34,9 @@
                     <p class="specialists-text">
                     Специалисты центра массажа и косметологии "Лотос" — это высококвалифицированные профессионалы, обладающие глубокими знаниями и опытом в области оздоровления и красоты. Наша команда состоит из сертифицированных массажистов, косметологов и терапевтов, которые постоянно совершенствуют свои навыки и следят за последними тенденциями и инновациями в сфере SPA-ухода.
                     </p>
-                    <!-- <div class="specialists-button green-button" class="button">
-                        <span class="details">ПОДРОБНЕЕ</span>
-                    </div> -->
+                    <div class="specialists-button green-button" class="button">
+                        <span class="details">Записаться</span>
+                    </div>
                 </div>
             </div>
             </div>
@@ -103,7 +106,7 @@
                 </div>-->
             </div>
 
-            <nav class="pagination-container">
+            <!-- <nav class="pagination-container">
 
                 <button class="pagination-button" id="prev-button" aria-label="Previous page" title="Previous page">
                     &lt;
@@ -114,7 +117,7 @@
                 <button class="pagination-button" id="next-button" aria-label="Next page" title="Next page">
                     &gt;
                 </button>
-            </nav>
+            </nav> -->
         </section>
         <section class="page__need-consult-block">
             <div class="need-consult__body _container">
@@ -132,12 +135,12 @@
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="../js/pagination.js"></script>
+    <!-- <script src="../js/pagination.js"></script> -->
 
     <script src ="../libraries/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-    <script src="../js/header.js"></script>
+    <script src="../js/signInUp.js"></script>
 
     <script src="../js/specialistsFilter.js"></script>
 </body>

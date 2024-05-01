@@ -102,6 +102,6 @@ if (session_id() == '')
 <script src="../js/admin-panel-ajax/change-master-data.js"></script>
 
 
-<script src="../js/header.js"></script>
+<script src="../js/signInUp.js"></script>
 
 </html>

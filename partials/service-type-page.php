@@ -21,10 +21,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Лотос - Косметические процедуры</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/generalStyles.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/service-type-page.css">
+    <link rel="stylesheet" href="../css/header-green.css">
+    <link rel="stylesheet" href="../css/footer-green.css">
+
     <link rel="stylesheet" href="../css/sign-in-up.css">
-    <link rel="stylesheet" href="../css/about-us.css">
-    <link rel="stylesheet" href="../css/cosmetic-procedures.css">
 
     <script src="../libraries/jquery-3.6.0.min.js"></script>
 </head>
@@ -36,12 +39,12 @@
         <section class="page__services-page">
             <div class="services-page__body _container">
                 <div class="services-page__info-block">
-                    <p class="services-header" style="margin-bottom:40px"><?php echo($stype['service_type_name'])?></p>
-                    <!-- <p class="services-text">
+                    <p class="services-header"><?php echo($stype['service_type_name'])?></p>
+                    <p class="services-text">
                         Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более
                         менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных
                         выступлений в домашних условиях.
-                    </p> -->
+                    </p>
                 </div>
             </div>
             </div>
@@ -63,7 +66,7 @@
                 </div> -->
             </div>
         </section>
-        <!-- <section class="page__need-consult-block">
+        <section class="page__need-consult-block">
             <div class="need-consult-gray__body _container">
                 <div class="need-consult-title-gray">необходима консультация?</div>
                 <div class="need-consult-text-gray">Оставьте заявку на сайте наш специалист свяжется с вами и
@@ -72,7 +75,7 @@
                     <span class="details">ПОДРОБНЕЕ</span>
                 </div>
             </div>
-        </section> -->
+        </section>
     </main>
 
     <?php require 'footer-green.php' ?>
@@ -83,7 +86,7 @@
     <script src ="../libraries/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-    <script src="../js/header.js"></script>
+    <script src="../js/signInUp.js"></script>
 
 </body>
 

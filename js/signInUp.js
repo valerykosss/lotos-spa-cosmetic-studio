@@ -12,11 +12,21 @@ $("#sign-up__link").mousedown(function () {
     $("#sign-up__window").css("display", "block");
 })
 
+$("#sign-up__wheel").mousedown(function () {
+    clear();
+    $("#sign-up__window").css("display", "block");
+})
+
+
 $("#sign-in__link").mousedown(function () {
     clear();
     $("#sign-up__window").css("display", "none");
     $("#sign-in__window").css("display", "block");
 })
+
+// $("sign-up__link").click(function(){
+//     $("#sign-up__window").css("display", "block");
+// });
 
 function clear() {
     $('#telephoneError').text('');

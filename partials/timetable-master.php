@@ -147,7 +147,7 @@ if (session_id() == '')
     </main>
     <!-- End Deleted Message Modal -->
     <script src="../js/admin-panel-ajax/timetable-master.js"></script>
-    <script src="../js/header.js"></script>
+    <script src="../js/signInUp.js"></script>
 </body>
 
 </html>

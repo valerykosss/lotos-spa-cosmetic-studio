@@ -20,9 +20,13 @@ require_once "../handlers/get_swiper_data_script.php";
     <script src="../libraries/splide.min.js"></script>
 
     <script src="../libraries/splide-extension-auto-scroll.min.js"></script>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/generalStyles.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/header-green.css">
+    <link rel="stylesheet" href="../css/footer-white.css">
+    
     <link rel="stylesheet" href="../css/sign-in-up.css">
-
     <link rel="stylesheet" href="../css/wheel.css">
 </head>
 
@@ -140,10 +144,12 @@ require_once "../handlers/get_swiper_data_script.php";
                 </div>
 
                 <div class="about-us__info-block">
-                    <p class="info-block__header">lotos &mdash;</p>
-                    <p class="info-block__text">
-                    Наша миссия – помочь вам обрести гармонию и баланс в жизни, достигнуть внутреннего равновесия и спокойствия. "Центр Лотос" предлагает широкий спектр услуг для улучшения физического и психологического состояния. Отдайте время себе, позвольте себе расслабиться и восстановить силы в нашем уютном и спокойном центре.
-                    </p>
+                    <div class='info-block__header-text'>
+                        <p class="info-block__header">lotos &mdash;</p>
+                        <p class="info-block__text">
+                        Наша миссия – помочь вам обрести гармонию и баланс в жизни, достигнуть внутреннего равновесия и спокойствия. "Центр Лотос" предлагает широкий спектр услуг для улучшения физического и психологического состояния. Отдайте время себе, позвольте себе расслабиться и восстановить силы в нашем уютном и спокойном центре.
+                        </p>
+                    </div>
                     <a href="about-us.php">
                         <div class="info-block__button button">
                             <span class="details">ПОДРОБНЕЕ</span>
@@ -155,7 +161,10 @@ require_once "../handlers/get_swiper_data_script.php";
         </section>
         <section class="page__specialists">
             <div class="specialists__body">
-                <div class="specialists-title _container">Специалисты</div>
+            <div class="specialists-title-button  _container">
+                <div class="specialists-title">Специалисты</div>
+                <a class="specialists-button" href="specialists.php"> Все специалисты </a>
+            </div>
                 <div class="tab">
                     <div class="radio-buttons__body _container">
                         <input checked id="tab-btn-1" name="tab-btn" type="radio" value="">
@@ -348,7 +357,7 @@ require_once "../handlers/get_swiper_data_script.php";
                 <div class="wheel__body _container">
                     <div class="wheel__left-column">
                         <div class="wheel-title">Вращай колесо — <br>выигрывай подарки!</div>
-                        <div class="wheel-text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более.</div>
+                        <div class="wheel-text">Добро пожаловать в наш центр! Прокрути колесо и получи скидку нового клиента!</div>
                         <button class="btn-spin">Испытай удачу</button>
                     </div>
                     <div class="wheel__right-column">
@@ -364,10 +373,39 @@ require_once "../handlers/get_swiper_data_script.php";
                     </div>
                 </div>
             </section>
-            <?php }        
+            <?php } elseif (!isset($_SESSION["UserID"])){ ?>
+                <section class="page__wheel">
+                <div class="wheel__body _container">
+                    <div class="wheel__left-column">
+                        <div class="wheel-title">Вращай колесо — <br>выигрывай подарок!</div>
+                        <div class="wheel-text">Акция действует только для НОВЫХ полователей! Зарегистрируйся, чтобы выиграть свою скидку при ПЕРВОМ прокурте колеса!</div>
+                        <div id="sign-up__wheel" class="sign-up-button button">
+                            <span class="details">Зарегистрироваться</span>
+                        </div>
+                    </div>
+                    <div class="wheel__right-column">
+                        <!-- <img class="wheel" src="../images/wheel.png"> -->
+                        
+                        
+                        <!-- главный блок -->
+                        <div class="deal-wheel">
+                            <!-- блок с призами -->
+                            <ul class="spinner" ></ul>
+                            <style>
+                                .spinner li{
+                                    filter: blur(4px);
+                                }
+                            </style>
+                            <!-- язычок барабана -->
+                            <div class="ticker"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+           <?php }        
         ?>
         
-        <!-- <section class="page__quiz-block">
+        <section class="page__quiz-block">
             <div class="quiz-block__body _container">
                 <div class="quiz-block-title">Не подобрали<br>подходящую процедуру?</div>
                 <div class="quiz-block-text">Пройдите тест и выберите ту процедуру, которая подходит именно вам!</div>
@@ -375,7 +413,7 @@ require_once "../handlers/get_swiper_data_script.php";
                     <span class="details">ПРОЙТИ ТЕСТ</span>
                 </div>
             </div>
-        </section> -->
+        </section>
     </main>
 
     <?php require 'footer-white.php' ?>
@@ -389,7 +427,7 @@ require_once "../handlers/get_swiper_data_script.php";
     <script src ="../libraries/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-    <script src="../js/header.js"></script>
+    <script src="../js/signInUp.js"></script>
 
     <script src="../js/wheel.js"></script>
 </body>

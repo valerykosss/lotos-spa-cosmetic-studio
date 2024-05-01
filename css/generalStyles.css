@@ -1,0 +1,72 @@
+*,
+*:before,
+*:after {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul,
+ol,
+li {
+	list-style: none;
+}
+
+img {
+	vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: inherit;
+	font-size: inherit;
+	font-family: 'Oswald';
+}
+
+html,
+body {
+	background-color: #FFFFFF;
+	height: 100%;
+	color: #232323;
+	font-family: 'Oswald';
+}
+
+.wrapper {
+	min-height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+._container {
+	max-width: 1220px;
+	margin: 0px auto;
+	padding: 0px;
+	box-sizing: content-box;
+}
+
+.fa {
+	font-family: "FontAwesome";
+	color: inherit;
+	padding-left: 10px;
+}
+
+@font-face {
+	font-family: "Oswald";
+	src: url("../fonts/Oswald/Oswald-VariableFont_wght.ttf");
+}
+
+@font-face {
+	font-family: "SF Pro Text";
+	/* src: url("../fonts/San-Francisco-Pro-Text/SFProText-Light.ttf"); */
+	src: url("../fonts/San-Francisco-Pro-Text/SF-Pro.ttf");
+}

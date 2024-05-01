@@ -18,49 +18,64 @@
                                 foreach($service_types as $service_type){
                                     echo("
                                     <li>
-                                        <a href='cosmetic-procedures.php?stype_id=".$service_type[0]."' class='header__menu__sub-link'>".$service_type[1]."</a>
+                                        <a href='service-type-page.php?stype_id=".$service_type[0]."' class='header__menu__sub-link'>".$service_type[1]."</a>
                                     </li>
                                     ");
                                 }
                             ?>
                         </ul>
                     </li>
+
                     <li>
                         <a href="specialists.php" class="header__link">Специалисты</a>
                     </li>
-                    <?php
-                        if(isset($_SESSION['UserID'])){
-                        echo "<li>
-                            <a href='account.php' class='header__link'>Профиль</a>
-                        </li>";
-                    } ?>
+
+                    <li>
+                        <a href="#" class="header__link">Подобрать услугу</a>
+                    </li>
+
                     <li class="li-header-logo">
                         <a href="index.php" class="header__logo">
                             <img src="../images/logo-lotus-header-white.svg" alt="">
                         </a>
                     </li>
+
+                    <li>
+                        <a href="#" class="header__link">Прайс</a>
+                    </li>
+
                     <li>
                         <a href="about-us.php" class="header__link">О нас</a>
                     </li>
+
                     <li>
                         <a href="contact-page.php" class="header__link">Контакты</a>
                     </li>
                     <li>
-                        <?php
-                        if (empty($_SESSION['UserID'])) {
-                            echo "<a class=\"header__link\" id=\"open__log-in__button\">
-                            <img src=\"../images/icons/profile-icon.svg\" alt=\"\"> ВОЙТИ
-                            </a>";
-                        } else {
-                            echo "<a class=\"header__link\" id=\"logout__button\" href=\"../handlers/logout.php\">
-                            <img src=\"../images/icons/profile-icon.svg\" alt=\"\"> ".$_SESSION["Name"]."
-                            </a>";
-                        }
+                        <a href="#" class="header__link">
+                            <img src="../images/icons/profile-icon-smaller.svg" alt="">
+                            <?php
+                            if (!empty($_SESSION['UserID'])) {
+                                echo $_SESSION["Name"];
+                            }
+                        echo "</a>";
+                        echo "<ul class='header__menu__sub-list'>";
+                                // if(isset($_SESSION['UserID'])){
+                                if (empty($_SESSION['UserID'])) {
+                                    echo "<li>
+                                        <a class='header__menu__sub-link' id='open__log-in__button'>ВОЙТИ</a>
+                                    </li>";
+                                } else {
+                                    echo "<li> 
+                                        <a class=\"header__menu__sub-link\" href='account.php'> Мой профиль</a> 
+                                    </li>";
 
-                    ?>
-                        <!-- <a href="#" class="header__link">
-                            <img src="../images/icons/profile-icon.svg" alt="">
-                        </a> -->
+                                    echo "<li> 
+                                        <a class=\"header__menu__sub-link\" id=\"logout__button\" href=\"../handlers/logout.php\"> ВЫЙТИ</a>
+                                    </li>";
+                                } 
+                                ?>
+                        </ul>
                     </li>
                 </ul>
             </nav>

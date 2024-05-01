@@ -14,9 +14,12 @@
     <title>Лотос - О нас</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/generalStyles.css">
     <link rel="stylesheet" href="../css/about-us.css">
     <link rel="stylesheet" href="../css/sign-in-up.css">
+
+    <link rel="stylesheet" href="../css/header-green.css">
+    <link rel="stylesheet" href="../css/footer-green.css">
 </head>
 
 <body>
@@ -44,7 +47,7 @@
     <script src ="../libraries/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-    <script src="../js/header.js"></script>
+    <script src="../js/signInUp.js"></script>
 </body>
 
 </html>

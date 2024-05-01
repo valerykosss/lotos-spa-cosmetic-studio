@@ -1,0 +1,138 @@
+/*--------------------------------------White BUTTON-------------------------------------------*/
+.button {
+	position: relative;
+	display: inline-block;
+	padding: 10px;
+	width: 105px;
+	height: 64px;
+	/* Изначальная высота кнопки */
+	/* border: 2px solid transparent; */
+	border-radius: 100px;
+	background-color: #fff;
+	color: #333;
+	font-weight: bold;
+	text-align: center;
+	cursor: pointer;
+	overflow: hidden;
+	transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+/* Стили для стрелки */
+.button::after {
+	content: '\2192';
+	/* Юникод для стрелки */
+	position: absolute;
+	top: 50%;
+	right: 30px;
+	transform: translateY(-50%);
+	opacity: 1;
+	transition: opacity 0.3s ease;
+	font-size: 38px;
+}
+
+/* Стили для надписи подробнее */
+.details {
+	position: absolute;
+	top: 50%;
+	left: -60px;
+	transform: translateY(-50%);
+	opacity: 0;
+	transition: opacity 0.3s ease, left 0.3s ease;
+
+	font-size: 24px;
+	font-weight: 400;
+	/*regular*/
+}
+
+.sign-up-button{
+    margin-bottom: 46px;
+}
+
+.sign-up-button:hover{
+    width: 320px!important;
+}
+
+/* Эффект при наведении */
+.button:hover {
+	width: 230px;
+	/* Увеличение ширины кнопки */
+}
+
+.button:hover::after {
+	opacity: 1;
+	/* Появление стрелки при наведении */
+}
+
+.button:hover .details {
+	opacity: 1;
+	/* Появление надписи при наведении */
+	left: 36px;
+	/* Выравнивание надписи по центру */
+}
+
+/*--------------------------------------GREEN BUTTON-------------------------------------------*/
+
+/* Стили для кнопки */
+.green-button {
+	position: relative;
+	display: inline-block;
+	padding: 10px;
+	width: 105px;
+	height: 64px;
+	border-radius: 100px;
+	background-color: #355D48;
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
+	cursor: pointer;
+	overflow: hidden;
+	transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+/* Стили для стрелки */
+.green-button::after {
+	content: '\2192';
+	/* Юникод для стрелки */
+	position: absolute;
+	top: 50%;
+	right: 30px;
+	transform: translateY(-50%);
+	opacity: 1;
+	transition: opacity 0.3s ease;
+	font-size: 38px;
+}
+
+/* Стили для надписи подробнее */
+.green-details {
+	position: absolute;
+	top: 50%;
+	left: -60px;
+	transform: translateY(-50%);
+	opacity: 0;
+	transition: opacity 0.3s ease, left 0.3s ease;
+
+	font-size: 24px;
+	font-weight: 400;
+	/*regular*/
+}
+
+/* Эффект при наведении */
+.green-button:hover {
+	width: 230px;
+	/* Увеличение ширины кнопки */
+}
+
+.green-button:hover::after {
+	opacity: 1;
+	/* Появление стрелки при наведении */
+}
+
+.green-button:hover .details {
+	opacity: 1;
+	/* Появление надписи при наведении */
+	left: 36px;
+	/* Выравнивание надписи по центру */
+}
+

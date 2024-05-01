@@ -18,7 +18,7 @@
                                 foreach($service_types as $service_type){
                                     echo("
                                     <li>
-                                        <a href='cosmetic-procedures.php?stype_id=".$service_type[0]."' class='header__menu__sub-link-white'>".$service_type[1]."</a>
+                                        <a href='service-type-page.php?stype_id=".$service_type[0]."' class='header__menu__sub-link-white'>".$service_type[1]."</a>
                                     </li>
                                     ");
                                 }
@@ -28,17 +28,17 @@
                     <li>
                         <a href="specialists.php" class="header__link-white">Специалисты</a>
                     </li>
-                    <?php
-                        if(isset($_SESSION['UserID'])){
-                        echo "<li>
-                            <a href='account.php' class='header__link-white'>Профиль</a>
-                        </li>";
-                    } ?>
+                    <li>
+                        <a href="#" class="header__link-white">Подобрать услугу</a>
+                    </li>
 
                     <li class="li-header-logo">
                         <a href="index.php" class="header__logo">
                             <img src="../images/logo-lotus-footer-green.svg" alt="">
                         </a>
+                    </li>
+                    <li>
+                        <a href="#" class="header__link-white">Прайс</a>
                     </li>
                     <li>
                         <a href="about-us.php" class="header__link-white">О нас</a>
@@ -47,20 +47,30 @@
                         <a href="contact-page.php" class="header__link-white">Контакты</a>
                     </li>
                     <li>
-                        <?php
-                        if (empty($_SESSION['UserID'])) {
-                            echo "<a class=\"header__link-white\" id=\"open__log-in__button\">
-                            <img src=\"../images/icons/profile-icon-white.svg\" alt=\"\"> ВОЙТИ
-                            </a>";
-                        } else {
-                            echo "<a class=\"header__link-white\" id=\"logout__button\" href=\"../handlers/logout.php\">
-                            <img src=\"../images/icons/profile-icon-white.svg\" alt=\"\">".$_SESSION["Name"]."
-                            </a>";
-                        }
+                        <a href="#" class="header__link-white">
+                            <img src="../images/icons/profile-icon-smaller-for-white.svg" alt="">
+                            <?php
+                            if (!empty($_SESSION['UserID'])) {
+                                echo $_SESSION["Name"];
+                            }
+                        echo "</a>";
+                        echo "<ul class='header__menu__sub-list-white'>";
+                                // if(isset($_SESSION['UserID'])){
+                                if (empty($_SESSION['UserID'])) {
+                                    echo "<li>
+                                        <a class='header__menu__sub-link-white' id='open__log-in__button'>ВОЙТИ</a>
+                                    </li>";
+                                } else {
+                                    echo "<li> 
+                                        <a class=\"header__menu__sub-link-white\" href='account.php'> Мой профиль</a> 
+                                    </li>";
 
-                        // require_once '../handlers/isAdmin.php';
-                    ?>
-
+                                    echo "<li> 
+                                        <a class=\"header__menu__sub-link-white\" id=\"logout__button\" href=\"../handlers/logout.php\"> ВЫЙТИ</a>
+                                    </li>";
+                                } 
+                                ?>
+                        </ul>
                     </li>
                 </ul>
             </nav>

@@ -1,0 +1,118 @@
+/*--------------------------------------FOOTER-------------------------------------------*/
+.footer {
+	background-color: #fff;
+}
+
+.footer:before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	background-color: #ffff;
+}
+
+.footer__body {
+	padding: 40px 0px;
+}
+
+.footer__logo {
+	overflow: hidden;
+	text-decoration: none;
+	position: relative;
+	top: -25px;
+	text-align: center;
+}
+
+
+.footer__list {
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+	font-size: 23px;
+	font-weight: 200;
+	/*extra light*/
+	text-transform: uppercase;
+}
+
+.footer__list li {
+	position: relative;
+	padding: 10px 24px;
+}
+
+.footer__link {
+	color: #232323;
+	text-decoration: none;
+}
+
+.footer__list > ul:first-child > li {
+    border-bottom: 0.5px solid #232323;
+}
+
+.footer__list ul>li:last-child {
+	border-bottom: none;
+	margin-bottom: 50px;
+}
+
+.footer__menu__sub-list {
+	background-color: #fff;
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+	list-style: none;
+	top: 100%;
+	right: 0;
+	left: 0;
+	pointer-events: none;
+	transition: 0.5s ease-in-out;
+	width: 310px;
+	z-index: 20;
+}
+
+.footer__body ul li:hover .footer__menu__sub-list {
+	visibility: visible;
+	opacity: 1;
+	pointer-events: auto;
+	transition: 0.5s ease-in-out;
+}
+
+.footer__menu__sub-link {
+	color: #232323;
+	text-decoration: none;
+}
+
+.li-footer-logo{
+	width:200px;
+	height: 65px;
+	text-align: center;
+}
+
+.footer__contacts__sub-list{
+	background-color: #fff;
+	position: absolute;
+	list-style: none;
+	top: 100%;
+	right: 0;
+	transition: 0.5s ease-in-out;
+	width: 100%;
+	z-index: 20;
+}
+
+.footer__contacts__sub-link{
+	font-family: "SF Pro Text";
+	font-weight: 300;
+	font-size: 15px;
+	color: #232323
+}
+
+.footer__contacts__sub-list li{
+	padding: 0;
+	text-align: end;
+}
+
+.right_body{
+	position: absolute;
+}
+
+p.footer__contacts__sub-link{
+	margin-top:14px;
+	margin-bottom: 2px;
+}

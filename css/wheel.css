@@ -1,9 +1,11 @@
 
   /* общий блок для всех элементов */
   .deal-wheel {
+    height: auto;
+    overflow: hidden;
     /* задаём переменные блока */
     /* размеры колеса */
-    --size: clamp(250px, 80vmin, 700px);
+    --size: clamp(250px, 80vmin, 650px);
     /* настройки яркости и заливки фона секторов */
     --lg-hs: 0 3%;
     --lg-stop: 50%;
@@ -15,7 +17,7 @@
     position: relative;
     /* подключаем сетку */
     display: grid;
-    grid-gap: calc(var(--size) / 20);
+    /* grid-gap: calc(var(--size) / 20); */
     /* выравниваем содержимое блока по центру */
     align-items: center;
     /* задаём имена областей внутри сетки */

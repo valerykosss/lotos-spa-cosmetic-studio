@@ -328,7 +328,7 @@ require_once "../handlers/isAdmin.php";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     
 
-    <script src="../js/header.js"></script>
+    <script src="../js/signInUp.js"></script>
 
     <script src="../js/admin-panel-ajax/add-master.js"></script>
     <script src="../js/admin-panel-ajax/delete-master.js"></script>

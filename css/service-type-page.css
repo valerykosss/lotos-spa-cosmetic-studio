@@ -1,5 +1,5 @@
-/*--------------------------------------SPECIALISTS GENERAL INFO-------------------------------------------*/
-body{
+/*--------------------------------------SERVICES GENERAL INFO-------------------------------------------*/
+html, body{
     background-color: #355D48;
 }
 
@@ -76,6 +76,8 @@ body{
 .service-button {
 	align-self: center;
 	margin-bottom: 30px;
+	background-color: transparent !important;
+	color: #fff !important;
 }
 
 /*--------------------------------------NEED COUSULTATION BLOCK-------------------------------------------*/

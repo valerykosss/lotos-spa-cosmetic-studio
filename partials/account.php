@@ -28,10 +28,12 @@ $user_phone = mysqli_fetch_assoc($user_phone);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Аккаунт пользователя</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/specialists.css">
+    <link rel="stylesheet" href="../css/generalStyles.css">
+    <!-- <link rel="stylesheet" href="../css/specialists.css"> -->
     <link rel="stylesheet" href="../css/sign-in-up.css">
     <link rel="stylesheet" href="../css/admin-panel.css">
+    <link rel="stylesheet" href="../css/header-white.css">
+    <link rel="stylesheet" href="../css/footer-white.css">
 
 </head>
 <style>
@@ -140,6 +142,7 @@ $user_phone = mysqli_fetch_assoc($user_phone);
             </form>
         </section>
     </main>
+    <?php require_once 'footer-white.php' ?>
 </body>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -209,6 +212,6 @@ $user_phone = mysqli_fetch_assoc($user_phone);
     });
 </script>
 
-<script src="../js/header.js"></script>
+<script src="../js/signInUp.js"></script>
 
 </html>
