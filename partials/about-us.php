@@ -23,6 +23,12 @@
 </head>
 
 <body>
+<div class="preloader">
+        <div class="preloader__row">
+            <div class="preloader__item"></div>
+            <div class="preloader__item"></div>
+        </div>
+    </div>
 <?php require 'header-green.php' ?>
     <main>
         <section class="page__about-us-page">
@@ -92,6 +98,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <script src="../js/signInUp.js"></script>
+    <script src="../js/preloader.js"></script>
 </body>
 
 </html>

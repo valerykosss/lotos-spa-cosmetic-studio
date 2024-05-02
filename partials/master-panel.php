@@ -20,6 +20,12 @@ if (session_id() == '')
 </head>
 
 <body>
+<div class="preloader">
+        <div class="preloader__row">
+            <div class="preloader__item"></div>
+            <div class="preloader__item"></div>
+        </div>
+    </div>
     <?php
     require 'header-master.php';
     ?>
@@ -103,5 +109,6 @@ if (session_id() == '')
 
 
 <script src="../js/signInUp.js"></script>
+<script src="../js/preloader.js"></script>
 
 </html>

@@ -24,6 +24,12 @@
 </head>
 
 <body>
+<div class="preloader">
+        <div class="preloader__row">
+            <div class="preloader__item"></div>
+            <div class="preloader__item"></div>
+        </div>
+    </div>
     <?php require 'header-white.php' ?>
 
     <main>
@@ -143,6 +149,7 @@
     <script src="../js/signInUp.js"></script>
 
     <script src="../js/specialistsFilter.js"></script>
+    <script src="../js/preloader.js"></script>
 </body>
 
 </html>

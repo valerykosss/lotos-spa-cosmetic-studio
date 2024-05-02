@@ -33,7 +33,12 @@ if (session_id() == '')
 </head>
 
 <body>
-
+<div class="preloader">
+        <div class="preloader__row">
+            <div class="preloader__item"></div>
+            <div class="preloader__item"></div>
+        </div>
+    </div>
     <?php
     require 'header-white-admin-master.php';
     ?>
@@ -148,6 +153,7 @@ if (session_id() == '')
     <!-- End Deleted Message Modal -->
     <script src="../js/admin-panel-ajax/timetable.js"></script>
     <script src="../js/signInUp.js"></script>
+    <script src="../js/preloader.js"></script>
 </body>
 
 </html>

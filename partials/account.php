@@ -50,6 +50,12 @@ $user_phone = mysqli_fetch_assoc($user_phone);
 </style>
 
 <body>
+<div class="preloader">
+        <div class="preloader__row">
+            <div class="preloader__item"></div>
+            <div class="preloader__item"></div>
+        </div>
+    </div>
     <?php
     require 'header-white.php';
     ?>
@@ -213,5 +219,6 @@ $user_phone = mysqli_fetch_assoc($user_phone);
 </script>
 
 <script src="../js/signInUp.js"></script>
+<script src="../js/preloader.js"></script>
 
 </html>

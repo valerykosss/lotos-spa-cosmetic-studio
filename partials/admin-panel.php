@@ -36,6 +36,12 @@ require_once "../handlers/isAdmin.php";
 </head>
 
 <body>
+<div class="preloader">
+        <div class="preloader__row">
+            <div class="preloader__item"></div>
+            <div class="preloader__item"></div>
+        </div>
+    </div>
 
     <?php 
         require 'header-white-admin-master.php';
@@ -337,6 +343,7 @@ require_once "../handlers/isAdmin.php";
     <script src="../js/admin-panel-ajax/service-type-for-service.js"></script>
 
     <script src="../js/admin-panel-ajax/add-wheel.js"></script>
+    <script src="../js/preloader.js"></script>
 
     <!-- <script src="../js/admin-panel-ajax/add-service.js"></script>
     <script src="../js/admin-panel-ajax/delete-service.js"></script>

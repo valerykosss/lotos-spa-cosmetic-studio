@@ -47,6 +47,12 @@
 </head>
 
 <body>
+<div class="preloader">
+        <div class="preloader__row">
+            <div class="preloader__item"></div>
+            <div class="preloader__item"></div>
+        </div>
+    </div>
 <?php require 'header-white.php' ?>
     <main>
         <section class="page__speialist-profile">
@@ -117,6 +123,7 @@
 
 <script src="../js/signInUp.js"></script>
 <script src="../js/signUpForProcedureFromMaster.js"></script>
+<script src="../js/preloader.js"></script>
 
 <!-- ... -->
 
