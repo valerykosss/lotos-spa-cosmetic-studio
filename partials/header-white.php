@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="header__link-white">Прайс</a>
+                        <a href="price-list.php" class="header__link-white">Прайс</a>
                     </li>
                     <li>
                         <a href="about-us.php" class="header__link-white">О нас</a>

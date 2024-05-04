@@ -1,0 +1,86 @@
+html{
+	background-color: #355D48;
+}
+.page__contact-page {
+    padding-top: 50px;
+	background-color: #355D48;
+}
+
+.contact-page__body {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.contact-page__info-block{
+    display: flex;
+    flex-direction: column;
+}
+
+.info-block__header {
+	font-size: 78px;
+	text-transform: uppercase;
+	color: #fff;
+	padding-bottom: 15px;
+}
+
+.info-block__text {
+	font-family: "SF Pro Text";
+	font-weight: 300;
+	color: #fff;
+	line-height: 170%;
+	font-size: 15px;
+	margin-bottom: 27px;
+    width: 55%;
+}
+
+.info-block__address{
+    font-family: "SF Pro Text";
+	color: #fff;
+	line-height: 170%;
+	font-size: 15px;
+    margin-bottom: 27px;
+}
+
+.info-block__address p:first-child{
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.info-block__address p:nth-child(2){
+    font-weight: 300;
+}
+
+.info-block__telephone{
+    font-family: "SF Pro Text";
+	color: #fff;
+	line-height: 170%;
+	font-size: 15px;
+    margin-bottom: 27px;
+}
+
+.info-block__telephone p:first-child{
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.info-block__telephone a{
+    font-weight: 300;
+    color:#fff;
+}
+
+.info-block__wait-for-us{
+    font-family: "SF Pro Text";
+	color: #fff;
+	line-height: 170%;
+	font-size: 26px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 55px;
+}
+
+/*--------------------------------------GALLERY-------------------------------------------*/
+.page__map{
+    background-color: #355D48;
+    margin-bottom: 70px;
+}

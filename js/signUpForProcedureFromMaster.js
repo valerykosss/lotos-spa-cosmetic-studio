@@ -157,31 +157,28 @@ $(document).ready(function () {
 
         function getAvailableSlots(master_timetable, booked_slots, service_duration) {
 
-            // var masterStart = moment(slot.start);
-            //     var masterEnd = moment(slot.end);
-
             const available_slots = [];
             var slotsCount = Math.ceil(service_duration / 30);
 
             master_timetable.forEach(function (slot) {
 
                 let masterStart = moment(slot.start);
-                // console.log('');
-                // console.log("masterStart");
-                // console.log(masterStart.format('YYYY-MM-DD HH:mm:ss'));
+                console.log('');
+                console.log("masterStart");
+                console.log(masterStart.format('YYYY-MM-DD HH:mm:ss'));
 
                 const masterEnd = moment(slot.end);
-                // console.log('');
-                // console.log("masterEnd");
-                // console.log(masterEnd.format('YYYY-MM-DD HH:mm:ss'));
+                console.log('');
+                console.log("masterEnd");
+                console.log(masterEnd.format('YYYY-MM-DD HH:mm:ss'));
 
 
                 while (masterStart.isBefore(masterEnd)) {
                     const slotEnd = moment(masterStart).add(service_duration, 'minutes');
-                    // console.log('');
-                    // console.log("slotEnd");
+                    console.log('');
+                    console.log("slotEnd");
 
-                    // console.log(slotEnd.format('YYYY-MM-DD HH:mm:ss'));
+                    console.log(slotEnd.format('YYYY-MM-DD HH:mm:ss'));
 
                     if (slotEnd.isAfter(masterEnd)) {
                         break;
@@ -191,18 +188,18 @@ $(document).ready(function () {
 
                     // Проверяем тройные слоты
                     for (let j = 0; j < slotsCount; j++) {
-                        // console.log('');
-                        // console.log('j:');
-                        // console.log(j);
+                        console.log('');
+                        console.log('j:');
+                        console.log(j);
                         const currentSlotStart = moment(masterStart).add(j * 30, 'minutes');
                         const currentSlotEnd = moment(currentSlotStart).add(30, 'minutes');
-                        // console.log('');
-                        // console.log("currentSlotStart:");
-                        // console.log(currentSlotStart.format('YYYY-MM-DD HH:mm:ss'));
+                        console.log('');
+                        console.log("currentSlotStart:");
+                        console.log(currentSlotStart.format('YYYY-MM-DD HH:mm:ss'));
 
-                        // console.log('');
-                        // console.log("currentSlotEnd:");
-                        // console.log(currentSlotEnd.format('YYYY-MM-DD HH:mm:ss'));
+                        console.log('');
+                        console.log("currentSlotEnd:");
+                        console.log(currentSlotEnd.format('YYYY-MM-DD HH:mm:ss'));
 
                         for (let i = 0; i < booked_slots.length; i++) {
                             const bookedSlotStart = moment(booked_slots[i].record_date + ' ' + booked_slots[i].record_time);

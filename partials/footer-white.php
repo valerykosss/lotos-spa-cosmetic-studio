@@ -26,7 +26,7 @@
                         <a href="specialists.php" class="footer__link">Подобрать услугу</a>
                     </li>
                     <li>
-                        <a href="specialists.php" class="footer__link">Прайс</a>
+                        <a href="price-list.php" class="footer__link">Прайс</a>
                     </li>
                     <li>
                         <a href="about-us.php" class="footer__link">О нас</a>

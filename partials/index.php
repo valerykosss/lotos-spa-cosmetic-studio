@@ -65,7 +65,7 @@ require_once "../handlers/get_swiper_data_script.php";
                 </div>
 
                 <div class="slider-counter">
-                    <span class="slider-counter-current-number"></span>/05
+                    <span class="slider-counter-current-number"></span>/04
                 </div>
 
             </div>

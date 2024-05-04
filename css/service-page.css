@@ -1,0 +1,281 @@
+
+/*--------------------------------------SPECIALIST-------------------------------------------*/
+body, html{
+    background-color: #355D48;
+}
+
+.page__service-page{
+    margin-bottom: 86px;
+}
+
+.service-page__body{
+    /* margin-top: 50px; */
+    width: 100%;
+    height: 80vh;
+    background-image: url(../images/1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    /* padding-left: 80px; */
+    padding-bottom: 80px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.service-page__body::before{
+    content: "";
+    background-color: rgba(0, 0, 0, 0.4);
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.service__info{
+    margin-left: 80px;
+	width: 60%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.service__info-name{
+    font-family: "Oswald";
+    font-size: 68px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.service__info-description{
+    width: 60%;
+    font-family: "SF Pro Text";
+    font-weight: 300;
+    line-height: 170%;
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 35px;
+}
+
+.service__tag-column{
+    width: 36%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    position: relative;
+}
+
+.service__tag{
+    padding-top: 22px;
+    padding-bottom: 22px;
+    color: #fff;
+    font-size: 18px;
+    font-family: "SF Pro Text";
+    line-height: 170%;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    border-radius: 60px 0px 0px 60px;
+}
+
+.service__tag-duration span,
+.service__tag-price span{
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/*--ПОКАЗАНИЯ--*/
+.service-insication__body{
+    display: flex;
+    flex-direction: row;
+}
+
+.insication-text__wrapper{
+    padding-left: 80px;
+    width: 60%;
+    background-color: #fff;
+}
+
+.insication-photo__wrapper{
+    width: 40%;
+}
+
+.insication-header{
+    font-family: "Oswald";
+    text-transform: uppercase;
+    margin-top: 100px;
+    margin-bottom: 15px;
+    font-size: 68px;
+}
+
+.insication-list{
+    margin-left: 18px;
+    margin-bottom: 100px;
+}
+
+.insication-list li{
+    list-style-type: disc;
+    font-family: "SF Pro Text";
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    line-height: 170%;
+}
+
+.insication-photo__wrapper{
+    width: 40%;
+}
+
+.insication-photo__wrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;	
+}
+
+/*--RESULTS--*/
+.service-result__body{
+    display: flex;
+    flex-direction: row;
+}
+
+.results-text__wrapper{
+    padding-left: 80px;
+    width: 60%;
+    background-color: #fff;
+}
+
+.results-photo__wrapper{
+    width: 40%;
+}
+
+.results-header{
+    font-family: "Oswald";
+    text-transform: uppercase;
+    margin-top: 100px;
+    margin-bottom: 15px;
+    font-size: 68px;
+}
+
+.results-list{
+    margin-left: 18px;
+    margin-bottom: 100px;
+}
+
+.results-list li{
+    list-style-type: disc;
+    font-family: "SF Pro Text";
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    line-height: 170%;
+}
+
+.results-photo__wrapper{
+    width: 40%;
+}
+
+.results-photo__wrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;	
+}
+/*--------------------------------------REVIEWS BLOCK-------------------------------------------*/
+.page__review{
+    margin-bottom: 160px;
+}
+
+.review__body{
+    margin-right: 0;
+}
+
+.review__body-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.swiper-navigation-container{
+    width: auto;
+    height: auto;
+}
+
+.swiper-button-next{
+    top: 23%;
+    right: 110px;
+    color: #fff;
+}
+
+.swiper-button-prev{
+    top: 23%;
+    right: 170px;
+    left: auto;
+    color: #fff;
+}
+
+.review__body-header p{
+    font-size: 78px;
+	text-transform: uppercase;
+	color: #fff;
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+}
+
+.review__body-reviews{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.review__card{
+    /* margin-right: 20px; */
+    padding: 16px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 490px;
+    align-items: start;
+}
+
+.icon{
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+}
+
+.text{
+    width: 62%;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #fff;
+    font-family: "SF Pro Text";
+    line-height: 140%;
+    hyphens: auto;
+}
+
+.text_name-review-date{
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.text_review-text{
+    font-weight: 300;
+}
+
+.stars{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.stars img{
+    margin-right: 2px;
+}
+

@@ -212,39 +212,3 @@
 	align-self: center;
 	margin-bottom: 30px;
 }
-
-/*--------------------------------------NEED COUSULTATION BLOCK-------------------------------------------*/
-.page__need-consult-block{
-	margin-bottom: 78px;
-}
-.need-consult__body{
-	background-color: #355D48;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.need-consult-title{
-	padding-top: 52px;
-	font-size: 60px;
-	text-transform: uppercase;
-	text-align: center;
-	padding-bottom: 15px;
-	color: #fff;
-}
-
-.need-consult-text{
-	font-family: "SF Pro Text";
-	font-weight: 300;
-	font-size: 15px;
-	text-align: center;
-	line-height: 160%;
-	padding-bottom: 35px;
-	color: #fff;
-}
-
-.need-consult-button{
-	margin-bottom: 52px;
-}
-

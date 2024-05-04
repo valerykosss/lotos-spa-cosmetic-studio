@@ -1,0 +1,83 @@
+/*--------------------------------------NEED COUSULTATION BLOCK-------------------------------------------*/
+.page__need-consult-block-green{
+	margin-bottom: 78px;
+}
+.need-consult__body{
+	background-color: #355D48;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 88px;
+}
+
+.need-consult-title{
+	padding-top: 52px;
+	font-size: 60px;
+	text-transform: uppercase;
+	text-align: center;
+	padding-bottom: 15px;
+	color: #fff;
+}
+
+.need-consult-text{
+	font-family: "SF Pro Text";
+	font-weight: 300;
+	font-size: 15px;
+	text-align: center;
+	line-height: 160%;
+	padding-bottom: 35px;
+	color: #fff;
+}
+
+.need-consult-form{
+	width: 87%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.label-input__group{
+	display: flex;
+	flex-direction: column;
+	width: 46%;
+	margin-bottom: 28px;
+}
+
+.label-input__group:last-child{
+	align-self: flex-end;
+}
+
+.need-consult-form label{
+	font-family: "SF Pro Text";
+	font-weight: 500;
+	color: rgba(255, 255, 255, 0.4);
+	text-transform: uppercase;
+	margin-bottom: 12px;
+}
+
+.need-consult-form input{
+	padding: 17px 40px;
+	font-family: "SF Pro Text";
+	font-size: 21px;
+	line-height: 160%;
+	border-radius: 50px;
+	background-color: #EAEAEA;
+}
+
+.need-consult-button{
+	color: #232323;
+    text-transform: uppercase;
+    font-family: "Oswald";
+    font-size: 24px;
+	line-height: 160%;
+    font-weight: 400;
+
+    background: white;
+    border: none;
+	padding: 17px 40px;
+    border-radius: 40px;
+    cursor: pointer;
+	height: fit-content
+}
+

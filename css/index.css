@@ -352,6 +352,7 @@
 
 .page__wheel {
 	background-color: #355D48;
+	margin-bottom: 200px;
 }
 
 .wheel__body{
@@ -400,7 +401,7 @@
 	margin-bottom: 78px;
 }
 .quiz-block__body{
-	margin-top: 245px;
+	/* margin-top: 245px; */
 	background-color: #F6F6F6;
 	display: flex;
 	flex-direction: column;

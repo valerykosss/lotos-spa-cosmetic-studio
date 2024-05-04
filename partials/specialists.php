@@ -18,7 +18,9 @@
     <link rel="stylesheet" href="../css/header-white.css">
     <link rel="stylesheet" href="../css/specialists.css">
     <link rel="stylesheet" href="../css/sign-in-up.css">
+    <link rel="stylesheet" href="../css/need-consult-block-green.css">
     <link rel="stylesheet" href="../css/footer-white.css">
+
 
     <script src="../libraries/jquery-3.6.0.min.js"></script>
 </head>
@@ -125,16 +127,7 @@
                 </button>
             </nav> -->
         </section>
-        <section class="page__need-consult-block">
-            <div class="need-consult__body _container">
-                <div class="need-consult-title">необходима консультация?</div>
-                <div class="need-consult-text">Оставьте заявку на сайте наш специалист свяжется с вами и
-                    проконсультирует по всем вопросам.</div>
-                <div class="need-consult-button button">
-                    <span class="details">ПОДРОБНЕЕ</span>
-                </div>
-            </div>
-        </section>
+       <?php require_once 'need-consult-block-green.php' ?>
     </main>
 
     <?php require 'footer-white.php' ?>

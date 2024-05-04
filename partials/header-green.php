@@ -41,7 +41,7 @@
                     </li>
 
                     <li>
-                        <a href="#" class="header__link">Прайс</a>
+                        <a href="price-list.php" class="header__link">Прайс</a>
                     </li>
 
                     <li>

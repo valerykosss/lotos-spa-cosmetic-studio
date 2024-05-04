@@ -1,0 +1,82 @@
+body, html{
+    background-color: #355D48;
+}
+
+.page__price-list{
+    padding-top: 50px
+}
+
+.price-list__body{
+    display: flex;
+    flex-direction: column;
+}
+
+.service-type__header{
+    font-size: 78px;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    width: 60%;
+    align-self: center;
+    margin-bottom: 45px;
+}
+
+.service-type__wrapper{
+    width: 100%;
+}
+
+.service-line{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 26px;
+}
+
+.left-column{
+    width: 50%;
+}
+
+.right-column{
+    width: 12%;
+}
+
+.service-name{
+    font-size: 38px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.service-description{
+    font-family: "SF Pro Text";
+    font-size: 20px;
+    color: #fff;
+    font-weight: 300;
+    line-height: 170%;
+}
+
+.service-duration{
+    font-family: "SF Pro Text";
+    font-size: 20px;
+    color: #fff;
+    font-weight: 300;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.service-price{
+    padding: 17px 20px;
+    font-family: "SF Pro Text";
+    font-size: 21px;
+    color: #fff;
+    font-weight: 800;
+    border: 0.5px solid #fff;
+    border-radius: 140px;
+    text-align: center;
+}
+
+.price-list__body img{
+    align-self: center;
+    margin-top: 86px;
+    margin-bottom: 86px;
+}

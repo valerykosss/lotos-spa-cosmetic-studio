@@ -32,7 +32,7 @@
                         <a href="#" class="footer__link-green">Подобрать услугу</a>
                     </li>
                     <li>
-                        <a href="#" class="footer__link-green">Прайс</a>
+                        <a href="price-list.php" class="footer__link-green">Прайс</a>
                     </li>
                     <li>
                         <a href="about-us.php" class="footer__link-green">О нас</a>
