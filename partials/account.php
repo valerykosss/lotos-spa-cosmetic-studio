@@ -20,6 +20,15 @@ $user_discount = mysqli_fetch_assoc($user_discount);
 
 $user_phone = mysqli_query($link, "SELECT telephone, name FROM user WHERE id_user=$user_id");
 $user_phone = mysqli_fetch_assoc($user_phone);
+
+$user_avatar = mysqli_query($link, "SELECT `avatar`, name FROM user WHERE id_user=$user_id");
+$user_avatar = mysqli_fetch_assoc($user_avatar);
+
+if($user_avatar['avatar']==NULL){
+    $avatar="../images/icons/avatar.png";
+}else{
+    $avatar=$user_avatar['avatar'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,6 +127,11 @@ $user_phone = mysqli_fetch_assoc($user_phone);
             </div>
         </section>
         <section>
+            <img class="avatar" src="<?php echo($avatar);?>" style="width:50px; height: 50px;">
+            <input type="file" id="fileInput" style="display: none;">
+            <button id="uploadButton">Сменить изображение</button>
+        </section>
+        <section>
             <input type="password" name="old-password" class="old-password" style="border: 1px solid black">
             <input type="password" name="new-password" class="new-password" style="border: 1px solid black">
             <input type="password" name="new-password-confirm" class="new-password-confirm" style="border: 1px solid black">
@@ -135,5 +149,6 @@ $user_phone = mysqli_fetch_assoc($user_phone);
 <script src="../js/signInUp.js"></script>
 <script src="../js/preloader.js"></script>
 <script src="../js/change-pass.js"></script>
+<script src="../js/change-avatar.js"></script>
 
 </html>
