@@ -3,7 +3,8 @@ body, html{
 }
 
 .page__price-list{
-    padding-top: 50px
+    padding-top: 50px;
+    padding-bottom:100px;
 }
 
 .price-list__body{
@@ -79,4 +80,8 @@ body, html{
     align-self: center;
     margin-top: 86px;
     margin-bottom: 86px;
+}
+
+._container .price-list_line:last-child{
+    display: none;
 }

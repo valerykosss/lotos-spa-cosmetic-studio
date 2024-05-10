@@ -6,30 +6,21 @@ if(session_id()==""){
     require_once "../database/db.php";
     require_once "mail/mail_client_connect.php";
 
-    $id_user=$_SESSION['UserID'];
+    $isLoggedIn=false;
+    if(isset($_SESSION['UserID'])){
+        $id_user=$_SESSION['UserID'];
+        $isLoggedIn=true;
+
+    }
     $name=$_POST['name'];
     $phone=$_POST['phone'];
-    $user_email=htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
-    $message=$_POST['message'];
+    $comment=$_POST['comment'];
+    $status="получено";
 
-    $email="valery.kosss@gmail.com";
-    if($user_email!=""){
-        $body="
-        <h3>Имя: </h3>".$name."<br>
-        <h3>Почта: </h3>".$user_email."<br><br>
-        <h3>Номер телефона: </h3>".$phone."<br><br>
-        <p>".$message."</p>
-    ";
-    $insert_callback=mysqli_query($link, "INSERT INTO requested_feedback VALUES (NULL, $id_user, $phone, $user_email, '$message')");
-
+    if($isLoggedIn==true){
+        $insert_callback=mysqli_query($link, "INSERT INTO requested_feedback VALUES (NULL, $id_user, '$name', '$phone', '$comment', '$status')");
     }else{
-        $body="
-        <h3>Имя: </h3>".$name."<br>
-        <h3>Номер телефона: </h3>".$phone."<br><br>
-        <p>".$message."</p>
-    ";
-    $insert_callback=mysqli_query($link, "INSERT INTO requested_feedback VALUES (NULL, $id_user, '$phone', NULL, '$message')");
+        $insert_callback=mysqli_query($link, "INSERT INTO requested_feedback VALUES (NULL, NULL, '$name', '$phone', '$comment', '$status')");
     }
 
-    var_dump(send_mail($settings['mail_settings'], [$email], 'У Вас вопрос от клиента!', $body));
 ?>

@@ -17,7 +17,7 @@
             'success' => true,
             'wheel_discount' => [
                 'id' => $sectorId,
-                'wheel_discount' => $wheel_discount,
+                'discount_name' => $discount_name,
                 'sector_wheel_color' => $sector_wheel_color,
                 'id_service' => $id_service,
             ]

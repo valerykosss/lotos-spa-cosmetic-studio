@@ -1,5 +1,6 @@
 <?php
     require '../database/db.php';
+    require_once "../handlers/get_services_data_script.php";
     if (session_id() == '')
     session_start();
 
@@ -39,30 +40,27 @@
     <main>
         <section class="page__price-list">
             <div class="price-list__body _container">
-                <div class="service-type__header">косметические услуги</div>
-                <div class="service-type__wrapper">
-                    <div class="service-line">
-                        <div class="left-column">
-                            <p class="service-name"> «Целебное тепло» </p>
-                            <p class="service-description">Релаксирующий спа-массаж с горячими камнями, чаепитие</p>
-                        </div>
-                        <div class="right-column">
-                            <div class="service-duration">90 мин</div>
-                            <div class="service-price">90 BYN</div>
-                        </div>
-                    </div>
-                    <div class="service-line">
-                        <div class="left-column">
-                            <p class="service-name"> «Перезагрузка»  </p>
-                            <p class="service-description">Классический массаж тела и лица,парафинотерапия рук и ног, чаепитие </p>
-                        </div>
-                        <div class="right-column">
-                            <div class="service-duration">90 мин</div>
-                            <div class="service-price">90 BYN</div>
-                        </div>
-                    </div>
-                </div>
-                <img src="../images/price-list-line.svg">
+                <?php
+                foreach ($services_arr as $service_type => $services) {
+                    echo ("<div class='service-type__header'>".$service_type."</div>");
+                    echo("<div class='service-type__wrapper'>");
+                    foreach ($services as $service) {
+                        echo ("<div class='service-line'>
+                                <div class='left-column'>
+                                    <p class='service-name'> «".$service['name']."» </p>
+                                    <p class='service-description'>".$service['description']."</p>
+                                </div>
+                                <div class='right-column'>
+                                    <div class='service-duration'>".$service['duration']." мин</div>
+                                    <div class='service-price'>".$service['price']." BYN</div>
+                                </div>
+                            </div>
+                        ");
+                    }
+                    echo("</div>");
+                    echo("<img class='price-list_line' src='../images/price-list-line.svg'>");
+                }
+                ?>
             </div>
         </section>
     </main>

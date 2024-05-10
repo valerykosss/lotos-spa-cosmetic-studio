@@ -17,10 +17,11 @@ require_once "../handlers/isAdmin.php";
     <title>Лотос - Панель администратора</title>
 
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/generalStyles.css">
     <link rel="stylesheet" href="../css/sign-in-up.css">
     <link rel="stylesheet" href="../css/header-white-admin-master.css">
     <link rel="stylesheet" href="../css/admin-panel.css">
+
 
     <style>
         .add-wheel__button{
@@ -91,7 +92,7 @@ require_once "../handlers/isAdmin.php";
                                 <tr>
                                         <td><textarea class="master_name"></textarea></td>
                                         <td><textarea class="master_surname"></textarea></td>
-                                        <td><textarea class="master_photo"></textarea></td>
+                                        <td><input type="file" class="master_photo" name="master_photo"></input></td>
                                         <td><textarea class="education"></textarea></td>
                                         <td><textarea class="work_experience"></textarea></td>
                                         <td><textarea class="position"></textarea></td>
@@ -129,7 +130,7 @@ require_once "../handlers/isAdmin.php";
                                                 <tr id='$row[0]'>
                                                     <td><textarea id='". $row[0] ."'>" . $row[1] . "</textarea></td>
                                                     <td><textarea id='". $row[0] ."'>" . $row[2] . "</textarea></td>
-                                                    <td><textarea id='". $row[0] ."'>" . $row[3] . "</textarea></td>
+                                                    <td class='photo-container' id='photo_".$row[0]."'><img src='".$row[3]."' alt='photo'></td>
                                                     <td><textarea id='". $row[0] ."'>" . $row[4] . "</textarea></td>
                                                     <td><textarea id='". $row[0] ."'>" . $row[5] . "</textarea></td>
                                                     <td><textarea id='". $row[0] ."'>" . $row[6] . "</textarea></td>
@@ -248,7 +249,7 @@ require_once "../handlers/isAdmin.php";
                             <tbody>
                                 <tr>
                                         <td><textarea class="discount_name"></textarea></td>
-                                        <td><textarea class="sector_wheel_color"></textarea></td>
+                                        <td><input type="color" class="sector_wheel_color"></input></td>
                                         <td><textarea class="id_service"></textarea></td>
                                         <td>
                                             <button class='add-wheel__button'></button>
@@ -279,12 +280,12 @@ require_once "../handlers/isAdmin.php";
 
                                             $trBlock .= "
                                                 <tr id='$row[0]'>
-                                                    <td><textarea>" . $row[1] . "</textarea></td>
-                                                    <td><textarea>" . $row[2] . "</textarea></td>
-                                                    <td><textarea>" . $row[3] . "</textarea></td>
+                                                    <td><textarea name='discount_name'>" . $row[1] . "</textarea></td>
+                                                    <td><input type='color' class='colorpicker' value='".$row[2]."' name='color'></td>
+                                                    <td><textarea name='wheel_service'>" . $row[3] . "</textarea></td>
                                                     <td>
-                                                        <button class='change-wheel__button' id='".$row[0]."'></button>
-                                                        <button class='delete-wheel__button' id='" . $row[0] . "'></button>
+                                                        <button class='change-wheel__button' id='".$row[0]."'>change</button>
+                                                        <button class='delete-wheel__button' id='" . $row[0] . "'>delete</button>
                                                     </td>
                                                 </tr>";
                                         }
@@ -332,7 +333,6 @@ require_once "../handlers/isAdmin.php";
     <script src="../libraries/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-    
 
     <script src="../js/signInUp.js"></script>
 
@@ -343,6 +343,8 @@ require_once "../handlers/isAdmin.php";
     <script src="../js/admin-panel-ajax/service-type-for-service.js"></script>
 
     <script src="../js/admin-panel-ajax/add-wheel.js"></script>
+    <script src="../js/admin-panel-ajax/update-wheel.js"></script>
+    <script src="../js/admin-panel-ajax/delete-wheel.js"></script>
     <script src="../js/preloader.js"></script>
 
     <!-- <script src="../js/admin-panel-ajax/add-service.js"></script>

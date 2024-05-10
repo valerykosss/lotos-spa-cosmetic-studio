@@ -25,7 +25,7 @@ if (session_id() == '')
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/ru.js"></script>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/generalStyles.css">
     <link rel="stylesheet" href="../css/sign-in-up.css">
     <link rel="stylesheet" href="../css/header-white-admin-master.css">
     <link rel="stylesheet" href="../css/timetable.css">

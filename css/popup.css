@@ -1,0 +1,148 @@
+/*-----------------------------------POP-UP----------------------------------------------*/
+.popup__bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0; /*Скрываем фон и сам попап*/
+    pointer-events: none; /*Запрещаем ему быть целью событий*/
+    transition: 0.5s all;
+    z-index: 2000;/*100*/
+}
+.popup__bg.active { /* При добавлении класса 'active'*/
+    opacity: 1; /* Показываем фон и попап*/
+    pointer-events: all; /* Возвращаем события*/
+    transition: 0.5s all;
+    z-index: 3000;/*200*/
+}
+.popup {
+    border-radius: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Центрируем и масштабируем в 0 само окно*/
+    background: #fff;
+    width: 840px;
+    padding-top: 18px;
+    padding-bottom: 40px;
+    /* transition: 0.5s all; */
+}
+.popup.active { /* При добавлении класса 'active'*/
+    transform: translate(-50%, -50%) scale(1); /* Так же центрируем и плавно увеличиваем*/
+    /* transition: 0.5s all; */
+}
+
+
+.close-popup {
+    position: absolute;
+    top: -40px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.form__window-title{
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #232323;
+    padding-bottom: 18px;
+    text-align: center;
+    transition: color .15s ease-in-out, border-color .15s ease-in-out;
+    border-bottom: 4px solid #6B6B6B;
+}
+
+.label-input__group {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: 46%;
+    margin-bottom: 22px;
+}
+
+.label-input__group label{
+    font-family: "SF Pro Text";
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.4);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.label-input__group input{
+    padding: 12px 28px;
+    font-family: "SF Pro Text";
+    font-size: 15px;
+    line-height: 160%;
+    border-radius: 35px;
+    background-color: #EAEAEA;
+    color: rgba(0, 0, 0, 0.7);
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #cfd0d3;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s !important;
+}
+
+.label-input__group p{
+    font-family: "SF Pro Text";
+    font-size: 8px;
+    line-height: 160%;
+    color: #232323;
+    margin-left: 28px;
+    margin-top: 4px;
+}
+
+.label-input__group input:focus {
+    border-bottom: 1px solid #6B6B6B;
+}
+
+.form__data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form__data .form__retransfer-text {
+    font-family: "SF Pro Text";
+    font-size: 12px;
+    line-height: 160%;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.form__data #sign-up__link{
+    font-family: "SF Pro Text";
+    font-size: 12px;
+    line-height: 160%;
+    color: #232323;
+}
+
+.sign-in-button{
+    margin-top: 30px;
+}
+
+.sign-in-button button span{
+    font-family: "Oswald" !important;
+    color: #fff !important;
+    text-transform: uppercase !important;
+}
+
+.sign-in-button:hover {
+    width: 180px;
+}
+
+/* @media(max-width:444px){
+    .popup{
+        width: 280px;
+    }
+    .popup textarea {
+        height: 80px;
+    }
+    .popup input {
+        height: 25px;
+    }
+} */

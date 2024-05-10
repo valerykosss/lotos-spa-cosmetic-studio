@@ -5,7 +5,13 @@
 
     $service_id=$_GET['service_id'];
 
-    $service_data=mysqli_query($link, "SELECT `service_name`, `service_image`, `service_description`,  `duration`, `price`  FROM `service` WHERE `id_service`=$service_id");
+    $service_reviews=mysqli_query($link, "SELECT id_service_rating, user.name, service.service_name, service_review, service_rating
+    FROM service_rating
+    INNER JOIN user ON service_rating.id_user=user.id_user
+    INNER JOIN service ON service_rating.id_service=service.id_service
+    WHERE service_rating.id_service=$service_id");
+
+    $service_data=mysqli_query($link, "SELECT `service_name`, `service_image`, `service_description`,  `duration`, `price`, `insication`, `results`  FROM `service` WHERE `id_service`=$service_id");
     $service_data=mysqli_fetch_assoc($service_data);
 
 ?>
@@ -102,18 +108,18 @@
         </section> -->
 
         <section class="page__service-page">
-            <div class="service-page__body _container">
+            <div class="service-page__body _container" style="background-image: url('../<?php echo($service_data['service_image']);?>');">
                 <div class="service__info">
-                    <p class="service__info-name">КОНСУЛЬТАЦИЯ + ГЛУБОКОЕ ОЧИЩЕНИЕ + МАСКА ПО ТИПУ КОЖИ</p>
-                    <p class="service__info-description">Процедура представляет собой комплексный уход за кожей, направленный на достижение ее здоровья и красоты.</p>
+                    <p class="service__info-name"><?php echo($service_data['service_name']);?></p>
+                    <p class="service__info-description"><?php echo($service_data['service_description']);?></p>
                     <div class='service-button green-button'>
                         <span class='details'>ЗАПИСАТЬСЯ</span>
                     </div>
                 </div>
                 <div class="service__tag-column">
                     <div class="service__tag">
-                            <p class="service__tag-duration">Длительность процедуры: <span> 60 мин </span></p>
-                            <p class="service__tag-price">Стоимость:  <span> 60 руб</span></p> 
+                            <p class="service__tag-duration">Длительность процедуры: <span> <?php echo($service_data['duration']);?> мин </span></p>
+                            <p class="service__tag-price">Стоимость:  <span> <?php echo($service_data['price']);?> руб</span></p> 
                     </div>
                 </div>
             </div>
@@ -121,17 +127,17 @@
                 <div class="insication-text__wrapper">
                     <div class="insication-header">показания:</div>
                     <ul class="insication-list">
-                        <li>Возрастные изменения кожи</li>
-                        <li>Подготовка к аппаратным процедурам</li>
-                        <li>Восстановление после повреждающего воздействия</li>
-                        <li>Возрастные изменения кожи</li>
-                        <li>Подготовка к аппаратным процедурам</li>
-                        <li>Восстановление после повреждающего воздействия</li>
+                        <?php
+                            $insications=explode(", ", $service_data['insication']);
+                            foreach($insications as $insication){
+                                echo("<li>".$insication."</li>");
+                            }
+                        ?>
                     </ul>
                 </div>
 
                 <div class="insication-photo__wrapper">
-                    <img src="../images/1.png">
+                    <img src="../<?php echo($service_data['service_image']);?>">
                 </div>
 
             </div>
@@ -140,17 +146,17 @@
                 <div class="results-text__wrapper">
                     <div class="results-header">результаты:</div>
                     <ul class="results-list">
-                        <li>Возрастные изменения кожи</li>
-                        <li>Подготовка к аппаратным процедурам</li>
-                        <li>Восстановление после повреждающего воздействия</li>
-                        <li>Возрастные изменения кожи</li>
-                        <li>Подготовка к аппаратным процедурам</li>
-                        <li>Восстановление после повреждающего воздействия</li>
+                        <?php
+                            $results=explode(", ", $service_data['results']);
+                            foreach($results as $result){
+                                echo("<li>".$result."</li>");
+                            }
+                        ?>
                     </ul>
                 </div>
 
                 <div class="results-photo__wrapper">
-                    <img src="../images/1.png">
+                    <img src="../<?php echo($service_data['service_image']);?>">
                 </div>
             </div>
         </section>
@@ -176,7 +182,10 @@
                     </div>
 
                 </div> -->
-
+                <?php if(mysqli_num_rows($service_reviews)>0)
+                    {
+                        $service_reviews=mysqli_fetch_all($service_reviews);
+                        ?>
                 <div class="swiper mySwiper">
                 <div class="review__body-header">
                     <p>Отзывы</p>
@@ -186,64 +195,31 @@
                     </div>
                 </div>
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
+                        <?php
+                            foreach($service_reviews as $service_review){
+                                $star="<img src='../images/icons/review-star.svg'>";
+                                $stars="";
+                                for($i=0; $i<$service_review[4]; $i++){
+                                    $stars.=$star;
+                                }
 
-                            <div class="review__card">
-                                <img class="icon" src="../images/icons/review-profile-default-icon.svg">
-                                <div class="text">
-                                    <p class="text_name-review-date">Яна Тараканова, 6 апр. 2024 г.</p>
-                                    <p class="text_review-text">Очень полюбила этот салон. Прекрасные, доброжелательные профессиональные специалисты. Сервис очень хороший.Все продумано до мелочей,что вызывает доверие и надежность. Спасибо за заботу о клиентах,чувствуешь себя как дома. Результат чувствую после каждого посещения. Спасибо за такую организацию!</p>
-                                </div>
-                                <div class="stars">
-                                    <img src="../images/icons/review-star.svg">
-                                    <img src="../images/icons/review-star.svg">
-                                    <img src="../images/icons/review-star.svg">
-                                    <img src="../images/icons/review-star.svg">
-                                    <img src="../images/icons/review-star.svg">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="swiper-slide">
-
-                            <div class="review__card">
-                                <img class="icon" src="../images/icons/review-profile-default-icon.svg">
-                                <div class="text">
-                                    <p class="text_name-review-date">Яна Тараканова, 6 апр. 2024 г.</p>
-                                    <p class="text_review-text">Очень полюбила этот салон. Прекрасные, доброжелательные профессиональные специалисты. Сервис очень хороший.Все продумано до мелочей,что вызывает доверие и надежность. Спасибо за заботу о клиентах,чувствуешь себя как дома. Результат чувствую после каждого посещения. Спасибо за такую организацию!</p>
-                                </div>
-                                <div class="stars">
-                                    <img src="../images/icons/review-star.svg">
-                                    <img src="../images/icons/review-star.svg">
-                                    <img src="../images/icons/review-star.svg">
-                                    <img src="../images/icons/review-star.svg">
-                                    <img src="../images/icons/review-star.svg">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="swiper-slide">
-
-                            <div class="review__card">
-                                <img class="icon" src="../images/icons/review-profile-default-icon.svg">
-                                <div class="text">
-                                    <p class="text_name-review-date">Яна Тараканова, 6 апр. 2024 г.</p>
-                                    <p class="text_review-text">Очень полюбила этот салон. Прекрасные, доброжелательные профессиональные специалисты. Сервис очень хороший.Все продумано до мелочей,что вызывает доверие и надежность. Спасибо за заботу о клиентах,чувствуешь себя как дома. Результат чувствую после каждого посещения. Спасибо за такую организацию!</p>
-                                </div>
-                                <div class="stars">
-                                    <img src="../images/icons/review-star.svg">
-                                    <img src="../images/icons/review-star.svg">
-                                    <img src="../images/icons/review-star.svg">
-                                    <img src="../images/icons/review-star.svg">
-                                    <img src="../images/icons/review-star.svg">
-                                </div>
-                            </div>
-
-                        </div>
+                                echo("
+                                    <div class='swiper-slide'>
+                                        <div class='review__card'>
+                                            <img class='icon' src='../images/icons/review-profile-default-icon.svg'>
+                                            <div class='text'>
+                                                <p class='text_name-review-date'>".$service_review[1]."</p>
+                                                <p class='text_review-text'>".$service_review[3]."</p>
+                                            </div>
+                                            <div class='stars'>".$stars."</div>
+                                        </div>
+                                    </div>
+                                ");
+                            }
+                        ?>
                     </div>
                 </div>
+                <?php }?>
 
             </div>
 

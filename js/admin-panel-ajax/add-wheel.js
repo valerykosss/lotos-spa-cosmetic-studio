@@ -1,7 +1,7 @@
 // добавление мастера
 $(".add-wheel__button").click(function () {
     let discount_name = $('.discount_name').val().trim();
-    let sector_wheel_color = $('.sector_wheel_color').val().trim();
+    let sector_wheel_color = $('.sector_wheel_color').val();
     let id_service = $('.id_service').val().trim();
     addWheel(discount_name, sector_wheel_color, id_service, $(this)); 
 });

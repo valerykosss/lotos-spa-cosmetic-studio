@@ -1,6 +1,6 @@
 <?php
-    require '../database/db.php';
-    if (session_id() == '')
+require '../database/db.php';
+if (session_id() == '')
     session_start();
 ?>
 
@@ -21,12 +21,14 @@
     <link rel="stylesheet" href="../css/need-consult-block-green.css">
     <link rel="stylesheet" href="../css/footer-white.css">
 
+    <link rel="stylesheet" href="../css/popupBook.css">
+
 
     <script src="../libraries/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-<div class="preloader">
+    <div class="preloader">
         <div class="preloader__row">
             <div class="preloader__item"></div>
             <div class="preloader__item"></div>
@@ -40,11 +42,62 @@
                 <div class="specialists-page__info-block">
                     <p class="specialists-header">специалисты</p>
                     <p class="specialists-text">
-                    Специалисты центра массажа и косметологии "Лотос" — это высококвалифицированные профессионалы, обладающие глубокими знаниями и опытом в области оздоровления и красоты. Наша команда состоит из сертифицированных массажистов, косметологов и терапевтов, которые постоянно совершенствуют свои навыки и следят за последними тенденциями и инновациями в сфере SPA-ухода.
+                        Специалисты центра массажа и косметологии "Лотос" — это высококвалифицированные профессионалы, обладающие глубокими знаниями и опытом в области оздоровления и красоты. Наша команда состоит из сертифицированных массажистов, косметологов и терапевтов, которые постоянно совершенствуют свои навыки и следят за последними тенденциями и инновациями в сфере SPA-ухода.
                     </p>
                     <div class="specialists-button green-button" class="button">
                         <span class="details">Записаться</span>
                     </div>
+
+                    <div class="popup__bg">
+                        <form class="popup">
+                            <img src="../images/icons/exit.svg" class="close-popup">
+                            <div class="booking-stages__wrapper">
+                                <p class="stage-title active-stage">Услуга</p>
+                                <p class="stage-title">Специалист</p>
+                                <p class="stage-title">Дата и время</p>
+                                <p class="stage-title">Детали записи</p>
+                            </div>
+
+                            <div class="service__data _container-window">
+                                <div class="filters-service__body">
+
+                                    <div class="filter-service__body-item">
+                                        <input type="text" id="search_box-service" placeholder="Поиск услуги" name="search-service">
+                                    </div>
+
+                                    <div class="filter-service__body-item">
+                                        <select class="sort-service" id="sort-selector-first__service">
+                                            <option value="">Косметические услуги</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- <button class="reset-button">Сбросить все фильтры
+                                            <span class="reset-icon"></span>
+                                    </button> -->
+                            </div>
+
+                            <div class="services__body _container-window">
+                                <p class="service-type__header">Косметические услуги</p>
+                                <div class="service__item"> 
+                                    <div class="service-item__img">
+                                        <img src="../images/1.png">
+                                    </div>
+                                    <div class="service-item__info">
+                                        <p class="service-name">консультация, глубокое очищение + маска по типу кожи</p>
+                                        <p class="service-description">HELEO4™ – это запатентованная специализированная программа, разработанная для безопасного и комплексного омоложения кожи.</p>
+                                        <p class="service-price">40 byn</p>
+                                    </div>
+                                    <div class="service-item__radio">
+                                        <input type="radio">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+                    </div>
+
                 </div>
             </div>
             </div>
@@ -84,7 +137,7 @@
             <div class="specialists-catalog__body _container" id="paginated-list" data-current-page="1" aria-live="polite">
                 <?php
 
-                    $query = "SELECT 
+                $query = "SELECT 
                     m.id_master,
                     m.master_name,
                     m.master_surname,
@@ -102,7 +155,7 @@
              m.master_surname
          ORDER BY 
              total_records DESC;";
-                    require 'specialistCards.php'
+                require 'specialistCards.php'
                 ?>
                 <!-- <div class="card-specialist__body">
                     <img class="specialist-img" src="../images/specialist-slider/specialist-1.png" alt="">
@@ -127,7 +180,7 @@
                 </button>
             </nav> -->
         </section>
-       <?php require_once 'need-consult-block-green.php' ?>
+        <?php require_once 'need-consult-block-green.php' ?>
     </main>
 
     <?php require 'footer-white.php' ?>
@@ -136,13 +189,14 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!-- <script src="../js/pagination.js"></script> -->
 
-    <script src ="../libraries/jquery-3.6.0.min.js"></script>
+    <script src="../libraries/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <script src="../js/signInUp.js"></script>
 
     <script src="../js/specialistsFilter.js"></script>
     <script src="../js/preloader.js"></script>
+    <script src="../js/openBooking.js"></script>
 </body>
 
 </html>

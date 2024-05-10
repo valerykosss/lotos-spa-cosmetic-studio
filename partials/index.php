@@ -15,7 +15,7 @@ require_once "../handlers/get_swiper_data_script.php";
     <title>Лотос - Главная</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../libraries/swiper-bundle.css">
-    
+
     <link rel="stylesheet" href="../libraries/splide.min.css">
     <script src="../libraries/splide.min.js"></script>
 
@@ -25,9 +25,11 @@ require_once "../handlers/get_swiper_data_script.php";
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/header-green.css">
     <link rel="stylesheet" href="../css/footer-white.css">
-    
+
     <link rel="stylesheet" href="../css/sign-in-up.css">
     <link rel="stylesheet" href="../css/wheel.css">
+
+    <link rel="stylesheet" href="../css/popup.css">
 </head>
 
 <body>
@@ -44,16 +46,12 @@ require_once "../handlers/get_swiper_data_script.php";
             <!-- First Swiper -->
             <div class="swiper-container swiper1 _container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide background"
-                        style="background-image: url('../images/main-page-slider/kosmeticheskie-proczedury-fon.png'); background-size: cover;">
+                    <div class="swiper-slide background" style="background-image: url('../images/main-page-slider/kosmeticheskie-proczedury-fon.png'); background-size: cover;">
                     </div>
-                    <div class="swiper-slide background"
-                        style="background-image: url('../images/main-page-slider/spa-programmy-fon.png'); background-size: cover;"></div>
-                    <div class="swiper-slide background"
-                        style="background-image: url('../images/main-page-slider/massage-lica-fon.png'); background-size: cover;">
+                    <div class="swiper-slide background" style="background-image: url('../images/main-page-slider/spa-programmy-fon.png'); background-size: cover;"></div>
+                    <div class="swiper-slide background" style="background-image: url('../images/main-page-slider/massage-lica-fon.png'); background-size: cover;">
                     </div>
-                    <div class="swiper-slide background"
-                        style="background-image: url('../images/main-page-slider/massage-tela-fon.png'); background-size: cover;">
+                    <div class="swiper-slide background" style="background-image: url('../images/main-page-slider/massage-tela-fon.png'); background-size: cover;">
                     </div>
                 </div>
 
@@ -74,21 +72,21 @@ require_once "../handlers/get_swiper_data_script.php";
             <div class="swiper-container swiper2 _container-main-slider">
                 <div class="swiper-wrapper">
                     <?php
-                        foreach($first_swiper as $item){
-                            echo("
+                    foreach ($first_swiper as $item) {
+                        echo ("
                                 <div class='swiper-slide front'
-                                    style='background-image: url(..".$item[2]."); background-size: cover;'>
-                                    <p>".$item[1]."</p>
+                                    style='background-image: url(.." . $item[2] . "); background-size: cover;'>
+                                    <p>" . $item[1] . "</p>
             
                                     <div class='button'>
-                                        <a href='cosmetic-procedures.php?stype_id=".$item[0]."' style='color: #333; text-decoration:none'>
+                                        <a href='cosmetic-procedures.php?stype_id=" . $item[0] . "' style='color: #333; text-decoration:none'>
                                             <span class='details'>ПОДРОБНЕЕ</span>
                                         </a>
                                         
                                     </div>
                                 </div>
                             ");
-                        }
+                    }
                     ?>
 
                     <!-- <div class="swiper-slide front"
@@ -152,7 +150,7 @@ require_once "../handlers/get_swiper_data_script.php";
                     <div class='info-block__header-text'>
                         <p class="info-block__header">lotos &mdash;</p>
                         <p class="info-block__text">
-                        Наша миссия – помочь вам обрести гармонию и баланс в жизни, достигнуть внутреннего равновесия и спокойствия. "Центр Лотос" предлагает широкий спектр услуг для улучшения физического и психологического состояния. Отдайте время себе, позвольте себе расслабиться и восстановить силы в нашем уютном и спокойном центре.
+                            Наша миссия – помочь вам обрести гармонию и баланс в жизни, достигнуть внутреннего равновесия и спокойствия. "Центр Лотос" предлагает широкий спектр услуг для улучшения физического и психологического состояния. Отдайте время себе, позвольте себе расслабиться и восстановить силы в нашем уютном и спокойном центре.
                         </p>
                     </div>
                     <a href="about-us.php">
@@ -166,10 +164,10 @@ require_once "../handlers/get_swiper_data_script.php";
         </section>
         <section class="page__specialists">
             <div class="specialists__body">
-            <div class="specialists-title-button  _container">
-                <div class="specialists-title">Специалисты</div>
-                <a class="specialists-button" href="specialists.php"> Все специалисты </a>
-            </div>
+                <div class="specialists-title-button  _container">
+                    <div class="specialists-title">Специалисты</div>
+                    <a class="specialists-button" href="specialists.php"> Все специалисты </a>
+                </div>
                 <div class="tab">
                     <div class="radio-buttons__body _container">
                         <input checked id="tab-btn-1" name="tab-btn" type="radio" value="">
@@ -193,20 +191,23 @@ require_once "../handlers/get_swiper_data_script.php";
                                 <div class="splide__track">
                                     <ul class="splide__list">
                                         <?php
-                                            foreach($all_masters as $master){
-                                                echo("
+                                        foreach ($all_masters as $master) {
+                                            echo ("
                                                 <li class='splide__slide'>
-                                                    <img class='slide-img' src='..".$master[3]."'
+                                                    <img class='slide-img' src='" . $master[3] . "'
                                                         alt=''>
-                                                    <p class='slide-name'>".$master[1]." ".$master[2]."</p>
-                                                    <p class='slide-description'>".$master[6]."</p>
-                                                    <a style='display: flex; justify-content: center; href='specialist-page.php?spec_id=".$master[0]."'> 
+                                                    <p class='slide-name'>" . $master[1] . " " . $master[2] . "</p>
+                                                    <p class='slide-description'>" . $master[6] . "</p>
+                                                    <a style='display: flex; justify-content: center;' href='specialist-page.php?spec_id=" . $master[0] . "'> 
+                                                        <div class='slide-button button'>
+                                                            <span class='details'>ПОДРОБНЕЕ</span>
+                                                        </div>
                                                     </a>
                                                 </li>
                                                 ");
-                                            }
+                                        }
                                         ?>
-                                        
+
                                         <!-- <li class="splide__slide">
                                             <img class="slide-img" src="../images/specialist-slider/specialist-2.png"
                                                 alt="">
@@ -239,29 +240,28 @@ require_once "../handlers/get_swiper_data_script.php";
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="tab-content" id="content-2">
                         <div class="auto-scroll-wrap">
                             <div id="splide-autoscroll-2" class="splide">
                                 <div class="splide__track">
                                     <ul class="splide__list">
                                         <?php
-                                            foreach($all_masters_cosmetic as $master){
-                                                echo("
+                                        foreach ($all_masters_cosmetic as $master) {
+                                            echo ("
                                                     <li class='splide__slide'>
-                                                        <img class='slide-img' src='..".$master[3]."'
+                                                        <img class='slide-img' src='" . $master[3] . "'
                                                             alt=''>
-                                                        <p class='slide-name'>".$master[1]." ".$master[2]."</p>
-                                                        <p class='slide-description'>".$master[4]."</p>
-                                                        <a style='display: flex; justify-content: center; href='specialist-page.php?spec_id=".$master[0]."'>
+                                                        <p class='slide-name'>" . $master[1] . " " . $master[2] . "</p>
+                                                        <p class='slide-description'>" . $master[4] . "</p>
+                                                        <a style='display: flex; justify-content: center;' href='specialist-page.php?spec_id=" . $master[0] . "'>
                                                             <div class='slide-button button'>
                                                                 <span class='details'>ПОДРОБНЕЕ</span>
                                                             </div>
                                                         </a>
                                                     </li>
                                                 ");
-                                                
-                                            }
+                                        }
                                         ?>
 
                                         <!-- <li class="splide__slide">
@@ -284,22 +284,21 @@ require_once "../handlers/get_swiper_data_script.php";
                                 <div class="splide__track">
                                     <ul class="splide__list">
                                         <?php
-                                            foreach($all_masters_spa as $master){
-                                                echo("
+                                        foreach ($all_masters_spa as $master) {
+                                            echo ("
                                                     <li class='splide__slide'>
-                                                        <img class='slide-img' src='..".$master[3]."'
+                                                        <img class='slide-img' src='" . $master[3] . "'
                                                             alt=''>
-                                                        <p class='slide-name'>".$master[1]." ".$master[2]."</p>
-                                                        <p class='slide-description'>".$master[4]."</p>
-                                                        <a style='display: flex; justify-content: center; href='specialist-page.php?spec_id=".$master[0]."'>
+                                                        <p class='slide-name'>" . $master[1] . " " . $master[2] . "</p>
+                                                        <p class='slide-description'>" . $master[4] . "</p>
+                                                        <a style='display: flex; justify-content: center;' href='specialist-page.php?spec_id=" . $master[0] . "'>
                                                             <div class='slide-button button'>
                                                                 <span class='details'>ПОДРОБНЕЕ</span>
                                                             </div>
                                                         </a>
                                                     </li>
                                                 ");
-                                                
-                                            }
+                                        }
                                         ?>
                                     </ul>
                                 </div>
@@ -313,22 +312,21 @@ require_once "../handlers/get_swiper_data_script.php";
                                 <div class="splide__track">
                                     <ul class="splide__list">
                                         <?php
-                                            foreach($all_masters_massage as $master){
-                                                echo("
+                                        foreach ($all_masters_massage as $master) {
+                                            echo ("
                                                     <li class='splide__slide'>
-                                                        <img class='slide-img' src='..".$master[3]."'
+                                                        <img class='slide-img' src='" . $master[3] . "'
                                                             alt=''>
-                                                        <p class='slide-name'>".$master[1]." ".$master[2]."</p>
-                                                        <p class='slide-description'>".$master[4]."</p>
-                                                        <a style='display: flex; justify-content: center; href='specialist-page.php?spec_id=".$master[0]."'>
+                                                        <p class='slide-name'>" . $master[1] . " " . $master[2] . "</p>
+                                                        <p class='slide-description'>" . $master[4] . "</p>
+                                                        <a style='display: flex; justify-content: center;' href='specialist-page.php?spec_id=" . $master[0] . "'>
                                                             <div class='slide-button button'>
                                                                 <span class='details'>ПОДРОБНЕЕ</span>
                                                             </div>
                                                         </a>
                                                     </li>
                                                 ");
-                                                
-                                            }
+                                        }
                                         ?>
                                     </ul>
                                 </div>
@@ -357,7 +355,7 @@ require_once "../handlers/get_swiper_data_script.php";
             </div>
         </section>
         <?php
-            if(isset($_SESSION["UserID"])&&$isSpinned==false){?>
+        if (isset($_SESSION["UserID"]) && $isSpinned == false) { ?>
             <section class="page__wheel">
                 <div class="wheel__body _container">
                     <div class="wheel__left-column">
@@ -367,7 +365,7 @@ require_once "../handlers/get_swiper_data_script.php";
                     </div>
                     <div class="wheel__right-column">
                         <!-- <img class="wheel" src="../images/wheel.png"> -->
-                        
+
                         <!-- главный блок -->
                         <div class="deal-wheel">
                             <!-- блок с призами -->
@@ -378,8 +376,8 @@ require_once "../handlers/get_swiper_data_script.php";
                     </div>
                 </div>
             </section>
-            <?php } elseif (!isset($_SESSION["UserID"])){ ?>
-                <section class="page__wheel">
+        <?php } elseif (!isset($_SESSION["UserID"])) { ?>
+            <section class="page__wheel">
                 <div class="wheel__body _container">
                     <div class="wheel__left-column">
                         <div class="wheel-title">Вращай колесо — <br>выигрывай подарок!</div>
@@ -390,14 +388,14 @@ require_once "../handlers/get_swiper_data_script.php";
                     </div>
                     <div class="wheel__right-column">
                         <!-- <img class="wheel" src="../images/wheel.png"> -->
-                        
-                        
+
+
                         <!-- главный блок -->
                         <div class="deal-wheel">
                             <!-- блок с призами -->
-                            <ul class="spinner" ></ul>
+                            <ul class="spinner"></ul>
                             <style>
-                                .spinner li{
+                                .spinner li {
                                     filter: blur(4px);
                                 }
                             </style>
@@ -407,15 +405,55 @@ require_once "../handlers/get_swiper_data_script.php";
                     </div>
                 </div>
             </section>
-           <?php }        
+        <?php }
         ?>
-        
+
         <section class="page__quiz-block">
             <div class="quiz-block__body _container">
                 <div class="quiz-block-title">Не подобрали<br>подходящую процедуру?</div>
                 <div class="quiz-block-text">Пройдите тест и выберите ту процедуру, которая подходит именно вам!</div>
                 <div class="quiz-block-button green-button">
                     <span class="details">ПРОЙТИ ТЕСТ</span>
+                </div>
+
+                <div class="popup__bg">
+                    <form class="popup">
+                        <img src="../images/icons/exit.svg" class="close-popup">
+                        <p class="form__window-title">Вход</p>
+                        <div class="form__data">
+                            <div class="label-input__group">
+                                <label for="name">номер телефона</label>
+                                <input type="text" id="name" placeholder="+375 (__) ___-__-__" name="name">
+                                <p>Неверный пароль</p>
+                            </div>
+
+                            <div class="label-input__group">
+                                <label for="name">пароль</label>
+                                <input type="text" id="name" placeholder="+375 (__) ___-__-__" name="name">
+                                <p>Неверный пароль</p>
+                            </div>
+
+                            <div class="label-input__group">
+                                <label for="name">номер телефона</label>
+                                <input type="text" id="name" placeholder="+375 (__) ___-__-__" name="name">
+                                <p>Неверный пароль</p>
+                            </div>
+
+                            <div class="label-input__group">
+                                <label for="name">пароль</label>
+                                <input type="text" id="name" placeholder="+375 (__) ___-__-__" name="name">
+                                <p>Неверный пароль</p>
+                            </div>
+
+                            <p class="form__retransfer-text">Нет аккаунта? <span id="sign-up__link">Зарегистрируйтесь</span></p>
+
+                            <div class="sign-in-button green-button">
+                                <button type="submit">
+                                    <span class="details">Войти</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -429,13 +467,14 @@ require_once "../handlers/get_swiper_data_script.php";
 
     <script src="../js/script.js"></script>
 
-    <script src ="../libraries/jquery-3.6.0.min.js"></script>
+    <script src="../libraries/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <script src="../js/signInUp.js"></script>
 
     <script src="../js/wheel.js"></script>
     <script src="../js/preloader.js"></script>
+    <script src="../js/openPopup.js"></script>
 </body>
 
 </html>

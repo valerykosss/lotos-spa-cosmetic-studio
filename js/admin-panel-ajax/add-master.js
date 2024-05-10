@@ -48,31 +48,34 @@
 // });
 
 
-// добавление мастера
 $(".add-master__button").click(function () {
-    let master_name = $('.master_name').val().trim();
-    let master_surname = $('.master_surname').val().trim();
-    let master_photo = $('.master_photo').val().trim();
-    let education = $('.education').val().trim();
-    let work_experience = parseInt($('.work_experience').val().trim(), 10);
-    let position = $('.position').val().trim();
-    addMaster(master_name, master_surname, master_photo, education, work_experience, position, $(this)); 
+    var formData = new FormData();
+    formData.append('master_name', $('.master_name').val().trim());
+    formData.append('master_surname', $('.master_surname').val().trim());
+    var master_photo = $('.master_photo')[0].files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(master_photo);
+    reader.onload = function () {
+        var master_photo_base64 = reader.result;
+        formData.append('master_photo', master_photo_base64);
+        formData.append('education', $('.education').val().trim());
+        formData.append('work_experience', parseInt($('.work_experience').val().trim(), 10));
+        formData.append('position', $('.position').val().trim());
+
+        addMaster(formData, $(this)); 
+    };
 });
 
-function addMaster(master_name, master_surname, master_photo, education, work_experience, position, button) {
+function addMaster(formData, button) {
     $.ajax({
         url: '../handlers/admin-panel-handlers/addMasterHandler.php',
         type: 'POST',
         dataType: 'json',
-        data: {
-            master_name: master_name,
-            master_surname: master_surname,
-            master_photo: master_photo,
-            education: education,
-            work_experience: work_experience,
-            position: position
-        },
+        processData: false,
+        contentType: false,
+        data: formData,
         success: function (response) {
+            console.log(typeof response)
             if (response.success) {
                 alert("Мастер добавлен!");
                 var newMaster = response.master;
@@ -84,7 +87,7 @@ function addMaster(master_name, master_surname, master_photo, education, work_ex
                 // Создаем ячейки для новой строки
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.master_name + '</textarea></td>');
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.master_surname + '</textarea></td>');
-                newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.master_photo + '</textarea></td>');
+                newRow.append('<td class="photo-container" id="photo_' + newMaster.id + '"><img src="' + newMaster.master_photo + '"></td>');
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.education + '</textarea></td>');
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.work_experience + '</textarea></td>');
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.position + '</textarea></td>');
@@ -110,3 +113,43 @@ function addMaster(master_name, master_surname, master_photo, education, work_ex
         }
     });
 }
+// Функция для проверки типа файла
+function checkFileType(fileInput) {
+    var validExtensions = ['image/jpeg', 'image/png', 'image/gif']; // Допустимые типы файлов
+
+    var files = fileInput.files;
+    
+    for (var i = 0; i < files.length; i++) {
+        if (!validExtensions.includes(files[i].type)) {
+            alert("Недопустимый тип файла. Допустимые типы: JPEG, PNG, GIF.");
+            fileInput.value = ''; // Очищаем значение поля input[type=file]
+            return false; // Прерываем выполнение функции
+        }
+    }
+    
+    return true; // Тип файла соответствует требованиям
+}
+// Функция для проверки размера файла
+function checkFileSize(fileInput) {
+    var maxFileSize = 2 * 1024 * 1024; // 2 MB в байтах
+    var files = fileInput.files;
+    
+    for (var i = 0; i < files.length; i++) {
+        if (files[i].size > maxFileSize) {
+            alert("Файл слишком большой. Максимальный размер файла 2 MB.");
+            fileInput.value = ''; // Очищаем значение поля input[type=file]
+            return false; // Прерываем выполнение функции
+        }
+    }
+    
+    return true; // Размер файла соответствует требованиям
+}
+
+// Получаем элемент input[type=file]
+var fileInput = document.querySelector('.master_photo');
+
+// Назначаем обработчик события change
+fileInput.addEventListener('change', function() {
+    checkFileType(this); // При изменении файла проверяем его размер
+    checkFileSize(this); // При изменении файла проверяем его размер
+});

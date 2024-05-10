@@ -6,7 +6,7 @@
         <p class="form__window-title">Регистрация<p>
         <div id="form__data">
 
-            <div class="data-label__text">Введите номер телефона</div>
+            <div class="data-label__text">Номер телефона</div>
             <input type="tel" placeholder="+375 (__) ___-__-__" class="data__phone" name="telephone_reg" autocomplete="off" title = 'Телефонные коды: 29 | 33 | 44 | 25'/>
             <p id="telephone_regError"></p>
 

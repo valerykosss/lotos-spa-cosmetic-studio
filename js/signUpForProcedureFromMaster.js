@@ -36,7 +36,7 @@ $(document).ready(function () {
         $("#sign-up-for-procedure__window").css("display", "none");
     });
     // Обработчик события клика по кнопке
-    $('.specialist-button').click(function () {
+    $('.specialist-button').click(function () { //ПРАВИЛЬНО++++++++++++++++++++++++++++++++++++++++++++++
         
         // Отображение блока
         $('#sign-up-for-procedure__window').show();
@@ -57,6 +57,8 @@ $(document).ready(function () {
 
         // Получение ID мастера из кнопки
         var id_master = $(this).attr('id');
+        console.log('Id master:',id_master);
+        console.log('');
 
         // Заполнение select #masters__data
         $('#masters__data').empty(); // Очищаем select
@@ -95,9 +97,10 @@ $(document).ready(function () {
 
                  // Проверка атрибутов после добавления option
                 $('#services__data option').each(function() {
-                    console.log('Value:', $(this).val());
-                    console.log('Data duration:', $(this).data('duration'));
-                    console.log('Data price:', $(this).data('price'));
+                    console.log('Service value:', $(this).val());
+                    console.log('Service duration:', $(this).data('duration'));
+                    console.log('Service price:', $(this).data('price'));
+                    console.log('');
                 });
 
                 var id_service_selected = $('#services__data').val(services[0].id_service).trigger('change');

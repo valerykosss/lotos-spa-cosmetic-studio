@@ -9,7 +9,7 @@
     $education = $_POST['education'];
     $work_experience = $_POST['work_experience'];
     $position = $_POST['position'];
-
+    
     // Подготавливаем SQL-запрос для добавления мастера
     $query = "INSERT INTO `master` (`master_name`, `master_surname`, `master_photo`, `education`, `work_experience`, `position`) 
             VALUES ('$master_name', '$master_surname', '$master_photo', '$education', '$work_experience', '$position')";
@@ -22,7 +22,7 @@
                 'id' => $masterId,
                 'master_name' => $master_name,
                 'master_surname' => $master_surname,
-                'master_photo' => $master_photo,
+                'master_photo' => "$master_photo",
                 'education' => $education,
                 'work_experience' => $work_experience,
                 'position' => $position
