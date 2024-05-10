@@ -79,7 +79,7 @@ if (!empty($errors)) {
     die();
 }
 if ($first_password == $second_password) {
-    $password = $first_password;
+    $password = md5($first_password);
     $query = "INSERT INTO user (telephone, password, name, id_role)
     VALUES ('$telephone','$password', '$name', 2)";
     $result = mysqli_query($link, $query) or die("Ошибка " .

@@ -14,8 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $old_pass=mysqli_query($link, "SELECT `password` FROM `user` WHERE `id_user`=$userId");
             $old_pass=mysqli_fetch_assoc($old_pass);
     
-            if($old_pass['password']==$oldPassword){
+            if($old_pass['password']==md5($oldPassword)){
                 if ($newPassword === $newPasswordConfirm) {
+                    $newPassword=md5($newPassword);
                     $change_pass=mysqli_query($link, "UPDATE `user` SET `password`='$newPassword' WHERE `id_user`=$userId");
     
                     echo json_encode(['success' => true, 'message' => 'Пароль успешно изменен']);
