@@ -20,6 +20,15 @@ $user_discount = mysqli_fetch_assoc($user_discount);
 
 $user_phone = mysqli_query($link, "SELECT telephone, name FROM user WHERE id_user=$user_id");
 $user_phone = mysqli_fetch_assoc($user_phone);
+
+$user_avatar = mysqli_query($link, "SELECT `avatar`, name FROM user WHERE id_user=$user_id");
+$user_avatar = mysqli_fetch_assoc($user_avatar);
+
+if($user_avatar['avatar']==NULL){
+    $avatar="../images/icons/avatar.png";
+}else{
+    $avatar=$user_avatar['avatar'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,35 +126,16 @@ $user_phone = mysqli_fetch_assoc($user_phone);
                 </div>
             </div>
         </section>
-        <section class="callback _container">
-            <form id="contactForm">
-                <div>
-                    <label>
-                        <input type="radio" name="contactMethod" value="email" checked>
-                        Почта
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input type="radio" name="contactMethod" value="phone">
-                        Телефон
-                    </label>
-                </div>
-                <label for="name">Имя</label>
-                <input type="text" id="name" name="name" value="<?php echo ($user_phone['name']); ?>">
-                <div id="emailField">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email">
-                </div>
-
-                <div id="phoneField" style="display: none;">
-                    <input type="hidden" value="<?php echo ($user_phone['telephone']); ?>" name="phone">
-                </div>
-                <textarea name="message" id="message" cols="30" rows="10"></textarea>
-                <div>
-                    <button type="submit">Отправить</button>
-                </div>
-            </form>
+        <section>
+            <img class="avatar" src="<?php echo($avatar);?>" style="width:50px; height: 50px;">
+            <input type="file" id="fileInput" style="display: none;">
+            <button id="uploadButton">Сменить изображение</button>
+        </section>
+        <section>
+            <input type="password" name="old-password" class="old-password" style="border: 1px solid black">
+            <input type="password" name="new-password" class="new-password" style="border: 1px solid black">
+            <input type="password" name="new-password-confirm" class="new-password-confirm" style="border: 1px solid black">
+            <input type="button" name="change-password" value="Изменить пароль">
         </section>
     </main>
     <?php require_once 'footer-white.php' ?>
@@ -156,69 +146,9 @@ $user_phone = mysqli_fetch_assoc($user_phone);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 <script src="../js/admin-panel-ajax/change-master-data.js"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log($('input[name="name"]').val());
-        const form = document.getElementById('contactForm');
-        const emailField = document.getElementById('emailField');
-        const phoneField = document.getElementById('phoneField');
-
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const method = document.querySelector('input[name="contactMethod"]:checked').value;
-            const contactValue = method === 'email' ? document.getElementById('email').value : document.getElementById('phone').value;
-
-            console.log(`Выбранный метод связи: ${method}, значение: ${contactValue}`);
-        });
-
-        form.addEventListener('change', function(event) {
-            if (event.target && event.target.name === 'contactMethod') {
-                if (event.target.value === 'email') {
-                    emailField.style.display = 'block';
-                    phoneField.style.display = 'none';
-                } else if (event.target.value === 'phone') {
-                    phoneField.style.display = 'block';
-                    emailField.style.display = 'none';
-                }
-            }
-        });
-
-        $('#contactForm').on('submit', function(e) {
-            e.preventDefault();
-
-            var name = $('input[name="name"]').val();
-            consile.log(name);
-            var email = $('input[name="email"]').val();
-            var phone = $('input[name="phone"]').val();
-            var message = $('textarea[name="message"]').val();
-
-            $.ajax({
-                type: 'POST',
-                url: '../handlers/callback_script.php',
-                data: {
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    message: message
-                },
-                success: function(response) {
-                    console.log('Письмо отправлено!');
-                    // Очищаем поля ввода после успешной отправки
-                    $('input[name="name"]').val('');
-                    $('input[name="email"]').val('');
-                    $('textarea[name="message"]').val('');
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
-</script>
-
 <script src="../js/signInUp.js"></script>
 <script src="../js/preloader.js"></script>
+<script src="../js/change-pass.js"></script>
+<script src="../js/change-avatar.js"></script>
 
 </html>

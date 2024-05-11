@@ -49,7 +49,7 @@ $passwordResult = mysqli_query($link, $passwordQuery) or die("Ошибка
 выполнения запроса" . mysqli_error($link));
 if ($passwordResult) {
     $passwordRow = mysqli_fetch_row($passwordResult);
-    if ($password== $passwordRow[0]) {
+    if (md5($password)== $passwordRow[0]) {
         $userExists = true;
         $nameQuery = "SELECT * FROM user WHERE telephone ='$telephone'";
         $nameResult = mysqli_query($link, $nameQuery) or die("Ошибка выполнения
