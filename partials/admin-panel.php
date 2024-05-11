@@ -260,9 +260,68 @@ require_once "../handlers/isAdmin.php";
                         </table>
                     </div>
                     <div class="tab-content-admin-panel" id="content-3">
-                        Содержимое 1... Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique eaque iure
-                        debitis nostrum, vero ad totam ratione sequi! Suscipit, labore repellat cum soluta ullam
-                        dignissimos perspiciatis sequi rerum sapiente ex.
+                        <table class="table__to-update-delete">
+                            <thead>
+                                <tr>
+                                    <th>Номер записи</th>
+                                    <th>Мастер</th>
+                                    <th>Услуга</th>
+                                    <th>Клиент</th>
+                                    <th>Дата записи</th>
+                                    <th>Время записи</th>
+                                    <th>Статус</th>
+                                </tr>
+                            </thead>
+                                <?php
+                                    $record_statuses=mysqli_query($link, "SELECT * FROM `procedure_record_status`");
+                                    $record_statuses=mysqli_fetch_all($record_statuses);
+
+                                    $query = 'SELECT `procedure_record`.`id_record`, `master`.`master_name`, `service`.`service_name`, `user`.`name`, `procedure_record`.`record_date`, `procedure_record`.`record_time`, `procedure_record_status`.`id_record_status`
+                                    FROM `procedure_record`
+                                    INNER JOIN `master_service` ON `procedure_record`.`id_master_service`=`master_service`.`id_master_service`
+                                    INNER JOIN `master` ON `master_service`.`id_master`=`master`.`id_master`
+                                    INNER JOIN `service` ON `master_service`.`id_service`=`service`.`id_service`
+                                    INNER JOIN `procedure_record_status` ON `procedure_record`.`id_record_status`=`procedure_record_status`.`id_record_status`
+                                    INNER JOIN `user` ON `procedure_record`.`id_user`=`user`.`id_user`;';
+
+                                    echo "<tbody>";
+                                    $trBlock = '';
+
+                                    $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                                    if ($result) {
+                                        for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                            $row = mysqli_fetch_row($result);
+                                            $options="";
+
+                                            foreach($record_statuses as $status){
+                                                if($status[0]==$row[6]){
+                                                    $option="<option value='".$status[0]."' selected>".$status[1]."</option>";
+                                                }else{
+                                                    $option="<option value='".$status[0]."'>".$status[1]."</option>";
+                                                }
+                                                $options.=$option;
+                                            }
+                                            $trBlock .= "
+                                                <tr id='$row[0]'>
+                                                    <td>" . $row[0] . "</td>
+                                                    <td>" . $row[1] . "</td>
+                                                    <td>" . $row[2] . "</td>
+                                                    <td>" . $row[3] . "</td>
+                                                    <td>" . $row[4] . "</td>
+                                                    <td>" . $row[5] . "</td>
+                                                    <td>
+                                                        <select class='record-status'>
+                                                            ".$options."
+                                                        </select>
+                                                    </td>
+                                                </tr>";
+                                        }
+                                    }
+                                    echo $trBlock;
+                                    echo "</tbody>";
+                                ?>
+
+                        </table>
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-4">
@@ -384,6 +443,9 @@ require_once "../handlers/isAdmin.php";
     <script src="../js/admin-panel-ajax/add-wheel.js"></script>
     <script src="../js/admin-panel-ajax/update-wheel.js"></script>
     <script src="../js/admin-panel-ajax/delete-wheel.js"></script>
+
+    <script src="../js/admin-panel-ajax/change_record_status.js"></script>
+
     <script src="../js/preloader.js"></script>
 
     <!-- <script src="../js/admin-panel-ajax/add-service.js"></script>
