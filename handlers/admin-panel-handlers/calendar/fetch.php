@@ -4,7 +4,7 @@
 
 if(isset($_POST["id"]))
 {
-    $connect = new PDO('mysql:host=localhost;dbname=lotos', 'root', 'root');
+    $connect = new PDO('mysql:host=localhost;dbname=lotos', 'root', '');
     
  $query = "SELECT `id`,`id_master`,`start`,`end` from master_timetable WHERE id=:id";
  $statement = $connect->prepare($query);

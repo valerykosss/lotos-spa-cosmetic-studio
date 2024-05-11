@@ -1,7 +1,7 @@
 <?php
 
 // Подключение к базе данных
-$connect = new PDO('mysql:host=localhost;dbname=lotos', 'root', 'root');
+$connect = new PDO('mysql:host=localhost;dbname=lotos', 'root', '');
 
 // Получение id_master из POST-запроса
 $id_master = $_POST['id_master'];

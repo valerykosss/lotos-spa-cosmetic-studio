@@ -11,7 +11,7 @@ if (session_id() == '')
 $host = "localhost";
 $database = "lotos";
 $user = "root";
-$password = "root";
+$password = "";
 
 $id_master = $_SESSION["UserID"];
 echo $id_master;
