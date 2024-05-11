@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Находим все фотографии и назначаем на них обработчики событий
-    var photos = document.querySelectorAll('.photo-container img');
+    var photos = document.querySelectorAll('.master-photo-container img');
     photos.forEach(function(photo) {
         photo.onclick = function() {
             var input = document.createElement('input');
@@ -47,7 +47,7 @@ $(document).on('click', '.change-master__button', function () {
     var masterId = $(this).attr('id');
     var master_name = $('tr#' + masterId + ' textarea').eq(0).val();
     var master_surname = $('tr#' + masterId + ' textarea').eq(1).val();
-    var master_photo = $('tr#' + masterId + ' .photo-container img').eq(0); // получаем элемент input
+    var master_photo = $('tr#' + masterId + ' .master-photo-container img').eq(0); // получаем элемент input
     var education = $('tr#' + masterId + ' textarea').eq(2).val();
     var work_experience = $('tr#' + masterId + ' textarea').eq(3).val();
     var position = $('tr#' + masterId + ' textarea').eq(4).val();

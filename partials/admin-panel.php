@@ -130,7 +130,7 @@ require_once "../handlers/isAdmin.php";
                                                 <tr id='$row[0]'>
                                                     <td><textarea id='". $row[0] ."'>" . $row[1] . "</textarea></td>
                                                     <td><textarea id='". $row[0] ."'>" . $row[2] . "</textarea></td>
-                                                    <td class='photo-container' id='photo_".$row[0]."'><img src='".$row[3]."' alt='photo'></td>
+                                                    <td class='master-photo-container' id='photo_".$row[0]."'><img src='".$row[3]."' alt='photo'></td>
                                                     <td><textarea id='". $row[0] ."'>" . $row[4] . "</textarea></td>
                                                     <td><textarea id='". $row[0] ."'>" . $row[5] . "</textarea></td>
                                                     <td><textarea id='". $row[0] ."'>" . $row[6] . "</textarea></td>
@@ -199,7 +199,7 @@ require_once "../handlers/isAdmin.php";
                         <table class="table__to-update-delete">
                             <thead>
                                 <tr>
-                                <th>Тип услуги</th>
+                                    <th>Тип услуги</th>
                                     <th>Название услуги</th>
                                     <th>Фото</th>
                                     <th>Описание</th>
@@ -210,7 +210,9 @@ require_once "../handlers/isAdmin.php";
                                 </tr>
                             </thead>
                                 <?php
-                                    $query = 'SELECT * from service';
+                                    $query = 'SELECT `service`.`id_service`, `service_type`.`id_service_type`, `service_type`.`service_type_name`, `service`.`service_name`, `service`.`service_image`, `service`.`service_description`, `service`.`duration`, `service`.`price`, `service`.`insication`, `service`.`results`
+                                    FROM `service`
+                                    INNER JOIN `service_type` ON `service`.`id_service_type`=`service_type`.`id_service_type`;';
 
                                     echo "<tbody>";
                                     $trBlock = '';
@@ -219,17 +221,30 @@ require_once "../handlers/isAdmin.php";
                                     if ($result) {
                                         for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                                             $row = mysqli_fetch_row($result);
+                                            $options="";
 
+                                            foreach($service_types as $type){
+                                                if($type[0]==$row[1]){
+                                                    $option="<option value='".$type[0]."' selected>".$type[1]."</option>";
+                                                }else{
+                                                    $option="<option value='".$type[0]."'>".$type[1]."</option>";
+                                                }
+                                                $options.=$option;
+                                            }
                                             $trBlock .= "
                                                 <tr id='$row[0]'>
-                                                    <td><select class='id_service_type'></select></td>
-                                                    <td><textarea>" . $row[2] . "</textarea></td>
-                                                    <td><img style='width:50px; height:50px' src='" . $row[3] . "'></td>
-                                                    <td><textarea>" . $row[4] . "</textarea></td>
+                                                    <td>
+                                                        <select class='id_service_type'>
+                                                            ".$options."
+                                                        </select>
+                                                    </td>
+                                                    <td><textarea>" . $row[3] . "</textarea></td>
+                                                    <td class='service-photo-container' id='photo_".$row[0]."'><img style='width:50px; height:50px' src='" . $row[4] . "'></td>
                                                     <td><textarea>" . $row[5] . "</textarea></td>
                                                     <td><textarea>" . $row[6] . "</textarea></td>
                                                     <td><textarea>" . $row[7] . "</textarea></td>
                                                     <td><textarea>" . $row[8] . "</textarea></td>
+                                                    <td><textarea>" . $row[9] . "</textarea></td>
                                                     
                                                     <td>
                                                         <button class='change-service__button' id='".$row[0]."'></button>
