@@ -2,7 +2,7 @@
 
 //load.php
 
-$connect = new PDO('mysql:host=localhost;dbname=lotos', 'root', 'root');
+$connect = new PDO('mysql:host=localhost;dbname=lotos', 'root', '');
 
 $data = array();
 

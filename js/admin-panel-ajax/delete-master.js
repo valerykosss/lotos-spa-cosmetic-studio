@@ -17,7 +17,7 @@ function deleteMaster(id_master_to_delete, button) {
             alert("Мастер удален!");
         },
         error: function () {
-            console.error('Произошла ошибка при удалении пользователя');
+            console.error('Произошла ошибка при удалении мастера');
         }
     });
 }

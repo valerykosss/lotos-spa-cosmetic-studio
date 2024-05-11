@@ -5,7 +5,7 @@ if (session_id() == '')
 
 $master_id = $_GET['spec_id'];
 
-$master_reviews=mysqli_query($link, "SELECT master_rating.id_master_rating, master.master_name, user.name, master_rating, master_review, review_date FROM `master_rating` INNER JOIN `master` ON master_rating.id_master=master.id_master INNER JOIN user ON master_rating.id_user=user.id_user WHERE `master_rating`.`id_master`=$master_id");
+$master_reviews=mysqli_query($link, "SELECT master_rating.id_master_rating, master.master_name, user.name, master_rating, master_review, review_date FROM `master_rating` INNER JOIN `master` ON master_rating.id_master=master.id_master INNER JOIN user ON master_rating.id_user=user.id_user WHERE `master_rating`.`id_master`=$master_id AND `master_rating`.`status`='Одобрен'");
 
 $master_data = mysqli_query($link, "SELECT * FROM `master` WHERE `id_master`=$master_id");
 $master_data = mysqli_fetch_assoc($master_data);
