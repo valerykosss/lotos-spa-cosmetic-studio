@@ -1,10 +1,10 @@
-var statusSelects = document.querySelectorAll('.record-status');
+function changeStatus(){
+    var statusSelects = document.querySelectorAll('.record-status');
     statusSelects.forEach(function (select) {
         select.addEventListener('change', function () {
             var recordId = this.parentNode.parentNode.id;
             var newStatus = this.value;
             updateStatus(recordId, newStatus);
-            console.log(recordId);
         });
     });
 
@@ -23,3 +23,7 @@ var statusSelects = document.querySelectorAll('.record-status');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('record_id=' + recordId + '&new_status=' + newStatus);
     }
+}
+
+changeStatus();
+export {changeStatus};
