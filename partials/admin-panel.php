@@ -151,7 +151,10 @@ require_once "../handlers/isAdmin.php";
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-2">
-
+                        <?php
+                            $service_types=mysqli_query($link, "SELECT `id_service_type`, `service_type_name` FROM `service_type`");
+                            $service_types=mysqli_fetch_all($service_types);
+                        ?>
                     <p class="sub-header">Введите данные новой услуги: </p>
                         <table class="table__to-add">
                             <thead>
@@ -162,16 +165,29 @@ require_once "../handlers/isAdmin.php";
                                     <th>Описание</th>
                                     <th>Длительность</th>
                                     <th>Стоимость (руб)</th>
+                                    <th>Показания</th>
+                                    <th>Результаты</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                        <td><select class="id_service_type"></select></td>
+                                        <td>
+                                            <select class="service_type">
+                                                <option selected disabled>Выберите тип услуги</option>
+                                                <?php
+                                                    foreach($service_types as $type){
+                                                        echo("<option value='".$type[0]."'>".$type[1]."</option>");
+                                                    }
+                                                ?>
+                                            </select>
+                                        </td>
                                         <td><textarea class="service_name"></textarea></td>
-                                        <td><textarea class="service_image"></textarea></td>
+                                        <td><input type="file" class="service_image" name="service_image"></input></td>
                                         <td><textarea class="service_description"></textarea></td>
                                         <td><textarea class="duration"></textarea></td>
                                         <td><textarea class="price"></textarea></td>
+                                        <td><textarea class="insication"></textarea></td>
+                                        <td><textarea class="results"></textarea></td>
                                         <td>
                                             <button class='add-service__button'></button>
                                         </td>
@@ -189,6 +205,8 @@ require_once "../handlers/isAdmin.php";
                                     <th>Описание</th>
                                     <th>Длительность</th>
                                     <th>Стоимость (руб)</th>
+                                    <th>Показания</th>
+                                    <th>Результаты</th>
                                 </tr>
                             </thead>
                                 <?php
@@ -206,10 +224,12 @@ require_once "../handlers/isAdmin.php";
                                                 <tr id='$row[0]'>
                                                     <td><select class='id_service_type'></select></td>
                                                     <td><textarea>" . $row[2] . "</textarea></td>
-                                                    <td><textarea>" . $row[3] . "</textarea></td>
+                                                    <td><img style='width:50px; height:50px' src='" . $row[3] . "'></td>
                                                     <td><textarea>" . $row[4] . "</textarea></td>
                                                     <td><textarea>" . $row[5] . "</textarea></td>
                                                     <td><textarea>" . $row[6] . "</textarea></td>
+                                                    <td><textarea>" . $row[7] . "</textarea></td>
+                                                    <td><textarea>" . $row[8] . "</textarea></td>
                                                     
                                                     <td>
                                                         <button class='change-service__button' id='".$row[0]."'></button>
@@ -339,6 +359,10 @@ require_once "../handlers/isAdmin.php";
     <script src="../js/admin-panel-ajax/add-master.js"></script>
     <script src="../js/admin-panel-ajax/delete-master.js"></script>
     <script src="../js/admin-panel-ajax/update-master.js"></script>
+
+    <script src="../js/admin-panel-ajax/add-service.js"></script>
+    <script src="../js/admin-panel-ajax/delete-service.js"></script>
+    <script src="../js/admin-panel-ajax/update-service.js"></script>
 
     <script src="../js/admin-panel-ajax/service-type-for-service.js"></script>
 
