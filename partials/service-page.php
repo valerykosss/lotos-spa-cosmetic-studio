@@ -9,7 +9,7 @@
     FROM service_rating
     INNER JOIN user ON service_rating.id_user=user.id_user
     INNER JOIN service ON service_rating.id_service=service.id_service
-    WHERE service_rating.id_service=$service_id");
+    WHERE service_rating.id_service=$service_id AND `service_rating`.`status`='Одобрен'");
 
     $service_data=mysqli_query($link, "SELECT `service_name`, `service_image`, `service_description`,  `duration`, `price`, `insication`, `results`  FROM `service` WHERE `id_service`=$service_id");
     $service_data=mysqli_fetch_assoc($service_data);
