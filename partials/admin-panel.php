@@ -466,6 +466,7 @@ if (session_id() == '')
 
     <script type="module" src="../js/admin-panel-ajax/change_record_status.js"></script>
     <script type="module" src="../js/admin-panel-ajax/add-record.js"></script>
+    <script type="module" src="../js/admin-panel-ajax/delete-record.js"></script>
 
 
     <script src="../js/preloader.js"></script>
