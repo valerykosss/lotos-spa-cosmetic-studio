@@ -483,20 +483,21 @@ if (session_id() == '')
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-6">
-                        <p class="sub-header">Модерация отзывов</p>
-                        <table class="table__to-update-delete">
+                        <p class="sub-header">Модерация отзывов мастера</p>
+                        <table class="table__to-update-delete master-rating">
                             <thead>
                                 <tr>
-                                    <th>Номер обращения</th>
-                                    <th>Имя</th>
-                                    <th>Номер телефона</th>
-                                    <th>Сообщение</th>
+                                    <th>#</th>
+                                    <th>Мастер</th>
+                                    <th>Клиент</th>
+                                    <th>Оценка</th>
+                                    <th>Отзыв</th>
+                                    <th>Дата</th>
                                     <th>Статус</th>
                                 </tr>
                             </thead>
                             <?php
-                            $query = 'SELECT `id_requested_feedback`, `requested_feedback`.`name`, `requested_feedback`.`tel`, `requested_feedback`.`message_text`, `requested_feedback`.`status`
-                            FROM `requested_feedback`;';
+                            $query = 'SELECT master_rating.id_master_rating, master.master_name, user.name, master_rating, master_review, review_date, `status` FROM `master_rating` INNER JOIN `master` ON master_rating.id_master=master.id_master INNER JOIN user ON master_rating.id_user=user.id_user';
 
                             echo "<tbody>";
                             $trBlock = '';
@@ -507,13 +508,16 @@ if (session_id() == '')
                                     $row = mysqli_fetch_row($result);
 
                                     $options = "";
-                                    if ($row[4] == "получено") {
+                                    if ($row[6] == "На рассмотрении") {
                                         $options = "
-                                                    <option value='" . $row[4] . "' selected>Получено</option>
-                                                    <option value='обработано'>Обработано</option>
+                                                    <option value='На рассмотрении' selected>На рассмотрении</option>
+                                                    <option value='Одобрен'>Одобрен</option>
                                                     ";
-                                    } else if ($row[4] == "обработано") {
-                                        continue;
+                                    } else if ($row[6] == "Одобрен") {
+                                        $options = "
+                                                    <option value='На рассмотрении'>На рассмотрении</option>
+                                                    <option value='Одобрен' selected>Одобрен</option>
+                                                    ";
                                     }
                                     $trBlock .= "
                                                 <tr id='$row[0]'>
@@ -521,8 +525,69 @@ if (session_id() == '')
                                                     <td>" . $row[1] . "</td>
                                                     <td>" . $row[2] . "</td>
                                                     <td>" . $row[3] . "</td>
+                                                    <td>" . $row[4] . "</td>
+                                                    <td>" . $row[5] . "</td>
                                                     <td>
-                                                        <select class='feedback-status'>
+                                                        <select class='master-review-status'>
+                                                            " . $options . "
+                                                        </select>
+                                                    </td>
+                                                </tr>";
+                                }
+                            }
+                            echo $trBlock;
+                            echo "</tbody>";
+                            ?>
+                        </table>
+                        <p class="sub-header">Модерация отзывов услуги</p>
+                        <table class="table__to-update-delete service-rating">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Услуга</th>
+                                    <th>Клиент</th>
+                                    <th>Оценка</th>
+                                    <th>Отзыв</th>
+                                    <th>Дата</th>
+                                    <th>Статус</th>
+                                </tr>
+                            </thead>
+                            <?php
+                            $query = 'SELECT id_service_rating, user.name, service.service_name, service_review, service_rating, review_date, `status`
+                            FROM service_rating
+                            INNER JOIN user ON service_rating.id_user=user.id_user
+                            INNER JOIN service ON service_rating.id_service=service.id_service';
+
+                            echo "<tbody>";
+                            $trBlock = '';
+
+                            $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                            if ($result) {
+                                for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                    $row = mysqli_fetch_row($result);
+
+                                    $options = "";
+                                    if ($row[6] == "На рассмотрении") {
+                                        $options = "
+                                                    <option value='На рассмотрении' selected>На рассмотрении</option>
+                                                    <option value='Одобрен'>Одобрен</option>
+                                                    ";
+                                    } else if ($row[6] == "Одобрен") {
+                                        $options = "
+                                                    <option value='На рассмотрении'>На рассмотрении</option>
+                                                    <option value='Одобрен' selected>Одобрен</option>
+                                                    ";
+                                    }
+                                    $trBlock .= "
+                                                <tr id='$row[0]'>
+                                                    <td>" . $row[0] . "</td>
+                                                    <td>" . $row[2] . "</td>
+                                                    <td>" . $row[1] . "</td>
+                                                    <td>" . $row[4] . "</td>
+                                                    <td>" . $row[3] . "</td>
+                                                    <td>" . $row[5] . "</td>
+                                                    <td>
+                                                        <select class='service-review-status'>
                                                             " . $options . "
                                                         </select>
                                                     </td>
@@ -588,6 +653,8 @@ if (session_id() == '')
     <script type="module" src="../js/admin-panel-ajax/delete-record.js"></script>
 
     <script type="module" src="../js/admin-panel-ajax/change-feedback-status.js"></script>
+    <script type="module" src="../js/admin-panel-ajax/change-service-review-status.js"></script>
+    <script type="module" src="../js/admin-panel-ajax/change-master-review-status.js"></script>
 
 
     <script src="../js/preloader.js"></script>
