@@ -8,6 +8,7 @@ if (session_id() == '')
 ?>
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +32,7 @@ if (session_id() == '')
         }
     </style>
 </head>
+
 <body>
     <div class="preloader">
         <div class="preloader__row">
@@ -268,7 +270,7 @@ if (session_id() == '')
                                     </td>
                                     <td>
                                         <select id="master" name="master">
-                                        <option selected disabled>Выберите мастера</option>
+                                            <option selected disabled>Выберите мастера</option>
                                         </select>
                                     </td>
                                     <td><textarea class="client_name" name="client_name"></textarea></td>
@@ -333,7 +335,7 @@ if (session_id() == '')
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <button class='delete-record__button' id='".$row[0]."'>удалить</button>
+                                                        <button class='delete-record__button' id='" . $row[0] . "'>удалить</button>
                                                     </td>
                                                 </tr>";
                                 }
@@ -346,9 +348,56 @@ if (session_id() == '')
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-4">
-                        Содержимое 4... Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique eaque iure
-                        debitis nostrum, vero ad totam ratione sequi! Suscipit, labore repellat cum soluta ullam
-                        dignissimos perspiciatis sequi rerum sapiente ex.
+                        <p class="sub-header">Обратная связь</p>
+                        <table class="table__to-update-delete">
+                            <thead>
+                                <tr>
+                                    <th>Номер обращения</th>
+                                    <th>Имя</th>
+                                    <th>Номер телефона</th>
+                                    <th>Сообщение</th>
+                                    <th>Статус</th>
+                                </tr>
+                            </thead>
+                            <?php
+                            $query = 'SELECT `id_requested_feedback`, `requested_feedback`.`name`, `requested_feedback`.`tel`, `requested_feedback`.`message_text`, `requested_feedback`.`status`
+                            FROM `requested_feedback`;';
+
+                            echo "<tbody>";
+                            $trBlock = '';
+
+                            $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                            if ($result) {
+                                for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                    $row = mysqli_fetch_row($result);
+
+                                    $options = "";
+                                    if ($row[4] == "получено") {
+                                        $options = "
+                                                    <option value='" . $row[4] . "' selected>Получено</option>
+                                                    <option value='обработано'>Обработано</option>
+                                                    ";
+                                    } else if ($row[4] == "обработано"){
+                                        continue;
+                                    }
+                                    $trBlock .= "
+                                                <tr id='$row[0]'>
+                                                    <td>" . $row[0] . "</td>
+                                                    <td>" . $row[1] . "</td>
+                                                    <td>" . $row[2] . "</td>
+                                                    <td>" . $row[3] . "</td>
+                                                    <td>
+                                                        <select class='feedback-status'>
+                                                            " . $options . "
+                                                        </select>
+                                                    </td>
+                                                </tr>";
+                                }
+                            }
+                            echo $trBlock;
+                            echo "</tbody>";
+                            ?>
+                        </table>
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-5">
@@ -468,6 +517,8 @@ if (session_id() == '')
     <script type="module" src="../js/admin-panel-ajax/change_record_status.js"></script>
     <script type="module" src="../js/admin-panel-ajax/add-record.js"></script>
     <script type="module" src="../js/admin-panel-ajax/delete-record.js"></script>
+
+    <script type="module" src="../js/admin-panel-ajax/change-feedback-status.js"></script>
 
 
     <script src="../js/preloader.js"></script>
