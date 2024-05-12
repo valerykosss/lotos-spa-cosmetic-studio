@@ -1,6 +1,9 @@
 <?php
 require_once "../handlers/isAdmin.php";
 
+if ($isAdmin==false || !isset($_SESSION['UserID'])){
+    header("Location: index.php");
+}
 require_once '../database/db.php';
 require_once "../handlers/admin-panel-handlers/adminpanel_info_script.php";
 if (session_id() == '')
@@ -377,7 +380,7 @@ if (session_id() == '')
                                                     <option value='" . $row[4] . "' selected>Получено</option>
                                                     <option value='обработано'>Обработано</option>
                                                     ";
-                                    } else if ($row[4] == "обработано"){
+                                    } else if ($row[4] == "обработано") {
                                         continue;
                                     }
                                     $trBlock .= "
@@ -446,15 +449,15 @@ if (session_id() == '')
                                 for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                                     $row = mysqli_fetch_row($result);
 
-                                    $options="";
+                                    $options = "";
 
-                                    foreach($services as $service){
-                                        if($service[0]==$row[3]){
-                                            $option="<option value=".$service[0]." selected>".$service[1]."</option>";
-                                        }else{
-                                            $option="<option value=".$service[0].">".$service[1]."</option>";
+                                    foreach ($services as $service) {
+                                        if ($service[0] == $row[3]) {
+                                            $option = "<option value=" . $service[0] . " selected>" . $service[1] . "</option>";
+                                        } else {
+                                            $option = "<option value=" . $service[0] . ">" . $service[1] . "</option>";
                                         }
-                                        $options.=$option;
+                                        $options .= $option;
                                     }
 
                                     $trBlock .= "
@@ -463,7 +466,7 @@ if (session_id() == '')
                                                     <td><input type='color' class='colorpicker' value='" . $row[2] . "' name='color'></td>
                                                     <td>
                                                         <select class='wheel_service' id='wheel_service'>
-                                                            ".$options."
+                                                            " . $options . "
                                                         </select>
                                                     </td>
                                                     <td>
@@ -480,9 +483,56 @@ if (session_id() == '')
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-6">
-                        Содержимое 6... Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique eaque iure
-                        debitis nostrum, vero ad totam ratione sequi! Suscipit, labore repellat cum soluta ullam
-                        dignissimos perspiciatis sequi rerum sapiente ex.
+                        <p class="sub-header">Модерация отзывов</p>
+                        <table class="table__to-update-delete">
+                            <thead>
+                                <tr>
+                                    <th>Номер обращения</th>
+                                    <th>Имя</th>
+                                    <th>Номер телефона</th>
+                                    <th>Сообщение</th>
+                                    <th>Статус</th>
+                                </tr>
+                            </thead>
+                            <?php
+                            $query = 'SELECT `id_requested_feedback`, `requested_feedback`.`name`, `requested_feedback`.`tel`, `requested_feedback`.`message_text`, `requested_feedback`.`status`
+                            FROM `requested_feedback`;';
+
+                            echo "<tbody>";
+                            $trBlock = '';
+
+                            $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                            if ($result) {
+                                for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                    $row = mysqli_fetch_row($result);
+
+                                    $options = "";
+                                    if ($row[4] == "получено") {
+                                        $options = "
+                                                    <option value='" . $row[4] . "' selected>Получено</option>
+                                                    <option value='обработано'>Обработано</option>
+                                                    ";
+                                    } else if ($row[4] == "обработано") {
+                                        continue;
+                                    }
+                                    $trBlock .= "
+                                                <tr id='$row[0]'>
+                                                    <td>" . $row[0] . "</td>
+                                                    <td>" . $row[1] . "</td>
+                                                    <td>" . $row[2] . "</td>
+                                                    <td>" . $row[3] . "</td>
+                                                    <td>
+                                                        <select class='feedback-status'>
+                                                            " . $options . "
+                                                        </select>
+                                                    </td>
+                                                </tr>";
+                                }
+                            }
+                            echo $trBlock;
+                            echo "</tbody>";
+                            ?>
+                        </table>
                     </div>
                 </div>
             </div>
