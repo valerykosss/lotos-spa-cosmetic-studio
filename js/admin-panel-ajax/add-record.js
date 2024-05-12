@@ -48,7 +48,7 @@ serviceSelect.addEventListener("change", async function() {
 });
 
 $( ".add-record__button" ).click(function() {
-    let service_name = $('.service').val();
+    let service_name = $('select.service').val();
     let master_name = $('#master').val();
     let client_name = $('.client_name').val();
     let record_date = $('.new-record_date').val().trim();
