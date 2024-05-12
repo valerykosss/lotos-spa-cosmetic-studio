@@ -99,7 +99,7 @@ if (session_id() == '')
                         </table>
 
                         <p class="sub-header">Все мастера: </p>
-                        <table class="table__to-update-delete">
+                        <table class="table__to-update-delete master">
                             <thead>
                                 <tr>
                                     <th>Имя</th>
@@ -186,7 +186,7 @@ if (session_id() == '')
                         </table>
 
                         <p class="sub-header">Все услуги: </p>
-                        <table class="table__to-update-delete">
+                        <table class="table__to-update-delete service">
                             <thead>
                                 <tr>
                                     <th>Тип услуги</th>
@@ -282,7 +282,7 @@ if (session_id() == '')
                                 </tr>
                             </tbody>
                         </table>
-                        <table class="table__to-update-delete">
+                        <table class="table__to-update-delete record">
                             <thead>
                                 <tr>
                                     <th>Номер записи</th>
