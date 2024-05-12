@@ -294,12 +294,13 @@ if (session_id() == '')
                             </thead>
                             <?php
                             $query = 'SELECT `procedure_record`.`id_record`, `master`.`master_name`, `service`.`service_name`, `user`.`name`, `procedure_record`.`record_date`, `procedure_record`.`record_time`, `procedure_record_status`.`id_record_status`
-                                    FROM `procedure_record`
-                                    INNER JOIN `master_service` ON `procedure_record`.`id_master_service`=`master_service`.`id_master_service`
-                                    INNER JOIN `master` ON `master_service`.`id_master`=`master`.`id_master`
-                                    INNER JOIN `service` ON `master_service`.`id_service`=`service`.`id_service`
-                                    INNER JOIN `procedure_record_status` ON `procedure_record`.`id_record_status`=`procedure_record_status`.`id_record_status`
-                                    INNER JOIN `user` ON `procedure_record`.`id_user`=`user`.`id_user`;';
+                                        FROM `procedure_record`
+                                        INNER JOIN `master_service` ON `procedure_record`.`id_master_service`=`master_service`.`id_master_service`
+                                        INNER JOIN `master` ON `master_service`.`id_master`=`master`.`id_master`
+                                        INNER JOIN `service` ON `master_service`.`id_service`=`service`.`id_service`
+                                        INNER JOIN `procedure_record_status` ON `procedure_record`.`id_record_status`=`procedure_record_status`.`id_record_status`
+                                        INNER JOIN `user` ON `procedure_record`.`id_user`=`user`.`id_user`
+                                        ORDER BY `procedure_record`.`record_date` ASC, `procedure_record`.`record_time` ASC;';
 
                             echo "<tbody>";
                             $trBlock = '';
