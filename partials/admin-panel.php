@@ -414,7 +414,11 @@ if (session_id() == '')
                                 <tr>
                                     <td><textarea class="discount_name"></textarea></td>
                                     <td><input type="color" class="sector_wheel_color"></input></td>
-                                    <td><textarea class="id_service"></textarea></td>
+                                    <td>
+                                        <select class="wheel_service" id="wheel_service">
+                                            <option selected disabled>Выберите услугу</option>
+                                        </select>
+                                    </td>
                                     <td>
                                         <button class='add-wheel__button'></button>
                                     </td>
@@ -442,11 +446,26 @@ if (session_id() == '')
                                 for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                                     $row = mysqli_fetch_row($result);
 
+                                    $options="";
+
+                                    foreach($services as $service){
+                                        if($service[0]==$row[3]){
+                                            $option="<option value=".$service[0]." selected>".$service[1]."</option>";
+                                        }else{
+                                            $option="<option value=".$service[0].">".$service[1]."</option>";
+                                        }
+                                        $options.=$option;
+                                    }
+
                                     $trBlock .= "
                                                 <tr id='$row[0]'>
                                                     <td><textarea name='discount_name'>" . $row[1] . "</textarea></td>
                                                     <td><input type='color' class='colorpicker' value='" . $row[2] . "' name='color'></td>
-                                                    <td><textarea name='wheel_service'>" . $row[3] . "</textarea></td>
+                                                    <td>
+                                                        <select class='wheel_service' id='wheel_service'>
+                                                            ".$options."
+                                                        </select>
+                                                    </td>
                                                     <td>
                                                         <button class='change-wheel__button' id='" . $row[0] . "'>change</button>
                                                         <button class='delete-wheel__button' id='" . $row[0] . "'>delete</button>
