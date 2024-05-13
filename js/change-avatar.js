@@ -30,6 +30,8 @@ $(document).ready(function() {
             success: function(response) {
                 if (response.success) {
                     alert('Изображение успешно загружено и сохранено в базе данных.');
+                    $('.avatar').attr('src', imageData);
+
                 } else {
                     alert('Произошла ошибка при загрузке изображения.');
                 }
