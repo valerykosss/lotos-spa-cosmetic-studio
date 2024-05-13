@@ -2,7 +2,7 @@
 
 //insert.php
 
-$connect = new PDO('mysql:host=localhost;dbname=lotos', 'root', '');
+$connect = new PDO('mysql:host=localhost;dbname=lotos', 'root', 'root');
 
  $query = "
  INSERT INTO master_timetable 

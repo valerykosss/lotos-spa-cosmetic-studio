@@ -3,7 +3,7 @@
 //update.php
 
 try {
-    $connect = new PDO('mysql:host=localhost;dbname=lotos', 'root', '');
+    $connect = new PDO('mysql:host=localhost;dbname=lotos', 'root', 'root');
     $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if(isset($_POST["id"])) {

@@ -4,7 +4,7 @@
 
 if(isset($_POST["id"]))
 {
- $connect = new PDO('mysql:host=localhost;dbname=lotos', 'root', '');
+ $connect = new PDO('mysql:host=localhost;dbname=lotos', 'root', 'root');
  $query = "
  DELETE from master_timetable WHERE id=:id
  ";
