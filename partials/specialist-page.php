@@ -5,7 +5,11 @@ if (session_id() == '')
 
 $master_id = $_GET['spec_id'];
 
-$master_reviews=mysqli_query($link, "SELECT master_rating.id_master_rating, master.master_name, user.name, master_rating, master_review, review_date FROM `master_rating` INNER JOIN `master` ON master_rating.id_master=master.id_master INNER JOIN user ON master_rating.id_user=user.id_user WHERE `master_rating`.`id_master`=$master_id AND `master_rating`.`status`='Одобрен'");
+$master_reviews=mysqli_query($link, "SELECT master_rating.id_master_rating, master.master_name, user.name, master_rating, master_review, review_date, user.avatar
+FROM `master_rating`
+INNER JOIN `master` ON master_rating.id_master=master.id_master
+INNER JOIN user ON master_rating.id_user=user.id_user
+WHERE `master_rating`.`id_master`=$master_id AND `master_rating`.`status`='Одобрен'");
 
 $master_data = mysqli_query($link, "SELECT * FROM `master` WHERE `id_master`=$master_id");
 $master_data = mysqli_fetch_assoc($master_data);
@@ -200,10 +204,16 @@ function russianMonth($monthNumber) {
                                     $stars.=$star;
                                 }
 
+                                if($master_review[6]==NULL||$master_review[6]==""){
+                                    $avatar="../images/icons/review-profile-default-icon.svg";
+                                }else{
+                                    $avatar=$master_review[6];
+                                }
+
                                 echo("
                                     <div class='swiper-slide'>
                                         <div class='review__card'>
-                                            <img class='icon' src='../images/icons/review-profile-default-icon.svg'>
+                                            <img class='icon' src='".$avatar."'>
                                             <div class='text'>
                                                 <p class='text_name-review-date'>".$master_review[2].", ".$date."</p>
                                                 <p class='text_review-text'>".$master_review[4]."</p>

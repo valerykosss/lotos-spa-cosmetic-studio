@@ -3,7 +3,7 @@ $(document).on('click', '.change-wheel__button', function () {
     var rowId = $(this).closest('tr').attr('id'); // Получаем ID строки таблицы
     var discountName = $(this).closest('tr').find('textarea[name=discount_name]').val(); // Получаем значение поля "discount_name"
     var color = $(this).closest('tr').find('input[name=color]').val(); // Получаем значение поля "color"
-    var wheelService = $(this).closest('tr').find('textarea[name=wheel_service]').val(); // Получаем значение поля "wheel_service"
+    var wheelService = $(this).closest('tr').find('select[id=wheel_service]').val(); // Получаем значение поля "wheel_service"
     
     // Отправляем данные на сервер для обновления
     updateWheel(rowId, discountName, color, wheelService);

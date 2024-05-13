@@ -1,4 +1,4 @@
-//удаление мастера
+//удаление услуги
 $(document).on('click', '.delete-service__button', function () {
     let id_service_to_delete = $(this).attr('id');
     deleteService(id_service_to_delete, $(this));

@@ -79,7 +79,7 @@ function addMaster(formData, button) {
             if (response.success) {
                 alert("Мастер добавлен!");
                 var newMaster = response.master;
-                var tableBody = $('.table__to-update-delete').find('tbody'); // находим tbody во второй таблице
+                var tableBody = $('.table__to-update-delete.master').find('tbody'); // находим tbody во второй таблице
 
                 // Создаем новую строку для мастера
                 var newRow = $('<tr id="' + newMaster.id+'"></tr>');

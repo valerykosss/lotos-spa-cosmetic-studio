@@ -30,7 +30,7 @@ function addService(formData, button) {
             if (response.success) {
                 alert("Услуга добавлена!");
                 var newService = response.service;
-                var tableBody = $('.table__to-update-delete').find('tbody'); // находим tbody во второй таблице
+                var tableBody = $('.table__to-update-delete.service').find('tbody'); // находим tbody во второй таблице
 
                 // Создаем новую строку для мастера
                 var newRow = $('<tr id="' + newService.id+'"></tr>');

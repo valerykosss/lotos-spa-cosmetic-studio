@@ -48,7 +48,7 @@ serviceSelect.addEventListener("change", async function() {
 });
 
 $( ".add-record__button" ).click(function() {
-    let service_name = $('.service').val();
+    let service_name = $('select.service').val();
     let master_name = $('#master').val();
     let client_name = $('.client_name').val();
     let record_date = $('.new-record_date').val().trim();
@@ -68,7 +68,7 @@ $( ".add-record__button" ).click(function() {
             success: function (response) { // запустится после получения результатов
                 alert("Запись добавлена!");
                 var newRecord = response.record;
-                var tableBody = $('.table__to-update-delete').find('tbody'); // находим tbody во второй таблице
+                var tableBody = $('.table__to-update-delete.record').find('tbody'); // находим tbody во второй таблице
 
                 // Создаем новую строку для мастера
                 var newRow = $('<tr id="' + newRecord.id + '"></tr>');

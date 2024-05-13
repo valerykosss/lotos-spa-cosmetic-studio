@@ -1,6 +1,9 @@
 <?php
 require_once "../handlers/isAdmin.php";
 
+if ($isAdmin==false || !isset($_SESSION['UserID'])){
+    header("Location: index.php");
+}
 require_once '../database/db.php';
 require_once "../handlers/admin-panel-handlers/adminpanel_info_script.php";
 if (session_id() == '')
@@ -8,6 +11,7 @@ if (session_id() == '')
 ?>
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +35,7 @@ if (session_id() == '')
         }
     </style>
 </head>
+
 <body>
     <div class="preloader">
         <div class="preloader__row">
@@ -97,7 +102,7 @@ if (session_id() == '')
                         </table>
 
                         <p class="sub-header">Все мастера: </p>
-                        <table class="table__to-update-delete">
+                        <table class="table__to-update-delete master">
                             <thead>
                                 <tr>
                                     <th>Имя</th>
@@ -184,7 +189,7 @@ if (session_id() == '')
                         </table>
 
                         <p class="sub-header">Все услуги: </p>
-                        <table class="table__to-update-delete">
+                        <table class="table__to-update-delete service">
                             <thead>
                                 <tr>
                                     <th>Тип услуги</th>
@@ -268,7 +273,7 @@ if (session_id() == '')
                                     </td>
                                     <td>
                                         <select id="master" name="master">
-                                        <option selected disabled>Выберите мастера</option>
+                                            <option selected disabled>Выберите мастера</option>
                                         </select>
                                     </td>
                                     <td><textarea class="client_name" name="client_name"></textarea></td>
@@ -280,7 +285,7 @@ if (session_id() == '')
                                 </tr>
                             </tbody>
                         </table>
-                        <table class="table__to-update-delete">
+                        <table class="table__to-update-delete record">
                             <thead>
                                 <tr>
                                     <th>Номер записи</th>
@@ -294,12 +299,13 @@ if (session_id() == '')
                             </thead>
                             <?php
                             $query = 'SELECT `procedure_record`.`id_record`, `master`.`master_name`, `service`.`service_name`, `user`.`name`, `procedure_record`.`record_date`, `procedure_record`.`record_time`, `procedure_record_status`.`id_record_status`
-                                    FROM `procedure_record`
-                                    INNER JOIN `master_service` ON `procedure_record`.`id_master_service`=`master_service`.`id_master_service`
-                                    INNER JOIN `master` ON `master_service`.`id_master`=`master`.`id_master`
-                                    INNER JOIN `service` ON `master_service`.`id_service`=`service`.`id_service`
-                                    INNER JOIN `procedure_record_status` ON `procedure_record`.`id_record_status`=`procedure_record_status`.`id_record_status`
-                                    INNER JOIN `user` ON `procedure_record`.`id_user`=`user`.`id_user`;';
+                                        FROM `procedure_record`
+                                        INNER JOIN `master_service` ON `procedure_record`.`id_master_service`=`master_service`.`id_master_service`
+                                        INNER JOIN `master` ON `master_service`.`id_master`=`master`.`id_master`
+                                        INNER JOIN `service` ON `master_service`.`id_service`=`service`.`id_service`
+                                        INNER JOIN `procedure_record_status` ON `procedure_record`.`id_record_status`=`procedure_record_status`.`id_record_status`
+                                        INNER JOIN `user` ON `procedure_record`.`id_user`=`user`.`id_user`
+                                        ORDER BY `procedure_record`.`record_date` ASC, `procedure_record`.`record_time` ASC;';
 
                             echo "<tbody>";
                             $trBlock = '';
@@ -332,7 +338,7 @@ if (session_id() == '')
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <button class='delete-record__button' id='".$row[0]."'>удалить</button>
+                                                        <button class='delete-record__button' id='" . $row[0] . "'>удалить</button>
                                                     </td>
                                                 </tr>";
                                 }
@@ -345,9 +351,56 @@ if (session_id() == '')
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-4">
-                        Содержимое 4... Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique eaque iure
-                        debitis nostrum, vero ad totam ratione sequi! Suscipit, labore repellat cum soluta ullam
-                        dignissimos perspiciatis sequi rerum sapiente ex.
+                        <p class="sub-header">Обратная связь</p>
+                        <table class="table__to-update-delete">
+                            <thead>
+                                <tr>
+                                    <th>Номер обращения</th>
+                                    <th>Имя</th>
+                                    <th>Номер телефона</th>
+                                    <th>Сообщение</th>
+                                    <th>Статус</th>
+                                </tr>
+                            </thead>
+                            <?php
+                            $query = 'SELECT `id_requested_feedback`, `requested_feedback`.`name`, `requested_feedback`.`tel`, `requested_feedback`.`message_text`, `requested_feedback`.`status`
+                            FROM `requested_feedback`;';
+
+                            echo "<tbody>";
+                            $trBlock = '';
+
+                            $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                            if ($result) {
+                                for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                    $row = mysqli_fetch_row($result);
+
+                                    $options = "";
+                                    if ($row[4] == "получено") {
+                                        $options = "
+                                                    <option value='" . $row[4] . "' selected>Получено</option>
+                                                    <option value='обработано'>Обработано</option>
+                                                    ";
+                                    } else if ($row[4] == "обработано") {
+                                        continue;
+                                    }
+                                    $trBlock .= "
+                                                <tr id='$row[0]'>
+                                                    <td>" . $row[0] . "</td>
+                                                    <td>" . $row[1] . "</td>
+                                                    <td>" . $row[2] . "</td>
+                                                    <td>" . $row[3] . "</td>
+                                                    <td>
+                                                        <select class='feedback-status'>
+                                                            " . $options . "
+                                                        </select>
+                                                    </td>
+                                                </tr>";
+                                }
+                            }
+                            echo $trBlock;
+                            echo "</tbody>";
+                            ?>
+                        </table>
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-5">
@@ -364,7 +417,11 @@ if (session_id() == '')
                                 <tr>
                                     <td><textarea class="discount_name"></textarea></td>
                                     <td><input type="color" class="sector_wheel_color"></input></td>
-                                    <td><textarea class="id_service"></textarea></td>
+                                    <td>
+                                        <select class="wheel_service" id="wheel_service">
+                                            <option selected disabled>Выберите услугу</option>
+                                        </select>
+                                    </td>
                                     <td>
                                         <button class='add-wheel__button'></button>
                                     </td>
@@ -392,11 +449,26 @@ if (session_id() == '')
                                 for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                                     $row = mysqli_fetch_row($result);
 
+                                    $options = "";
+
+                                    foreach ($services as $service) {
+                                        if ($service[0] == $row[3]) {
+                                            $option = "<option value=" . $service[0] . " selected>" . $service[1] . "</option>";
+                                        } else {
+                                            $option = "<option value=" . $service[0] . ">" . $service[1] . "</option>";
+                                        }
+                                        $options .= $option;
+                                    }
+
                                     $trBlock .= "
                                                 <tr id='$row[0]'>
                                                     <td><textarea name='discount_name'>" . $row[1] . "</textarea></td>
                                                     <td><input type='color' class='colorpicker' value='" . $row[2] . "' name='color'></td>
-                                                    <td><textarea name='wheel_service'>" . $row[3] . "</textarea></td>
+                                                    <td>
+                                                        <select class='wheel_service' id='wheel_service'>
+                                                            " . $options . "
+                                                        </select>
+                                                    </td>
                                                     <td>
                                                         <button class='change-wheel__button' id='" . $row[0] . "'>change</button>
                                                         <button class='delete-wheel__button' id='" . $row[0] . "'>delete</button>
@@ -411,9 +483,121 @@ if (session_id() == '')
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-6">
-                        Содержимое 6... Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique eaque iure
-                        debitis nostrum, vero ad totam ratione sequi! Suscipit, labore repellat cum soluta ullam
-                        dignissimos perspiciatis sequi rerum sapiente ex.
+                        <p class="sub-header">Модерация отзывов мастера</p>
+                        <table class="table__to-update-delete master-rating">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Мастер</th>
+                                    <th>Клиент</th>
+                                    <th>Оценка</th>
+                                    <th>Отзыв</th>
+                                    <th>Дата</th>
+                                    <th>Статус</th>
+                                </tr>
+                            </thead>
+                            <?php
+                            $query = 'SELECT master_rating.id_master_rating, master.master_name, user.name, master_rating, master_review, review_date, `status` FROM `master_rating` INNER JOIN `master` ON master_rating.id_master=master.id_master INNER JOIN user ON master_rating.id_user=user.id_user';
+
+                            echo "<tbody>";
+                            $trBlock = '';
+
+                            $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                            if ($result) {
+                                for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                    $row = mysqli_fetch_row($result);
+
+                                    $options = "";
+                                    if ($row[6] == "На рассмотрении") {
+                                        $options = "
+                                                    <option value='На рассмотрении' selected>На рассмотрении</option>
+                                                    <option value='Одобрен'>Одобрен</option>
+                                                    ";
+                                    } else if ($row[6] == "Одобрен") {
+                                        $options = "
+                                                    <option value='На рассмотрении'>На рассмотрении</option>
+                                                    <option value='Одобрен' selected>Одобрен</option>
+                                                    ";
+                                    }
+                                    $trBlock .= "
+                                                <tr id='$row[0]'>
+                                                    <td>" . $row[0] . "</td>
+                                                    <td>" . $row[1] . "</td>
+                                                    <td>" . $row[2] . "</td>
+                                                    <td>" . $row[3] . "</td>
+                                                    <td>" . $row[4] . "</td>
+                                                    <td>" . $row[5] . "</td>
+                                                    <td>
+                                                        <select class='master-review-status'>
+                                                            " . $options . "
+                                                        </select>
+                                                    </td>
+                                                </tr>";
+                                }
+                            }
+                            echo $trBlock;
+                            echo "</tbody>";
+                            ?>
+                        </table>
+                        <p class="sub-header">Модерация отзывов услуги</p>
+                        <table class="table__to-update-delete service-rating">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Услуга</th>
+                                    <th>Клиент</th>
+                                    <th>Оценка</th>
+                                    <th>Отзыв</th>
+                                    <th>Дата</th>
+                                    <th>Статус</th>
+                                </tr>
+                            </thead>
+                            <?php
+                            $query = 'SELECT id_service_rating, user.name, service.service_name, service_review, service_rating, review_date, `status`
+                            FROM service_rating
+                            INNER JOIN user ON service_rating.id_user=user.id_user
+                            INNER JOIN service ON service_rating.id_service=service.id_service';
+
+                            echo "<tbody>";
+                            $trBlock = '';
+
+                            $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                            if ($result) {
+                                for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                    $row = mysqli_fetch_row($result);
+
+                                    $options = "";
+                                    if ($row[6] == "На рассмотрении") {
+                                        $options = "
+                                                    <option value='На рассмотрении' selected>На рассмотрении</option>
+                                                    <option value='Одобрен'>Одобрен</option>
+                                                    ";
+                                    } else if ($row[6] == "Одобрен") {
+                                        $options = "
+                                                    <option value='На рассмотрении'>На рассмотрении</option>
+                                                    <option value='Одобрен' selected>Одобрен</option>
+                                                    ";
+                                    }
+                                    $trBlock .= "
+                                                <tr id='$row[0]'>
+                                                    <td>" . $row[0] . "</td>
+                                                    <td>" . $row[2] . "</td>
+                                                    <td>" . $row[1] . "</td>
+                                                    <td>" . $row[4] . "</td>
+                                                    <td>" . $row[3] . "</td>
+                                                    <td>" . $row[5] . "</td>
+                                                    <td>
+                                                        <select class='service-review-status'>
+                                                            " . $options . "
+                                                        </select>
+                                                    </td>
+                                                </tr>";
+                                }
+                            }
+                            echo $trBlock;
+                            echo "</tbody>";
+                            ?>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -466,6 +650,11 @@ if (session_id() == '')
 
     <script type="module" src="../js/admin-panel-ajax/change_record_status.js"></script>
     <script type="module" src="../js/admin-panel-ajax/add-record.js"></script>
+    <script type="module" src="../js/admin-panel-ajax/delete-record.js"></script>
+
+    <script type="module" src="../js/admin-panel-ajax/change-feedback-status.js"></script>
+    <script type="module" src="../js/admin-panel-ajax/change-service-review-status.js"></script>
+    <script type="module" src="../js/admin-panel-ajax/change-master-review-status.js"></script>
 
 
     <script src="../js/preloader.js"></script>

@@ -5,7 +5,7 @@
 
     $service_id=$_GET['service_id'];
 
-    $service_reviews=mysqli_query($link, "SELECT id_service_rating, user.name, service.service_name, service_review, service_rating
+    $service_reviews=mysqli_query($link, "SELECT id_service_rating, user.name, service.service_name, service_review, service_rating, review_date, user.avatar
     FROM service_rating
     INNER JOIN user ON service_rating.id_user=user.id_user
     INNER JOIN service ON service_rating.id_service=service.id_service
@@ -13,7 +13,16 @@
 
     $service_data=mysqli_query($link, "SELECT `service_name`, `service_image`, `service_description`,  `duration`, `price`, `insication`, `results`  FROM `service` WHERE `id_service`=$service_id");
     $service_data=mysqli_fetch_assoc($service_data);
-
+// Функция для получения русского названия месяца
+function russianMonth($monthNumber) {
+    $months = array(
+        'января', 'февраля', 'марта',
+        'апреля', 'мая', 'июня',
+        'июля', 'августа', 'сентября',
+        'октября', 'ноября', 'декабря'
+    );
+    return $months[$monthNumber - 1];
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -197,18 +206,29 @@
                     <div class="swiper-wrapper">
                         <?php
                             foreach($service_reviews as $service_review){
+                                $date = strtotime($service_review[5]); // Преобразование строки в дату
+                                $day = date('j', $date);
+                                $month = date('n', $date);
+                                $date = $day . ' ' . russianMonth($month);
+
                                 $star="<img src='../images/icons/review-star.svg'>";
                                 $stars="";
                                 for($i=0; $i<$service_review[4]; $i++){
                                     $stars.=$star;
                                 }
 
+                                if($service_review[6]==NULL||$service_review[6]==""){
+                                    $avatar="../images/icons/review-profile-default-icon.svg";
+                                }else{
+                                    $avatar=$service_review[6];
+                                }
+
                                 echo("
                                     <div class='swiper-slide'>
                                         <div class='review__card'>
-                                            <img class='icon' src='../images/icons/review-profile-default-icon.svg'>
+                                            <img class='icon' src='".$avatar."'>
                                             <div class='text'>
-                                                <p class='text_name-review-date'>".$service_review[1]."</p>
+                                                <p class='text_name-review-date'>".$service_review[1].", ".$date."</p>
                                                 <p class='text_review-text'>".$service_review[3]."</p>
                                             </div>
                                             <div class='stars'>".$stars."</div>
