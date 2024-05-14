@@ -75,7 +75,7 @@ if (session_id() == '')
 
                     <div class="tab-content-admin-panel" id="content-1">
                         <p class="sub-header">Введите данные нового мастера: </p>
-                        <table class="table__to-add">
+                        <table class="table__to-add master">
                             <thead>
                                 <tr>
                                     <th>Имя</th>
@@ -149,7 +149,7 @@ if (session_id() == '')
 
                     <div class="tab-content-admin-panel" id="content-2">
                         <p class="sub-header">Введите данные новой услуги: </p>
-                        <table class="table__to-add">
+                        <table class="table__to-add service">
                             <thead>
                                 <tr>
                                     <th>Тип услуги</th>
@@ -610,17 +610,50 @@ if (session_id() == '')
     ?>
 
 <script>
-    // Получаем все textarea с классом "digitsOnly"
-    var textareas = document.querySelectorAll('.digitsOnly');
-
-    // Добавляем обработчик для каждого textarea
-    textareas.forEach(textarea => {
-        textarea.addEventListener("input", function(event) {
-            const target = event.target;
+document.addEventListener("DOMContentLoaded", function() {
+    // Обработчик для таблицы мастера
+    var masterTableAdd = document.querySelector('.table__to-add.master');
+    masterTableAdd.addEventListener('input', function(event) {
+        const target = event.target;
+        // Проверяем, является ли элемент textarea с классом "digitsOnly"
+        if (target.classList.contains('digitsOnly')) {
             const text = target.value;
             target.value = text.replace(/\D/g, ''); // Оставляем только цифры
-        });
+        }
     });
+    // Обработчик для таблицы мастера
+    var masterTable = document.querySelector('.table__to-update-delete.master');
+    masterTable.addEventListener('input', function(event) {
+        const target = event.target;
+        // Проверяем, является ли элемент textarea с классом "digitsOnly"
+        if (target.classList.contains('digitsOnly')) {
+            const text = target.value;
+            target.value = text.replace(/\D/g, ''); // Оставляем только цифры
+        }
+    });
+
+    // Обработчик для таблицы услуг
+    var serviceTableAdd = document.querySelector('.table__to-add.service');
+    serviceTableAdd.addEventListener('input', function(event) {
+        const target = event.target;
+        // Проверяем, является ли элемент textarea с классом "digitsOnly"
+        if (target.classList.contains('digitsOnly')) {
+            const text = target.value;
+            target.value = text.replace(/\D/g, ''); // Оставляем только цифры
+        }
+    });
+    // Обработчик для таблицы услуг
+    var serviceTable = document.querySelector('.table__to-update-delete.service');
+    serviceTable.addEventListener('input', function(event) {
+        const target = event.target;
+        // Проверяем, является ли элемент textarea с классом "digitsOnly"
+        if (target.classList.contains('digitsOnly')) {
+            const text = target.value;
+            target.value = text.replace(/\D/g, ''); // Оставляем только цифры
+        }
+    });
+});
+
 </script>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

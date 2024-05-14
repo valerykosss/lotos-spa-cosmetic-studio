@@ -39,7 +39,7 @@ function addMaster(formData, button) {
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.master_surname + '</textarea></td>');
                 newRow.append('<td class="master-photo-container" id="photo_' + newMaster.id + '"><img style="width:50px; height:50px" src="' + newMaster.master_photo + '"></td>');
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.education + '</textarea></td>');
-                newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.work_experience + '</textarea></td>');
+                newRow.append('<td><textarea class="digitsOnly" id="' + newMaster.id + '">' + newMaster.work_experience + '</textarea></td>');
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.position + '</textarea></td>');
                 newRow.append('<td><button class="change-master__button" id="' + newMaster.id + '"></button>' +
                     '<button class="delete-master__button" id="' + newMaster.id + '"></button></td>');

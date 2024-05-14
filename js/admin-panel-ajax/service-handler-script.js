@@ -41,8 +41,8 @@ function addService(formData, button) {
                 newRow.append('<td><textarea id="' + newService.id + '">' + newService.service_name + '</textarea></td>');
                 newRow.append('<td class="service-photo-container" id="photo_' + newService.id + '"><img style="width:50px; height:50px" src="' + newService.service_image + '"></td>');
                 newRow.append('<td><textarea id="' + newService.id + '">' + newService.service_description + '</textarea></td>');
-                newRow.append('<td><textarea id="' + newService.id + '">' + newService.duration + '</textarea></td>');
-                newRow.append('<td><textarea id="' + newService.id + '">' + newService.price + '</textarea></td>');
+                newRow.append('<td><textarea class="digitsOnly" id="' + newService.id + '">' + newService.duration + '</textarea></td>');
+                newRow.append('<td><textarea class="digitsOnly" id="' + newService.id + '">' + newService.price + '</textarea></td>');
                 newRow.append('<td><textarea id="' + newService.id + '">' + newService.insication + '</textarea></td>');
                 newRow.append('<td><textarea id="' + newService.id + '">' + newService.results + '</textarea></td>');
                 newRow.append('<td><button class="change-service__button" id="' + newService.id + '"></button>' +
