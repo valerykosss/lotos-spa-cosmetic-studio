@@ -62,17 +62,11 @@
                         echo "<ul class='header__menu__sub-list'>";
                                 // if(isset($_SESSION['UserID'])){
                                 if (empty($_SESSION['UserID'])) {
-                                    echo "<li>
-                                        <a class='header__menu__sub-link' id='open__log-in__button'>ВОЙТИ</a>
-                                    </li>";
+                                    echo "<a class='header__menu__sub-link' id='open__log-in__button'><li>ВОЙТИ</li></a>";
                                 } else {
-                                    echo "<li> 
-                                        <a class=\"header__menu__sub-link\" href='account.php'> Мой профиль</a> 
-                                    </li>";
+                                    echo "<a class=\"header__menu__sub-link\" href='account.php'><li>Мой профиль</li></a>";
 
-                                    echo "<li> 
-                                        <a class=\"header__menu__sub-link\" id=\"logout__button\" href=\"../handlers/logout.php\"> ВЫЙТИ</a>
-                                    </li>";
+                                    echo "<a class=\"header__menu__sub-link\" id=\"logout__button\" href=\"../handlers/logout.php\"><li>ВЫЙТИ</li></a>";
                                 } 
                                 ?>
                         </ul>

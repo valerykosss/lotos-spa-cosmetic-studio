@@ -92,7 +92,7 @@ if (session_id() == '')
                                     <td><textarea class="master_surname"></textarea></td>
                                     <td><input type="file" class="master_photo" name="master_photo"></input></td>
                                     <td><textarea class="education"></textarea></td>
-                                    <td><textarea class="work_experience"></textarea></td>
+                                    <td><textarea class="work_experience digitsOnly"></textarea></td>
                                     <td><textarea class="position"></textarea></td>
                                     <td>
                                         <button class='add-master__button'></button>
@@ -130,7 +130,7 @@ if (session_id() == '')
                                                     <td><textarea id='" . $row[0] . "'>" . $row[2] . "</textarea></td>
                                                     <td class='master-photo-container' id='photo_" . $row[0] . "'><img src='" . $row[3] . "' alt='photo'></td>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[4] . "</textarea></td>
-                                                    <td><textarea id='" . $row[0] . "'>" . $row[5] . "</textarea></td>
+                                                    <td><textarea class='digitsOnly' id='" . $row[0] . "'>" . $row[5] . "</textarea></td>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[6] . "</textarea></td>
                                                     
                                                     <td>
@@ -177,8 +177,8 @@ if (session_id() == '')
                                     <td><textarea class="service_name"></textarea></td>
                                     <td><input type="file" class="service_image" name="service_image"></input></td>
                                     <td><textarea class="service_description"></textarea></td>
-                                    <td><textarea class="duration"></textarea></td>
-                                    <td><textarea class="price"></textarea></td>
+                                    <td><textarea class="duration digitsOnly"></textarea></td>
+                                    <td><textarea class="price digitsOnly"></textarea></td>
                                     <td><textarea class="insication"></textarea></td>
                                     <td><textarea class="results"></textarea></td>
                                     <td>
@@ -234,8 +234,8 @@ if (session_id() == '')
                                                     <td><textarea>" . $row[3] . "</textarea></td>
                                                     <td class='service-photo-container' id='photo_" . $row[0] . "'><img style='width:50px; height:50px' src='" . $row[4] . "'></td>
                                                     <td><textarea>" . $row[5] . "</textarea></td>
-                                                    <td><textarea>" . $row[6] . "</textarea></td>
-                                                    <td><textarea>" . $row[7] . "</textarea></td>
+                                                    <td><textarea class='digitsOnly'>" . $row[6] . "</textarea></td>
+                                                    <td><textarea class='digitsOnly'>" . $row[7] . "</textarea></td>
                                                     <td><textarea>" . $row[8] . "</textarea></td>
                                                     <td><textarea>" . $row[9] . "</textarea></td>
                                                     
@@ -608,19 +608,19 @@ if (session_id() == '')
     // require 'footer-white.php' 
     ?>
 
-    <!-- <script>
-          const textarea = document.querySelector('.number-input');
-        
-        textarea.addEventListener('input', function () {
-            // Удаляем все нецифровые символы
-            this.value = this.value.replace(/\D/g, '');
-            
-            // Ограничиваем длину ввода двумя символами
-            if (this.value.length > 2) {
-                this.value = this.value.slice(0, 2);
-            }
+<script>
+    // Получаем все textarea с классом "digitsOnly"
+    var textareas = document.querySelectorAll('.digitsOnly');
+
+    // Добавляем обработчик для каждого textarea
+    textareas.forEach(textarea => {
+        textarea.addEventListener("input", function(event) {
+            const target = event.target;
+            const text = target.value;
+            target.value = text.replace(/\D/g, ''); // Оставляем только цифры
         });
-    </script> -->
+    });
+</script>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

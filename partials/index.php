@@ -45,13 +45,23 @@ require_once "../handlers/get_swiper_data_script.php";
         <section class="page__slider">
             <!-- First Swiper -->
             <div class="swiper-container swiper1 _container">
-                <div class="swiper-wrapper">
+                <!-- <div class="swiper-wrapper">
                     <div class="swiper-slide background" style="background-image: url('../images/main-page-slider/kosmeticheskie-proczedury-fon.png'); background-size: cover;">
                     </div>
                     <div class="swiper-slide background" style="background-image: url('../images/main-page-slider/spa-programmy-fon.png'); background-size: cover;"></div>
                     <div class="swiper-slide background" style="background-image: url('../images/main-page-slider/massage-lica-fon.png'); background-size: cover;">
                     </div>
                     <div class="swiper-slide background" style="background-image: url('../images/main-page-slider/massage-tela-fon.png'); background-size: cover;">
+                    </div>
+                </div> -->
+
+                <div class="swiper-container swiper1 _container">
+                    <div class="swiper-wrapper">
+                    <?php
+                    foreach ($first_swiper as $item) {
+                        echo (" <div class='swiper-slide background' style='background-image: url(.." . $item[3] . "); background-size: cover;'></div>");
+                    }
+                    ?>
                     </div>
                 </div>
 
@@ -79,7 +89,7 @@ require_once "../handlers/get_swiper_data_script.php";
                                     <p>" . $item[1] . "</p>
             
                                     <div class='button'>
-                                        <a href='cosmetic-procedures.php?stype_id=" . $item[0] . "' style='color: #333; text-decoration:none'>
+                                        <a href='service-type-page.php?stype_id=" . $item[0] . "' style='color: #333; text-decoration:none'>
                                             <span class='details'>ПОДРОБНЕЕ</span>
                                         </a>
                                         
