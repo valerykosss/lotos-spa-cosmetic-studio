@@ -19,7 +19,7 @@ function changeFeedbackStatus(){
                 }
             }
         };
-        xhr.open('POST', '../../handlers/admin-panel-handlers/update_feedback_status_script.php', true);
+        xhr.open('POST', '../handlers/admin-panel-handlers/update_feedback_status_script.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('feedback_id=' + feedbackId + '&new_status=' + newStatus);
     }

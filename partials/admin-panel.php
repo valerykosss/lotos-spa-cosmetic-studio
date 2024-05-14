@@ -635,9 +635,9 @@ if (session_id() == '')
 
     <script src="../js/signInUp.js"></script>
 
-    <script src="../js/admin-panel-ajax/add-master.js"></script>
-    <script src="../js/admin-panel-ajax/delete-master.js"></script>
-    <script src="../js/admin-panel-ajax/update-master.js"></script>
+    <script src="../js/admin-panel-ajax/master-handler-script.js"></script>
+    <!-- <script src="../js/admin-panel-ajax/delete-master.js"></script>
+    <script src="../js/admin-panel-ajax/update-master.js"></script> -->
 
     <script src="../js/admin-panel-ajax/service-handler-script.js"></script>
     <!-- <script src="../js/admin-panel-ajax/delete-service.js"></script>

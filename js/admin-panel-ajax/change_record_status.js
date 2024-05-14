@@ -19,7 +19,7 @@ function changeStatus(){
                 }
             }
         };
-        xhr.open('POST', '../../handlers/admin-panel-handlers/update_record_status_script.php', true);
+        xhr.open('POST', '../handlers/admin-panel-handlers/update_record_status_script.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('record_id=' + recordId + '&new_status=' + newStatus);
     }
