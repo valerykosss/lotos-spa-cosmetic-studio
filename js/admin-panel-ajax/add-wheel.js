@@ -50,8 +50,8 @@ function addWheel(discount_name, sector_wheel_color, id_service, button) {
                 newRow.append('<td><textarea name="discount_name">' + newSector.discount_name + '</textarea></td>');
                 newRow.append('<td><input type="color" class="colorpicker" value="' + newSector.sector_wheel_color + '" name="color"></td>');
                 newRow.append('<td><select class="wheel-service" id="wheel_service">' + newSector.options + '</select></td>');
-                newRow.append('<td><button class="change-wheel__button" id="' + newSector.id + '">изменить</button>' +
-                    '<button class="delete-wheel__button" id="' + newSector.id + '">удалить</button></td>');
+                newRow.append('<td><button class="change-wheel__button" id="' + newSector.id + '"></button>' +
+                    '<button class="delete-wheel__button" id="' + newSector.id + '"></button></td>');
 
                 // Добавляем новую строку в таблицу
                 tableBody.append(newRow);

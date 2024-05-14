@@ -81,13 +81,13 @@ $( ".add-record__button" ).click(function() {
                 newRow.append('<td>'+newRecord.record_date+'</td>');
                 newRow.append('<td>'+newRecord.record_time+':00</td>');
                 newRow.append('<td><select class="record-status"><option value="1" selected>Ожидается</option><option value="2">Проведена</option></select></td>');
-                newRow.append('<td><button class="delete-record__button" id="' + newRecord.id + '">удалить</button></td>');
+                newRow.append('<td><button class="delete-record__button" id="' + newRecord.id + '"></button></td>');
 
                 // Добавляем новую строку в таблицу
                 tableBody.append(newRow);
                 changeStatus();
-                $('.service').val('');
-                $('.master_name').val('');
+                $('#service option:first').prop('selected', true);
+                $('#master option:first').prop('selected', true);
                 $('.client_name').val('');
                 $('.new-record_date').val('');
                 $('.new-record_time').val('');

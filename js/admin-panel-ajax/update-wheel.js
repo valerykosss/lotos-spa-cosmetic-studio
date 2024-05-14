@@ -23,6 +23,7 @@ function updateWheel(rowId, discountName, color, wheelService) {
         },
         success: function (response) {
             // Обработка успешного ответа от сервера
+            alert("Сектор обновлен!");
             console.log('Элемент успешно обновлен!');
         },
         error: function () {

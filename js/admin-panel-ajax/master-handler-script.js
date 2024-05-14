@@ -37,7 +37,7 @@ function addMaster(formData, button) {
                 // Создаем ячейки для новой строки
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.master_name + '</textarea></td>');
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.master_surname + '</textarea></td>');
-                newRow.append('<td class="master-photo-container" id="photo_' + newMaster.id + '"><img style="width:50px; height:50px" src="' + newMaster.master_photo + '"></td>');
+                newRow.append('<td class="master-photo-container" id="photo_' + newMaster.id + '"><img style="width: 200px" src="' + newMaster.master_photo + '"></td>');
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.education + '</textarea></td>');
                 newRow.append('<td><textarea class="digitsOnly" id="' + newMaster.id + '">' + newMaster.work_experience + '</textarea></td>');
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.position + '</textarea></td>');
@@ -153,10 +153,12 @@ document.addEventListener("DOMContentLoaded", function() {
         reader.onload = function(e) {
             var image = new Image();
             image.src = e.target.result;
+            image.width = 200;
 
             // Обработчик клика на изображение для выбора нового фото
             image.onclick = function() {
                 var input = document.createElement('input');
+                
                 input.type = 'file';
                 input.accept = 'image/*';
                 input.onchange = function(event) {

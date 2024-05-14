@@ -175,9 +175,13 @@ select{
     font-family: 'SF Pro Text';
 }
 
-/*--------------------------------------BUTTONS FOR SERVICE-------------------------------------------*/
-.add-master__button {
-    width: 18px;
+.master_image{
+    font-family: 'SF Pro Text';
+}
+
+/*--------------------------------------BUTTONS FOR RECORD-------------------------------------------*/
+.add-record__button {
+	width: 18px;
     height: 18px;
     background-image: url('../images/icons/add-icon.svg');
     background-size: cover;
@@ -186,15 +190,38 @@ select{
     cursor: pointer;
 }
 
-.photo-container {
-    width: 200px; /* Задаете фиксированную ширину */
-    height: 200px; /* Задаете фиксированную высоту */
-    overflow: hidden; /* Обрезаем изображение, которое выходит за границы ячейки */
+.delete-record__button{
+	width: 18px;
+    height: 18px;
+    background-image: url('../images/icons/trash.svg');
+    background-size: cover;
+	background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
-.photo-container img {
-    width: 100%; /* Масштабируем изображение по ширине ячейки */
-    height: auto; /* Автоматически масштабируем высоту, чтобы сохранить пропорции */
-    display: block; /* Изображение ведет себя как блочный элемент внутри ячейки */
-	cursor:pointer;
+/*--------------------------------------BUTTONS FOR WHEEL-------------------------------------------*/
+.change-wheel__button{
+    width: 18px;
+    height: 18px;
+    background-image: url('../images/icons/renew-icon.svg');
+    background-size: cover;
+	background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+	margin-bottom: 10px;
+}
+
+.delete-wheel__button{
+	width: 18px;
+    height: 18px;
+    background-image: url('../images/icons/trash.svg');
+    background-size: cover;
+	background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+	margin-bottom: 10px;
+	margin-left: 10px;
 }

@@ -39,7 +39,7 @@ function addService(formData, button) {
                 // Создаем ячейки для новой строки
                 newRow.append('<td><select id="id_service_type">' + newService.options + '</select></td>');
                 newRow.append('<td><textarea id="' + newService.id + '">' + newService.service_name + '</textarea></td>');
-                newRow.append('<td class="service-photo-container" id="photo_' + newService.id + '"><img style="width:50px; height:50px" src="' + newService.service_image + '"></td>');
+                newRow.append('<td class="service-photo-container" id="photo_' + newService.id + '"><img style="width:100px;" src="' + newService.service_image + '"></td>');
                 newRow.append('<td><textarea id="' + newService.id + '">' + newService.service_description + '</textarea></td>');
                 newRow.append('<td><textarea class="digitsOnly" id="' + newService.id + '">' + newService.duration + '</textarea></td>');
                 newRow.append('<td><textarea class="digitsOnly" id="' + newService.id + '">' + newService.price + '</textarea></td>');
@@ -160,6 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
         reader.onload = function (e) {
             var image = new Image();
             image.src = e.target.result;
+            image.width = 100;
 
             // Обработчик клика на изображение для выбора нового фото
             image.onclick = function () {

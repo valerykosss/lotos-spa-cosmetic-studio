@@ -71,6 +71,9 @@ if (session_id() == '')
                         <input id="tab-btn-6" name="tab-btn" type="radio" value="">
                         <label for="tab-btn-6">Модерация отзывов</label>
 
+                        <input id="tab-btn-7" name="tab-btn" type="radio" value="">
+                        <label for="tab-btn-7">Мастер-сервис</label>
+
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-1">
@@ -82,7 +85,7 @@ if (session_id() == '')
                                     <th>Фамилия</th>
                                     <th>Фото</th>
                                     <th>Курсы</th>
-                                    <th>Опыт работы</th>
+                                    <th>Опыт работы(лет)</th>
                                     <th>Специализация</th>
                                 </tr>
                             </thead>
@@ -109,7 +112,7 @@ if (session_id() == '')
                                     <th>Фамилия</th>
                                     <th>Фото</th>
                                     <th>Курсы</th>
-                                    <th>Опыт работы</th>
+                                    <th>Опыт работы(лет)</th>
                                     <th>Специализация</th>
                                 </tr>
                             </thead>
@@ -128,7 +131,7 @@ if (session_id() == '')
                                                 <tr id='$row[0]'>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[1] . "</textarea></td>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[2] . "</textarea></td>
-                                                    <td class='master-photo-container' id='photo_" . $row[0] . "'><img src='" . $row[3] . "' alt='photo'></td>
+                                                    <td class='master-photo-container' id='photo_" . $row[0] . "'><img src='" . $row[3] . "' alt='photo' style='width: 200px'></td>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[4] . "</textarea></td>
                                                     <td><textarea class='digitsOnly' id='" . $row[0] . "'>" . $row[5] . "</textarea></td>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[6] . "</textarea></td>
@@ -156,8 +159,8 @@ if (session_id() == '')
                                     <th>Название услуги</th>
                                     <th>Фото</th>
                                     <th>Описание</th>
-                                    <th>Длительность</th>
-                                    <th>Стоимость (руб)</th>
+                                    <th>Дли-<br>тель-<br>ность (мин)</th>
+                                    <th>Цена (руб)</th>
                                     <th>Показания</th>
                                     <th>Результаты</th>
                                 </tr>
@@ -196,8 +199,8 @@ if (session_id() == '')
                                     <th>Название услуги</th>
                                     <th>Фото</th>
                                     <th>Описание</th>
-                                    <th>Длительность</th>
-                                    <th>Стоимость (руб)</th>
+                                    <th>Дли-<br>тель-ность (мин)</th>
+                                    <th>Цена (руб)</th>
                                     <th>Показания</th>
                                     <th>Результаты</th>
                                 </tr>
@@ -233,7 +236,7 @@ if (session_id() == '')
                                                         </select>
                                                     </td>
                                                     <td><textarea>" . $row[3] . "</textarea></td>
-                                                    <td class='service-photo-container' id='photo_" . $row[0] . "'><img style='width:50px; height:50px' src='" . $row[4] . "'></td>
+                                                    <td class='service-photo-container' id='photo_" . $row[0] . "'><img style='width:100px;' src='" . $row[4] . "'></td>
                                                     <td><textarea>" . $row[5] . "</textarea></td>
                                                     <td><textarea class='digitsOnly'>" . $row[6] . "</textarea></td>
                                                     <td><textarea class='digitsOnly'>" . $row[7] . "</textarea></td>
@@ -255,12 +258,12 @@ if (session_id() == '')
                     </div>
                     <div class="tab-content-admin-panel" id="content-3">
                         <p class="sub-header">Добавить запись:</p>
-                        <table class="table__to-add">
+                        <table class="table__to-add record">
                             <thead>
                                 <tr>
                                     <th>Услуга</th>
                                     <th>Мастер</th>
-                                    <th>Клиент</th>
+                                    <th>ID Клиента</th>
                                     <th>Дата записи</th>
                                     <th>Время записи</th>
                                 </tr>
@@ -277,11 +280,11 @@ if (session_id() == '')
                                             <option selected disabled>Выберите мастера</option>
                                         </select>
                                     </td>
-                                    <td><textarea class="client_name" name="client_name"></textarea></td>
+                                    <td><textarea class="client_name digitsOnly" name="client_name"></textarea></td>
                                     <td><input type="date" class="new-record_date" name="new-record_date"></td>
                                     <td><input type="time" class="new-record_time" name="new-record_time"></td>
                                     <td>
-                                        <button class='add-record__button'>записать</button>
+                                        <button class='add-record__button'></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -339,7 +342,7 @@ if (session_id() == '')
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <button class='delete-record__button' id='" . $row[0] . "'>удалить</button>
+                                                        <button class='delete-record__button' id='" . $row[0] . "'></button>
                                                     </td>
                                                 </tr>";
                                 }
@@ -352,7 +355,7 @@ if (session_id() == '')
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-4">
-                        <p class="sub-header">Обратная связь</p>
+                        <p class="sub-header">Обратная связь:</p>
                         <table class="table__to-update-delete">
                             <thead>
                                 <tr>
@@ -471,8 +474,8 @@ if (session_id() == '')
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <button class='change-wheel__button' id='" . $row[0] . "'>change</button>
-                                                        <button class='delete-wheel__button' id='" . $row[0] . "'>delete</button>
+                                                        <button class='change-wheel__button' id='" . $row[0] . "'></button>
+                                                        <button class='delete-wheel__button' id='" . $row[0] . "'></button>
                                                     </td>
                                                 </tr>";
                                 }
@@ -484,7 +487,7 @@ if (session_id() == '')
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-6">
-                        <p class="sub-header">Модерация отзывов мастера</p>
+                        <p class="sub-header">Модерация отзывов мастера:</p>
                         <table class="table__to-update-delete master-rating">
                             <thead>
                                 <tr>
@@ -540,7 +543,7 @@ if (session_id() == '')
                             echo "</tbody>";
                             ?>
                         </table>
-                        <p class="sub-header">Модерация отзывов услуги</p>
+                        <p class="sub-header">Модерация отзывов услуги:</p>
                         <table class="table__to-update-delete service-rating">
                             <thead>
                                 <tr>
@@ -645,6 +648,17 @@ document.addEventListener("DOMContentLoaded", function() {
     // Обработчик для таблицы услуг
     var serviceTable = document.querySelector('.table__to-update-delete.service');
     serviceTable.addEventListener('input', function(event) {
+        const target = event.target;
+        // Проверяем, является ли элемент textarea с классом "digitsOnly"
+        if (target.classList.contains('digitsOnly')) {
+            const text = target.value;
+            target.value = text.replace(/\D/g, ''); // Оставляем только цифры
+        }
+    });
+
+     // Обработчик для таблицы услуг
+     var recordTableAdd = document.querySelector('.table__to-add.record');
+     recordTableAdd.addEventListener('input', function(event) {
         const target = event.target;
         // Проверяем, является ли элемент textarea с классом "digitsOnly"
         if (target.classList.contains('digitsOnly')) {

@@ -7,6 +7,7 @@ function deleteWheel(rowId, button) {
             id: rowId
         },
         success: function (response) {
+            alert("Сектор удален!");
             let wheelRow = button.closest('tr'); // Используем closest для поиска ближайшего <tr>
             wheelRow.remove();
             // Обработка успешного ответа от сервера
