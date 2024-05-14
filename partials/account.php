@@ -137,6 +137,18 @@ if($user_avatar['avatar']==NULL){
             <input type="password" name="new-password-confirm" class="new-password-confirm" style="border: 1px solid black">
             <input type="button" name="change-password" value="Изменить пароль">
         </section>
+
+        <section>
+        <textarea id="reviewText" placeholder="Напишите ваш отзыв..."></textarea>
+            <div id="stars">
+                <span class="star" data-rating="1">&#9734;</span>
+                <span class="star" data-rating="2">&#9734;</span>
+                <span class="star" data-rating="3">&#9734;</span>
+                <span class="star" data-rating="4">&#9734;</span>
+                <span class="star" data-rating="5">&#9734;</span>
+            </div>
+            <a href="#" id="submitReview">Оставить отзыв</a>
+        </section>
     </main>
     <?php require_once 'footer-white.php' ?>
 </body>
@@ -150,5 +162,6 @@ if($user_avatar['avatar']==NULL){
 <script src="../js/preloader.js"></script>
 <script src="../js/change-pass.js"></script>
 <script src="../js/change-avatar.js"></script>
+<script src="../js/leaveReviewRating.js"></script>
 
 </html>
