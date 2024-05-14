@@ -223,6 +223,7 @@ if (session_id() == '')
                                             $option = "<option value='" . $type[0] . "'>" . $type[1] . "</option>";
                                         }
                                         $options .= $option;
+                                        
                                     }
                                     $trBlock .= "
                                                 <tr id='$row[0]'>
@@ -638,9 +639,9 @@ if (session_id() == '')
     <script src="../js/admin-panel-ajax/delete-master.js"></script>
     <script src="../js/admin-panel-ajax/update-master.js"></script>
 
-    <script src="../js/admin-panel-ajax/add-service.js"></script>
-    <script src="../js/admin-panel-ajax/delete-service.js"></script>
-    <script src="../js/admin-panel-ajax/update-service.js"></script>
+    <script src="../js/admin-panel-ajax/service-handler-script.js"></script>
+    <!-- <script src="../js/admin-panel-ajax/delete-service.js"></script>
+    <script src="../js/admin-panel-ajax/update-service.js"></script> -->
 
     <script src="../js/admin-panel-ajax/service-type-for-service.js"></script>
 

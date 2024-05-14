@@ -6,7 +6,7 @@ const masterSelect = document.getElementById("master");
 (async () => {
     try {
         // Отправляем асинхронный запрос на сервер для получения услуг
-        const response = await fetch(`../../handlers/admin-panel-handlers/get_service_data_script.php`);
+        const response = await fetch(`../handlers/admin-panel-handlers/get_service_data_script.php`);
         const services = await response.json();
         // Обновляем список работников в <select>
         services.forEach(service => {
@@ -32,7 +32,7 @@ serviceSelect.addEventListener("change", async function() {
     if (selectedServiceId) {
         try {
             // Отправляем асинхронный запрос на сервер для получения работников, предоставляющих выбранную услугу
-            const response = await fetch(`../../handlers/admin-panel-handlers/get_master_data_script.php?service_id=${selectedServiceId}`);
+            const response = await fetch(`../handlers/admin-panel-handlers/get_master_data_script.php?service_id=${selectedServiceId}`);
             const masters = await response.json();
             // Обновляем список работников в <select>
             masters.forEach(master => {

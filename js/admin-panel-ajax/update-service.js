@@ -47,7 +47,7 @@ $(document).on('click', '.change-service__button', function () {
     var serviceId = $(this).attr('id');
     var service_type = $('tr#' + serviceId + ' select').val();
     var service_name = $('tr#' + serviceId + ' textarea').eq(0).val();
-    var service_image = $('tr#' + serviceId + ' .service-photo-container img').eq(0); // получаем элемент input
+    var service_image = $('tr#' + serviceId + ' .service-photo-container img'); // получаем элемент input
     var service_description = $('tr#' + serviceId + ' textarea').eq(1).val();
     var duration = $('tr#' + serviceId + ' textarea').eq(2).val();
     var price = $('tr#' + serviceId + ' textarea').eq(3).val();
@@ -57,11 +57,11 @@ $(document).on('click', '.change-service__button', function () {
     // Получение base64 изображения из тега img
     var service_image = service_image.prop('src');
 
-    updateMaster(serviceId, service_type, service_name, service_image, service_description, duration, price, insication, results);
+    updateService(serviceId, service_type, service_name, service_image, service_description, duration, price, insication, results);
 });
 
 
-function updateMaster(serviceId, service_type, service_name, service_image, service_description, duration, price, insication, results) {
+function updateService(serviceId, service_type, service_name, service_image, service_description, duration, price, insication, results) {
     $.ajax({
         url: '../handlers/admin-panel-handlers/updateServiceHandler.php',
         type: 'POST',

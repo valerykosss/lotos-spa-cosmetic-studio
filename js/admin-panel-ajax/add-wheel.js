@@ -3,7 +3,7 @@ const wheelServiceSelect = document.getElementById("wheel_service");
 (async () => {
     try {
         // Отправляем асинхронный запрос на сервер для получения услуг
-        const response = await fetch(`../../handlers/admin-panel-handlers/get_service_data_script.php`);
+        const response = await fetch(`../handlers/admin-panel-handlers/get_service_data_script.php`);
         const wheelServices = await response.json();
         // Обновляем список работников в <select>
         wheelServices.forEach(wheelService => {

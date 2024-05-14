@@ -18,11 +18,24 @@
 
     if (mysqli_query($link, $query)) {
         $serviceId = mysqli_insert_id($link); // Получаем ID нового мастера
+
+        $service_types=mysqli_query($link, "SELECT `id_service_type`, `service_type_name` FROM `service_type`");
+        $service_types=mysqli_fetch_all($service_types);
+
+        $options="";
+        foreach($service_types as $row){
+            if($row[0]==$service_type){
+                $option="<option value=".$row[0]." selected>".$row[1]."</option>";
+            }else{
+                $option="<option value=".$row[0].">".$row[1]."</option>";
+            }
+            $options.=$option;
+        }
         $response = [
             'success' => true,
             'service' => [
                 'id' => $serviceId,
-                'service_type' => $service_type,
+                'options' => $options,
                 'service_name' => $service_name,
                 'service_image' => "$service_image",
                 'service_description' => $service_description,
