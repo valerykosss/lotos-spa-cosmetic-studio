@@ -74,6 +74,12 @@ if (session_id() == '')
                         <input id="tab-btn-7" name="tab-btn" type="radio" value="">
                         <label for="tab-btn-7">Мастер-сервис</label>
 
+                        <input id="tab-btn-8" name="tab-btn" type="radio" value="">
+                        <label for="tab-btn-8">Типы услуг</label>
+
+                        <input id="tab-btn-9" name="tab-btn" type="radio" value="">
+                        <label for="tab-btn-9">Заблокировать пользователя</label>
+
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-1">
@@ -256,6 +262,7 @@ if (session_id() == '')
 
                         </table>
                     </div>
+
                     <div class="tab-content-admin-panel" id="content-3">
                         <p class="sub-header">Добавить запись:</p>
                         <table class="table__to-add record">
@@ -301,6 +308,7 @@ if (session_id() == '')
                                     <th>Статус</th>
                                 </tr>
                             </thead>
+
                             <?php
                             $query = 'SELECT `procedure_record`.`id_record`, `master`.`master_name`, `service`.`service_name`, `user`.`name`, `procedure_record`.`record_date`, `procedure_record`.`record_time`, `procedure_record_status`.`id_record_status`
                                         FROM `procedure_record`
@@ -603,6 +611,178 @@ if (session_id() == '')
                             ?>
                         </table>
                     </div>
+
+                    <div class="tab-content-admin-panel" id="content-7">
+                        <p class="sub-header">Cоздайте соответствие мастер-сервис:</p>
+                        <table class="table__to-add master-service">
+                                <thead>
+                                    <tr>
+                                        <th>Услуга</th>
+                                        <th>Мастер</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <select class="service_ms" id="service_ms">
+                                                <option selected disabled>Выберите услугу</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="master_ms" id="master_ms">
+                                                <option selected disabled>Выберите мастера</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button class='add-master-service__button'></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        <p class="sub-header">Все соответствия мастер-сервис:</p>
+                        
+                        <table class="table__to-delete master-service">
+                                <thead>
+                                    <tr>
+                                        <th>Номер соответствия</th>
+                                        <th>Услуга</th>
+                                        <th>Мастер</th>
+                                    </tr>
+                                </thead>
+                            <?php
+                                $query = 'SELECT `master_service`.`id_master_service`, `master_service`.`id_master`, `master_service`.`id_service`, `master`.`master_name`, `service`.`service_name`  FROM `master_service`
+                                INNER JOIN `master` ON `master_service`.`id_master`=`master`.`id_master`
+                                INNER JOIN `service` ON `master_service`.`id_service`=`service`.`id_service`';
+
+                                echo "<tbody>";
+                                $trBlock = '';
+
+                                $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                                if ($result) {
+                                    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                        $row = mysqli_fetch_row($result);
+                                        $trBlock .= "
+                                                    <tr id='$row[0]'>
+                                                        <td>" . $row[0] . "</td>
+                                                        <td>" . $row[4] . "</td>
+                                                        <td>" . $row[3] . "</td>
+                                                        <td>
+                                                            <button class='delete-ms__button' id='" . $row[0] . "'></button>
+                                                        </td>
+                                                    </tr>";
+                                    }
+                                }
+                                echo $trBlock;
+                                echo "</tbody>";
+                                ?>     
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tab-content-admin-panel" id="content-8">
+                        <p class="sub-header">Введите название нового типа услуги:</p>
+                        <table class="table__to-add service-type">
+                                <thead>
+                                    <tr>
+                                        <th>Название типа услуги</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><textarea class="service-type_name"></textarea></td>
+                                        <td>
+                                            <button class='add-service-type__button'></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        <p class="sub-header">Все типы услуг:</p>
+                        
+                        <table class="table__to-update-delete service-type">
+                                <thead>
+                                    <tr>
+                                        <th>Название типа услуги</th>
+                                    </tr>
+                                </thead>
+                            <?php
+                                $query = 'SELECT `id_service_type`, `service_type_name` FROM `service_type`';
+
+                                echo "<tbody>";
+                                $trBlock = '';
+
+                                $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                                if ($result) {
+                                    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                        $row = mysqli_fetch_row($result);
+                                        $trBlock .= "
+                                                    <tr id='$row[0]'>
+                                                        <td><textarea name='service-type-name' id='" . $row[0] . "'>" . $row[1] . "</textarea></td>
+                                                        <td>
+                                                            <button class='change-type-service__button' id='" . $row[0] . "'></button>
+                                                            <button class='delete-type-service__button' id='" . $row[0] . "'></button>
+                                                        </td>
+                                                    </tr>";
+                                    }
+                                }
+                                echo $trBlock;
+                                echo "</tbody>";
+                                ?>     
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tab-content-admin-panel" id="content-9">
+                    <p class="sub-header">Все пользователи:</p>
+                        
+                        <table class="table__to-delete master-service">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Имя</th>
+                                        <th>Почта</th>
+                                        <th>Телефон</th>
+                                        <th>Скидка</th>
+                                        <th>Роль</th>
+                                    </tr>
+                                </thead>
+                            <?php
+                                $query = 'SELECT user.id_user, user.name, user.email, user.telephone, role.role_name, wheel_discount.discount_name, role.id_role
+                                FROM user
+                                LEFT JOIN wheel_discount ON user.id_wheel_discount=wheel_discount.id_wheel_discount
+                                INNER JOIN role ON user.id_role=role.id_role';
+
+                                echo "<tbody>";
+                                $trBlock = '';
+
+                                $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                                if ($result) {
+                                    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                        $row = mysqli_fetch_row($result);
+                                        if($row[6]==1){
+                                            continue;
+                                        }
+                                        $trBlock .= "
+                                                    <tr id='$row[0]'>
+                                                        <td>" . $row[0] . "</td>
+                                                        <td>" . $row[1] . "</td>
+                                                        <td>" . $row[2] . "</td>
+                                                        <td>" . $row[3] . "</td>
+                                                        <td>" . $row[5] . "</td>
+                                                        <td>" . $row[4] . "</td>
+                                                        <td>
+                                                            <button class='delete-user__button' id='" . $row[0] . "'></button>
+                                                        </td>
+                                                    </tr>";
+                                    }
+                                }
+                                echo $trBlock;
+                                echo "</tbody>";
+                                ?>     
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
@@ -703,6 +883,12 @@ document.addEventListener("DOMContentLoaded", function() {
     <script type="module" src="../js/admin-panel-ajax/change-feedback-status.js"></script>
     <script type="module" src="../js/admin-panel-ajax/change-service-review-status.js"></script>
     <script type="module" src="../js/admin-panel-ajax/change-master-review-status.js"></script>
+
+    <script src="../js/admin-panel-ajax/master-service-handler.js"></script>
+
+    <script src="../js/admin-panel-ajax/service-type-handler.js"></script>
+
+    <script src="../js/admin-panel-ajax/delete-user-handler.js"></script>
 
 
     <script src="../js/preloader.js"></script>

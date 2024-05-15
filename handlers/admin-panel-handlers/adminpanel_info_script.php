@@ -9,4 +9,5 @@
 
     $services=mysqli_query($link, "SELECT `id_service`, `service_name` FROM `service`");
     $services=mysqli_fetch_all($services);
+
 ?>

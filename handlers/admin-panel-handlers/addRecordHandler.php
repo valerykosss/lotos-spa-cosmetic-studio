@@ -26,7 +26,6 @@
 
     if (mysqli_query($link, $query)) {
 
-
         $recordId = mysqli_insert_id($link); // Получаем ID нового мастера
         $response = [
             'success' => true,

@@ -34,7 +34,7 @@
 
                     <li class="li-header-logo">
                         <a href="index.php" class="header__logo">
-                            <img src="../images/logo-lotus-footer-green.svg" alt="">
+                            <img src="../images/new-black-logo.png" alt="">
                         </a>
                     </li>
                     <li>

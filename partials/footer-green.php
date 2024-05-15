@@ -42,7 +42,7 @@
                     </li>
                     <li class="li-footer-logo">
                         <a href="index.php" class="footer__logo">
-                            <img src="../images/logo-lotus-header-white.svg" alt="">
+                            <img width="100px" src="../images/new-white-logo-footer.png" alt="">
                         </a>
                         <ul class="footer__contacts__sub-list-green">
                              <li>

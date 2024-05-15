@@ -138,17 +138,18 @@ if($user_avatar['avatar']==NULL){
             <input type="button" name="change-password" value="Изменить пароль">
         </section>
 
-        <section>
-        <textarea id="reviewText" placeholder="Напишите ваш отзыв..."></textarea>
+        <section style="background-color: #355D48;">
+            <textarea id="reviewText" placeholder="Напишите ваш отзыв..."></textarea>
             <div id="stars">
-                <span class="star" data-rating="1">&#9734;</span>
-                <span class="star" data-rating="2">&#9734;</span>
-                <span class="star" data-rating="3">&#9734;</span>
-                <span class="star" data-rating="4">&#9734;</span>
-                <span class="star" data-rating="5">&#9734;</span>
+                <span class="star" data-rating="1"><img src="../images/icons/review-star-empty.svg" class="star-img"></span>
+                <span class="star" data-rating="2"><img src="../images/icons/review-star-empty.svg" class="star-img"></span>
+                <span class="star" data-rating="3"><img src="../images/icons/review-star-empty.svg" class="star-img"></span>
+                <span class="star" data-rating="4"><img src="../images/icons/review-star-empty.svg" class="star-img"></span>
+                <span class="star" data-rating="5"><img src="../images/icons/review-star-empty.svg" class="star-img"></span>
             </div>
             <a href="#" id="submitReview">Оставить отзыв</a>
         </section>
+
     </main>
     <?php require_once 'footer-white.php' ?>
 </body>

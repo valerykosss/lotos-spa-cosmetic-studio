@@ -13,10 +13,11 @@ $(document).ready(function() {
 
     function highlightStars(rating) {
         stars.each(function() {
+            const starImg = $(this).find('.star-img');
             if (parseInt($(this).attr('data-rating')) <= rating) {
-                $(this).html('&#9733;'); // Закрашенная звезда
+                starImg.attr('src', '../images/icons/review-star.svg'); // Заполненная звезда
             } else {
-                $(this).html('&#9734;'); // Незакрашенная звезда
+                starImg.attr('src', '../images/icons/review-star-empty.svg'); // Незаполненная звезда
             }
         });
     }
@@ -35,27 +36,27 @@ $(document).ready(function() {
 
         if (review && rating) {
              // Отправка данных на сервер через AJAX
-        $.ajax({
-            type: 'POST',
-            url: '../handlers/leaveReviewRatingHandler.php',
-            data: { 
-                review: review, 
-                rating: rating,
-                currentDate: currentDate,
-                idService: idService 
-            },
-            success: function(response) {
-                // Обработка ответа от сервера
-                console.log(response);
-                // Очистка текстового поля и сброс звездочек
-                reviewText.val('');
-                rating = 0;
-                highlightStars(rating);
-            },
-            error: function() {
-                console.error('Ошибка при отправке запроса');
-            }
-        });
+            $.ajax({
+                type: 'POST',
+                url: '../handlers/leaveReviewRatingHandler.php',
+                data: { 
+                    review: review, 
+                    rating: rating,
+                    currentDate: currentDate,
+                    idService: idService 
+                },
+                success: function(response) {
+                    // Обработка ответа от сервера
+                    console.log(response);
+                    // Очистка текстового поля и сброс звездочек
+                    reviewText.val('');
+                    rating = 0;
+                    highlightStars(rating);
+                },
+                error: function() {
+                    console.error('Ошибка при отправке запроса');
+                }
+            });
         }
     });
 });

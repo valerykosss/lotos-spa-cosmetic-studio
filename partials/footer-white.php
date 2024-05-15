@@ -36,7 +36,7 @@
                     </li>
                     <li class="li-footer-logo">
                         <a href="index.php" class="footer__logo">
-                            <img src="../images/logo-lotus-footer-green.svg" alt="">
+                            <img src="../images/new-black-logo-footer.png" alt="">
                         </a>
                         <ul class="footer__contacts__sub-list">
                             <li>
