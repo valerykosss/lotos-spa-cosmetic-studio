@@ -62,7 +62,7 @@
                         echo "<ul class='header__menu__sub-list'>";
                                 // if(isset($_SESSION['UserID'])){
                                 if (empty($_SESSION['UserID'])) {
-                                    echo "<a class='header__menu__sub-link' id='open__log-in__button'><li>ВОЙТИ</li></a>";
+                                    echo "<a class='header__menu__sub-link' id='sign-in__link'><li>ВОЙТИ</li></a>";
                                 } else {
                                     echo "<a class=\"header__menu__sub-link\" href='account.php'><li>Мой профиль</li></a>";
 
@@ -76,5 +76,6 @@
         </div>
     </header>
 
-<?php require 'sign-in.php' ?>
-<?php require 'sign-up.php' ?>
+<?php require 'sign-in-new.php' ?>
+<?php require 'sign-up-new.php' ?>
+

@@ -25,10 +25,11 @@
     <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/service-type-page.css">
     <link rel="stylesheet" href="../css/header-green.css">
+    <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/need-consult-block-white.css">
     <link rel="stylesheet" href="../css/footer-green.css">
 
-    <link rel="stylesheet" href="../css/sign-in-up.css">
+
 
     <script src="../libraries/jquery-3.6.0.min.js"></script>
 </head>
@@ -86,7 +87,7 @@
     <script src ="../libraries/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-    <script src="../js/signInUp.js"></script>
+    <script src="../js/openPopupSignInUp.js"></script>
     <script src="../js/preloader.js"></script>
 
 </body>

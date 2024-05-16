@@ -1,4 +1,4 @@
-<div href="" id="sign-up__window">
+<!-- <div href="" id="sign-up__window">
     <form id="sign-up__form">
         <a href="#" class="close__form">
             <img class="close__form-image" height="35px" width="35px" src="../images/icons/cross.svg" />
@@ -15,16 +15,14 @@
             <p id="nameError"></p>
 
             <div class="data-label__text">Введите пароль</div>
-            <!--type="password"-->
             <input type="password" placeholder="Пароль" name="first_password" autocomplete="off" title = 'Пароль не менее 8 символов, содержащий минимум одну букву в нижнем и верхнем регистрах, цифру и специальный символ'/>
             <p id="first_passwordError"></p>
 
             <div class="data-label__text">Повторите пароль</div>
-            <!--type="password"-->
             <input type="password" placeholder="Повторите пароль" name="second_password" autocomplete="off"/>
             <p id="second_passwordError"></p>
         </div>
         <p class="form__retransfer-text">Есть аккаунт? <span id="sign-in__link">Авторизуйтесь</span></p>
         <button id="sign-up__button" type="submit">Зарегистрироваться</button>
     </form>
-</div>
+</div> -->

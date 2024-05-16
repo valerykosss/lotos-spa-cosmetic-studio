@@ -1,5 +1,6 @@
 /*-----------------------------------POP-UP----------------------------------------------*/
-.popup__bg {
+
+.popup__bg__sign-in, .popup__bg__sign-up {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,13 +12,13 @@
     transition: 0.5s all;
     z-index: 2000;/*100*/
 }
-.popup__bg.active { /* При добавлении класса 'active'*/
+.popup__bg__sign-in.active, .popup__bg__sign-up.active { /* При добавлении класса 'active'*/
     opacity: 1; /* Показываем фон и попап*/
     pointer-events: all; /* Возвращаем события*/
     transition: 0.5s all;
     z-index: 3000;/*200*/
 }
-.popup {
+.popup__sign-in, .popup__sign-up {
     border-radius: 12px;
     position: absolute;
     top: 50%;
@@ -29,13 +30,13 @@
     padding-bottom: 40px;
     /* transition: 0.5s all; */
 }
-.popup.active { /* При добавлении класса 'active'*/
+.popup__sign-in.active, .popup__sign-up.active { /* При добавлении класса 'active'*/
     transform: translate(-50%, -50%) scale(1); /* Так же центрируем и плавно увеличиваем*/
     /* transition: 0.5s all; */
 }
 
 
-.close-popup {
+.close-popup__sign-in, .close-popup__sign-up {
     position: absolute;
     top: -40px;
     right: 10px;
@@ -114,24 +115,38 @@ input:-webkit-autofill:focus {
     color: rgba(0, 0, 0, 0.4);
 }
 
-.form__data #sign-up__link{
+#sign-in__link, #sign-up__link{
+    cursor: pointer;
+}
+
+.form__data #sign-up__link, .form__data #sign-in__link{
     font-family: "SF Pro Text";
     font-size: 12px;
     line-height: 160%;
     color: #232323;
+    cursor: pointer;
 }
 
-.sign-in-button{
+.sign-in-button, .sign-up-button{
     margin-top: 30px;
 }
 
-.sign-in-button button span{
+.sign-in-button button, 
+.sign-up-button button{
+    width: max-content;
+    height: max-content;
+}
+
+.sign-in-button button span,
+.sign-up-button button span{
     font-family: "Oswald" !important;
     color: #fff !important;
     text-transform: uppercase !important;
+    cursor: pointer;
 }
 
-.sign-in-button:hover {
+.sign-in-button:hover,
+.sign-up-button:hover {
     width: 180px;
 }
 

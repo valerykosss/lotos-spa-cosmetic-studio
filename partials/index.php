@@ -25,11 +25,9 @@ require_once "../handlers/get_swiper_data_script.php";
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/header-green.css">
     <link rel="stylesheet" href="../css/footer-white.css">
-
-    <link rel="stylesheet" href="../css/sign-in-up.css">
     <link rel="stylesheet" href="../css/wheel.css">
 
-    <link rel="stylesheet" href="../css/popup.css">
+    <link rel="stylesheet" href="../css/popupSignInUp.css">
 </head>
 
 <body>
@@ -392,7 +390,7 @@ require_once "../handlers/get_swiper_data_script.php";
                     <div class="wheel__left-column">
                         <div class="wheel-title">Вращай колесо — <br>выигрывай подарок!</div>
                         <div class="wheel-text">Акция действует только для НОВЫХ полователей! Зарегистрируйся, чтобы выиграть свою скидку при ПЕРВОМ прокурте колеса!</div>
-                        <div id="sign-up__wheel" class="sign-up-button button">
+                        <div id="sign-up__link" class="sign-up-button button">
                             <span class="details">Зарегистрироваться</span>
                         </div>
                     </div>
@@ -424,47 +422,7 @@ require_once "../handlers/get_swiper_data_script.php";
                 <div class="quiz-block-text">Пройдите тест и выберите ту процедуру, которая подходит именно вам!</div>
                 <div class="quiz-block-button green-button">
                     <span class="details">ПРОЙТИ ТЕСТ</span>
-                </div>
-
-                <div class="popup__bg">
-                    <form class="popup">
-                        <img src="../images/icons/exit.svg" class="close-popup">
-                        <p class="form__window-title">Вход</p>
-                        <div class="form__data">
-                            <div class="label-input__group">
-                                <label for="name">номер телефона</label>
-                                <input type="text" id="name" placeholder="+375 (__) ___-__-__" name="name">
-                                <p>Неверный пароль</p>
-                            </div>
-
-                            <div class="label-input__group">
-                                <label for="name">пароль</label>
-                                <input type="text" id="name" placeholder="+375 (__) ___-__-__" name="name">
-                                <p>Неверный пароль</p>
-                            </div>
-
-                            <div class="label-input__group">
-                                <label for="name">номер телефона</label>
-                                <input type="text" id="name" placeholder="+375 (__) ___-__-__" name="name">
-                                <p>Неверный пароль</p>
-                            </div>
-
-                            <div class="label-input__group">
-                                <label for="name">пароль</label>
-                                <input type="text" id="name" placeholder="+375 (__) ___-__-__" name="name">
-                                <p>Неверный пароль</p>
-                            </div>
-
-                            <p class="form__retransfer-text">Нет аккаунта? <span id="sign-up__link">Зарегистрируйтесь</span></p>
-
-                            <div class="sign-in-button green-button">
-                                <button type="submit">
-                                    <span class="details">Войти</span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                </div>             
             </div>
         </section>
     </main>
@@ -478,13 +436,13 @@ require_once "../handlers/get_swiper_data_script.php";
     <script src="../js/script.js"></script>
 
     <script src="../libraries/jquery-3.6.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-    <script src="../js/signInUp.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
+    <script src="../libraries/jquery.maskedinput.min.js"></script>
+    <!-- <script src="../js/signInUp.js"></script> -->
 
     <script src="../js/wheel.js"></script>
     <script src="../js/preloader.js"></script>
-    <script src="../js/openPopup.js"></script>
+    <script src="../js/openPopupSignInUp.js"></script>
 </body>
 
 </html>

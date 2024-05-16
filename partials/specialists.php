@@ -17,7 +17,7 @@ if (session_id() == '')
     <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/header-white.css">
     <link rel="stylesheet" href="../css/specialists.css">
-    <link rel="stylesheet" href="../css/sign-in-up.css">
+    <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/need-consult-block-green.css">
     <link rel="stylesheet" href="../css/footer-white.css">
 
@@ -192,7 +192,7 @@ if (session_id() == '')
     <script src="../libraries/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-    <script src="../js/signInUp.js"></script>
+    <script src="../js/openPopupSignInUp.js"></script>
 
     <script src="../js/specialistsFilter.js"></script>
     <script src="../js/preloader.js"></script>

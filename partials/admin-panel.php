@@ -19,7 +19,7 @@ if (session_id() == '')
     <title>Лотос - Панель администратора</title>
 
     <link rel="stylesheet" href="../css/generalStyles.css">
-    <link rel="stylesheet" href="../css/sign-in-up.css">
+    <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/header-white-admin-master.css">
     <link rel="stylesheet" href="../css/admin-panel.css">
 
@@ -860,7 +860,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 
-    <script src="../js/signInUp.js"></script>
+    <script src="../js/openPopupSignInUp.js"></script>
 
     <script src="../js/admin-panel-ajax/master-handler-script.js"></script>
     <!-- <script src="../js/admin-panel-ajax/delete-master.js"></script>

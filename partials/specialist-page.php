@@ -66,7 +66,7 @@ function russianMonth($monthNumber) {
     <link rel="stylesheet" href="../css/footer-green.css">
 
 
-    <link rel="stylesheet" href="../css/sign-in-up.css">
+    <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/sign-up-for-procedure-windows.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
@@ -259,7 +259,7 @@ function russianMonth($monthNumber) {
 
     <script src="../libraries/swiper-bundle.min.js"></script>
 
-    <script src="../js/signInUp.js"></script>
+    <script src="../js/openPopupSignInUp.js"></script>
     <script src="../js/signUpForProcedureFromMaster.js"></script>
     <script src="../js/preloader.js"></script>
     <script src="../js/specialistPageReviewsSlider.js"></script>

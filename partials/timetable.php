@@ -26,7 +26,7 @@ if (session_id() == '')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/ru.js"></script>
 
     <link rel="stylesheet" href="../css/generalStyles.css">
-    <link rel="stylesheet" href="../css/sign-in-up.css">
+    <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/header-white-admin-master.css">
     <link rel="stylesheet" href="../css/timetable.css">
 
@@ -152,7 +152,7 @@ if (session_id() == '')
     </main>
     <!-- End Deleted Message Modal -->
     <script src="../js/admin-panel-ajax/timetable.js"></script>
-    <script src="../js/signInUp.js"></script>
+    <script src="../js/openPopupSignInUp.js"></script>
     <script src="../js/preloader.js"></script>
 </body>
 

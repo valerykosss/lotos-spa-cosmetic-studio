@@ -39,10 +39,10 @@ function russianMonth($monthNumber) {
     <link rel="stylesheet" href="../css/service-page.css">
     <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/header-green.css">
+    <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/need-consult-block-white.css">
     <link rel="stylesheet" href="../css/footer-green.css">
 
-    <link rel="stylesheet" href="../css/sign-in-up.css">
     <link rel="stylesheet" href="../css/sign-up-for-procedure-windows.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
@@ -117,7 +117,7 @@ function russianMonth($monthNumber) {
         </section> -->
 
         <section class="page__service-page">
-            <div class="service-page__body _container" style="background-image: url('../<?php echo($service_data['service_image']);?>');">
+            <div class="service-page__body _container" style="background-image: url('<?php echo($service_data['service_image']);?>');">
                 <div class="service__info">
                     <p class="service__info-name"><?php echo($service_data['service_name']);?></p>
                     <p class="service__info-description"><?php echo($service_data['service_description']);?></p>
@@ -146,7 +146,7 @@ function russianMonth($monthNumber) {
                 </div>
 
                 <div class="insication-photo__wrapper">
-                    <img src="../<?php echo($service_data['service_image']);?>">
+                    <img src="<?php echo($service_data['service_image']);?>">
                 </div>
 
             </div>
@@ -165,7 +165,7 @@ function russianMonth($monthNumber) {
                 </div>
 
                 <div class="results-photo__wrapper">
-                    <img src="../<?php echo($service_data['service_image']);?>">
+                    <img src="<?php echo($service_data['service_image']);?>">
                 </div>
             </div>
         </section>
@@ -277,7 +277,7 @@ function russianMonth($monthNumber) {
 
 <script src="../libraries/swiper-bundle.min.js"></script>
 
-<script src="../js/signInUp.js"></script>
+<script src="../js/openPopupSignInUp.js"></script>
 <script src="../js/signUpForProcedureFromMaster.js"></script>
 <script src="../js/preloader.js"></script>
 <script src="../js/servicePageReviewsSlider.js"></script>

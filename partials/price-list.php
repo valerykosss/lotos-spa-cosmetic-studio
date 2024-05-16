@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="../css/header-green.css">
     <link rel="stylesheet" href="../css/footer-green.css">
 
-    <link rel="stylesheet" href="../css/sign-in-up.css">
+    <link rel="stylesheet" href="../css/popupSignInUp.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -78,7 +78,7 @@
 
 <script src="../libraries/swiper-bundle.min.js"></script>
 
-<script src="../js/signInUp.js"></script>
+<script src="../js/openPopupSignInUp.js"></script>
 <script src="../js/preloader.js"></script>
 
 <!-- ... -->

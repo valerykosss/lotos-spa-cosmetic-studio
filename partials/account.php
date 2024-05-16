@@ -39,10 +39,11 @@ if($user_avatar['avatar']==NULL){
     <title>Аккаунт пользователя</title>
     <link rel="stylesheet" href="../css/generalStyles.css">
     <!-- <link rel="stylesheet" href="../css/specialists.css"> -->
-    <link rel="stylesheet" href="../css/sign-in-up.css">
     <link rel="stylesheet" href="../css/admin-panel.css">
     <link rel="stylesheet" href="../css/header-white.css">
     <link rel="stylesheet" href="../css/footer-white.css">
+
+    <link rel="stylesheet" href="../css/popupSignInUp.css">
 
 </head>
 <style>
@@ -159,7 +160,7 @@ if($user_avatar['avatar']==NULL){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 <script src="../js/admin-panel-ajax/change-master-data.js"></script>
 
-<script src="../js/signInUp.js"></script>
+<script src="../js/openPopupSignInUp.js"></script>
 <script src="../js/preloader.js"></script>
 <script src="../js/change-pass.js"></script>
 <script src="../js/change-avatar.js"></script>

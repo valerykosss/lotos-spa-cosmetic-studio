@@ -45,10 +45,6 @@
 	/*regular*/
 }
 
-.sign-up-button{
-    margin-bottom: 46px;
-}
-
 .sign-up-button:hover{
     width: 320px!important;
 }
@@ -136,3 +132,6 @@
 	/* Выравнивание надписи по центру */
 }
 
+.wheel__body .sign-up-button{
+	margin-bottom: 58px;
+}
