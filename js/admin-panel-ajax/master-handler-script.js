@@ -27,7 +27,7 @@ $(".add-master__button").click(function () {
         formData.append('education', $('.education').val().trim());
         formData.append('work_experience', parseInt($('.work_experience').val().trim(), 10));
         formData.append('position', $('.position').val().trim());
-
+        formData.append('user_master', $('.user_master').val());
         addMaster(formData, $(this)); 
     };
 });
@@ -53,10 +53,11 @@ function addMaster(formData, button) {
                 // Создаем ячейки для новой строки
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.master_name + '</textarea></td>');
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.master_surname + '</textarea></td>');
-                newRow.append('<td class="master-photo-container" id="photo_' + newMaster.id + '"><img style="width: 200px" src="' + newMaster.master_photo + '"></td>');
+                newRow.append('<td class="master-photo-container" id="photo_' + newMaster.id + '"><img style="width: 150px" src="' + newMaster.master_photo + '"></td>');
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.education + '</textarea></td>');
                 newRow.append('<td><textarea class="digitsOnly" id="' + newMaster.id + '">' + newMaster.work_experience + '</textarea></td>');
                 newRow.append('<td><textarea id="' + newMaster.id + '">' + newMaster.position + '</textarea></td>');
+                newRow.append('<td>' + newMaster.user_name + '</textarea></td>');
                 newRow.append('<td><button class="change-master__button" id="' + newMaster.id + '"></button>' +
                     '<button class="delete-master__button" id="' + newMaster.id + '"></button></td>');
 
@@ -69,6 +70,7 @@ function addMaster(formData, button) {
                 $('.education').val('');
                 $('.work_experience').val('');
                 $('.position').val('');
+                $('.user_master option:first').prop('selected', true);
 
             } else {
                 console.error('Произошла ошибка при добавлении мастера');

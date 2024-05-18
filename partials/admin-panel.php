@@ -88,7 +88,7 @@ if (session_id() == '')
                         <table class="table__to-add master">
                             <thead>
                                 <tr>
-                                    <th>Имя</th>
+                                    <th>Имя мастера</th>
                                     <th>Фамилия</th>
                                     <th>Фото</th>
                                     <th>Курсы</th>
@@ -121,34 +121,47 @@ if (session_id() == '')
                         <table class="table__to-update-delete master">
                             <thead>
                                 <tr>
-                                    <th>Имя</th>
+                                    <th>Имя мастера</th>
                                     <th>Фамилия</th>
                                     <th>Фото</th>
                                     <th>Курсы</th>
-                                    <th>Опыт работы(лет)</th>
-                                    <th>Специализация</th>
+                                    <th>Опыт работы (лет)</th>
+                                    <th>Специальность</th>
                                     <th>Пользователь</th>
                                 </tr>
                             </thead>
                             <?php
-                            $query = 'SELECT * from master';
+                            $query = "SELECT `master`.`id_master`, `master`.`master_name`, `master`.`master_surname`, `master`.`master_photo`, `master`.`education`, `master`.`work_experience`, `master`.`position`, `user`.`id_user`, `user`.`name` FROM `master` INNER JOIN `user` ON `master`.`id_user` = `user`.`id_user`";
 
                             echo "<tbody>";
                             $trBlock = '';
+
+                            // $users_master = mysqli_query($link, "SELECT `id_user`, `name` FROM `user`");
+                            // $users_master = mysqli_fetch_all($users_master);
 
                             $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
                             if ($result) {
                                 for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                                     $row = mysqli_fetch_row($result);
+                                    // $options = "";
+                                    // foreach ($users_master as $role) {
+                                    //     if ($row[7] == $role[0]) {
+                                    //         $option = "<option value=" . $role[0] . " selected>" . $role[1] . "</option>";
+                                    //     } else {
+                                    //         $option = "<option value=" . $role[0] . ">" . $role[1] . "</option>";
+                                    //     }
+                                    //     $options .= $option;
+                                    // }
 
                                     $trBlock .= "
                                                 <tr id='$row[0]'>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[1] . "</textarea></td>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[2] . "</textarea></td>
-                                                    <td class='master-photo-container' id='photo_" . $row[0] . "'><img src='" . $row[3] . "' alt='photo' style='width: 200px'></td>
+                                                    <td class='master-photo-container' id='photo_" . $row[0] . "'><img src='" . $row[3] . "' alt='photo' style='width: 150px'></td>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[4] . "</textarea></td>
                                                     <td><textarea class='digitsOnly' id='" . $row[0] . "'>" . $row[5] . "</textarea></td>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[6] . "</textarea></td>
+                                                    <td>".$row[8]."</td>
                                                     
                                                     <td>
                                                         <button class='change-master__button' id='" . $row[0] . "'></button>
