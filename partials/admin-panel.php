@@ -78,7 +78,7 @@ if (session_id() == '')
                         <label for="tab-btn-8">Типы услуг</label>
 
                         <input id="tab-btn-9" name="tab-btn" type="radio" value="">
-                        <label for="tab-btn-9">Заблокировать пользователя</label>
+                        <label for="tab-btn-9">Пользователи</label>
 
                     </div>
 
@@ -734,9 +734,44 @@ if (session_id() == '')
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-9">
+                        <?php
+                            $user_roles=mysqli_query($link, "SELECT * FROM `role`");
+                            $user_roles=mysqli_fetch_all($user_roles);
+                        ?>
+                     <p class="sub-header">Введите нового пользователя:</p>
+                        <table class="table__to-add user">
+                                <thead>
+                                    <tr>
+                                        <th>Имя</th>
+                                        <th>Почта</th>
+                                        <th>Телефон</th>
+                                        <th>Роль</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><textarea class="user_name"></textarea></td>
+                                        <td><textarea class="user_email"></textarea></td>
+                                        <td><textarea class="user_phone"></textarea></td>
+                                        <td>
+                                            <select class="user_role">
+                                                <option selected disabled>Выберите роль</option>
+                                                <?php
+                                                    foreach($user_roles as $role){
+                                                        echo"<option value='".$role[0]."'>".$role[1]."</option>";
+                                                    }
+                                                ?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button class='add-user__button'></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                     <p class="sub-header">Все пользователи:</p>
                         
-                        <table class="table__to-delete master-service">
+                        <table class="table__to-update-delete user">
                                 <thead>
                                     <tr>
                                         <th>id</th>
@@ -755,6 +790,8 @@ if (session_id() == '')
 
                                 echo "<tbody>";
                                 $trBlock = '';
+                                $user_roles=mysqli_query($link, "SELECT `id_role`, `role_name` FROM `role`");
+                                $user_roles=mysqli_fetch_all($user_roles);
 
                                 $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
                                 if ($result) {
@@ -763,15 +800,25 @@ if (session_id() == '')
                                         if($row[6]==1){
                                             continue;
                                         }
+                                        $options="";
+                                        foreach($user_roles as $role){
+                                            if($row[6]==$role[0]){
+                                                $option="<option value=".$role[0]." selected>".$role[1]."</option>";
+                                            }else{
+                                                $option="<option value=".$role[0].">".$role[1]."</option>";
+                                            }
+                                            $options.=$option;
+                                        }
                                         $trBlock .= "
                                                     <tr id='$row[0]'>
                                                         <td>" . $row[0] . "</td>
-                                                        <td>" . $row[1] . "</td>
-                                                        <td>" . $row[2] . "</td>
-                                                        <td>" . $row[3] . "</td>
+                                                        <td><textarea name='user-name'>" . $row[1] . "</textarea></td>
+                                                        <td><textarea name='user-email'>" . $row[2] . "</textarea></td>
+                                                        <td><textarea name='user-phone'>" . $row[3] . "</textarea></td>
                                                         <td>" . $row[5] . "</td>
-                                                        <td>" . $row[4] . "</td>
+                                                        <td><select class='user-role'>".$options."</select></td>
                                                         <td>
+                                                            <button class='change-user__button' id='" . $row[0] . "'></button>
                                                             <button class='delete-user__button' id='" . $row[0] . "'></button>
                                                         </td>
                                                     </tr>";
@@ -860,7 +907,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 
-    <script src="../js/openPopupSignInUp.js"></script>
+    <!-- <script src="../js/openPopupSignInUp.js"></script> -->
 
     <script src="../js/admin-panel-ajax/master-handler-script.js"></script>
     <!-- <script src="../js/admin-panel-ajax/delete-master.js"></script>
@@ -888,7 +935,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <script src="../js/admin-panel-ajax/service-type-handler.js"></script>
 
-    <script src="../js/admin-panel-ajax/delete-user-handler.js"></script>
+    <script src="../js/admin-panel-ajax/user-handler.js"></script>
 
 
     <script src="../js/preloader.js"></script>
