@@ -1,3 +1,19 @@
+$('.user_master').on('click', function() {
+    var select = $(this);
+    $.ajax({
+        url: '../handlers/admin-panel-handlers/get_master_users.php',
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            select.empty(); // Очистить текущие опции
+                select.append('<option selected disabled>Выберите пользователя</option>');
+                $.each(data, function(index, user) {
+                    select.append('<option value="' + user.id_user + '">' + user.name + '</option>');
+                });
+        }
+    });
+});
+
 $(".add-master__button").click(function () {
     var formData = new FormData();
     formData.append('master_name', $('.master_name').val().trim());

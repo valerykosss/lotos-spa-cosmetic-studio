@@ -1,7 +1,7 @@
 <?php
 require_once "../handlers/isAdmin.php";
 
-if ($isAdmin==false || !isset($_SESSION['UserID'])){
+if ($isAdmin == false || !isset($_SESSION['UserID'])) {
     header("Location: index.php");
 }
 require_once '../database/db.php';
@@ -83,6 +83,7 @@ if (session_id() == '')
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-1">
+
                         <p class="sub-header">Введите данные нового мастера: </p>
                         <table class="table__to-add master">
                             <thead>
@@ -93,6 +94,7 @@ if (session_id() == '')
                                     <th>Курсы</th>
                                     <th>Опыт работы(лет)</th>
                                     <th>Специализация</th>
+                                    <th>Пользователь</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -103,6 +105,11 @@ if (session_id() == '')
                                     <td><textarea class="education"></textarea></td>
                                     <td><textarea class="work_experience digitsOnly"></textarea></td>
                                     <td><textarea class="position"></textarea></td>
+                                    <td>
+                                        <select class="user_master">
+                                            <option selected disabled>Выберите пользователя</option>
+                                        </select>
+                                    </td>
                                     <td>
                                         <button class='add-master__button'></button>
                                     </td>
@@ -120,6 +127,7 @@ if (session_id() == '')
                                     <th>Курсы</th>
                                     <th>Опыт работы(лет)</th>
                                     <th>Специализация</th>
+                                    <th>Пользователь</th>
                                 </tr>
                             </thead>
                             <?php
@@ -232,7 +240,6 @@ if (session_id() == '')
                                             $option = "<option value='" . $type[0] . "'>" . $type[1] . "</option>";
                                         }
                                         $options .= $option;
-                                        
                                     }
                                     $trBlock .= "
                                                 <tr id='$row[0]'>
@@ -615,54 +622,54 @@ if (session_id() == '')
                     <div class="tab-content-admin-panel" id="content-7">
                         <p class="sub-header">Cоздайте соответствие мастер-сервис:</p>
                         <table class="table__to-add master-service">
-                                <thead>
-                                    <tr>
-                                        <th>Услуга</th>
-                                        <th>Мастер</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <select class="service_ms" id="service_ms">
-                                                <option selected disabled>Выберите услугу</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select class="master_ms" id="master_ms">
-                                                <option selected disabled>Выберите мастера</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <button class='add-master-service__button'></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <thead>
+                                <tr>
+                                    <th>Услуга</th>
+                                    <th>Мастер</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <select class="service_ms" id="service_ms">
+                                            <option selected disabled>Выберите услугу</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="master_ms" id="master_ms">
+                                            <option selected disabled>Выберите мастера</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class='add-master-service__button'></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
                         <p class="sub-header">Все соответствия мастер-сервис:</p>
-                        
+
                         <table class="table__to-delete master-service">
-                                <thead>
-                                    <tr>
-                                        <th>Номер соответствия</th>
-                                        <th>Услуга</th>
-                                        <th>Мастер</th>
-                                    </tr>
-                                </thead>
+                            <thead>
+                                <tr>
+                                    <th>Номер соответствия</th>
+                                    <th>Услуга</th>
+                                    <th>Мастер</th>
+                                </tr>
+                            </thead>
                             <?php
-                                $query = 'SELECT `master_service`.`id_master_service`, `master_service`.`id_master`, `master_service`.`id_service`, `master`.`master_name`, `service`.`service_name`  FROM `master_service`
+                            $query = 'SELECT `master_service`.`id_master_service`, `master_service`.`id_master`, `master_service`.`id_service`, `master`.`master_name`, `service`.`service_name`  FROM `master_service`
                                 INNER JOIN `master` ON `master_service`.`id_master`=`master`.`id_master`
                                 INNER JOIN `service` ON `master_service`.`id_service`=`service`.`id_service`';
 
-                                echo "<tbody>";
-                                $trBlock = '';
+                            echo "<tbody>";
+                            $trBlock = '';
 
-                                $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
-                                if ($result) {
-                                    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
-                                        $row = mysqli_fetch_row($result);
-                                        $trBlock .= "
+                            $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                            if ($result) {
+                                for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                    $row = mysqli_fetch_row($result);
+                                    $trBlock .= "
                                                     <tr id='$row[0]'>
                                                         <td>" . $row[0] . "</td>
                                                         <td>" . $row[4] . "</td>
@@ -671,11 +678,11 @@ if (session_id() == '')
                                                             <button class='delete-ms__button' id='" . $row[0] . "'></button>
                                                         </td>
                                                     </tr>";
-                                    }
                                 }
-                                echo $trBlock;
-                                echo "</tbody>";
-                                ?>     
+                            }
+                            echo $trBlock;
+                            echo "</tbody>";
+                            ?>
                             </tbody>
                         </table>
                     </div>
@@ -683,40 +690,40 @@ if (session_id() == '')
                     <div class="tab-content-admin-panel" id="content-8">
                         <p class="sub-header">Введите название нового типа услуги:</p>
                         <table class="table__to-add service-type">
-                                <thead>
-                                    <tr>
-                                        <th>Название типа услуги</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><textarea class="service-type_name"></textarea></td>
-                                        <td>
-                                            <button class='add-service-type__button'></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <thead>
+                                <tr>
+                                    <th>Название типа услуги</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><textarea class="service-type_name"></textarea></td>
+                                    <td>
+                                        <button class='add-service-type__button'></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
                         <p class="sub-header">Все типы услуг:</p>
-                        
+
                         <table class="table__to-update-delete service-type">
-                                <thead>
-                                    <tr>
-                                        <th>Название типа услуги</th>
-                                    </tr>
-                                </thead>
+                            <thead>
+                                <tr>
+                                    <th>Название типа услуги</th>
+                                </tr>
+                            </thead>
                             <?php
-                                $query = 'SELECT `id_service_type`, `service_type_name` FROM `service_type`';
+                            $query = 'SELECT `id_service_type`, `service_type_name` FROM `service_type`';
 
-                                echo "<tbody>";
-                                $trBlock = '';
+                            echo "<tbody>";
+                            $trBlock = '';
 
-                                $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
-                                if ($result) {
-                                    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
-                                        $row = mysqli_fetch_row($result);
-                                        $trBlock .= "
+                            $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                            if ($result) {
+                                for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                    $row = mysqli_fetch_row($result);
+                                    $trBlock .= "
                                                     <tr id='$row[0]'>
                                                         <td><textarea name='service-type-name' id='" . $row[0] . "'>" . $row[1] . "</textarea></td>
                                                         <td>
@@ -724,109 +731,109 @@ if (session_id() == '')
                                                             <button class='delete-type-service__button' id='" . $row[0] . "'></button>
                                                         </td>
                                                     </tr>";
-                                    }
                                 }
-                                echo $trBlock;
-                                echo "</tbody>";
-                                ?>     
+                            }
+                            echo $trBlock;
+                            echo "</tbody>";
+                            ?>
                             </tbody>
                         </table>
                     </div>
 
                     <div class="tab-content-admin-panel" id="content-9">
                         <?php
-                            $user_roles=mysqli_query($link, "SELECT * FROM `role`");
-                            $user_roles=mysqli_fetch_all($user_roles);
+                        $user_roles = mysqli_query($link, "SELECT * FROM `role`");
+                        $user_roles = mysqli_fetch_all($user_roles);
                         ?>
-                     <p class="sub-header">Введите нового пользователя:</p>
+                        <p class="sub-header">Введите нового пользователя:</p>
                         <table class="table__to-add user">
-                                <thead>
-                                    <tr>
-                                        <th>Имя</th>
-                                        <th>Почта</th>
-                                        <th>Телефон</th>
-                                        <th>Роль</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><textarea class="user_name"></textarea></td>
-                                        <td><textarea class="user_email"></textarea></td>
-                                        <td><textarea class="user_phone"></textarea></td>
-                                        <td>
-                                            <select class="user_role">
-                                                <option selected disabled>Выберите роль</option>
-                                                <?php
-                                                    foreach($user_roles as $role){
-                                                        echo"<option value='".$role[0]."'>".$role[1]."</option>";
-                                                    }
-                                                ?>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <button class='add-user__button'></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                    <p class="sub-header">Все пользователи:</p>
-                        
+                            <thead>
+                                <tr>
+                                    <th>Имя</th>
+                                    <th>Почта</th>
+                                    <th>Телефон</th>
+                                    <th>Роль</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><textarea class="user_name"></textarea></td>
+                                    <td><textarea class="user_email"></textarea></td>
+                                    <td><textarea class="user_phone"></textarea></td>
+                                    <td>
+                                        <select class="user_role">
+                                            <option selected disabled>Выберите роль</option>
+                                            <?php
+                                            foreach ($user_roles as $role) {
+                                                echo "<option value='" . $role[0] . "'>" . $role[1] . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class='add-user__button'></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="sub-header">Все пользователи:</p>
+
                         <table class="table__to-update-delete user">
-                                <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>Имя</th>
-                                        <th>Почта</th>
-                                        <th>Телефон</th>
-                                        <th>Скидка</th>
-                                        <th>Роль</th>
-                                    </tr>
-                                </thead>
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Имя</th>
+                                    <th>Почта</th>
+                                    <th>Телефон</th>
+                                    <th>Скидка</th>
+                                    <th>Роль</th>
+                                </tr>
+                            </thead>
                             <?php
-                                $query = 'SELECT user.id_user, user.name, user.email, user.telephone, role.role_name, wheel_discount.discount_name, role.id_role
+                            $query = 'SELECT user.id_user, user.name, user.email, user.telephone, role.role_name, wheel_discount.discount_name, role.id_role
                                 FROM user
                                 LEFT JOIN wheel_discount ON user.id_wheel_discount=wheel_discount.id_wheel_discount
                                 INNER JOIN role ON user.id_role=role.id_role';
 
-                                echo "<tbody>";
-                                $trBlock = '';
-                                $user_roles=mysqli_query($link, "SELECT `id_role`, `role_name` FROM `role`");
-                                $user_roles=mysqli_fetch_all($user_roles);
+                            echo "<tbody>";
+                            $trBlock = '';
+                            $user_roles = mysqli_query($link, "SELECT `id_role`, `role_name` FROM `role`");
+                            $user_roles = mysqli_fetch_all($user_roles);
 
-                                $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
-                                if ($result) {
-                                    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
-                                        $row = mysqli_fetch_row($result);
-                                        if($row[6]==1){
-                                            continue;
+                            $result = mysqli_query($link, $query) or die('Ошибка' . mysqli_error($link));
+                            if ($result) {
+                                for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+                                    $row = mysqli_fetch_row($result);
+                                    if ($row[6] == 1) {
+                                        continue;
+                                    }
+                                    $options = "";
+                                    foreach ($user_roles as $role) {
+                                        if ($row[6] == $role[0]) {
+                                            $option = "<option value=" . $role[0] . " selected>" . $role[1] . "</option>";
+                                        } else {
+                                            $option = "<option value=" . $role[0] . ">" . $role[1] . "</option>";
                                         }
-                                        $options="";
-                                        foreach($user_roles as $role){
-                                            if($row[6]==$role[0]){
-                                                $option="<option value=".$role[0]." selected>".$role[1]."</option>";
-                                            }else{
-                                                $option="<option value=".$role[0].">".$role[1]."</option>";
-                                            }
-                                            $options.=$option;
-                                        }
-                                        $trBlock .= "
+                                        $options .= $option;
+                                    }
+                                    $trBlock .= "
                                                     <tr id='$row[0]'>
                                                         <td>" . $row[0] . "</td>
                                                         <td><textarea name='user-name'>" . $row[1] . "</textarea></td>
                                                         <td><textarea name='user-email'>" . $row[2] . "</textarea></td>
                                                         <td><textarea name='user-phone'>" . $row[3] . "</textarea></td>
                                                         <td>" . $row[5] . "</td>
-                                                        <td><select class='user-role'>".$options."</select></td>
+                                                        <td><select class='user-role'>" . $options . "</select></td>
                                                         <td>
                                                             <button class='change-user__button' id='" . $row[0] . "'></button>
                                                             <button class='delete-user__button' id='" . $row[0] . "'></button>
                                                         </td>
                                                     </tr>";
-                                    }
                                 }
-                                echo $trBlock;
-                                echo "</tbody>";
-                                ?>     
+                            }
+                            echo $trBlock;
+                            echo "</tbody>";
+                            ?>
                             </tbody>
                         </table>
                     </div>
@@ -839,63 +846,62 @@ if (session_id() == '')
     // require 'footer-white.php' 
     ?>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Обработчик для таблицы мастера
-    var masterTableAdd = document.querySelector('.table__to-add.master');
-    masterTableAdd.addEventListener('input', function(event) {
-        const target = event.target;
-        // Проверяем, является ли элемент textarea с классом "digitsOnly"
-        if (target.classList.contains('digitsOnly')) {
-            const text = target.value;
-            target.value = text.replace(/\D/g, ''); // Оставляем только цифры
-        }
-    });
-    // Обработчик для таблицы мастера
-    var masterTable = document.querySelector('.table__to-update-delete.master');
-    masterTable.addEventListener('input', function(event) {
-        const target = event.target;
-        // Проверяем, является ли элемент textarea с классом "digitsOnly"
-        if (target.classList.contains('digitsOnly')) {
-            const text = target.value;
-            target.value = text.replace(/\D/g, ''); // Оставляем только цифры
-        }
-    });
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Обработчик для таблицы мастера
+            var masterTableAdd = document.querySelector('.table__to-add.master');
+            masterTableAdd.addEventListener('input', function(event) {
+                const target = event.target;
+                // Проверяем, является ли элемент textarea с классом "digitsOnly"
+                if (target.classList.contains('digitsOnly')) {
+                    const text = target.value;
+                    target.value = text.replace(/\D/g, ''); // Оставляем только цифры
+                }
+            });
+            // Обработчик для таблицы мастера
+            var masterTable = document.querySelector('.table__to-update-delete.master');
+            masterTable.addEventListener('input', function(event) {
+                const target = event.target;
+                // Проверяем, является ли элемент textarea с классом "digitsOnly"
+                if (target.classList.contains('digitsOnly')) {
+                    const text = target.value;
+                    target.value = text.replace(/\D/g, ''); // Оставляем только цифры
+                }
+            });
 
-    // Обработчик для таблицы услуг
-    var serviceTableAdd = document.querySelector('.table__to-add.service');
-    serviceTableAdd.addEventListener('input', function(event) {
-        const target = event.target;
-        // Проверяем, является ли элемент textarea с классом "digitsOnly"
-        if (target.classList.contains('digitsOnly')) {
-            const text = target.value;
-            target.value = text.replace(/\D/g, ''); // Оставляем только цифры
-        }
-    });
-    // Обработчик для таблицы услуг
-    var serviceTable = document.querySelector('.table__to-update-delete.service');
-    serviceTable.addEventListener('input', function(event) {
-        const target = event.target;
-        // Проверяем, является ли элемент textarea с классом "digitsOnly"
-        if (target.classList.contains('digitsOnly')) {
-            const text = target.value;
-            target.value = text.replace(/\D/g, ''); // Оставляем только цифры
-        }
-    });
+            // Обработчик для таблицы услуг
+            var serviceTableAdd = document.querySelector('.table__to-add.service');
+            serviceTableAdd.addEventListener('input', function(event) {
+                const target = event.target;
+                // Проверяем, является ли элемент textarea с классом "digitsOnly"
+                if (target.classList.contains('digitsOnly')) {
+                    const text = target.value;
+                    target.value = text.replace(/\D/g, ''); // Оставляем только цифры
+                }
+            });
+            // Обработчик для таблицы услуг
+            var serviceTable = document.querySelector('.table__to-update-delete.service');
+            serviceTable.addEventListener('input', function(event) {
+                const target = event.target;
+                // Проверяем, является ли элемент textarea с классом "digitsOnly"
+                if (target.classList.contains('digitsOnly')) {
+                    const text = target.value;
+                    target.value = text.replace(/\D/g, ''); // Оставляем только цифры
+                }
+            });
 
-     // Обработчик для таблицы услуг
-     var recordTableAdd = document.querySelector('.table__to-add.record');
-     recordTableAdd.addEventListener('input', function(event) {
-        const target = event.target;
-        // Проверяем, является ли элемент textarea с классом "digitsOnly"
-        if (target.classList.contains('digitsOnly')) {
-            const text = target.value;
-            target.value = text.replace(/\D/g, ''); // Оставляем только цифры
-        }
-    });
-});
-
-</script>
+            // Обработчик для таблицы услуг
+            var recordTableAdd = document.querySelector('.table__to-add.record');
+            recordTableAdd.addEventListener('input', function(event) {
+                const target = event.target;
+                // Проверяем, является ли элемент textarea с классом "digitsOnly"
+                if (target.classList.contains('digitsOnly')) {
+                    const text = target.value;
+                    target.value = text.replace(/\D/g, ''); // Оставляем только цифры
+                }
+            });
+        });
+    </script>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

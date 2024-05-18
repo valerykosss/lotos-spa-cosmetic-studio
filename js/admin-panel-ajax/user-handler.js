@@ -5,6 +5,7 @@ $( ".add-user__button" ).click(function() {
     let user_phone = $('.user_phone').val();
     let user_role = $('.user_role').val();
 
+
     $.ajax({
         url: "../handlers/admin-panel-handlers/addUserHandler.php",
         method: "POST",
@@ -13,7 +14,7 @@ $( ".add-user__button" ).click(function() {
             user_name: user_name,
             user_email: user_email,
             user_phone: user_phone,
-            user_role: user_role
+            user_role: user_role,
         },
         success: function (response) { // запустится после получения результатов
             alert("Пользователь добавлен!");
