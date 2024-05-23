@@ -9,6 +9,9 @@ $telephone_regError = '';
 $first_passwordError = '';
 $second_passwordError = '';
 
+$only_tel_user_flag = false;
+$only_tel_user_id;
+
 $name = $_POST["name"];
 clearString($name);
 $nameRegex = '/^[A-ZА-ЯЁ]{1}[a-zа-яё]{2,}?/u'; //u для русских
@@ -29,14 +32,18 @@ if ($telephone == '') {
     $errors[] = 'telephone_reg';
     $telephone_regError .= "Имеет неверное значение";
 } else {
-    $query = "SELECT id_user FROM user WHERE telephone = '$telephone'";
+    $query = "SELECT id_user, telephone, password FROM user WHERE telephone = '$telephone'";
     $result = mysqli_query($link, $query) or die("Ошибка выполнения запроса" .
         mysqli_error($link));
     if ($result) {
         $row = mysqli_fetch_row($result);
-        if (!empty($row[0])){
+        if (!empty($row[0]) && !empty($row[1]) && !is_null($row[2])){
             $errors[] = 'telephone_reg';
             $telephone_regError .= "Аккаунт с таким номером телефона уже зарегистрирован";
+        }
+        else if(!empty($row[0]) && !empty($row[1]) && is_null($row[2])) {
+            $only_tel_user_flag = true;
+            $only_tel_user_id = $row[0]; 
         }
     }
 }
@@ -80,22 +87,42 @@ if (!empty($errors)) {
 }
 if ($first_password == $second_password) {
     $password = md5($first_password);
-    $query = "INSERT INTO user (telephone, password, name, id_role)
-    VALUES ('$telephone','$password', '$name', 2)";
-    $result = mysqli_query($link, $query) or die("Ошибка " .
-        mysqli_error($link));
-    if ($result) {
-        $response = [
-            "status" => true,
-        ];
-        echo json_encode($response);
-
-    } else {
-        $response = [
-            "status" => false
-        ];
-        echo json_encode($response);
+    if($only_tel_user_flag == false){
+        $query = "INSERT INTO user (telephone, password, name, id_role)
+        VALUES ('$telephone','$password', '$name', 2)";
+        $result = mysqli_query($link, $query) or die("Ошибка " .
+            mysqli_error($link));
+        if ($result) {
+            $response = [
+                "status" => true,
+            ];
+            echo json_encode($response);
+    
+        } else {
+            $response = [
+                "status" => false
+            ];
+            echo json_encode($response);
+        }
     }
+    else if ($only_tel_user_flag == true){
+        $query = "UPDATE user SET password = '$password', name='$name' where id_user = $only_tel_user_id";
+        $result = mysqli_query($link, $query) or die("Ошибка " .
+            mysqli_error($link));
+        if ($result) {
+            $response = [
+                "status" => true,
+            ];
+            echo json_encode($response);
+    
+        } else {
+            $response = [
+                "status" => false
+            ];
+            echo json_encode($response);
+        }
+    }
+    
 } else {
     $errors[] = 'second_password';
     $response = [
