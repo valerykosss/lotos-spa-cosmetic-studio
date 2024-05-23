@@ -147,11 +147,9 @@ function russianMonth($monthNumber) {
 
                     </div>
                     <?php
-                    if (isset($_SESSION['UserID'])) {
                         echo "<div class='specialist-button green-button' id=" . $master_id . ">
                         <span class='details'>ЗАПИСАТЬСЯ</span>
-                    </div>";
-                    }
+                    </div>"
                     ?>
 
                 </div>
@@ -241,6 +239,11 @@ function russianMonth($monthNumber) {
             <div id="sign-up-for-procedure__data">
                 <select id="masters__data"></select>
                 <select id="services__data"></select>
+                <?php if(!isset($_SESSION['UserID'])) { ?>
+                <input id="new_user_tel" placeholder="введите телефон" type='tel'></input>
+                <input id="new_user_email" placeholder="введите почту" type='email'></input>
+                <input id="new_user_name" placeholder="введите имя" type='text'></input>
+                <?php } ?>
                 <div id="calendar"></div>
 
             </div>
