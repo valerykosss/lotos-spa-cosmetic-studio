@@ -31,7 +31,7 @@
                     </li>
 
                     <li>
-                        <a href="#" class="header__link">Подобрать услугу</a>
+                        <a href="test.php" class="header__link">Подобрать услугу</a>
                     </li>
 
                     <li class="li-header-logo">

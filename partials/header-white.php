@@ -29,7 +29,7 @@
                         <a href="specialists.php" class="header__link-white">Специалисты</a>
                     </li>
                     <li>
-                        <a href="#" class="header__link-white">Подобрать услугу</a>
+                        <a href="test.php" class="header__link-white">Подобрать услугу</a>
                     </li>
 
                     <li class="li-header-logo">
