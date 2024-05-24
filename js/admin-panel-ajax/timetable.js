@@ -70,8 +70,8 @@ $(document).ready(function() {
          // Заполнение полей модального окна значениями
         clearLeaveModal();
         $('#leaveModal').modal('show');  
-        $('#leave_start').val($.fullCalendar.formatDate(start, "YYYY-MM-DD HH:mm"));
-        $('#leave_end').val($.fullCalendar.formatDate(end, "YYYY-MM-DD HH:mm"));
+        $('#leave_start').val($.fullCalendar.formatDate(start, "DD-MM-YYYY HH:mm"));
+        $('#leave_end').val($.fullCalendar.formatDate(end, "DD-MM-YYYY HH:mm"));
 
     },
     editable:true,
@@ -79,8 +79,8 @@ $(document).ready(function() {
     //растягивание события вниз
     eventResize:function(event)
     {
-     var start = $.fullCalendar.formatDate(event.start, "YYYY-MM-DD HH:mm");
-     var end = $.fullCalendar.formatDate(event.end, "YYYY-MM-DD HH:mm");
+     var start = $.fullCalendar.formatDate(event.start, "DD-MM-YYYY HH:mm");
+     var end = $.fullCalendar.formatDate(event.end, "DD-MM-YYYY HH:mm");
      var id_master = event.id_master;
      var id = event.id;
 
@@ -99,8 +99,8 @@ $(document).ready(function() {
     //изменение границ события - перетаскивание события
     eventDrop:function(event)
     {
-     var start = $.fullCalendar.formatDate(event.start, "YYYY-MM-DD HH:mm");
-     var end = $.fullCalendar.formatDate(event.end, "YYYY-MM-DD HH:mm");
+     var start = $.fullCalendar.formatDate(event.start, "DD-MM-YYYY HH:mm");
+     var end = $.fullCalendar.formatDate(event.end, "DD-MM-YYYY HH:mm");
      var id_master = event.id_master;
      var id = event.id;
      $.ajax({
@@ -137,8 +137,8 @@ $(document).ready(function() {
                     
                     $('#master_select').val(event.id_master);
 
-                    $('#leave_start').val($.fullCalendar.formatDate(event.start, "YYYY-MM-DD HH:mm"));
-                    $('#leave_end').val($.fullCalendar.formatDate(event.end, "YYYY-MM-DD HH:mm"));
+                    $('#leave_start').val($.fullCalendar.formatDate(event.start, "DD-MM-YYYY HH:mm"));
+                    $('#leave_end').val($.fullCalendar.formatDate(event.end, "DD-MM-YYYY HH:mm"));
 
                     $('#leaveAddBtn').attr('disabled', true);
                     $('#leaveAddBtn').hide();
@@ -161,8 +161,8 @@ $(document).ready(function() {
                 id_master=$('#master_select').val();
                 alert("АЙДИ МАСТЕРА ". id_master);
 
-                start = moment($('#leave_start').val()).format('YYYY-MM-DD HH:mm');
-                end = moment($('#leave_end').val()).format('YYYY-MM-DD HH:mm');
+                start = moment($('#leave_start').val()).format('DD-MM-YYYY HH:mm');
+                end = moment($('#leave_end').val()).format('DD-MM-YYYY HH:mm');
                 
                 // alert("АЙДИ ". id);
                 
