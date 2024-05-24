@@ -18,5 +18,10 @@ $selectedId = $_POST['selectedId'];
     // Сохранение selectedId в базе данных
     $sql = mysqli_query($link, "UPDATE user SET id_wheel_discount = $selectedId  WHERE id_user = $userId ");
 
+    if ($sql) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false]);
+    }
 
 ?>

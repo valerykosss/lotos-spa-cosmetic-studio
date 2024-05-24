@@ -149,7 +149,7 @@ const selectPrize = () => {
         success: function(response) {
             if (response.success) {
                 // Выводим сообщение об успешном сохранении
-                alert('ID успешно сохранен в базе данных.');
+                prizeNodes[selected].classList.add(selectedClass);
             } else {
                 // Выводим сообщение об ошибке
                 alert('Ошибка при сохранении ID в базе данных.');

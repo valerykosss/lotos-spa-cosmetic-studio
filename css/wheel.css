@@ -161,34 +161,34 @@
   }
   
   /* анимируем выпавший сектор */
-  .prize.selected .text {
-    /* делаем текст белым */
-    color: white;
+.prize.selected .text {
+  /* делаем текст белым */
+  color: white;
+  /* настраиваем длительность анимации */
+  animation: selected 800ms ease;
+}
 
-    /* animation: selected 800ms ease; */
+/* настраиваем анимацию текста на выпавшем секторе по кадрам */
+@keyframes selected {
+  /* что происходит на 25% от начала анимации */
+  25% {
+    /* увеличиваем текст в 1,25 раза */
+    transform: scale(1.25);
+    /* добавляем тексту тень */
+    /* text-shadow: 1vmin 1vmin 0 hsla(0 0% 0% / 0.1); */
   }
-  
-  /* настраиваем анимацию текста на выпавшем секторе по кадрам */
-  @keyframes selected {
-    /* что происходит на 25% от начала анимации */
-    25% {
-      /* увеличиваем текст в 1,25 раза */
-      transform: scale(1.25);
-      /* добавляем тексту тень */
-      text-shadow: 1vmin 1vmin 0 hsla(0 0% 0% / 0.05);
-    }
-    40% {
-      transform: scale(0.92);
-      text-shadow: 0 0 0 hsla(0 0% 0% / 0.2);
-    }
-    60% {
-      transform: scale(1.02);
-      text-shadow: 0.5vmin 0.5vmin 0 hsla(0 0% 0% / 0.1);
-    }
-    75% {
-      transform: scale(0.98);
-    }
-    85% {
-      transform: scale(1);
-    }
+  40% {
+    transform: scale(0.92);
+    /* text-shadow: 0 0 0 hsla(0 0% 0% / 0.2); */
   }
+  60% {
+    transform: scale(1.02);
+    /* text-shadow: 0.5vmin 0.5vmin 0 hsla(0 0% 0% / 0.1); */
+  }
+  75% {
+    transform: scale(0.98);
+  }
+  85% {
+    transform: scale(1);
+  }
+}

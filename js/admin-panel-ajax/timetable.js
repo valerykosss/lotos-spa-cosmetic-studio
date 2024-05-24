@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+    // $("#leave_start").mask("DD-MM-YYYY HH:mm");
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
     // Загрузка списка мастеров при загрузке страницы
     loadMasters();
 
@@ -211,6 +215,9 @@ $(document).ready(function() {
         $('#leaveModal').find('input').val("");
     
         $("#leave_title").text("Расписание");
+
+        $('#leave_start').mask("99-99-9999 99:99");
+        $('#leave_end').mask("99-99-9999 99:99");
 
         // format modal buttons
         $('#leaveAddBtn').attr('disabled', false);

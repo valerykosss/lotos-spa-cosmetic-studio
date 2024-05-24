@@ -72,12 +72,12 @@ if (session_id() == '')
 
                                     <div class="form-group">
                                         <label for="start" class="col-form-label">Начало времени работы: </label>
-                                        <input type="text" class="form-control" id="leave_start">
+                                        <input type="text" class="form-control" id="leave_start" data-toggle="tooltip" data-placement="top" title="Дата и время в формате DD-MM-YY HH:mm">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="start" class="col-form-label">Конец времени работы: </label>
-                                        <input type="text" class="form-control" id="leave_end">
+                                        <input type="text" class="form-control" id="leave_end" data-toggle="tooltip" data-placement="top" title="Дата и время в формате DD-MM-YY HH:mm">
                                     </div>
                                 </form>
                             </div>
@@ -154,6 +154,7 @@ if (session_id() == '')
     <script src="../js/admin-panel-ajax/timetable.js"></script>
     <script src="../js/openPopupSignInUp.js"></script>
     <script src="../js/preloader.js"></script>
+    <script src="../libraries/jquery.maskedinput.min.js"></script>
 </body>
 
 </html>
