@@ -8,20 +8,115 @@ $(document).ready(function () {
             id: 'id1',
             question: 'Какой тип услуги вы предпочитаете?',
             answers: [
-                { text: 'Косметические услуги', select_query: ' where id_service_type=1', next_question: 'id2.1' },
-                { text: 'Массаж', select_query: ' where id_service_type=4 or id_service_type=5', next_question: 'id2.2' },
-                { text: 'Спа-программы', select_query: ' where id_service_type=2', next_question: 'id2.3' }
+                { text: "Косметические услуги", select_query: " where id_service_type=1", next_question: "id2.1" },
+                { text: "Спа-программы", select_query: " where id_service_type=2", next_question: "id2.2" },
+                { text: "Массаж", select_query: "", next_question: "id2.3" }
             ]
         },
+        //-----------------------------------------------------------КОСМЕТИЧЕСКИЕ-----------------------------------------------------------
+        //косметичнские-руки или лицо-руки(сразу ответ руки)
         {
             id: 'id2.1',
             question: 'Вы хотите посетить косметическую услугу для рук или лица?',
             answers: [
                 { text: "Для рук", select_query: " and service_name like '% рук%'", next_question: "end" },
-                { text: 'Для лица', select_query: '...', next_question: 'id2.1.2' }
+                { text: "Для лица", select_query: "", next_question: "id2.1.2" }
             ]
         },
-        // Добавьте остальные вопросы
+        //косметичнские-руки или лицо-лицо-не знаю(сразу ответ консультация)
+        {
+            id: 'id2.1.2',
+            question: 'Вы впервые хотите впервые посетить косметологическую процедуру в нашем центре?',
+            answers: [
+                { text: "Да, я впервые хочу попасть и понять, какая процедура подходит именно мне", select_query: " and lower(service_name) like lower('%консультация%')", next_question: "end" },
+                { text: "Нет, я постоянный клиент вашего центра и уже знаю, какая консультация подходит именно мне!", select_query: "", next_question: "id2.1.2.1" }
+            ]
+        },
+
+         //косметичнские-руки или лицо-лицо-знаю(сразу ответ карбо и пилинг)
+         {
+            id: 'id2.1.2.1',
+            question: 'Мы рады, что вы уже знаете какой тип косметической процедуры подходит именно вам! Теперь выберите его!',
+            answers: [
+                { text: "Мне подходит глубокое очищение кожи лица!", select_query: " and lower(service_name) like lower('%чистк%')", next_question: "id2.1.2.1.1" },
+                { text: "Самый подходящий для меня тип процедуры - это процедуры, связанные с очищением верхнего слоя эпидермиса!", select_query: " and lower(service_name) like lower('%пилинг%')", next_question: "end" },
+                { text: "Карбокситерация-вот тип процедуры, который подходит моей коже!", select_query: " and lower(service_name) like lower('%карбокситерапия%')", next_question: "end" }
+            ]
+        },
+
+         //косметичнские-руки или лицо-лицо-знаю-чиста-(ответы)
+        {
+            id: 'id2.1.2.1.1',
+            question: 'Выберите тип чистки, который вам рекомендован',
+            answers: [
+                { text: "Специалист рекоменндовал мне комбинированную чистку", select_query: " and lower(service_name) like lower('%комб%')", next_question: "end" },
+                { text: "Мне нужно посетить механическую чистку", select_query: " and lower(service_name) like lower('%механич%')", next_question: "end" },
+                { text: "Мне осталось еще несколько сеансов по ультразвуковой чистке!", select_query: " and lower(service_name) like lower('%уз%') or lower(service_name) like lower('%ультразвук%')", next_question: "end" }
+            ]
+        },
+
+         //-----------------------------------------------------------СПА-ПРОЦЕДУРЫ-----------------------------------------------------------
+         //спа-скрабирование или без скрабирования
+        {
+            id: 'id2.2',
+            question: 'Любите ли вы этап скрабирования в проведении спа-процедуры?',
+            answers: [
+                { text: "Да, люблю различные скрабы, предпочту процедуру с наличием этого этапа", select_query: " and service_description like '%скраб%'", next_question: "id2.2.1" },
+                { text: "Не люблю этот процесс, мне будет ближе процедура без этого этапа", select_query: "", next_question: "id2.2.2" }
+            ]
+        },
+        //спа-скрабирование или без скрабирования-скпабирование(ответы)
+        {
+            id: 'id2.2.1',
+            question: 'Какое скрабирование предпочитаете?',
+            answers: [
+                { text: "Шоколадное или кофейное", select_query: " and service_description like '%шоко%'", next_question: "end" },
+                { text: "Детокс-скрабирование", select_query: "and service_description like '%детокс%'", next_question: "end" },
+                { text: "Разогревающее", select_query: "and service_description like '%разогрев%'", next_question: "end" },
+            ]
+        },
+         //спа-скрабирование или без скрабирования-без скрабирования-камни
+         {
+            id: 'id2.2.2',
+            question: 'Как относитесь к массажу с использованием камней?',
+            answers: [
+                { text: "Только за!", select_query: " and service_description like '%камень%' or service_description like '%камн%'", next_question: "end" },
+                { text: "Предпочту другой вид массажа", select_query: "", next_question: "id2.2.2.1" },
+            ]
+        },
+        //спа-скрабирование или без скрабирования-без скрабирования-в 4 руки
+        {
+            id: 'id2.2.2.1',
+            question: 'Пробовали ли вы когда-нибудь массаж в 4 руки?',
+            answers: [
+                { text: "Нет, но хочу попробовать!", select_query: " and service_description like '%4%' and service_description like '%рук%'", next_question: "end" },
+                { text: "Да, с удовольствием бы повторил(а)!", select_query: " and service_description like '%4%' and service_description like '%рук%'", next_question: "end" },
+                { text: "Нет, предпочитаю классический вид массажа", select_query: " and service_name like '%перезагрузка%'", next_question: "end" },
+            ]
+        },
+
+        //-----------------------------------------------------------МАССАЖ-----------------------------------------------------------
+         //массаж тела или массаж лица
+         {
+            id: 'id2.3',
+            question: 'Какой массаж вы хотите посетить?',
+            answers: [
+                { text: "Массаж тела", select_query: " where id_service_type=5", next_question: "id2.3.1" },
+                { text: "Массаж лица", select_query: " where id_service_type=4", next_question: "id2.3.2" }
+            ]
+        },
+
+        //массаж тела или массаж лица
+        {
+            id: 'id2.3.1',
+            question: 'Отлично, у нас есть следующие виды массажа тела, выберите подходящий',
+            answers: [
+                { text: "Массаж головы и шеи", select_query: " and service_description like '%голов%' and service_description like '%лиц%'", next_question: "end" },
+                { text: "Массаж лица", select_query: " and service_description like '%ног%'", next_question: "end" },
+                { text: "Массаж лица", select_query: " where id_service_type=4", next_question: "id2.3.1.1" }
+            ]
+        },
+
     ];
 
     // Функция для отображения текущего вопроса
