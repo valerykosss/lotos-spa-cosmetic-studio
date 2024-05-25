@@ -1,3 +1,5 @@
+$(".user_phone").mask("+375 (99) 999-99-99");
+
 $( ".add-user__button" ).click(function() {
 
     let user_name = $('.user_name').val();
@@ -6,6 +8,7 @@ $( ".add-user__button" ).click(function() {
     let user_role = $('.user_role').val();
 
 
+    if(user_name && user_email && user_phone && user_role){
     $.ajax({
         url: "../handlers/admin-panel-handlers/addUserHandler.php",
         method: "POST",
@@ -42,7 +45,12 @@ $( ".add-user__button" ).click(function() {
             $('.user_role option:first').prop('selected', true);
         }
     });
+} else{
+    alert('Заполните все поля!');
+}
+    
 });
+
 //удаление user
 $(document).on('click', '.delete-user__button', function () {
     let id_user_to_delete = $(this).attr('id');

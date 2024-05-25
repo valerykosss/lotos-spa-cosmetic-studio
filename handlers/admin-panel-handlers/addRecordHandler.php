@@ -3,6 +3,25 @@
     if (session_id() == '')
     session_start();
 
+    function russianMonth($monthNumber)
+    {
+        $months = array(
+            'января',
+            'февраля',
+            'марта',
+            'апреля',
+            'мая',
+            'июня',
+            'июля',
+            'августа',
+            'сентября',
+            'октября',
+            'ноября',
+            'декабря'
+        );
+        return $months[$monthNumber - 1];
+    }
+
     $service_name = $_POST['service_name'];
     $master_name = $_POST['master_name'];
     $client_name = $_POST['client_name'];
@@ -27,6 +46,11 @@
     if (mysqli_query($link, $query)) {
 
         $recordId = mysqli_insert_id($link); // Получаем ID нового мастера
+        $date = strtotime($record_date); // Преобразование строки в дату
+                                    $day = date('j', $date);
+                                    $month = date('n', $date);
+                                    $year = date('Y', $date);
+                                    $date = $day . ' ' . russianMonth($month) . ' '. $year;
         $response = [
             'success' => true,
             'record' => [
@@ -34,7 +58,7 @@
                 'service_name' => $service['service_name'],
                 'master_name' => $master['master_name'],
                 'client_name' => $client['name'],
-                'record_date' => $record_date,
+                'record_date' => $date,
                 'record_time' => $record_time
             ]
         ];

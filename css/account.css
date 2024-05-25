@@ -1,0 +1,219 @@
+.page__user-profile{
+    margin-top: 40px;
+}
+
+.user-profile__body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile__menu{
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu__user-avatar{
+    width: 33%;
+    height: 0;
+    padding-bottom: 33%;
+    position: relative;
+    margin-right: 25px;
+    margin-bottom: 30px;
+}
+
+.menu__user-avatar .avatar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 110px;
+}
+
+.menu__user-name{
+    font-family: "SF Pro Text";
+    font-size: 42px;
+    color: #355D48;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 170%;
+}
+
+.menu__user-tel{
+    font-family: "SF Pro Text";
+    font-size: 18px;
+    color: #989898;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 45px;
+}
+
+.menu__header{
+    font-family: "SF Pro Text";
+    font-size: 15px;
+    color: #232323;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 170%;
+    margin-bottom: 20px;
+}
+
+/*стрелка*/
+.arrow {
+    position: relative;
+    cursor: pointer;
+    /* margin-left: 25px; */
+    width: 20px; /* уменьшенная длина контейнера */
+    height: 15px; /* уменьшенная высота контейнера */
+
+    margin: 20px 25px;
+}
+.arrow-left {
+    position: absolute;
+    background-color: transparent;
+    top: 5px; /* скорректированное значение top */
+    left: 0px; /* скорректированное значение left */
+    width: 12px; /* уменьшенная ширина стрелки */
+    height: 3px; /* уменьшенная толщина стрелки */
+    display: block;
+    transform: rotate(-35deg);
+    float: right;
+    border-radius: 1px; /* уменьшенный радиус закругления */
+}
+.arrow-left:after {
+    content: "";
+    background-color: #232323;
+    width: 12px; /* уменьшенная ширина стрелки */
+    height: 3px; /* уменьшенная толщина стрелки */
+    display: block;
+    float: right;
+    border-radius: 3px 5px 5px 3px; /* уменьшенный радиус закругления */
+    transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
+    z-index: -1;
+}
+.arrow-right {
+    position: absolute;
+    background-color: transparent;
+    top: 5px; /* скорректированное значение top */
+    left: 8px; /* скорректированное значение left */
+    width: 12px; /* уменьшенная ширина стрелки */
+    height: 3px; /* уменьшенная толщина стрелки */
+    display: block;
+    transform: rotate(35deg);
+    float: right;
+    border-radius: 1px; /* уменьшенный радиус закругления */
+}
+.arrow-right:after {
+    content: "";
+    background-color: #232323;
+    width: 12px; /* уменьшенная ширина стрелки */
+    height: 3px; /* уменьшенная толщина стрелки */
+    display: block;
+    float: right;
+    border-radius: 5px 3px 3px 5px; /* уменьшенный радиус закругления */
+    transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
+    z-index: -1;
+}
+.open .arrow-left:after {
+    transform-origin: center center;
+    transform: rotate(70deg);
+}
+.open .arrow-right:after {
+    transform-origin: center center;
+    transform: rotate(-70deg);
+}
+
+.menu-tab{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.active-tab {
+    background-color: #E9E9E9;
+    border-radius: 40px;
+}
+
+
+.menu__tab-header{
+    font-family: "SF Pro Text";
+    font-size: 15px;
+    color: #232323;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 170%;
+    align-self: center;
+
+    cursor: pointer;
+}
+
+
+.profile__area {
+    display: none;
+    width: 65%;
+    background-color: #355D48;
+    border-radius: 16px;
+}
+.profile__area.active {
+    display: block;
+}
+
+
+/*вкладка пароля*/
+.area-title {
+
+    line-height: 170%;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    transition: color .15s ease-in-out, border-color .15s ease-in-out;
+    border-bottom: 4px solid #ffffff;
+    margin-bottom: 55px;
+}
+
+._profile-area-container{
+    width: 70%;
+    margin: 0px auto;
+    padding: 0px;
+    box-sizing: content-box;
+}
+
+.change-password__body{
+    display: flex;
+    flex-direction: column;
+}
+
+.label-input__group-profile{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+label{
+    font-family: "SF Pro Text";
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+input{
+    padding: 17px 40px;
+    font-family: "SF Pro Text";
+    font-size: 21px;
+    line-height: 160%;
+    border-radius: 50px;
+    background-color: #EAEAEA;
+}
+
+#change-password{
+    align-self: center;
+    margin-top: 30px;
+}

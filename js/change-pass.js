@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Обработчик нажатия на кнопку "Изменить пароль"
-    $('input[name="change-password"]').click(function() {
+    $('#change-password').click(function() {
         // Получаем значения полей
         var oldPassword = $('input[name="old-password"]').val();
         var newPassword = $('input[name="new-password"]').val();

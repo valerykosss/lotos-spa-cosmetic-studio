@@ -8,9 +8,9 @@ require_once "../handlers/isAdmin.php";
 
 if (session_id() == '')
     session_start();
-if ($isAdmin==true || $isMaster==true || !isset($_SESSION['UserID'])){
-        header("Location: index.php");
-    }
+if ($isAdmin == true || $isMaster == true || !isset($_SESSION['UserID'])) {
+    header("Location: index.php");
+}
 $user_id = $_SESSION['UserID'];
 
 $user_discount = mysqli_query($link, "SELECT wheel_discount.discount_name FROM `user`
@@ -24,10 +24,10 @@ $user_phone = mysqli_fetch_assoc($user_phone);
 $user_avatar = mysqli_query($link, "SELECT `avatar`, name FROM user WHERE id_user=$user_id");
 $user_avatar = mysqli_fetch_assoc($user_avatar);
 
-if($user_avatar['avatar']==NULL){
-    $avatar="../images/icons/avatar.png";
-}else{
-    $avatar=$user_avatar['avatar'];
+if ($user_avatar['avatar'] == NULL) {
+    $avatar = "../images/icons/avatar.png";
+} else {
+    $avatar = $user_avatar['avatar'];
 }
 ?>
 <!DOCTYPE html>
@@ -38,16 +38,17 @@ if($user_avatar['avatar']==NULL){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Аккаунт пользователя</title>
     <link rel="stylesheet" href="../css/generalStyles.css">
-    <!-- <link rel="stylesheet" href="../css/specialists.css"> -->
+    <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/admin-panel.css">
     <link rel="stylesheet" href="../css/header-white.css">
     <link rel="stylesheet" href="../css/footer-white.css">
 
     <link rel="stylesheet" href="../css/popupSignInUp.css">
+    <link rel="stylesheet" href="../css/account.css">
 
 </head>
 <style>
-    input[type="text"],
+    /* input[type="text"],
     input[type="email"] {
         border: 1px solid black;
         width: 200px;
@@ -56,16 +57,16 @@ if($user_avatar['avatar']==NULL){
 
     textarea {
         border: 1px solid black;
-    }
+    } */
 </style>
 
 <body>
-<div class="preloader">
+    <!-- <div class="preloader">
         <div class="preloader__row">
             <div class="preloader__item"></div>
             <div class="preloader__item"></div>
         </div>
-    </div>
+    </div> -->
     <?php
     require 'header-white.php';
     ?>
@@ -127,16 +128,12 @@ if($user_avatar['avatar']==NULL){
                 </div>
             </div>
         </section>
+
+
         <section>
-            <img class="avatar" src="<?php echo($avatar);?>" style="width:50px; height: 50px;">
+            <!-- <img class="avatar" src="<?php echo ($avatar); ?>" style="width:50px; height: 50px;"> -->
             <input type="file" id="fileInput" style="display: none;">
             <button id="uploadButton">Сменить изображение</button>
-        </section>
-        <section>
-            <input type="password" name="old-password" class="old-password" style="border: 1px solid black">
-            <input type="password" name="new-password" class="new-password" style="border: 1px solid black">
-            <input type="password" name="new-password-confirm" class="new-password-confirm" style="border: 1px solid black">
-            <input type="button" name="change-password" value="Изменить пароль">
         </section>
 
         <section style="background-color: #355D48;">
@@ -149,6 +146,82 @@ if($user_avatar['avatar']==NULL){
                 <span class="star" data-rating="5"><img src="../images/icons/review-star-empty.svg" class="star-img"></span>
             </div>
             <a href="#" id="submitReview">Оставить отзыв</a>
+        </section>
+
+        <section class="page__user-profile">
+            <div class="user-profile__body _container">
+                <div class="profile__menu">
+                    <div class="menu__user-avatar">
+                        <img class="avatar" src="<?php echo ($avatar); ?>">
+                    </div>
+                    <div class="menu__user-name"><?php echo ($_SESSION['Name']); ?></div>
+                    <div class="menu__user-tel"><?php echo ($user_phone['telephone']); ?></div>
+                    <div class="menu__header">Личная информация</div>
+
+                    <div class="menu-tab" data-target="area1">
+                        <div class="arrow">
+                            <span class="arrow-left"></span>
+                            <span class="arrow-right"></span>
+                        </div>
+                        <div class="menu__tab-header">Изменить пароль</div>
+                    </div>
+
+                    <div class="menu-tab" data-target="area2">
+                        <div class="arrow">
+                            <span class="arrow-left"></span>
+                            <span class="arrow-right"></span>
+                        </div>
+                        <div class="menu__tab-header">Изменить аватар</div>
+                    </div>
+
+                    <div class="menu__header">Процедуры</div>
+                    <div class="menu-tab" data-target="area3">
+                        <div class="arrow">
+                            <span class="arrow-left"></span>
+                            <span class="arrow-right"></span>
+                        </div>
+                        <div class="menu__tab-header">Мои записи</div>
+                    </div>
+
+                    <div class="menu-tab" data-target="area4">
+                        <div class="arrow">
+                            <span class="arrow-left"></span>
+                            <span class="arrow-right"></span>
+                        </div>
+                        <div class="menu__tab-header">Оставить отзыв</div>
+                    </div>
+                </div>
+
+                <div class="profile__area" id="area1">
+                    <p class="area-title">Изменение пароля</p>
+
+                    <div class="change-password__body _profile-area-container">
+
+                        <div class="label-input__group-profile">
+                            <label>Старый пароль</label>
+                            <input type="password" name="old-password" class="old-password" placeholder="Введите старый пароль">
+                        </div>
+
+                        <div class="label-input__group-profile">
+                            <label>Новый пароль</label>
+                            <input type="password" name="new-password" class="new-password" placeholder="Введите новый пароль">
+                        </div>
+
+                        <div class="label-input__group-profile">
+                            <label>Повтор нового пароль</label>
+                            <input type="password" name="new-password-confirm" class="new-password-confirm" placeholder="Повторите новый пароль">
+                        </div>
+
+                        <div class="button" id="change-password">
+                            <span class="details">Поменять</span>
+                        </div>  
+
+                    </div>
+                </div>
+                <div class="profile__area" id="area2">аватар</div>
+                <div class="profile__area" id="area3">записи</div>
+                <div class="profile__area" id="area4">отзывы</div>
+            </div>
         </section>
 
     </main>
@@ -165,5 +238,8 @@ if($user_avatar['avatar']==NULL){
 <script src="../js/change-pass.js"></script>
 <script src="../js/change-avatar.js"></script>
 <script src="../js/leaveReviewRating.js"></script>
+
+<script src="../js/account.js"></script>
+
 
 </html>

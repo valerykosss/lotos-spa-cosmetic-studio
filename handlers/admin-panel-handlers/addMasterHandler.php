@@ -1,5 +1,6 @@
 <?php
 require '../../database/db.php';
+
 if (session_id() == '') session_start();
 
 $master_name = $_POST['master_name'];

@@ -8,6 +8,25 @@ require_once '../database/db.php';
 require_once "../handlers/admin-panel-handlers/adminpanel_info_script.php";
 if (session_id() == '')
     session_start();
+
+    function russianMonth($monthNumber)
+    {
+        $months = array(
+            'января',
+            'февраля',
+            'марта',
+            'апреля',
+            'мая',
+            'июня',
+            'июля',
+            'августа',
+            'сентября',
+            'октября',
+            'ноября',
+            'декабря'
+        );
+        return $months[$monthNumber - 1];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -346,6 +365,13 @@ if (session_id() == '')
                             if ($result) {
                                 for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                                     $row = mysqli_fetch_row($result);
+
+                                    $date = strtotime($row[4]); // Преобразование строки в дату
+                                    $day = date('j', $date);
+                                    $month = date('n', $date);
+                                    $year = date('Y', $date);
+                                    $date = $day . ' ' . russianMonth($month) . ' '. $year;
+
                                     $options = "";
 
                                     foreach ($record_statuses as $status) {
@@ -362,7 +388,7 @@ if (session_id() == '')
                                                     <td>" . $row[1] . "</td>
                                                     <td>" . $row[2] . "</td>
                                                     <td>" . $row[3] . "</td>
-                                                    <td>" . $row[4] . "</td>
+                                                    <td>" . $date . "</td>
                                                     <td>" . $row[5] . "</td>
                                                     <td>
                                                         <select class='record-status'>

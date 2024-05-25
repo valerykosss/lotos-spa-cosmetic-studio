@@ -13,7 +13,7 @@ if (isset($_GET['id_master'], $_GET['start_date'], $_GET['end_date'])) {
                 FROM procedure_record pr
                 JOIN master_service ms ON pr.id_master_service = ms.id_master_service
                 JOIN service s ON ms.id_service = s.id_service
-                WHERE ms.id_master = ? AND pr.record_date BETWEEN ? AND ?";
+                WHERE ms.id_master = ? AND pr.record_date BETWEEN ? AND ? AND pr.id_record_status not like 3";
         
         $stmt = $link->prepare($sql);
         $stmt->bind_param('iss', $id_master, $start_date, $end_date);
