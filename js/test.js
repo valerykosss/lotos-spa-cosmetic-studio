@@ -95,7 +95,7 @@ $(document).ready(function () {
             ]
         },
 
-        //-----------------------------------------------------------МАССАЖ-----------------------------------------------------------
+        //-----------------------------------------------------------МАССАЖ ТЕЛА-----------------------------------------------------------
          //массаж тела или массаж лица
          {
             id: 'id2.3',
@@ -106,16 +106,98 @@ $(document).ready(function () {
             ]
         },
 
-        //массаж тела или массаж лица
+        //массаж тела- (сразу выбран массаж головы+шеи и массаж ног)
         {
             id: 'id2.3.1',
             question: 'Отлично, у нас есть следующие виды массажа тела, выберите подходящий',
             answers: [
-                { text: "Массаж головы и шеи", select_query: " and service_description like '%голов%' and service_description like '%лиц%'", next_question: "end" },
-                { text: "Массаж лица", select_query: " and service_description like '%ног%'", next_question: "end" },
-                { text: "Массаж лица", select_query: " where id_service_type=4", next_question: "id2.3.1.1" }
+                { text: "Массаж головы и шеи", select_query: " and service_description like '%голов%' and service_description like '%ше%'", next_question: "end" },
+                { text: "Массаж ног", select_query: " and service_description like '%ног%'", next_question: "end" },
+                { text: "Массаж всего тела", select_query: "", next_question: "id2.3.1.1" }
             ]
         },
+
+        //массаж тела- массаж всего тела-кореекция фигуры да/нет
+        {
+            id: 'id2.3.1.1',
+            question: 'Нацелены ли вы на процедуры по коррекции фигуры?',
+            answers: [
+                { text: "Да, это то, что я ищу!", select_query: " and service_name like '%фигур%' or service_name like '%коррек%'", next_question: "end" },
+                { text: "Нет, я не приследую эту цель, предпочитаю традиционный массаж", select_query: "", next_question: "id2.3.1.1.1" },
+            ]
+        },
+
+         //массаж тела- массаж всего тела-кореекция фигуры нет-интесивна сразу ответ
+         {
+            id: 'id2.3.1.1.1',
+            question: 'Какую технику массажа предпочитаете?',
+            answers: [
+                { text: "Интенсивную", select_query: " and service_name like '%восстанав%'", next_question: "end" },
+                { text: "Мягкую", select_query: "", next_question: "id2.3.1.1.1.1" },
+            ]
+        },
+
+        //массаж тела- массаж всего тела-кореекция фигуры нет-мягкая техника ответы
+        {
+            id: 'id2.3.1.1.1.1',
+            question: 'Какую цель приследуете?',
+            answers: [
+                { text: "Усилить обмен веществ и кровообращение", select_query: " and service_name like '%лимф%'", next_question: "end" },
+                { text: "Полностью расслабиться и перенестись в мир гармонии и спокойствия", select_query: " and service_name like '%рассл%'", next_question: "end" },
+            ]
+        },
+
+       //-----------------------------------------------------------МАССАЖ ЛИЦА-----------------------------------------------------------
+       ///массаж лица - поверхнотстные или моделир/глубокие
+         {
+            id: 'id2.3.2',
+            question: 'Какие техники массажа лица вы предпочитаете?',
+            answers: [
+                { text: "Поверхностные", select_query: " and service_description like '%поверхност%'", next_question: "id2.3.2.1" },
+                { text: "Глубокие(моделирующие)", select_query: " and service_description like '%глуб%' and service_description like '%моделир%'", next_question: "id2.3.2.2" },
+            ]
+        },
+
+        //поверхностные
+        {
+            id: 'id2.3.2.1',
+            question: 'Что вас интересует больше?',
+            answers: [
+                { text: "Расслабление мыщц", select_query: "", next_question: "id2.3.2.1.1" },
+                { text: "Уменьшение отеков", select_query: " and results like '%отек%' and service_name like '%лимф%'", next_question: "end" },
+            ]
+        },
+
+         {
+            id: 'id2.3.2.1.1',
+            question: 'Предпочитаете маску с эффектом экспресс-лифтинг после массажа?',
+            answers: [
+                { text: "Да", select_query: " and service_name like '%маск%' and service_name like '%альгин%'", next_question: "end" },
+                { text: "Нет", select_query: " and service_name like '%класс%'", next_question: "end" },
+            ]
+        },
+
+        //глубокие
+        {
+            id: 'id2.3.2.2',
+            question: 'Какую цель вы приследуете?',
+            answers: [
+                { text: "Улучшение эластичности кожи", select_query: " and results like '%эласт%' and results like '%кож%'", next_question: "end" },
+                { text: "Улучшение контуров лица", select_query: " and results like '%контур%' and results like '%лиц%'", next_question: "id2.3.2.2.1" },
+            ]
+        },
+
+        {
+            id: 'id2.3.2.2.1',
+            question: 'Есть ли у вас морщины?',
+            answers: [
+                { text: "Да", select_query: " and insication like '%морщ%'", next_question: "end" },
+                { text: "Нет", select_query: " and service_name like '%модел%'", next_question: "end" },
+            ]
+        },
+
+
+
 
     ];
 
