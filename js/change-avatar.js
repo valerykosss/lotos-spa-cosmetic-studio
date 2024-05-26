@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $('#uploadButton').click(function() {
         $('#fileInput').click();
+        console.log('#uploadButton');
     });
 
     $('#fileInput').change(function() {

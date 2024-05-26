@@ -1,9 +1,9 @@
 
 $(document).ready(function() {
-    $('#area3').addClass('active');
-    $('div[data-target="area3"]').addClass('active-tab');
-    $('div[data-target="area3"]').find('.arrow').addClass('open');
-    
+    $('#area2').addClass('active');
+    $('div[data-target="area2"]').addClass('active-tab');
+    $('div[data-target="area2"]').find('.arrow').addClass('open');
+
     $('.menu-tab').click(function() {
         // Убираем класс active со всех profile__area
         $('.profile__area').removeClass('active');

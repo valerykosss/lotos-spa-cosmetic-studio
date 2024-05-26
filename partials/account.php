@@ -37,14 +37,30 @@ if ($user_avatar['avatar'] == NULL) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Аккаунт пользователя</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
+    <!-- <link rel="stylesheet" href="../css/admin-panel.css"> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/ru.js"></script>
+
+
     <link rel="stylesheet" href="../css/generalStyles.css">
     <link rel="stylesheet" href="../css/buttons.css">
-    <link rel="stylesheet" href="../css/admin-panel.css">
+    <!-- <link rel="stylesheet" href="../css/admin-panel.css"> -->
     <link rel="stylesheet" href="../css/header-white.css">
     <link rel="stylesheet" href="../css/footer-white.css">
 
     <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/account.css">
+
 
 </head>
 <style>
@@ -129,13 +145,6 @@ if ($user_avatar['avatar'] == NULL) {
             </div>
         </section>
 
-
-        <section>
-            <!-- <img class="avatar" src="<?php echo ($avatar); ?>" style="width:50px; height: 50px;"> -->
-            <input type="file" id="fileInput" style="display: none;">
-            <button id="uploadButton">Сменить изображение</button>
-        </section>
-
         <section style="background-color: #355D48;">
             <textarea id="reviewText" placeholder="Напишите ваш отзыв..."></textarea>
             <div id="stars">
@@ -151,8 +160,12 @@ if ($user_avatar['avatar'] == NULL) {
         <section class="page__user-profile">
             <div class="user-profile__body _container">
                 <div class="profile__menu">
-                    <div class="menu__user-avatar">
-                        <img class="avatar" src="<?php echo ($avatar); ?>">
+                    <div class="menu__user-avatar tooltiped" >
+                        <img class="avatar" src="<?php echo ($avatar); ?>" id="uploadButton">
+                        <input type="file" id="fileInput" style="display: none;">
+                        <div class="tooltip">
+                            <div class="tooltip-content">Нажмите, чтобы поменять фото</div>
+                        </div>
                     </div>
                     <div class="menu__user-name"><?php echo ($_SESSION['Name']); ?></div>
                     <div class="menu__user-tel"><?php echo ($user_phone['telephone']); ?></div>
@@ -166,16 +179,8 @@ if ($user_avatar['avatar'] == NULL) {
                         <div class="menu__tab-header">Изменить пароль</div>
                     </div>
 
-                    <div class="menu-tab" data-target="area2">
-                        <div class="arrow">
-                            <span class="arrow-left"></span>
-                            <span class="arrow-right"></span>
-                        </div>
-                        <div class="menu__tab-header">Изменить аватар</div>
-                    </div>
-
                     <div class="menu__header">Процедуры</div>
-                    <div class="menu-tab" data-target="area3">
+                    <div class="menu-tab" data-target="area2">
                         <div class="arrow">
                             <span class="arrow-left"></span>
                             <span class="arrow-right"></span>
@@ -183,7 +188,7 @@ if ($user_avatar['avatar'] == NULL) {
                         <div class="menu__tab-header">Мои записи</div>
                     </div>
 
-                    <div class="menu-tab" data-target="area4">
+                    <div class="menu-tab" data-target="area3">
                         <div class="arrow">
                             <span class="arrow-left"></span>
                             <span class="arrow-right"></span>
@@ -218,20 +223,111 @@ if ($user_avatar['avatar'] == NULL) {
 
                     </div>
                 </div>
-                <div class="profile__area" id="area2">аватар</div>
-                <div class="profile__area" id="area3">записи</div>
-                <div class="profile__area" id="area4">отзывы</div>
+                <div class="profile__area" id="area2">
+                <!-- <p class="area-title-calendar">Мои записи</p> -->
+                    <div id="calendar"></div>
+                      <!-- Start Event Modal -->
+                <div id="leaveModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 id="leave_title" class="modal-title"> Подробности записи</h4>
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">Закрыть</span></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form>
+                                    <input type="hidden" id="eventIdInput">
+
+                                    <div class="form-group" id="master_name"></div>
+
+                                    <div class="form-group" id="service_name"></div>
+
+                                    <div class="form-group" id="price"></div>
+
+                                    <div class="form-group" id="duration"></div>
+
+                                    <div class="form-group" id="leave_start"></div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal" id="leaveDeleteBtn">Отменить запись</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Выйти</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Event Modal -->
+
+                <!-- Start Success Message Modal -->
+                <div id="msgSuccessModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Успешно!</h4>
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">Закрыть</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Расписание было успешно добавлено!</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Success Message Modal -->
+
+                <!-- Start Updated Message Modal -->
+                <div id="msgUpdatedModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Расписание обновлено!</h4>
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Расписание было успешно обновлено!</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Updated Message Modal -->
+
+                <!-- Start Deleted Message Modal -->
+                <div id="msgDeletedModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Расписание удалено!</h4>
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">Закрыть</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Расписание было успешно удалено!</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="profile__area" id="area3">отзывы</div>
             </div>
         </section>
 
     </main>
     <?php require_once 'footer-white.php' ?>
 </body>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<!-- <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="../libraries/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-<script src="../js/admin-panel-ajax/change-master-data.js"></script>
+<script src="../js/admin-panel-ajax/change-master-data.js"></script> -->
 
 <script src="../js/openPopupSignInUp.js"></script>
 <script src="../js/preloader.js"></script>
@@ -240,6 +336,7 @@ if ($user_avatar['avatar'] == NULL) {
 <script src="../js/leaveReviewRating.js"></script>
 
 <script src="../js/account.js"></script>
+<script src="../js/timetable-user.js"></script>
 
 
 </html>
