@@ -22,16 +22,17 @@ if (!empty($resultQuery)) {
     // Формирование HTML-ответа
     $htmlResponse = '';
     if (!empty($results)) {
-        $htmlResponse .= '<h3>Ваши подходящие услуги:</h3>';
+        $htmlResponse .= '<p class="test__result-title">по результатам опроса, больше всего вам подходит:</p>';
         foreach ($results as $result) {
-            $htmlResponse .= '<p>Название услуги: ' . $result[1] . '</p>';
-            $htmlResponse .= '<p>Описание: ' . $result[2] . '</p>';
-            $htmlResponse .= '<button class="bookService" data-id="' . $result[0] . '">Записаться</button>';
+            $htmlResponse .= '<p class="test__result-service-name">' . $result[1] . '</p>';
+            $htmlResponse .= '<p class="test__result-service-description">' . $result[2] . '</p>';
+            $htmlResponse .= '<div class="buttons-container"><button class="bookService button" data-id="' . $result[0] . '"><span class="details">Записаться<span></button>';
+            $htmlResponse .= '<button id="restartTest" class="button"><span class="details">Пройти еще<span></button></div>';
         }
     } else {
-        $htmlResponse = '<p>Подходящие услуги не найдены.</p>';
+        $htmlResponse = '<p>Подходящие услуги не найдены.</p><br>
+        <button id="restartTest">Пройти тест заново</button>';
     }
-    $htmlResponse .= '<button id="restartTest">Пройти тест заново</button>';
     // Возвращение HTML-ответа
     echo $htmlResponse;
 } else {

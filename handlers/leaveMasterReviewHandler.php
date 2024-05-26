@@ -12,12 +12,12 @@ if ($link->connect_error) {
  $userId = $_SESSION['UserID'];
  $rating = $_POST['rating'];
  $currentDate = $_POST['currentDate'];
- $idService = $_POST['idService'];
+ $idMaster = $_POST['id'];
  $status = "На рассмотрении";
 
 
  // Запись данных в базу данных
- $sql = "INSERT INTO service_rating (id_service, id_user, service_rating, service_review, review_date, status) VALUES ('$idService', '$userId', '$rating', '$review', '$currentDate', '$status')";
+ $sql = "INSERT INTO master_rating (id_master, id_user, master_rating, master_review, review_date, status) VALUES ('$idMaster', '$userId', '$rating', '$review', '$currentDate', '$status')";
 
  if ($link->query($sql) === TRUE) {
      echo "Отзыв успешно добавлен!";

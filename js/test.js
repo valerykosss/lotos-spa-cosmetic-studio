@@ -3,6 +3,8 @@ $(document).ready(function () {
     let selectedAnswers = {};
     let selectedQueries = {}; // Массив для хранения выбранных select_query
 
+    var count = 1;
+
     let data = [
         {
             id: 'id1',
@@ -201,68 +203,37 @@ $(document).ready(function () {
 
     ];
 
-    // Функция для отображения текущего вопроса
-    function showQuestion(index) {
-        let question = data[index];
-        let html = '<h2>' + question.question + '</h2>';
-        for (let i = 0; i < question.answers.length; i++) {
-            let checked = selectedAnswers[index] == i ? 'checked' : '';
-            let answer = question.answers[i];
-            html += '<input type="radio" name="answer" value="' + i + '" data-id="' + question.id + '" data-next-question="' + answer.next_question + '" data-select-query="' + answer.select_query + '" ' + checked + '> ' + answer.text + '<br>';
-        }
-        $('#questionContainer').html(html);
+ // Функция для отображения текущего вопроса
+ function showQuestion(index) {
+    let question = data[index];
+    let html = '<p>' + question.question + '</p>';
+    for (let i = 0; i < question.answers.length; i++) {
+        let checked = selectedAnswers[index] == i ? 'checked' : '';
+        let answer = question.answers[i];
+        html += '<div><input type="radio" name="answer" value="' + i + '" data-id="' + question.id + '" data-next-question="' + answer.next_question + '" data-select-query="' + answer.select_query + '" ' + checked + '> ' + answer.text + '<br></div>';
+    }
+    $('#questionContainer').html(html);
 
-        // Показывать или скрывать кнопку "Назад"
-        if (index > 0) {
-            let prevQuestion = data[index - 1];
-            let hasMatchingAnswer = prevQuestion.answers.some(answer => answer.next_question === data[index].id);
-            if (hasMatchingAnswer) {
-                $('#prevBtn').show();
-            } else {
-                $('#prevBtn').hide();
-            }
+    // Показывать или скрывать кнопку "Назад"
+    if (index > 0) {
+        let hasPrevQuestion = data.slice(0, index).some(q => q.answers.some(a => a.next_question === question.id));
+        if (hasPrevQuestion) {
+            $('#prevBtn').show();
         } else {
             $('#prevBtn').hide();
         }
-
-        // Скрыть кнопки "Далее" и "Показать результаты" до выбора ответа
-        $('#nextBtn').hide();
-        $('#showResults').hide();
-
-        // Показать кнопку "Далее" или "Показать результаты" если уже был выбран ответ
-        if (selectedAnswers[index] !== undefined) {
-            let answerIndex = selectedAnswers[index];
-            let nextQuestionId = data[index].answers[answerIndex].next_question;
-            if (nextQuestionId === 'end') {
-                $('#nextBtn').hide();
-                $('#showResults').show();
-            } else {
-                $('#nextBtn').show();
-                $('#showResults').hide();
-            }
-        }
+    } else {
+        $('#prevBtn').hide();
     }
 
-    // Начать тест с первого вопроса
-    showQuestion(currentQuestionIndex);
-    console.log("showQuestion");
+    // Скрыть кнопки "Далее" и "Показать результаты" до выбора ответа
+    $('#nextBtn').hide();
+    $('#showResults').hide();
 
-    // Обработчик для выбора ответа
-    $(document).on('change', 'input[name="answer"]', function () {
-        let id = $(this).data('id');
-        let selectQuery = $(this).data('select-query'); // Получаем select_query текущего ответа
-        let answerIndex = $('input[name="answer"]:checked').val();
-        selectedAnswers[currentQuestionIndex] = answerIndex;
-        selectedQueries[id] = selectQuery; // Сохраняем select_query для текущего вопроса
-
-        // Очистить ответы, которые следуют за текущим вопросом
-        for (let i = currentQuestionIndex + 1; i < data.length; i++) {
-            delete selectedAnswers[i];
-            delete selectedQueries[data[i].id];
-        }
-
-        // let nextQuestionId = data[currentQuestionIndex].answers[answerIndex].next_question;
-        let nextQuestionId = $(this).data('next-question'); // Получаем id следующего вопроса
+    // Показать кнопку "Далее" или "Показать результаты" если уже был выбран ответ
+    if (selectedAnswers[index] !== undefined) {
+        let answerIndex = selectedAnswers[index];
+        let nextQuestionId = data[index].answers[answerIndex].next_question;
         if (nextQuestionId === 'end') {
             $('#nextBtn').hide();
             $('#showResults').show();
@@ -270,99 +241,137 @@ $(document).ready(function () {
             $('#nextBtn').show();
             $('#showResults').hide();
         }
+    }
+}
 
-        console.log('Selected Answers:', selectedAnswers);
-        console.log('Selected Queries:', selectedQueries);
-    });
+// Начать тест с первого вопроса
+showQuestion(currentQuestionIndex);
 
-    // Обработчик для кнопки "Далее"
-    $('#nextBtn').click(function () {
-        let answerIndex = $('input[name="answer"]:checked').val();
-        if (answerIndex !== undefined) {
-            let nextQuestionId = data[currentQuestionIndex].answers[answerIndex].next_question;
-            let nextQuestionIndex = data.findIndex(question => question.id === nextQuestionId);
-            if (nextQuestionIndex !== -1) {
-                currentQuestionIndex = nextQuestionIndex;
-                showQuestion(currentQuestionIndex);
-                console.log('Selected Answers:', selectedAnswers);
-                console.log('Selected Queries:', selectedQueries);
+// Обработчик для выбора ответа
+$(document).on('change', 'input[name="answer"]', function () {
+    let id = $(this).data('id');
+    let selectQuery = $(this).data('select-query'); // Получаем select_query текущего ответа
+    let answerIndex = $('input[name="answer"]:checked').val();
+    selectedAnswers[currentQuestionIndex] = answerIndex;
+    selectedQueries[id] = selectQuery; // Сохраняем select_query для текущего вопроса
 
-            } else {
-                alert('Нет последующего ответа!');
-            }
-        } else {
-            alert('Выберите ответ!');
-        }
-    });
+    // Очистить ответы, которые следуют за текущим вопросом
+    for (let i = currentQuestionIndex + 1; i < data.length; i++) {
+        delete selectedAnswers[i];
+        delete selectedQueries[data[i].id];
+    }
 
-    // Обработчик для кнопки "Назад"
-    $('#prevBtn').click(function () {
-        let prevQuestionIndex = -1;
+    // let nextQuestionId = data[currentQuestionIndex].answers[answerIndex].next_question;
+    let nextQuestionId = $(this).data('next-question'); // Получаем id следующего вопроса
+    if (nextQuestionId === 'end') {
+        $('#nextBtn').hide();
+        $('#showResults').show();
+    } else {
+        $('#nextBtn').show();
+        $('#showResults').hide();
+    }
 
-        for (let i = 0; i < currentQuestionIndex; i++) {
-            let question = data[i];
-            let hasMatchingAnswer = question.answers.some(answer => answer.next_question === data[currentQuestionIndex].id);
-            if (hasMatchingAnswer) {
-                prevQuestionIndex = i;
-                break;
-            }
-        }
+    console.log('Selected Answers:', selectedAnswers);
+    console.log('Selected Queries:', selectedQueries);
+});
+    function updateQuestionNumber() {
+        $('.test-number').text('вопрос ' + count);
+    }
 
-        if (prevQuestionIndex !== -1) {
-            currentQuestionIndex = prevQuestionIndex;
+// Обработчик для кнопки "Далее"
+$('#nextBtn').click(function () {
+    count++;
+    let answerIndex = $('input[name="answer"]:checked').val();
+    if (answerIndex !== undefined) {
+        let nextQuestionId = data[currentQuestionIndex].answers[answerIndex].next_question;
+        let nextQuestionIndex = data.findIndex(question => question.id === nextQuestionId);
+        if (nextQuestionIndex !== -1) {
+            currentQuestionIndex = nextQuestionIndex;
             showQuestion(currentQuestionIndex);
             console.log('Selected Answers:', selectedAnswers);
             console.log('Selected Queries:', selectedQueries);
+            updateQuestionNumber();
+
+        } else {
+            alert('Нет последующего ответа!');
+        }
+    } else {
+        alert('Выберите ответ!');
+    }
+});
+
+// Обработчик для кнопки "Назад"
+$('#prevBtn').click(function () {
+    count--;
+    let prevQuestionIndex = -1;
+
+    for (let i = 0; i < currentQuestionIndex; i++) {
+        let question = data[i];
+        let hasMatchingAnswer = question.answers.some(answer => answer.next_question === data[currentQuestionIndex].id);
+        if (hasMatchingAnswer) {
+            prevQuestionIndex = i;
+            break;
+        }
+    }
+
+    if (prevQuestionIndex !== -1) {
+        currentQuestionIndex = prevQuestionIndex;
+        showQuestion(currentQuestionIndex);
+        console.log('Selected Answers:', selectedAnswers);
+        console.log('Selected Queries:', selectedQueries);
+        updateQuestionNumber();
+    }
+});
+
+$('#showResults').click(function () {
+    $('#resultsContainer').show();
+    // Формирование запроса на сервер
+    let resultQuery = Object.values(selectedQueries).join('');
+    // alert(resultQuery);
+    let requestData = {
+        query: resultQuery
+    };
+
+    // Отправка запроса на сервер
+    $.ajax({
+        url: '../handlers/testHandler.php', // Укажите URL вашего PHP-скрипта для обработки запроса
+        type: 'POST',
+        data: requestData,
+        success: function (response) {
+            // Обработка успешного ответа от сервера
+            $('#resultsContainer').html(response);
+            $('#testForm').hide();
+        },
+        error: function () {
+            // Обработка ошибки запроса
+            $('#resultsContainer').html('<p>Произошла ошибка при загрузке результатов.</p>');
         }
     });
-    $('#showResults').click(function () {
-        $('#resultsContainer').show();
-        // Формирование запроса на сервер
-        let resultQuery = Object.values(selectedQueries).join('');
-        alert(resultQuery);
-        let requestData = {
-            query: resultQuery
-        };
+});
 
-        // Отправка запроса на сервер
-        $.ajax({
-            url: '../handlers/testHandler.php', // Укажите URL вашего PHP-скрипта для обработки запроса
-            type: 'POST',
-            data: requestData,
-            success: function (response) {
-                // Обработка успешного ответа от сервера
-                $('#resultsContainer').html(response);
-                $('#testForm').hide();
-            },
-            error: function () {
-                // Обработка ошибки запроса
-                $('#resultsContainer').html('<p>Произошла ошибка при загрузке результатов.</p>');
-            }
-        });
-    });
+function restartTest() {
+    count = 1;
 
-    function restartTest() {
-        // Очистка переменных
-        selectedAnswers = {};
-        selectedQueries = {};
-    
-        $('#resultsContainer').hide();
-        // Показываем контейнер с вопросами и кнопки
-        $('#questionContainer').show();
-        $('#testForm').show();
-        // Очистка полей формы
-        $('#testForm').trigger('reset');
-    
-        // Очистка HTML-ответа с результатами
-    
-        // Показываем начальный вопрос
-        currentQuestionIndex = 0;
-        showQuestion(currentQuestionIndex);
-    }
-    
-    
-    $(document).on('click', '#restartTest', function() {
-        restartTest();
-        console.log("restart click");
-    });
+    // Очистка переменных
+    selectedAnswers = {};
+    selectedQueries = {};
+
+    $('#resultsContainer').hide();
+    // Показываем контейнер с вопросами и кнопки
+    $('#questionContainer').show();
+    $('#testForm').show();
+    // Очистка полей формы
+    $('#testForm').trigger('reset');
+
+    // Очистка HTML-ответа с результатами
+
+    // Показываем начальный вопрос
+    currentQuestionIndex = 0;
+    showQuestion(currentQuestionIndex);
+}
+
+$(document).on('click', '#restartTest', function() {
+    restartTest();
+    console.log("restart click");
+});
 });

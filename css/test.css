@@ -1,0 +1,120 @@
+.page__test{
+    margin-top: 45px;
+    margin-bottom: 60px;
+}
+.test-title{
+    font-size: 50px;
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+
+    margin-bottom: 75px;
+}
+#testForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.test-number{
+    line-height: 170%;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: rgba(255, 255, 255, 0.4);
+    padding: 20px 0;
+    text-align: center;
+    transition: color .15s ease-in-out, border-color .15s ease-in-out;
+    border-bottom: 4px solid rgba(255, 255, 255, 0.4);
+    margin-bottom: 55px;
+}
+
+#questionContainer{
+    font-family: "SF Pro Text";
+    font-size: 25px;
+    color: #ffffff;
+    font-weight: 200;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    align-self: center;
+    max-width: 100%;
+}
+
+#questionContainer p {
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+#questionContainer div{
+    margin-bottom: 10px;
+}
+
+#questionContainer input{
+    margin-right: 10px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+#prevBtn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Oswald";
+}
+
+#prevBtn:hover{
+    width: 250px!important;
+}
+#prevBtn::after {
+    content: '\2190';
+    
+}
+
+#nextBtn, #showResults{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: "Oswald";
+}
+
+/**/
+#resultsContainer .test__result-title{
+    font-family: "SF Pro Text";
+    font-size: 25px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+}
+
+.test__result-service-name{
+    font-size: 78px;
+    font-family: "Oswald";
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.test__result-service-description{
+    font-family: "SF Pro Text";
+    font-size: 15px;
+    font-weight: 400;
+    color:#ffffff;
+    margin-bottom: 40px;
+    width: 50%;
+}
+
+.bookService, #restartTest{
+    font-family: "Oswald";
+}
+
+.buttons-container{
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+}

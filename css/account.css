@@ -1,3 +1,8 @@
+a:focus, a:hover {
+    color: #232323;
+    text-decoration: none; 
+}
+
 .page__user-profile{
     margin-top: 40px;
 }
@@ -76,7 +81,21 @@
     color: #989898;
     text-transform: uppercase;
     font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.menu__user-discount{
     margin-bottom: 45px;
+    font-family: "SF Pro Text";
+    font-size: 14px;
+    color: #989898;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 160%;
+}
+
+.menu__user-discount span{
+    color:#232323;
 }
 
 .menu__header{
@@ -197,7 +216,6 @@
 
 /*вкладка пароля*/
 .area-title {
-
     line-height: 170%;
     text-transform: uppercase;
     font-size: 25px;
@@ -321,3 +339,64 @@ form span{
     font-size: 22px;
     font-weight: 600;
 }
+
+/*ОТЗЫВЫ*/
+
+.profile__area#area3{
+    overflow-y: scroll;
+    height: 680px;
+}
+
+.leave-review__body{
+    display: flex;
+    flex-direction: column;
+}
+
+textarea{
+    resize: none;
+    padding: 17px 40px;
+    font-family: "SF Pro Text";
+    font-size: 21px;
+    line-height: 160%;
+    border-radius: 40px;
+    background-color: #EAEAEA;
+    height: 150px;
+
+    margin-bottom: 28px; 
+}
+
+.star{
+    margin-right: 5px;
+}
+
+.procedure-info{
+    font-family: "SF Pro Text";
+    font-weight: 500;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    margin-bottom: 55px;
+    text-align: center;
+    line-height: 170%;
+}
+
+.procedure-info span{
+    color: #ffffff;
+}
+
+.review-button{
+    margin-top: 30px;
+    align-self: center;
+}
+
+.border {
+    line-height: 170%;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #ffffff;
+    text-align: center;
+    transition: color .15s ease-in-out, border-color .15s ease-in-out;
+    border-bottom: 4px solid rgba(255, 255, 255, 0.4);
+    margin-bottom: 55px;
+}
+
