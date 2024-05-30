@@ -44,7 +44,7 @@
 }
 
 .footer__list > ul:first-child > li {
-    border-bottom: 0.5px solid #232323;
+    /* border-bottom: 0.5px solid #232323; */
 }
 
 .footer__list ul>li:last-child {

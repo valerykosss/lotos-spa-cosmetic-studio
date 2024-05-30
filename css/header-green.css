@@ -59,7 +59,7 @@
 
 /*for sub-menu*/
 .header__list ul>li, .header__list ul a li  {
-	border-bottom: 0.5px solid #fff;
+	/* border-bottom: 0.5px solid #fff; */
 }
 
 /* .header__list ul>li:last-child {

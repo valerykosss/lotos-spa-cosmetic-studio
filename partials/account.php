@@ -283,50 +283,50 @@ if ($user_avatar['avatar'] == NULL) {
                     </div>
                 </div>
                 <div class="profile__area" id="area3">
-    <p class="area-title">Отзывы</p>
+                    <p class="area-title">Отзывы</p>
 
-    <?php if ($last_procedure) { ?>
-        <div class="leave-review__body _profile-area-container">
-            <p class="procedure-info">Последняя посещенная вами процедура: <span><?php echo ($last_procedure['service_name']) ?></span></p>
-            <label>Ваш отзыв на услугу</label>
-            <textarea id="serviceReviewText" data-service-id="<?php echo ($last_procedure['id_service']) ?>" placeholder="Напишите ваш отзыв..."></textarea>
-            <label>Ваш рейтинг на услугу</label>
-            <div id="serviceStars" data-service-id="<?php echo ($last_procedure['id_service']) ?>">
-                <span class="star" data-rating="1"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
-                <span class="star" data-rating="2"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
-                <span class="star" data-rating="3"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
-                <span class="star" data-rating="4"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
-                <span class="star" data-rating="5"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
-            </div>
-            <div class="button review-button" id="submitServiceReview">
-                <span class="details">Оставить</span>
-            </div>
-        </div>
+                    <?php if ($last_procedure) { ?>
+                        <div class="leave-review__body _profile-area-container">
+                            <p class="procedure-info">Последняя посещенная вами процедура: <span><?php echo ($last_procedure['service_name']) ?></span></p>
+                            <label>Ваш отзыв на услугу</label>
+                            <textarea id="serviceReviewText" data-service-id="<?php echo ($last_procedure['id_service']) ?>" placeholder="Напишите ваш отзыв..."></textarea>
+                            <label>Ваш рейтинг на услугу</label>
+                            <div id="serviceStars" data-service-id="<?php echo ($last_procedure['id_service']) ?>">
+                                <span class="star" data-rating="1"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
+                                <span class="star" data-rating="2"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
+                                <span class="star" data-rating="3"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
+                                <span class="star" data-rating="4"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
+                                <span class="star" data-rating="5"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
+                            </div>
+                            <div class="button review-button" id="submitServiceReview">
+                                <span class="details">Оставить</span>
+                            </div>
+                        </div>
 
-        <p class="border"></p>
+                        <p class="border"></p>
 
-        <div class="leave-review__body _profile-area-container">
-            <p class="procedure-info">Мастер, который выполнял эту процедуру: <span><?php echo ($last_procedure['master_name']) ?></span></p>
-            <label>Ваш отзыв о мастере</label>
-            <textarea id="masterReviewText" data-master-id="<?php echo ($last_procedure['id_master']) ?>" placeholder="Напишите ваш отзыв..."></textarea>
-            <label>Ваш рейтинг мастеру</label>
-            <div id="masterStars" data-master-id="<?php echo ($last_procedure['id_master']) ?>">
-                <span class="star" data-rating="1"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
-                <span class="star" data-rating="2"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
-                <span class="star" data-rating="3"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
-                <span class="star" data-rating="4"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
-                <span class="star" data-rating="5"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
-            </div>
-            <div class="button review-button" id="submitMasterReview">
-                <span class="details">Оставить</span>
-            </div>
-        </div>
-    <?php } ?>
+                        <div class="leave-review__body _profile-area-container">
+                            <p class="procedure-info">Мастер, который выполнял эту процедуру: <span><?php echo ($last_procedure['master_name']) ?></span></p>
+                            <label>Ваш отзыв о мастере</label>
+                            <textarea id="masterReviewText" data-master-id="<?php echo ($last_procedure['id_master']) ?>" placeholder="Напишите ваш отзыв..."></textarea>
+                            <label>Ваш рейтинг мастеру</label>
+                            <div id="masterStars" data-master-id="<?php echo ($last_procedure['id_master']) ?>">
+                                <span class="star" data-rating="1"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
+                                <span class="star" data-rating="2"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
+                                <span class="star" data-rating="3"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
+                                <span class="star" data-rating="4"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
+                                <span class="star" data-rating="5"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
+                            </div>
+                            <div class="button review-button" id="submitMasterReview">
+                                <span class="details">Оставить</span>
+                            </div>
+                        </div>
+                    <?php } ?>
 
-    <?php if (!$last_procedure) { 
-       echo "<p class='procedure-info'>У вас еще нет записей!</p>";
-    } ?>
-</div>
+                    <?php if (!$last_procedure) {
+                        echo "<p class='procedure-info'>У вас еще нет записей!</p>";
+                    } ?>
+                </div>
 
             </div>
         </section>

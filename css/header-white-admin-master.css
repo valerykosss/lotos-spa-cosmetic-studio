@@ -56,7 +56,7 @@
 
 /*for sub-menu*/
 .header__list-white ul>li, .header__list-white ul a li  {
-	border-bottom: 0.5px solid #232323;
+	/* border-bottom: 0.5px solid #232323; */
 }
 
 .header__list-white ul>li:last-child {

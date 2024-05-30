@@ -23,6 +23,7 @@ if (session_id() == '')
     <link rel="stylesheet" href="../css/footer-white.css">
 
     <link rel="stylesheet" href="../css/popupBook.css">
+    <link rel="stylesheet" href="../css/popUpErrorSuccess.css">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
 
@@ -68,6 +69,7 @@ if (session_id() == '')
                         <span class="details">Записаться</span>
                     </div>
                     <?php require 'popUpBook.php' ?>
+                    <?php require 'popUpErrorSuccess.php' ?>
                 </div>
             </div>
             </div>
@@ -162,10 +164,12 @@ if (session_id() == '')
 
     <script src="../js/specialistsFilter.js"></script>
     <script src="../js/preloader.js"></script>
+    
     <script src="../js/openBooking.js"></script>
-
     <script src="../js/serviceBooking.js"></script>
-    <script src="../js/signUpForProcedureFromMaster.js"></script>
+
+    <script src="../js/openErrorSuccess.js"></script>
+    <!-- <script src="../js/signUpForProcedureFromMaster.js"></script> -->
 </body>
 
 </html>

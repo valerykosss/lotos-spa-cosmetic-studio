@@ -6,6 +6,7 @@ $(document).ready(function () {
 
     const popup = $('.popup');
     const popupBg = $('.popup__bg');
+    $("#new_user_tel").mask("+375 (99) 999-99-99");
 
     // popup.animate({ scrollTop: 0 }, {
     //     duration: 400, // Длительность анимации (в миллисекундах)
@@ -538,10 +539,15 @@ $(document).ready(function () {
             easing: 'swing', // Эффект анимации
             complete: function () {
                 // Открытие блока с классом masters__body _container-window
-                $('.master__wrapper').hide();
-                $('.date-time__wrapper').hide();
-                $('.service__wrapper').hide();
-                $('.details__wrapper').hide();
+
+                // $('.master__wrapper').hide();
+                // $('.date-time__wrapper').hide();
+                // $('.service__wrapper').hide();
+                // $('.details__wrapper').hide();
+
+                popupBg.removeClass('active');
+                popup.removeClass('active');
+
 
                 if (startDate) { // проверяем, выбрана ли дата
                     console.log('Выбранная дата для записи:', startDate);
@@ -575,9 +581,18 @@ $(document).ready(function () {
                             success: function (response) {
                                 if (response.success) {
                                     console.log('Запись успешно добавлена');
-                                    $("#sign-up-for-procedure__window").css("display", "none");
 
-                                    alert('Запись успешно добавлена');
+                                    popupBg.removeClass('active'); //
+                                    popup.removeClass('active'); // И 
+                                    
+                                    enableScroll();
+
+                                      // Открытие нового окна popupES и установка текста
+                                      $('.popup__bg__error-success').addClass('active');
+                                      $('.popup__error-success').addClass('active');
+                                      $('.popup__error-success .data-title').text('Будем рады вас видеть');
+                                      $('.popup__error-success .data-text').text('Мы рекомендуем приходить на 5-10 минут заранее, чтобы расслабиться и настроиться! В случае отмены записи, позвоните администратору или отмените запись самостоятельно в личном кабинете');
+
                                 } else {
                                     console.error('Ошибка при добавлении записи:', response.error);
                                     alert('Ошибка при добавлении записи: ' + response.error);
@@ -607,21 +622,19 @@ $(document).ready(function () {
                                 if (response.success) {
                                     console.log('Запись успешно добавлена');
 
-                                    if (popupBg.length) {
-                                        popupBg.removeClass('active'); // Убираем активный класс с фона
-                                    } else {
-                                        console.error('popupBg не определен');
-                                    }
-                            
-                                    if (popup.length) {
-                                        popup.removeClass('active'); // И с окна
-                                    } else {
-                                        console.error('popup не определен');
-                                    }
+                                    // popupBg.removeClass('active');
+                                    // popup.removeClass('active');
 
                                     enableScroll();
 
-                                    alert('Запись успешно добавлена');
+                                      // Открытие нового окна popupES и установка текста
+                                    $('.popup__bg__error-success').addClass('active');
+                                    $('.popup__error-success').addClass('active');
+                                    $('.popup__error-success .data-title').text('Будем рады вас видеть');
+                                    $('.popup__error-success .data-text').text('Мы рекомендуем приходить на 5-10 минут заранее, чтобы расслабиться и настроиться! В случае отмены записи, позвоните администратору или отмените запись самостоятельно в личном кабинете');
+
+
+                                    // alert('Запись успешно добавлена');
 
                                 } else {
                                     console.error('Ошибка при добавлении записи:', response.error);
