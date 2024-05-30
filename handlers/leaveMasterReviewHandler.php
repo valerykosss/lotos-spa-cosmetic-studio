@@ -13,6 +13,9 @@ if ($link->connect_error) {
  $rating = $_POST['rating'];
  $currentDate = $_POST['currentDate'];
  $idMaster = $_POST['id'];
+
+ $recordId = $_POST['recordId'];
+
  $status = "На рассмотрении";
 
 
@@ -24,6 +27,18 @@ if ($link->connect_error) {
  } else {
      echo "Ошибка: " . $sql . "<br>" . $link->error;
  }
+
+ $id_master_rating=mysqli_insert_id($link);
+
+   // Запись данных в базу данных
+   $sql2 = "UPDATE procedure_record set id_master_rating = $id_master_rating where id_record =  $recordId";
+
+   if ($link->query($sql2) === TRUE) {
+       echo "Запись обновлена отзывом на мастера!";
+   } else {
+       echo "Ошибка: " . $sql2 . "<br>" . $link->error;
+   }
+   
 
  // Закрытие соединения с базой данных
  $link->close();

@@ -28,6 +28,8 @@ pr.id_record,
 pr.id_master_service,
 pr.record_date,
 pr.record_time,
+pr.id_master_rating,
+pr.id_service_rating,
 m.master_name, 
 m.id_master, 
 s.service_name, 
@@ -57,7 +59,7 @@ AND CONCAT(pr.record_date, ' ', pr.record_time) = (
     ORDER BY 
         CONCAT(pr_inner.record_date, ' ', pr_inner.record_time) DESC
     LIMIT 1
-);");
+)  AND (pr.id_master_rating IS NULL OR pr.id_service_rating IS NULL);");
 
 $last_procedure = mysqli_fetch_assoc($last_procedure);
 
@@ -255,10 +257,11 @@ if ($user_avatar['avatar'] == NULL) {
                     <p class="area-title">Отзывы</p>
 
                     <?php if ($last_procedure) { ?>
+                        <?php if (is_null($last_procedure['id_service_rating'])) { ?>
                         <div class="leave-review__body _profile-area-container">
                             <p class="procedure-info">Последняя посещенная вами процедура: <span><?php echo ($last_procedure['service_name']) ?></span></p>
                             <label>Ваш отзыв на услугу</label>
-                            <textarea id="serviceReviewText" data-service-id="<?php echo ($last_procedure['id_service']) ?>" placeholder="Напишите ваш отзыв..."></textarea>
+                            <textarea id="serviceReviewText" data-service-id="<?php echo ($last_procedure['id_service']) ?>" data-record-id="<?php echo ($last_procedure['id_record']) ?>" placeholder="Напишите ваш отзыв..."></textarea>
                             <label>Ваш рейтинг на услугу</label>
                             <div id="serviceStars" data-service-id="<?php echo ($last_procedure['id_service']) ?>">
                                 <span class="star" data-rating="1"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
@@ -272,14 +275,16 @@ if ($user_avatar['avatar'] == NULL) {
                             </div>
                         </div>
 
-                        <p class="border"></p>
+                        <p class="border"></p>                     
+                        <?php } ?>
 
+                        <?php if (is_null($last_procedure['id_master_rating'])) { ?>
                         <div class="leave-review__body _profile-area-container">
-                            <p class="procedure-info">Мастер, который выполнял эту процедуру: <span><?php echo ($last_procedure['master_name']) ?></span></p>
+                            <p class="procedure-info">Мастер, который выполнял последнюю посещенную вами процедуру: <span><?php echo ($last_procedure['master_name']) ?></span></p>
                             <label>Ваш отзыв о мастере</label>
-                            <textarea id="masterReviewText" data-master-id="<?php echo ($last_procedure['id_master']) ?>" placeholder="Напишите ваш отзыв..."></textarea>
+                            <textarea id="masterReviewText" data-master-id="<?php echo ($last_procedure['id_master']) ?>" data-record-id="<?php echo ($last_procedure['id_record']) ?>" placeholder="Напишите ваш отзыв..."></textarea>
                             <label>Ваш рейтинг мастеру</label>
-                            <div id="masterStars" data-master-id="<?php echo ($last_procedure['id_master']) ?>">
+                            <div id="masterStars" data-master-id="<?php echo ($last_procedure['id_master']) ?>" >
                                 <span class="star" data-rating="1"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
                                 <span class="star" data-rating="2"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
                                 <span class="star" data-rating="3"><img src="../images/icons/review-star-empty-new.svg" class="star-img"></span>
@@ -290,10 +295,11 @@ if ($user_avatar['avatar'] == NULL) {
                                 <span class="details">Оставить</span>
                             </div>
                         </div>
+                        <?php } ?>
                     <?php } ?>
 
                     <?php if (!$last_procedure) {
-                        echo "<p class='procedure-info'>У вас еще нет записей!</p>";
+                        echo "<p class='procedure-info'>У вас еще нет завершенных процедур!</p>";
                     } ?>
                 </div>
 

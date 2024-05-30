@@ -1,8 +1,9 @@
 $(document).ready(function() {
-    function setupReviewHandlers(starsSelector, reviewTextSelector, submitButtonSelector, ajaxUrl, idKey) {
+    function setupReviewHandlers(starsSelector, reviewTextSelector, submitButtonSelector, ajaxUrl, idKey, parentContainerSelector) {
         const stars = $(starsSelector + ' .star');
         const reviewText = $(reviewTextSelector);
         const submitButton = $(submitButtonSelector);
+        const parentContainer = $(parentContainerSelector);
         let rating = 0;
 
         stars.click(function() {
@@ -26,6 +27,9 @@ $(document).ready(function() {
 
             const review = reviewText.val();
             const id = reviewText.data(idKey);
+            const recordId = reviewText.data('record-id');
+            alert(recordId);
+
 
             if (review === '' || rating === 0) {
                 $('.popup__bg__error-success').addClass('active');
@@ -46,7 +50,8 @@ $(document).ready(function() {
                         review: review, 
                         rating: rating,
                         currentDate: currentDate,
-                        id: id
+                        id: id,
+                        recordId: recordId
                     },
                     success: function(response) {
                         $('.popup__bg__error-success').addClass('active');
@@ -59,6 +64,7 @@ $(document).ready(function() {
                         reviewText.val('');
                         rating = 0;
                         highlightStars(stars, rating);
+                        parentContainer.hide();
                     },
                     error: function() {
                         console.error('Ошибка при отправке запроса');
@@ -68,6 +74,6 @@ $(document).ready(function() {
         });
     }
 
-    setupReviewHandlers('#serviceStars', '#serviceReviewText', '#submitServiceReview', '../handlers/leaveServiceReviewHandler.php', 'service-id');
-    setupReviewHandlers('#masterStars', '#masterReviewText', '#submitMasterReview', '../handlers/leaveMasterReviewHandler.php', 'master-id');
+    setupReviewHandlers('#serviceStars', '#serviceReviewText', '#submitServiceReview', '../handlers/leaveServiceReviewHandler.php', 'service-id', '.leave-review__body:has(#serviceReviewText)');
+    setupReviewHandlers('#masterStars', '#masterReviewText', '#submitMasterReview', '../handlers/leaveMasterReviewHandler.php', 'master-id', '.leave-review__body:has(#masterReviewText)');
 });
