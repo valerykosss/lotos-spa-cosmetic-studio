@@ -12,19 +12,39 @@ if (session_id() == '')
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Лотос - Специалисты</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/generalStyles.css">
-    <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/header-white.css">
     <link rel="stylesheet" href="../css/specialists.css">
+    <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/need-consult-block-green.css">
     <link rel="stylesheet" href="../css/footer-white.css">
 
     <link rel="stylesheet" href="../css/popupBook.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/ru.js"></script>
 
-    <script src="../libraries/jquery-3.6.0.min.js"></script>
+    <style>
+        .fc-event,
+        .fc-event-dot {
+            background-color: #38624C;
+            /* красный цвет фона */
+            border: 1px solid #38624C;
+        }
+
+        .light-grey-background {
+            background-color: lightgrey !important;
+        }
+    </style>
+    
 </head>
 
 <body>
@@ -47,57 +67,7 @@ if (session_id() == '')
                     <div class="specialists-button green-button" class="button">
                         <span class="details">Записаться</span>
                     </div>
-
-                    <div class="popup__bg">
-                        <form class="popup">
-                            <img src="../images/icons/exit.svg" class="close-popup">
-                            <div class="booking-stages__wrapper">
-                                <p class="stage-title active-stage">Услуга</p>
-                                <p class="stage-title">Специалист</p>
-                                <p class="stage-title">Дата и время</p>
-                                <p class="stage-title">Детали записи</p>
-                            </div>
-
-                            <div class="service__data _container-window">
-                                <div class="filters-service__body">
-
-                                    <div class="filter-service__body-item">
-                                        <input type="text" id="search_box-service" placeholder="Поиск услуги" name="search-service">
-                                    </div>
-
-                                    <div class="filter-service__body-item">
-                                        <select class="sort-service" id="sort-selector-first__service">
-                                            <option value="">Косметические услуги</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!-- <button class="reset-button">Сбросить все фильтры
-                                            <span class="reset-icon"></span>
-                                    </button> -->
-                            </div>
-
-                            <div class="services__body _container-window">
-                                <p class="service-type__header">Косметические услуги</p>
-                                <div class="service__item"> 
-                                    <div class="service-item__img">
-                                        <img src="../images/1.png">
-                                    </div>
-                                    <div class="service-item__info">
-                                        <p class="service-name">консультация, глубокое очищение + маска по типу кожи</p>
-                                        <p class="service-description">HELEO4™ – это запатентованная специализированная программа, разработанная для безопасного и комплексного омоложения кожи.</p>
-                                        <p class="service-price">40 byn</p>
-                                    </div>
-                                    <div class="service-item__radio">
-                                        <input type="radio">
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                        </form>
-                    </div>
-
+                    <?php require 'popUpBook.php' ?>
                 </div>
             </div>
             </div>
@@ -185,18 +155,17 @@ if (session_id() == '')
 
     <?php require 'footer-white.php' ?>
 
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!-- <script src="../js/pagination.js"></script> -->
 
-    <script src="../libraries/jquery-3.6.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <script src="../js/openPopupSignInUp.js"></script>
 
     <script src="../js/specialistsFilter.js"></script>
     <script src="../js/preloader.js"></script>
     <script src="../js/openBooking.js"></script>
+
+    <script src="../js/serviceBooking.js"></script>
+    <script src="../js/signUpForProcedureFromMaster.js"></script>
 </body>
 
 </html>

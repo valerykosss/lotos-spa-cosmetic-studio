@@ -12,10 +12,20 @@ openPopupButtons.forEach((button) => { // Перебираем все кнопк
 closePopupButton.addEventListener('click',() => { // Вешаем обработчик на крестик
     popupBg.classList.remove('active'); // Убираем активный класс с фона
     popup.classList.remove('active'); // И с окна
+    enableScroll();
 });
 document.addEventListener('click', (e) => { // Вешаем обработчик на весь документ
     if(e.target === popupBg) { // Если цель клика - фот, то:
         popupBg.classList.remove('active'); // Убираем активный класс с фона
         popup.classList.remove('active'); // И с окна
+        enableScroll();
     }
 });
+
+function disableScroll() {
+    document.body.style.overflow = 'hidden';
+}
+
+function enableScroll() {
+    document.body.style.overflow = '';
+}

@@ -27,6 +27,8 @@
     width: 1220px;
     padding-top: 18px;
     padding-bottom: 40px;
+    max-height: 90vh; 
+    overflow-y: auto;
     /* transition: 0.5s all; */
 }
 .popup.active { /* При добавлении класса 'active'*/
@@ -38,7 +40,6 @@
     display: flex;
     justify-content: space-between;
 }
-
 
 .close-popup {
     position: absolute;
@@ -73,7 +74,7 @@
     box-sizing: content-box;
 }
 
-/*-----------------------------------SERVICE FILTERS----------------------------------------------*/
+/*-----------------------------------SERVICE BLOCK, SERVICE FILTERS----------------------------------------------*/
 
 .service__data{
     display: flex;
@@ -129,6 +130,7 @@
 
 
 /*-----------------------------------SERVICE BODY----------------------------------------------*/
+
 .service-type__header{
     font-family: "SF Pro Text";
     font-size: 18px;
@@ -143,10 +145,11 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-bottom: 36px;
 }
 
 .service-item__img{
-    width: 10%;
+    width: 12%;
     height: 0;
     padding-bottom: 10%; /* Подгоняем высоту под ширину */
     position: relative;
@@ -167,6 +170,7 @@
 .service-item__info{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .service-name{
@@ -183,7 +187,7 @@
     font-weight: 500;
     line-height: 160%;
     color: rgba(0, 0, 0, 0.4);
-    width: 60%;
+    width: 80%;
 }
 
 .service-price{
@@ -219,3 +223,361 @@
         height: 25px;
     }
 } */
+
+
+/*-----------------------------------SERVICE BUTTONS----------------------------------------------*/
+
+.service__buttons{
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+
+.green-button{
+    font-family: "Oswald";
+}
+
+#nextBtnToMaster{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#nextBtnToMaster:hover{
+    width: 180px !important;
+}
+
+
+/*-----------------------------------MASTER BLOCK----------------------------------------------*/
+.master__wrapper {
+    display: none; /* Изначально скрываем блок */
+}
+
+
+/*-----------------------------------MASTER BODY----------------------------------------------*/
+
+.master__item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 36px;
+}
+
+.master-item__img{
+    width: 12%;
+    height: 0;
+    padding-bottom: 10%; /* Подгоняем высоту под ширину */
+    position: relative;
+
+    margin-right: 25px;
+}
+
+.master-item__img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Сохраняем видимость и пропорциональность содержимого */
+    border-radius: 110px;
+}
+
+.master-item__info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.master-name{
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: "SF Pro Text";
+    font-weight: 500;
+    line-height: 170%;
+}
+
+.master-position{
+    font-size: 14px;
+    font-family: "SF Pro Text";
+    font-weight: 500;
+    line-height: 160%;
+    color: rgba(0, 0, 0, 0.4);
+    width: 60%;
+}
+
+.master-rating-stars{
+    display: flex;
+    flex-direction: row;
+}
+
+.master-rating{
+    font-size: 20px;
+    font-family: "SF Pro Text";
+    font-weight: 500;
+    line-height: 170%;
+    text-transform: uppercase;
+}
+
+.master-block-star{
+    margin-left: 5px;
+    margin-top: 2px;
+    background-image: url('../images/star-icon.svg');
+    background-size: contain; /* Масштабируем изображение так, чтобы оно полностью помещалось в блок */
+    background-repeat: no-repeat; /* Отключаем повторение фонового изображения */
+    background-position: center; /* Центрируем изображение */
+    width: 25px;
+    height: 30px;
+}
+
+/*-----------------------------------Master BUTTONS----------------------------------------------*/
+
+.master__buttons{
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+
+.green-button{
+    font-family: "Oswald";
+}
+
+#prevBtnToService{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#prevBtnToService::after {
+    content: '\2190';
+    
+}
+
+#nextBtnToDateTime{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#nextBtnToDateTime:hover,
+#prevBtnToService:hover{
+    width: 180px !important;
+}
+
+/*-----------------------------------Date-Time----------------------------------------------*/
+
+.area-title-calendar {
+
+    line-height: 170%;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #232323;
+    padding: 20px 0;
+    text-align: center;
+    transition: color .15s ease-in-out, border-color .15s ease-in-out;
+    border-bottom: 4px solid #232323;
+    margin-bottom: 55px;
+} 
+
+#calendar{
+    margin: 60px ;
+    font-family: "SF Pro Text";
+}
+
+h2{
+    font-family: "SF Pro Text";
+}
+
+.fc-center {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-family: "SF Pro Text";
+    font-weight: 700;
+}
+
+
+.fc-event, .fc-event-dot{
+    background-color: #38624C; /* красный цвет фона */
+    border: 1px solid #38624C;
+}
+
+/*-----------------------------------Calendar BUTTONS----------------------------------------------*/
+
+.date-time__buttons{
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+
+.green-button{
+    font-family: "Oswald";
+}
+
+#prevBtnToMaster{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#prevBtnToMaster::after {
+    content: '\2190';
+    
+}
+
+#nextBtnToDetails{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#nextBtnToDetails:hover,
+#prevBtnToMaster:hover{
+    width: 180px !important;
+}
+
+.border{
+    margin-top: 36px;
+    border-bottom: 4px solid #F6F6F6;
+}
+
+/*форма*/
+.book-procedure-form{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+    margin-top: 36px;
+}
+.book-procedure-form .label-input__group{
+	display: flex;
+	flex-direction: column;
+	width: 46%;
+	margin-bottom: 28px;
+}
+
+.book-procedure-form .label-input__group:last-child{
+	align-self: flex-end;
+}
+
+.book-procedure-form label{
+	font-family: "SF Pro Text";
+	font-weight: 600;
+	text-transform: uppercase;
+	margin-bottom: 12px;
+}
+
+.book-procedure-form input{
+	padding: 17px 40px;
+	font-family: "SF Pro Text";
+	font-size: 21px;
+	line-height: 160%;
+	border-radius: 50px;
+	background-color: #EAEAEA;
+}
+
+/*-----------------------------------Details BUTTONS----------------------------------------------*/
+
+.details__buttons {
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.prevBtnToDateTime{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#prevBtnToDateTime::after {
+    content: '\2190';
+    
+}
+
+#book{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#book:hover{
+    width: 230px !important;
+}
+
+#prevBtnToDateTime:hover{
+    width: 180px !important;
+}
+
+/*-----------------------------------Details Date Time----------------------------------------------*/
+.date-time__item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 36px;
+}
+.date-time__img{
+    width: 12%;
+    height: 0;
+    padding-bottom: 10%; /* Подгоняем высоту под ширину */
+    position: relative;
+
+    margin-right: 25px;
+}
+
+.date-time__img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Сохраняем видимость и пропорциональность содержимого */
+    border-radius: 110px;
+}
+
+.date-time__info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.date-month-year{
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: "SF Pro Text";
+    font-weight: 500;
+    line-height: 170%;
+}
+
+.day-of-week{
+    font-size: 14px;
+    font-family: "SF Pro Text";
+    font-weight: 500;
+    line-height: 160%;
+    color: rgba(0, 0, 0, 0.4);
+    width: 60%;
+}
+
+.start-end{
+    font-size: 20px;
+    font-family: "SF Pro Text";
+    font-weight: 500;
+    line-height: 170%;
+    text-transform: uppercase;
+}
+

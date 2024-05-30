@@ -156,8 +156,6 @@ $(document).ready(function () {
             });
         }
 
-
-
         function getAvailableSlots(master_timetable, booked_slots, service_duration) {
 
             const available_slots = [];
