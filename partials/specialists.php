@@ -170,6 +170,7 @@ if (session_id() == '')
 
     <script src="../js/openErrorSuccess.js"></script>
     <!-- <script src="../js/signUpForProcedureFromMaster.js"></script> -->
+
 </body>
 
 </html>

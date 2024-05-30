@@ -157,3 +157,20 @@ body {
   .loaded .preloader {
 	display: none;
   }
+
+  /* .btn-danger,  .btn-info{
+	background-color: #38624C;
+	border-color: #38624C;
+  }
+
+  .btn-danger:hover,
+  .btn-info:hover,
+  .btn-danger:focus,
+  .btn-info:focus,
+  .btn-danger:active,
+  .btn-info:active,
+  .btn-danger.open,
+  .btn-info.open{
+	background-color: #244031;
+	border-color: #244031;
+  } */

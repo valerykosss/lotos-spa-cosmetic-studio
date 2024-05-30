@@ -333,7 +333,7 @@ form span{
     font-weight: 600;
 }
 
-#leave_title{
+#leave_title, .modal-title{
     text-align: center;
     font-family: "SF Pro Text";
     font-size: 22px;

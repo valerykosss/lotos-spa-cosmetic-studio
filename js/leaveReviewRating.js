@@ -28,7 +28,10 @@ $(document).ready(function() {
             const id = reviewText.data(idKey);
 
             if (review === '' || rating === 0) {
-                alert('Заполните поле отзыва и поставьте количество звезд');
+                $('.popup__bg__error-success').addClass('active');
+                $('.popup__error-success').addClass('active');
+                $('.popup__error-success .data-title').text('Ошибка отправки!');
+                $('.popup__error-success .data-text').text('Заполните поле отзыва и поставьте количество звезд');
                 return;
             }
 
@@ -46,6 +49,10 @@ $(document).ready(function() {
                         id: id
                     },
                     success: function(response) {
+                        $('.popup__bg__error-success').addClass('active');
+                        $('.popup__error-success').addClass('active');
+                        $('.popup__error-success .data-title').text('Успешно!');
+                        $('.popup__error-success .data-text').text('Спасибо за ваш отзыв, он отправлен на модерацию!');
                         // Обработка ответа от сервера
                         console.log(response);
                         // Очистка текстового поля и сброс звездочек

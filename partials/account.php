@@ -85,6 +85,7 @@ if ($user_avatar['avatar'] == NULL) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/ru.js"></script>
+    
 
 
     <link rel="stylesheet" href="../css/generalStyles.css">
@@ -94,6 +95,8 @@ if ($user_avatar['avatar'] == NULL) {
 
     <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/account.css">
+
+    <link rel="stylesheet" href="../css/popUpErrorSuccess.css">
 
 
 </head>
@@ -120,6 +123,7 @@ if ($user_avatar['avatar'] == NULL) {
     <?php
     require 'header-white.php';
     ?>
+    <?php require 'popUpErrorSuccess.php' ?>
     <main class="page">
 
         <section class="page__user-profile">
@@ -192,6 +196,7 @@ if ($user_avatar['avatar'] == NULL) {
                 <div class="profile__area" id="area2">
                     <!-- <p class="area-title-calendar">Мои записи</p> -->
                     <div id="calendar"></div>
+
                     <!-- Start Event Modal -->
                     <div id="leaveModal" class="modal fade">
                         <div class="modal-dialog">
@@ -218,65 +223,29 @@ if ($user_avatar['avatar'] == NULL) {
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="leaveDeleteBtn">Отменить запись</button>
-                                    <button type="button" class="btn btn-info" data-dismiss="modal">Выйти</button>
+                                    <button type="button" class="btn btn-dark" data-dismiss="modal" id="leaveDeleteBtn">Отменить запись</button>
+                                    <button type="button" class="btn btn-dark" data-dismiss="modal">Выйти</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- End Event Modal -->
 
-                    <!-- Start Success Message Modal -->
-                    <div id="msgSuccessModal" class="modal fade">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Успешно!</h4>
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">Закрыть</span></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Расписание было успешно добавлено!</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Success Message Modal -->
-
-                    <!-- Start Updated Message Modal -->
-                    <div id="msgUpdatedModal" class="modal fade">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Расписание обновлено!</h4>
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Расписание было успешно обновлено!</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-info" data-dismiss="modal">Закрыть</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Updated Message Modal -->
+                    
 
                     <!-- Start Deleted Message Modal -->
                     <div id="msgDeletedModal" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Расписание удалено!</h4>
+                                    <h4 class="modal-title">Запись отменена!</h4>
                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">Закрыть</span></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Расписание было успешно удалено!</p>
+                                    <p>Запись была успешно удалена!</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-info" data-dismiss="modal">Закрыть</button>
+                                    <button type="button" class="btn btn-dark" data-dismiss="modal">Закрыть</button>
                                 </div>
                             </div>
                         </div>
@@ -349,5 +318,6 @@ if ($user_avatar['avatar'] == NULL) {
 <script src="../js/account.js"></script>
 <script src="../js/timetable-user.js"></script>
 
+<script src="../js/openErrorSuccess.js"></script>
 
 </html>

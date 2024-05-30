@@ -420,9 +420,9 @@ require_once "../handlers/get_swiper_data_script.php";
             <div class="quiz-block__body _container">
                 <div class="quiz-block-title">Не подобрали<br>подходящую процедуру?</div>
                 <div class="quiz-block-text">Пройдите тест и выберите ту процедуру, которая подходит именно вам!</div>
-                <div class="quiz-block-button green-button">
+                <a href="test.php" class="quiz-block-button green-button">
                     <span class="details">ПРОЙТИ ТЕСТ</span>
-                </div>             
+                </a>             
             </div>
         </section>
     </main>

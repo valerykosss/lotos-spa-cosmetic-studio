@@ -78,6 +78,13 @@
 	padding: 17px 40px;
     border-radius: 40px;
     cursor: pointer;
-	height: fit-content
+	height: fit-content;
+	transition: all 0.2s linear;
 }
 
+.need-consult-button:hover{
+	background: #fff;
+	border: 0.5px solid #355D48;
+	color: #355D48;
+
+}

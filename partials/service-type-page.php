@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="../css/need-consult-block-white.css">
     <link rel="stylesheet" href="../css/footer-green.css">
 
+    <link rel="stylesheet" href="../css/popUpErrorSuccess.css">
+
 
 
     <script src="../libraries/jquery-3.6.0.min.js"></script>
@@ -42,6 +44,7 @@
         </div>
     </div>
     <?php require 'header-green.php' ?>
+    <?php require 'popUpErrorSuccess.php' ?>
 
     <main>
         <section class="page__services-page">
@@ -89,6 +92,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <script src="../js/openPopupSignInUp.js"></script>
     <script src="../js/preloader.js"></script>
+
+    <script src="../js/openErrorSuccess.js"></script>
 
 </body>
 

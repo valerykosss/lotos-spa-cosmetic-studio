@@ -43,6 +43,8 @@ function russianMonth($monthNumber) {
     <link rel="stylesheet" href="../css/need-consult-block-white.css">
     <link rel="stylesheet" href="../css/footer-green.css">
 
+    <link rel="stylesheet" href="../css/popUpErrorSuccess.css">
+
     <link rel="stylesheet" href="../css/sign-up-for-procedure-windows.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
@@ -76,6 +78,7 @@ function russianMonth($monthNumber) {
         </div>
     </div>
 <?php require 'header-green.php' ?>
+<?php require 'popUpErrorSuccess.php' ?>
     <main>
         <!-- <section class="page__speialist-profile">
             <div class="specialist-profile__body _container">
@@ -281,6 +284,8 @@ function russianMonth($monthNumber) {
 <script src="../js/signUpForProcedureFromMaster.js"></script>
 <script src="../js/preloader.js"></script>
 <script src="../js/servicePageReviewsSlider.js"></script>
+
+<script src="../js/openErrorSuccess.js"></script>
 
 <!-- ... -->
 
