@@ -44,8 +44,8 @@ function russianMonth($monthNumber) {
     <link rel="stylesheet" href="../css/footer-green.css">
 
     <link rel="stylesheet" href="../css/popUpErrorSuccess.css">
+    <link rel="stylesheet" href="../css/popupBook.css">
 
-    <link rel="stylesheet" href="../css/sign-up-for-procedure-windows.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
 
@@ -124,7 +124,7 @@ function russianMonth($monthNumber) {
                 <div class="service__info">
                     <p class="service__info-name"><?php echo($service_data['service_name']);?></p>
                     <p class="service__info-description"><?php echo($service_data['service_description']);?></p>
-                    <div class='service-button green-button'>
+                    <div class='service-button green-button' id="<?php echo($service_id) ?>">
                         <span class='details'>ЗАПИСАТЬСЯ</span>
                     </div>
                 </div>
@@ -284,6 +284,9 @@ function russianMonth($monthNumber) {
 <script src="../js/signUpForProcedureFromMaster.js"></script>
 <script src="../js/preloader.js"></script>
 <script src="../js/servicePageReviewsSlider.js"></script>
+
+<script src="../js/openBookingFromService.js"></script>
+    <script src="../js/fromServiceBooking.js"></script>
 
 <script src="../js/openErrorSuccess.js"></script>
 

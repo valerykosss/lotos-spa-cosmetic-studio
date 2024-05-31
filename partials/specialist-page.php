@@ -65,9 +65,12 @@ function russianMonth($monthNumber) {
     <link rel="stylesheet" href="../css/header-white.css">
     <link rel="stylesheet" href="../css/footer-green.css">
 
+    <link rel="stylesheet" href="../css/popUpErrorSuccess.css">
+
 
     <link rel="stylesheet" href="../css/popupSignInUp.css">
-    <link rel="stylesheet" href="../css/sign-up-for-procedure-windows.css">
+    <link rel="stylesheet" href="../css/popupBook.css">
+    <!-- <link rel="stylesheet" href="../css/sign-up-for-procedure-windows.css"> -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
 
@@ -230,7 +233,7 @@ function russianMonth($monthNumber) {
 
         </section>
     </main>
-
+<!-- 
     <div id="sign-up-for-procedure__window">
         <form id="sign-up-for-procedure__form">
             <a href="#" class="close__form">
@@ -249,7 +252,10 @@ function russianMonth($monthNumber) {
             </div>
             <a id="sign-up-for-procedure__button">Записаться</a>
         </form>
-    </div>
+    </div> -->
+
+    <?php require 'popUpBookFromMaster.php' ?>
+    <?php require 'popUpErrorSuccess.php' ?>
 
     <?php require 'sign-in.php' ?>
 
@@ -263,9 +269,14 @@ function russianMonth($monthNumber) {
     <script src="../libraries/swiper-bundle.min.js"></script>
 
     <script src="../js/openPopupSignInUp.js"></script>
-    <script src="../js/signUpForProcedureFromMaster.js"></script>
+    <!-- <script src="../js/signUpForProcedureFromMaster.js"></script> -->
     <script src="../js/preloader.js"></script>
     <script src="../js/specialistPageReviewsSlider.js"></script>
+
+    <script src="../js/openBookingFromMaster.js"></script>
+    <script src="../js/fromMasterBooking.js"></script>
+
+    <script src="../js/openErrorSuccess.js"></script>
 
 
 </body>
