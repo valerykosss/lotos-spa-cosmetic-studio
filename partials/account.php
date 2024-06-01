@@ -17,7 +17,7 @@ $user_discount = mysqli_query($link, "SELECT wheel_discount.discount_name FROM `
                             WHERE `id_user`=$user_id");
 $user_discount = mysqli_fetch_assoc($user_discount);
 
-$user_phone = mysqli_query($link, "SELECT telephone, name FROM user WHERE id_user=$user_id");
+$user_phone = mysqli_query($link, "SELECT telephone, name, email FROM user WHERE id_user=$user_id");
 $user_phone = mysqli_fetch_assoc($user_phone);
 
 $user_avatar = mysqli_query($link, "SELECT `avatar`, name FROM user WHERE id_user=$user_id");
@@ -141,6 +141,7 @@ if ($user_avatar['avatar'] == NULL) {
                     <div class="menu__user-name"><?php echo ($_SESSION['Name']); ?></div>
                     <div class="menu__user-tel"><?php echo ($user_phone['telephone']); ?></div>
                     <div class="menu__user-discount"> Скидка колеса фортуны: <br> <span> <?php echo ($user_discount['discount_name']) ?> </span> </div>
+
                     <div class="menu__header">Личная информация</div>
 
                     <div class="menu-tab" data-target="area1">
@@ -149,6 +150,14 @@ if ($user_avatar['avatar'] == NULL) {
                             <span class="arrow-right"></span>
                         </div>
                         <div class="menu__tab-header">Изменить пароль</div>
+                    </div>
+
+                    <div class="menu-tab" data-target="area4">
+                        <div class="arrow">
+                            <span class="arrow-left"></span>
+                            <span class="arrow-right"></span>
+                        </div>
+                        <div class="menu__tab-header">Моя почта</div>
                     </div>
 
                     <div class="menu__header">Процедуры</div>
@@ -176,7 +185,7 @@ if ($user_avatar['avatar'] == NULL) {
 
                         <div class="label-input__group-profile">
                             <label>Старый пароль</label>
-                            <input type="password" name="old-password" class="old-password" placeholder="Введите старый пароль">
+                            <input type="password" name="old-password" class="old-password" placeholder="Введите старый пароль" autocomplete="off">
                         </div>
 
                         <div class="label-input__group-profile">
@@ -303,6 +312,25 @@ if ($user_avatar['avatar'] == NULL) {
                     } ?>
                 </div>
 
+                <div class="profile__area" id="area4">
+                    <p class="area-title">Почта</p>
+                    <p class="procedure-info _profile-area-container">Добавьте или измените почту, чтобы получать напоминания о записях на почту</p>
+
+                    <div class="change-password__body _profile-area-container">
+
+                        <div class="label-input__group-profile">
+                            <label>Почта</label>
+                            <input type="email" name="mail" class="mail" placeholder="Введите почту" value="<?php echo htmlspecialchars($user_phone['email']); ?>">
+                            <span class="error-message" style="display: none;">Пожалуйста, введите корректный email адрес.</span>
+                        </div>
+
+                        <div class="button" id="add-update-mail">
+                            <span class="details">Сохранить</span>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -320,6 +348,8 @@ if ($user_avatar['avatar'] == NULL) {
 <script src="../js/change-pass.js"></script>
 <script src="../js/change-avatar.js"></script>
 <script src="../js/leaveReviewRating.js"></script>
+<script src="../js/email.js"></script>
+
 
 <script src="../js/account.js"></script>
 <script src="../js/timetable-user.js"></script>

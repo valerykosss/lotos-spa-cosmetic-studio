@@ -33,7 +33,16 @@ $(document).ready(function () {
     //         });
     //     return true;
     // });
+    $('#search_box').on('keypress', function(e) {
+        // Разрешаем ввод только русских букв
+        var char = String.fromCharCode(e.which);
+        var russianLettersRegex = /^[А-Яа-яЁё]$/;
 
+        if (!russianLettersRegex.test(char)) {
+            e.preventDefault(); // Запрещаем ввод символа, если он не соответствует регулярному выражению
+        }
+    });
+    
     $('#sort-selector-first, #sort-selector-second, #search_box').on('change input', function () {
         let sort1Value = $('#sort-selector-first').val();
         let sort2Value = $('#sort-selector-second').val();

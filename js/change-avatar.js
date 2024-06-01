@@ -18,7 +18,12 @@ $(document).ready(function() {
                 uploadImage(imageData);
             };
         } else {
-            alert('Выберите изображение в формате JPEG, PNG или GIF и размером до 2 МБ.');
+            // Открытие нового окна popupES и установка текста
+            $('.popup__bg__error-success').addClass('active');
+            $('.popup__error-success').addClass('active');
+            $('.popup__error-success .data-title').text('Ошибка!');
+            $('.popup__error-success .data-text').text('Выберите изображение в формате JPEG, PNG или GIF и размером до 2 МБ!');
+
         }
     });
 
@@ -30,7 +35,10 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    alert('Изображение успешно загружено и сохранено в базе данных.');
+                    $('.popup__bg__error-success').addClass('active');
+                    $('.popup__error-success').addClass('active');
+                    $('.popup__error-success .data-title').text('Успешно!');
+                    $('.popup__error-success .data-text').text('Изображение загружено и сохранено в базе данных');
                     $('.avatar').attr('src', imageData);
 
                 } else {

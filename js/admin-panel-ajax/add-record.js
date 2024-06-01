@@ -30,8 +30,8 @@ const userSelect = document.getElementById("user");
         // Обновляем список пользователей в <select>
         users.forEach(user => {
             const option = document.createElement('option');
-            option.value = user.id;
-            option.textContent = user.name;
+            option.value = user[0];
+            option.textContent = `${user[1]} - ${user[2]}`;
             userSelect.appendChild(option);
         });
     } catch (error) {
@@ -251,9 +251,10 @@ dateTimeSelect.addEventListener("focus", async function() {
 $( ".add-record__button" ).click(function() {
     let service_name = $('select.service').val();
     let master_name = $('#master').val();
-    let client_name = $('.client_name').val();
-    let record_date = $('.new-record_date').val().trim();
-    let record_time = $('.new-record_time').val();
+    let client_name = $('#user').val();
+    let selectedOption = $('#dateTime option:selected');
+    let record_date = selectedOption.data('date');
+    let record_time = selectedOption.data('time');
 
         $.ajax({
             url: "../handlers/admin-panel-handlers/addRecordHandler.php",
@@ -276,11 +277,11 @@ $( ".add-record__button" ).click(function() {
 
                 // Создаем ячейки для новой строки
                 newRow.append('<td>'+newRecord.id+'</td>');
-                newRow.append('<td>'+newRecord.service_name+'</td>');
                 newRow.append('<td>'+newRecord.master_name+'</td>');
-                newRow.append('<td>' + newRecord.client_name + '</td>');
+                newRow.append('<td>'+newRecord.service_name+'</td>');
+                newRow.append('<td>' + newRecord.client_name + '<br>'+  newRecord.telephone +'</td>');
                 newRow.append('<td>'+newRecord.record_date+'</td>');
-                newRow.append('<td>'+newRecord.record_time+':00</td>');
+                newRow.append('<td>'+newRecord.record_time+'</td>');
                 newRow.append('<td><select class="record-status"><option value="1" selected>Ожидается</option><option value="2">Проведена</option></select></td>');
                 newRow.append('<td><button class="delete-record__button" id="' + newRecord.id + '"></button></td>');
 
@@ -289,9 +290,8 @@ $( ".add-record__button" ).click(function() {
                 changeStatus();
                 $('#service option:first').prop('selected', true);
                 $('#master option:first').prop('selected', true);
-                $('.client_name').val('');
-                $('.new-record_date').val('');
-                $('.new-record_time').val('');
+                $('#user option:first').prop('selected', true);
+                $('#dateTime option:first').prop('selected', true);
             }
         });
 });

@@ -40,13 +40,13 @@ function russianMonth($monthNumber) {
     <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/header-green.css">
 
-    <link rel="stylesheet" href="../css/need-consult-block-white.css">
     <link rel="stylesheet" href="../css/footer-green.css">
 
     <link rel="stylesheet" href="../css/popUpErrorSuccess.css">
 
     <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/popupBook.css">
+    <link rel="stylesheet" href="../css/need-consult-block-white.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />

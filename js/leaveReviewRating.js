@@ -28,7 +28,6 @@ $(document).ready(function() {
             const review = reviewText.val();
             const id = reviewText.data(idKey);
             const recordId = reviewText.data('record-id');
-            alert(recordId);
 
 
             if (review === '' || rating === 0) {

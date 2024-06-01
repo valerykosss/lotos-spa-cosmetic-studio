@@ -306,6 +306,7 @@ if (session_id() == '')
 
                     <div class="tab-content-admin-panel" id="content-3">
                         <p class="sub-header">Добавить запись:</p>
+                        <div style="overflow-y:scroll">
                         <table class="table__to-add record">
                             <thead>
                                 <tr>
@@ -347,6 +348,7 @@ if (session_id() == '')
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
                         <table class="table__to-update-delete record">
                             <thead>
                                 <tr>
@@ -361,7 +363,7 @@ if (session_id() == '')
                             </thead>
 
                             <?php
-                            $query = 'SELECT `procedure_record`.`id_record`, `master`.`master_name`, `service`.`service_name`, `user`.`name`, `procedure_record`.`record_date`, `procedure_record`.`record_time`, `procedure_record_status`.`id_record_status`
+                            $query = 'SELECT `procedure_record`.`id_record`, `master`.`master_name`, `service`.`service_name`, `user`.`name`, `procedure_record`.`record_date`, `procedure_record`.`record_time`, `procedure_record_status`.`id_record_status`, `user`.`telephone`
                                         FROM `procedure_record`
                                         INNER JOIN `master_service` ON `procedure_record`.`id_master_service`=`master_service`.`id_master_service`
                                         INNER JOIN `master` ON `master_service`.`id_master`=`master`.`id_master`
@@ -384,6 +386,10 @@ if (session_id() == '')
                                     $year = date('Y', $date);
                                     $date = $day . ' ' . russianMonth($month) . ' '. $year;
 
+                                    $time = $row[5];
+                                    $formatted_time = substr($time, 0, 5);
+
+
                                     $options = "";
 
                                     foreach ($record_statuses as $status) {
@@ -399,9 +405,9 @@ if (session_id() == '')
                                                     <td>" . $row[0] . "</td>
                                                     <td>" . $row[1] . "</td>
                                                     <td>" . $row[2] . "</td>
-                                                    <td>" . $row[3] . "</td>
+                                                    <td>" . $row[3] . '</br>'. $row[7]. "</td>
                                                     <td>" . $date . "</td>
-                                                    <td>" . $row[5] . "</td>
+                                                    <td>" . $formatted_time . "</td>
                                                     <td>
                                                         <select class='record-status'>
                                                             " . $options . "

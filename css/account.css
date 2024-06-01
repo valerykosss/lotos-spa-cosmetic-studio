@@ -400,3 +400,16 @@ textarea{
     margin-bottom: 55px;
 }
 
+/*почта*/
+
+#add-update-mail{
+    align-self: center;
+    margin-top: 30px;
+
+}
+
+.error-message{
+    font-family: "SF Pro Text";
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 5px;
+}

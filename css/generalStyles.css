@@ -71,6 +71,33 @@ body {
 	src: url("../fonts/San-Francisco-Pro-Text/SF-Pro.ttf");
 }
 
+
+
+@media screen and (max-width: 1440px) {
+
+}
+@media screen and (max-width: 1280px) {
+
+}
+@media screen and (max-width: 1024px) {
+
+}
+@media screen and (max-width: 834px) {
+
+}
+@media screen and (max-width: 736px) {
+
+}
+@media screen and (max-width: 414px) {
+
+}
+@media screen and (max-width: 375px) {
+
+}
+@media screen and (max-width: 320px) {
+
+}
+
 /*-------------------PRELOADER-------------------*/
 .preloader {
 	/*фиксированное позиционирование*/

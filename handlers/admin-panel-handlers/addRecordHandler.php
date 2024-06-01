@@ -36,7 +36,7 @@
     $service=mysqli_fetch_assoc($service);
     $master=mysqli_query($link, "SELECT `master_name` FROM `master` WHERE `id_master`=$master_name");
     $master=mysqli_fetch_assoc($master);
-    $client=mysqli_query($link, "SELECT `name` FROM `user` WHERE `id_user`=$client_name");
+    $client=mysqli_query($link, "SELECT `name` , `telephone`  FROM `user` WHERE `id_user`=$client_name");
     $client=mysqli_fetch_assoc($client);
 
     // Подготавливаем SQL-запрос для добавления мастера
@@ -59,7 +59,8 @@
                 'master_name' => $master['master_name'],
                 'client_name' => $client['name'],
                 'record_date' => $date,
-                'record_time' => $record_time
+                'record_time' => $record_time,
+                'telephone'=> $client['telephone']
             ]
         ];
         echo json_encode($response);
