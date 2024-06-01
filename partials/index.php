@@ -56,7 +56,11 @@ require_once "../handlers/get_swiper_data_script.php";
                 <div class="swiper-container swiper1 _container">
                     <div class="swiper-wrapper">
                     <?php
+
                     foreach ($first_swiper as $item) {
+                        if($item[2]== 'NULL' || $item[3]== 'NULL'){
+                            continue;
+                        }
                         echo (" <div class='swiper-slide background' style='background-image: url(.." . $item[3] . "); background-size: cover;'></div>");
                     }
                     ?>
@@ -81,6 +85,9 @@ require_once "../handlers/get_swiper_data_script.php";
                 <div class="swiper-wrapper">
                     <?php
                     foreach ($first_swiper as $item) {
+                        if($item[2]== 'NULL' || $item[3]== 'NULL'){
+                            continue;
+                        }
                         echo ("
                                 <div class='swiper-slide front'
                                     style='background-image: url(.." . $item[2] . "); background-size: cover;'>

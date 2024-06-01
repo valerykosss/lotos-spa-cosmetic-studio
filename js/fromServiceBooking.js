@@ -9,8 +9,6 @@ $(document).ready(function () {
     $("#new_user_tel").mask("+375 (99) 999-99-99");
 
 
-
-
     // popup.animate({ scrollTop: 0 }, {
     //     duration: 400, // Длительность анимации (в миллисекундах)
     //     easing: 'swing', // Эффект анимации
@@ -24,14 +22,14 @@ $(document).ready(function () {
 
     var id_master;
     var id_service;
-    var selectedService;
-    var duration_service_selected;
+
+    var service_duration;
 
     var clickedEvents = []; // Массив для хранения кликнутых событий
     var lastClickedeventFromArray;
 
 
-    //-------------------------------------ОТ СЕРВИСА К ДАТЕ-------------------------------------
+    //-------------------------------------ОТ МАСТЕРА К ДАТЕ-------------------------------------
     $('#nextBtnToDateTime').on('click', function () {
 
         popup.animate({ scrollTop: 0 }, {
@@ -39,203 +37,15 @@ $(document).ready(function () {
             easing: 'swing', // Эффект анимации
             complete: function () { // Функция завершения
 
-                var selectedServiceId = $('input[name="service"]:checked').val();
-                if (!selectedServiceId) {
-                    alert('Выберите услугу');
+                var selectedMasterId = $('input[name="master"]:checked').val();
+                if (!selectedMasterId) {
+                    alert('Выберите мастера');
                     return;
                 }
 
                 // Загрузка мастеров для выбранной услуги
 
-                //все гуд вроде
-                function getMasterTimetable(id_master, start_date, end_date) {
-                    return $.ajax({
-                        url: '../handlers/getMasterTimetable.php',
-                        type: 'GET',
-                        dataType: 'json',
-                        data: {
-                            id_master: id_master,
-                            start_date: start_date,
-                            end_date: end_date
-                        },
-                        success: function (response) {
-                            if (response.error) {
-                                console.error('Ошибка при загрузке графика работы мастера:', response.error);
-                            }
-                        },
-                        error: function (error) {
-                            console.error('Ошибка при выполнении запроса на загрузку графика работы мастера:', error);
-                        }
-                    });
-                }
-
-                //все гуд вроде
-                // Функция для получения занятых слотов времени ПРАВИЛЬНО++++++++++++++++++++++++++++++++++++++++++++++
-                function getBookedSlots(id_master, start_date, end_date) {
-                    return $.ajax({
-                        url: '../handlers/getBookedSlots.php',
-                        type: 'GET',
-                        dataType: 'json',
-                        data: {
-                            id_master: id_master,
-                            start_date: start_date,
-                            end_date: end_date
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.error('Ошибка при загрузке занятых слотов:', textStatus, errorThrown);
-                            return Promise.reject('Ошибка при загрузке занятых слотов');
-                        }
-                    });
-                }
-
-
-                //все гуд вроде
-                function getAvailableSlots(master_timetable, booked_slots, service_duration) {
-
-                    const available_slots = [];
-                    var slotsCount = Math.ceil(service_duration / 30);
-
-                    master_timetable.forEach(function (slot) {
-
-                        let masterStart = moment(slot.start);
-                        console.log('');
-                        console.log("masterStart");
-                        console.log(masterStart.format('YYYY-MM-DD HH:mm:ss'));
-
-                        const masterEnd = moment(slot.end);
-                        console.log('');
-                        console.log("masterEnd");
-                        console.log(masterEnd.format('YYYY-MM-DD HH:mm:ss'));
-
-
-                        while (masterStart.isBefore(masterEnd)) {
-                            const slotEnd = moment(masterStart).add(service_duration, 'minutes');
-                            console.log('');
-                            console.log("slotEnd");
-
-                            console.log(slotEnd.format('YYYY-MM-DD HH:mm:ss'));
-
-                            if (slotEnd.isAfter(masterEnd)) {
-                                break;
-                            }
-
-                            let isAvailable = true;
-
-                            // Проверяем тройные слоты
-                            for (let j = 0; j < slotsCount; j++) {
-                                console.log('');
-                                console.log('j:');
-                                console.log(j);
-                                const currentSlotStart = moment(masterStart).add(j * 30, 'minutes');
-                                const currentSlotEnd = moment(currentSlotStart).add(30, 'minutes');
-                                console.log('');
-                                console.log("currentSlotStart:");
-                                console.log(currentSlotStart.format('YYYY-MM-DD HH:mm:ss'));
-
-                                console.log('');
-                                console.log("currentSlotEnd:");
-                                console.log(currentSlotEnd.format('YYYY-MM-DD HH:mm:ss'));
-
-                                for (let i = 0; i < booked_slots.length; i++) {
-                                    const bookedSlotStart = moment(booked_slots[i].record_date + ' ' + booked_slots[i].record_time);
-                                    const bookedSlotEnd = moment(bookedSlotStart).add(booked_slots[i].duration, 'minutes');
-
-                                    // (), []
-                                    if (currentSlotStart.isBetween(bookedSlotStart, bookedSlotEnd, null, '()') ||
-                                        currentSlotEnd.isBetween(bookedSlotStart, bookedSlotEnd, null, '(]')) {
-                                        isAvailable = false;
-                                        break;
-                                    }
-                                }
-
-                                if (!isAvailable) {
-                                    break;
-                                }
-                            }
-
-                            if (isAvailable) {
-                                available_slots.push({
-                                    start: masterStart.clone().format('YYYY-MM-DD HH:mm'),
-                                    end: slotEnd.clone().format('YYYY-MM-DD HH:mm')
-                                });
-                            }
-                            // Переход к следующему слоту
-                            masterStart.add(30, 'minutes');
-                        }
-                    });
-
-                    return available_slots;
-                }
-
-                function updateCalendarWithAvailableSlots(available_slots) {
-                    $('#calendar').fullCalendar('destroy');
-
-                    $('#calendar').fullCalendar({
-                        defaultView: 'month',
-                        editable: true,
-                        // eventLimit: true,
-                        events: available_slots.map(function (slot) {
-                            return {
-                                start: slot.start,
-                                end: slot.end,
-                                allDay: false,
-                            };
-                        }),
-
-                        eventClick: function (event) {
-
-                            startDate = event.start.format('YYYY-MM-DD HH:mm');
-                            endDate = event.end ? event.end.format('YYYY-MM-DD HH:mm') : '';
-                            console.log('Выбранное событие:');
-                            console.log('Начало:', startDate);
-                            console.log('Окончание:', endDate);
-
-                            // Добавляем кликнутое событие в массив
-                            clickedEvents.push({ start: startDate, end: endDate });
-                            console.log('Массив кликнутых событий:', clickedEvents);
-
-                        },
-
-                    });
-
-                    // Обработчик клика по документу
-                    $(document).on('click', function (event) {
-                        // Проверяем, является ли элемент, по которому кликнули, частью календаря
-                        if (!$(event.target).closest('.fc-content').length && !$(event.target).is('.fc-more') && !$(event.target).is('#nextBtnToDetails') && !$(event.target).is('#prevBtnToMaster') && !$(event.target).is('#nextBtnToDateTime') && !$(event.target).is('#prevBtnToDateTime')) {
-                            // Если клик был вне календаря, обнуляем массив кликнутых событий
-                            clickedEvents = [];
-                            console.log('Массив кликнутых событий обнулен');
-                            resetStyles();
-                        }
-                    });
-
-                    eventClickStyles();
-
-                }
-
-                function loadAvailableDates(id_master, duration_service_selected) {
-                    var service_duration = duration_service_selected;
-
-                    getMasterTimetable(id_master, moment().format('YYYY-MM-DD HH:mm'), moment().add(1, 'months').format('YYYY-MM-DD  HH:mm'))
-                        .then(function (master_timetable) {
-                            return getBookedSlots(id_master, moment().format('YYYY-MM-DD'), moment().add(1, 'months').format('YYYY-MM-DD'))
-                                .then(function (booked_slots) {
-                                    var available_slots = getAvailableSlots(master_timetable, booked_slots, service_duration);
-                                    updateCalendarWithAvailableSlots(available_slots);
-                                });
-                        })
-                        .catch(function (error) {
-                            console.error('Ошибка при загрузке доступных дат:', error);
-                        });
-                }
-
-            
-                    selectedService = $('input[name="service"]:checked');
-                    duration_service_selected = selectedService.data('duration');
-
-                    loadAvailableDates(id_master, duration_service_selected);
-
-                $('.service__wrapper').hide();
+                $('.master__wrapper').hide();
                 $('.date-time__wrapper').show();
                 $('.details__wrapper').hide();
 
@@ -252,19 +62,19 @@ $(document).ready(function () {
 
     });
 
-    //-------------------------------------ОТ ДАТЫ К СЕРВИСУ-------------------------------------
-    $('#prevBtnToService').on('click', function () {
+    //-------------------------------------ОТ ДАТЫ К мастерам-------------------------------------
+    $('#prevBtnToMaster').on('click', function () {
         popup.animate({ scrollTop: 0 }, {
             duration: 400, // Длительность анимации (в миллисекундах)
             easing: 'swing', // Эффект анимации
             complete: function () {
                 $('.date-time__wrapper').hide();
                 $('.details__wrapper').hide();
-                $('.service__wrapper').show();
+                $('.master__wrapper').show();
 
                 // Добавление класса active-stage к элементу с id master-stage
                 $('.stage-title').each(function () {
-                    if (this.id === 'service-stage') {
+                    if (this.id === 'master-stage') {
                         $(this).addClass('active-stage');
                     } else {
                         $(this).removeClass('active-stage');
@@ -291,7 +101,7 @@ $(document).ready(function () {
                 }
                 // Открытие блока с классом masters__body _container-window
                 $('.date-time__wrapper').hide();
-                $('.service__wrapper').hide();
+                $('.master__wrapper').hide();
                 $('.details__wrapper').show();
 
                 // Добавление класса active-stage к элементу с id master-stage
@@ -310,7 +120,6 @@ $(document).ready(function () {
                 console.log("id_master");
                 console.log(id_master);
 
-                id_service = $('.service__item input[type="radio"]:checked').val();
                 console.log("id_service");
                 console.log(id_service);
 
@@ -394,7 +203,6 @@ $(document).ready(function () {
                 // Открытие блока с классом masters__body _container-window
                 $('.master__wrapper').hide();
                 $('.date-time__wrapper').show();
-                $('.service__wrapper').hide();
                 $('.details__wrapper').hide();
 
                 // Добавление класса active-stage к элементу с id master-stage
@@ -459,8 +267,8 @@ $(document).ready(function () {
                                 if (response.success) {
                                     console.log('Запись успешно добавлена');
 
-                                    popupBg.removeClass('active'); //
-                                    popup.removeClass('active'); // И 
+                                    // popupBg.removeClass('active'); //
+                                    // popup.removeClass('active'); // И 
 
                                     enableScroll();
 
@@ -534,82 +342,274 @@ $(document).ready(function () {
 
 
     $(".service-button").on('click', function () {
-        id_master = $(this).attr('id');
-        // Загрузка типов услуг при загрузке страницы
-        $.ajax({
-            url: '../handlers/getServicesTypesByMaster.php',
-            method: 'GET',
-            data: { id_master: id_master }, // Передача идентификатора мастера
-            success: function (data) {
-                var options = '';
-                var selectedOption = '';
+        id_service = $(this).attr('id');
+        service_duration = $(this).data('duration');
 
-                if (data.length > 0) {
-                    selectedOption = data[0].id_service_type;
-                }
+        popup.animate({ scrollTop: 0 }, {
+            duration: 400, // Длительность анимации (в миллисекундах)
+            easing: 'swing', // Эффект анимации
+            complete: function () { // Функция завершения
 
-                data.forEach(function (serviceType) {
-                    options += '<option value="' + serviceType.id_service_type + '">' + serviceType.service_type_name + '</option>';
-                });
+                // Загрузка мастеров для выбранной услуги
+                $.ajax({
+                    url: '../handlers/getMastersByService.php',
+                    method: 'GET',
+                    data: { id_service: id_service },
+                    success: function (data) {
+                        var masterItems = '';
+                        data.forEach(function (master) {
 
-                $('#sort-selector-first__service').html(options);
+                            var masterRatingStars = '';
 
-                if (selectedOption !== '') {
-                    $('#sort-selector-first__service').val(selectedOption).change();
-                    // Автоматически загрузить услуги для первого типа услуг
-                    loadServices(selectedOption);
-                }
-            }
-        });
-    });
-
-    function loadServices(id_service_type) {
-        if (id_service_type) {
-            $.ajax({
-                url: '../handlers/getServicesByTypeAndMaster.php',
-                method: 'GET',
-                data: {
-                    id_service_type: id_service_type,
-                    id_master: id_master
-                },
-                success: function (data) {
-                    var serviceItems = '';
-                    data.forEach(function (service) {
-                        serviceItems += `
-                            <div class="service__item" id="${service.id_service}" data-duration="${service.duration}" data-price="${service.price}">
-                                <div class="service-item__img">
-                                    <img src="${service.service_image}" alt="${service.service_name}">
-                                </div>
-                                <div class="service-item__info">
-                                    <p class="service-name">${service.service_name}</p>
-                                    <p class="service-description">${service.service_description}</p>
-                                    <p class="service-price">${service.price} byn</p>
-                                </div>
-                                <div class="service-item__radio">
-                                    <input type="radio" name="service" data-duration="${service.duration}" value="${service.id_service}">
-                                </div>
+                            // Проверяем, есть ли средний рейтинг
+                            if (master.average_rating !== null) {
+                                // Если есть средний рейтинг, то добавляем блок с рейтингом и звездами
+                                masterRatingStars = `
+                            <div class="master-rating-stars">
+                                <p class="master-rating">${parseFloat(master.average_rating).toFixed(2)}</p>
+                                <div class="master-block-star"></div>
                             </div>
                         `;
-                    });
-                    $('#service-items-container').html(serviceItems);
-                    $('.service-type__header').text($('#sort-selector-first__service option:selected').text());
+                            }
 
-                    // Добавить обработчик для клика на service__item
-                    $('.service__item').on('click', function () {
-                        $(this).find('input[type="radio"]').prop('checked', true);
-                    });
-                }
-            });
-        } else {
-            $('#service-items-container').html('');
-            $('.service-type__header').text('Косметические услуги');
-        }
-    }
+                            // Формируем HTML-шаблон для каждого мастера
+                            var masterItem = `
+                        <div class="master__item">
+                            <div class="master-item__img">
+                                <img src="${master.master_photo}">
+                            </div>
+                            <div class="master-item__info">
+                                <p class="master-name">${master.master_name} ${master.master_surname}</p>
+                                <p class="master-position">${master.position}</p>
+                                ${masterRatingStars}
+                            </div>
+                            <div class="master-item__radio">
+                                <input type="radio" name="master" value="${master.id_master}">
+                            </div>
+                        </div>
+                    `;
 
-    // Обработка изменения типа услуги
-    $('#sort-selector-first__service').on('change', function () {
-        var id_service_type = $(this).val();
-        loadServices(id_service_type);
+                            // Добавляем сформированный HTML-шаблон мастера к общей строке masterItems
+                            masterItems += masterItem;
+                        });
+
+                        // Вставляем сформированные HTML-шаблоны мастеров в соответствующий контейнер
+                        $('#masters-items-container').html(masterItems);
+
+                        $('.master__item').on('click', function () {
+                            // Сделать соответствующий master-item__radio выбранным
+                            $(this).find('input[type="radio"]').prop('checked', true);
+
+                        });
+
+
+                        //все гуд вроде
+                        function getMasterTimetable(id_master, start_date, end_date) {
+                            return $.ajax({
+                                url: '../handlers/getMasterTimetable.php',
+                                type: 'GET',
+                                dataType: 'json',
+                                data: {
+                                    id_master: id_master,
+                                    start_date: start_date,
+                                    end_date: end_date
+                                },
+                                success: function (response) {
+                                    if (response.error) {
+                                        console.error('Ошибка при загрузке графика работы мастера:', response.error);
+                                    }
+                                },
+                                error: function (error) {
+                                    console.error('Ошибка при выполнении запроса на загрузку графика работы мастера:', error);
+                                }
+                            });
+                        }
+
+                        //все гуд вроде
+                        // Функция для получения занятых слотов времени ПРАВИЛЬНО++++++++++++++++++++++++++++++++++++++++++++++
+                        function getBookedSlots(id_master, start_date, end_date) {
+                            return $.ajax({
+                                url: '../handlers/getBookedSlots.php',
+                                type: 'GET',
+                                dataType: 'json',
+                                data: {
+                                    id_master: id_master,
+                                    start_date: start_date,
+                                    end_date: end_date
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.error('Ошибка при загрузке занятых слотов:', textStatus, errorThrown);
+                                    return Promise.reject('Ошибка при загрузке занятых слотов');
+                                }
+                            });
+                        }
+
+
+                        //все гуд вроде
+                        function getAvailableSlots(master_timetable, booked_slots, service_duration) {
+
+                            const available_slots = [];
+                            var slotsCount = Math.ceil(service_duration / 30);
+
+                            master_timetable.forEach(function (slot) {
+
+                                let masterStart = moment(slot.start);
+                                console.log('');
+                                console.log("masterStart");
+                                console.log(masterStart.format('YYYY-MM-DD HH:mm:ss'));
+
+                                const masterEnd = moment(slot.end);
+                                console.log('');
+                                console.log("masterEnd");
+                                console.log(masterEnd.format('YYYY-MM-DD HH:mm:ss'));
+
+
+                                while (masterStart.isBefore(masterEnd)) {
+                                    const slotEnd = moment(masterStart).add(service_duration, 'minutes');
+                                    console.log('');
+                                    console.log("slotEnd");
+
+                                    console.log(slotEnd.format('YYYY-MM-DD HH:mm:ss'));
+
+                                    if (slotEnd.isAfter(masterEnd)) {
+                                        break;
+                                    }
+
+                                    let isAvailable = true;
+
+                                    // Проверяем тройные слоты
+                                    for (let j = 0; j < slotsCount; j++) {
+                                        console.log('');
+                                        console.log('j:');
+                                        console.log(j);
+                                        const currentSlotStart = moment(masterStart).add(j * 30, 'minutes');
+                                        const currentSlotEnd = moment(currentSlotStart).add(30, 'minutes');
+                                        console.log('');
+                                        console.log("currentSlotStart:");
+                                        console.log(currentSlotStart.format('YYYY-MM-DD HH:mm:ss'));
+
+                                        console.log('');
+                                        console.log("currentSlotEnd:");
+                                        console.log(currentSlotEnd.format('YYYY-MM-DD HH:mm:ss'));
+
+                                        for (let i = 0; i < booked_slots.length; i++) {
+                                            const bookedSlotStart = moment(booked_slots[i].record_date + ' ' + booked_slots[i].record_time);
+                                            const bookedSlotEnd = moment(bookedSlotStart).add(booked_slots[i].duration, 'minutes');
+
+                                            // (), []
+                                            if (currentSlotStart.isBetween(bookedSlotStart, bookedSlotEnd, null, '()') ||
+                                                currentSlotEnd.isBetween(bookedSlotStart, bookedSlotEnd, null, '(]')) {
+                                                isAvailable = false;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!isAvailable) {
+                                            break;
+                                        }
+                                    }
+
+                                    if (isAvailable) {
+                                        available_slots.push({
+                                            start: masterStart.clone().format('YYYY-MM-DD HH:mm'),
+                                            end: slotEnd.clone().format('YYYY-MM-DD HH:mm')
+                                        });
+                                    }
+                                    // Переход к следующему слоту
+                                    masterStart.add(30, 'minutes');
+                                }
+                            });
+
+                            return available_slots;
+                        }
+
+                        function updateCalendarWithAvailableSlots(available_slots) {
+                            $('#calendar').fullCalendar('destroy');
+
+                            $('#calendar').fullCalendar({
+                                defaultView: 'month',
+                                editable: true,
+                                // eventLimit: true,
+                                events: available_slots.map(function (slot) {
+                                    return {
+                                        start: slot.start,
+                                        end: slot.end,
+                                        allDay: false,
+                                    };
+                                }),
+
+                                eventClick: function (event) {
+
+                                    startDate = event.start.format('YYYY-MM-DD HH:mm');
+                                    endDate = event.end ? event.end.format('YYYY-MM-DD HH:mm') : '';
+                                    console.log('Выбранное событие:');
+                                    console.log('Начало:', startDate);
+                                    console.log('Окончание:', endDate);
+
+                                    // Добавляем кликнутое событие в массив
+                                    clickedEvents.push({ start: startDate, end: endDate });
+                                    console.log('Массив кликнутых событий:', clickedEvents);
+
+                                },
+
+                            });
+
+                            // Обработчик клика по документу
+                            $(document).on('click', function (event) {
+                                // Проверяем, является ли элемент, по которому кликнули, частью календаря
+                                if (!$(event.target).closest('.fc-content').length && !$(event.target).is('.fc-more') && !$(event.target).is('#nextBtnToDetails') && !$(event.target).is('#prevBtnToMaster') && !$(event.target).is('#nextBtnToDateTime') && !$(event.target).is('#prevBtnToDateTime')) {
+                                    // Если клик был вне календаря, обнуляем массив кликнутых событий
+                                    clickedEvents = [];
+                                    console.log('Массив кликнутых событий обнулен');
+                                    resetStyles();
+                                }
+                            });
+
+                            eventClickStyles();
+
+                        }
+
+
+                        function loadAvailableDates(id_master, duration_service_selected) {
+                            var service_duration = duration_service_selected;
+
+                            getMasterTimetable(id_master, moment().format('YYYY-MM-DD HH:mm'), moment().add(1, 'months').format('YYYY-MM-DD  HH:mm'))
+                                .then(function (master_timetable) {
+                                    return getBookedSlots(id_master, moment().format('YYYY-MM-DD'), moment().add(1, 'months').format('YYYY-MM-DD'))
+                                        .then(function (booked_slots) {
+                                            var available_slots = getAvailableSlots(master_timetable, booked_slots, service_duration);
+                                            updateCalendarWithAvailableSlots(available_slots);
+                                        });
+                                })
+                                .catch(function (error) {
+                                    console.error('Ошибка при загрузке доступных дат:', error);
+                                });
+                        }
+
+                        // Обработчик нажатия на input или блок .master__item
+                        $('input[name="master"], .master__item').on('click', function () {
+                            id_master = $('.master__item input[type="radio"]:checked').val();
+
+                            loadAvailableDates(id_master, service_duration);
+                        });
+
+                        // Переход к блоку мастеров
+                        $('.master__wrapper').show();
+                        $('.date-time__wrapper').hide();
+                        $('.details__wrapper').hide();
+
+                        // Добавление класса active-stage к элементу с id master-stage
+                        $('.stage-title').each(function () {
+                            if (this.id === 'master-stage') {
+                                $(this).addClass('active-stage');
+                            } else {
+                                $(this).removeClass('active-stage');
+                            }
+                        });
+                    }
+                });
+            }
+        });
     });
 });
 

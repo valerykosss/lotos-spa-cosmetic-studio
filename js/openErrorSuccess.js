@@ -9,10 +9,13 @@ let closePopupButtonES = document.querySelector('.close-popup__error-success'); 
 //         popupES.classList.add('active'); // И для самого окна
 //     })
 // });
+if(closePopupButtonES){
+    console.log("true");
+}
 closePopupButtonES.addEventListener('click',() => { // Вешаем обработчик на крестик
     popupBgES.classList.remove('active'); // Убираем активный класс с фона
     popupES.classList.remove('active'); // И с окна
-
+    console.log('cross')
 });
 
 document.addEventListener('click', (e) => { // Вешаем обработчик на весь документ
@@ -20,4 +23,5 @@ document.addEventListener('click', (e) => { // Вешаем обработчик
         popupBgES.classList.remove('active'); // Убираем активный класс с фона
         popupES.classList.remove('active'); // И с окна
     }
+    console.log('doc')
 });

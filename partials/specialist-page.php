@@ -70,7 +70,7 @@ function russianMonth($monthNumber) {
 
     <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/popupBook.css">
-    <!-- <link rel="stylesheet" href="../css/sign-up-for-procedure-windows.css"> -->
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" />
 
@@ -154,7 +154,7 @@ function russianMonth($monthNumber) {
                         <span class='details'>ЗАПИСАТЬСЯ</span>
                     </div>"
                     ?>
-
+                
                 </div>
             </div>
         </section>

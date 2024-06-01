@@ -39,11 +39,13 @@ function russianMonth($monthNumber) {
     <link rel="stylesheet" href="../css/service-page.css">
     <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/header-green.css">
-    <link rel="stylesheet" href="../css/popupSignInUp.css">
+
     <link rel="stylesheet" href="../css/need-consult-block-white.css">
     <link rel="stylesheet" href="../css/footer-green.css">
 
     <link rel="stylesheet" href="../css/popUpErrorSuccess.css">
+
+    <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/popupBook.css">
 
 
@@ -78,7 +80,6 @@ function russianMonth($monthNumber) {
         </div>
     </div>
 <?php require 'header-green.php' ?>
-<?php require 'popUpErrorSuccess.php' ?>
     <main>
         <!-- <section class="page__speialist-profile">
             <div class="specialist-profile__body _container">
@@ -124,7 +125,7 @@ function russianMonth($monthNumber) {
                 <div class="service__info">
                     <p class="service__info-name"><?php echo($service_data['service_name']);?></p>
                     <p class="service__info-description"><?php echo($service_data['service_description']);?></p>
-                    <div class='service-button green-button' id="<?php echo($service_id) ?>">
+                    <div class='service-button green-button' id="<?php echo($service_id)?>" data-duration="<?php echo($service_data['duration']) ?>">
                         <span class='details'>ЗАПИСАТЬСЯ</span>
                     </div>
                 </div>
@@ -249,23 +250,10 @@ function russianMonth($monthNumber) {
         </section>
 
     </main>
-
-        <div id="sign-up-for-procedure__window">
-        <form id="sign-up-for-procedure__form">
-            <a href="#" class="close__form"> 
-                <img class="close__form-image" height="35px" width="35px" src="../images/icons/cross.svg" /> 
-            </a>
-            <div id="sign-up-for-procedure__data"> 
-                <select id="masters__data"></select>
-                <select id="services__data"></select>
-                <div id="calendar"></div>
-
-            </div>
-            <a id="sign-up-for-procedure__button">Записаться</a>
-        </form>
-    </div>
     
     <?php require 'sign-in.php' ?>
+    <?php require 'popUpBookFromService.php' ?>
+    <?php require 'popUpErrorSuccess.php' ?>
 
 
     <?php require_once 'need-consult-block-white.php' ?>
@@ -281,14 +269,14 @@ function russianMonth($monthNumber) {
 <script src="../libraries/swiper-bundle.min.js"></script>
 
 <script src="../js/openPopupSignInUp.js"></script>
-<script src="../js/signUpForProcedureFromMaster.js"></script>
+
 <script src="../js/preloader.js"></script>
 <script src="../js/servicePageReviewsSlider.js"></script>
 
 <script src="../js/openBookingFromService.js"></script>
     <script src="../js/fromServiceBooking.js"></script>
 
-<script src="../js/openErrorSuccess.js"></script>
+    <script src="../js/openErrorSuccess.js"></script>
 
 <!-- ... -->
 

@@ -45,16 +45,16 @@ function RadioResetAndShowFirstBlock(){
 
 
     // Скрыть элементы с классами master__wrapper, date-time__wrapper и details__wrapper
-    document.querySelectorAll('.master__wrapper, .date-time__wrapper, .details__wrapper').forEach(function(element) {
+    document.querySelectorAll('.date-time__wrapper, .details__wrapper').forEach(function(element) {
         element.style.display = 'none';
     });
 
     // Показать элемент с классом service__wrapper
-    document.querySelector('.service__wrapper').style.display = 'block';
+    document.querySelector('.master__wrapper').style.display = 'block';
 
     // Добавление класса active-stage к элементу с id service-stage и удаление этого класса у других элементов с классом stage-title
     document.querySelectorAll('.stage-title').forEach(function(element) {
-        if (element.id === 'service-stage') {
+        if (element.id === 'master-stage') {
             element.classList.add('active-stage');
         } else {
             element.classList.remove('active-stage');

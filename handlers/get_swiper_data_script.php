@@ -1,7 +1,7 @@
 <?php
     require_once "../database/db.php";
 
-    $first_swiper=mysqli_query($link, "SELECT * FROM `service_type` WHERE img IS NOT NULL and bg_img IS NOT NULL");
+    $first_swiper=mysqli_query($link, "SELECT * FROM `service_type` WHERE img IS NOT NULL or bg_img IS NOT NULL");
     $first_swiper=mysqli_fetch_all($first_swiper);
 
     $all_masters=mysqli_query($link, "SELECT * FROM `master`");

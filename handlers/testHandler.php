@@ -26,7 +26,7 @@ if (!empty($resultQuery)) {
         foreach ($results as $result) {
             $htmlResponse .= '<p class="test__result-service-name">' . $result[1] . '</p>';
             $htmlResponse .= '<p class="test__result-service-description">' . $result[2] . '</p>';
-            $htmlResponse .= '<div class="buttons-container"><button class="bookService button" data-id="' . $result[0] . '"><span class="details">Записаться<span></button>';
+            $htmlResponse .= '<div class="buttons-container"><a href="service-page.php?service_id=' . $result[0] . '" class="bookService button" data-id="' . $result[0] . '"><span class="details">Подробнее<span></a>';
             $htmlResponse .= '<button id="restartTest" class="button"><span class="details">Пройти еще<span></button></div>';
         }
     } else {

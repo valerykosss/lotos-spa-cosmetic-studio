@@ -45,7 +45,7 @@ function RadioResetAndShowFirstBlock(){
 
 
     // Скрыть элементы с классами master__wrapper, date-time__wrapper и details__wrapper
-    document.querySelectorAll('.master__wrapper, .date-time__wrapper, .details__wrapper').forEach(function(element) {
+    document.querySelectorAll('.date-time__wrapper, .details__wrapper').forEach(function(element) {
         element.style.display = 'none';
     });
 
