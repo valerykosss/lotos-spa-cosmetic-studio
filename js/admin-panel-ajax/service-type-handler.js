@@ -11,7 +11,7 @@ $( ".add-service-type__button" ).click(function() {
         },
         success: function (response) { // запустится после получения результатов
             alert("Запись добавлена!");
-            var newServiceType = response.master_service;
+            var newServiceType = response.service_type;
             var tableBody = $('.table__to-update-delete.service-type').find('tbody'); // находим tbody во второй таблице
 
             // Создаем новую строку для мастера
@@ -23,6 +23,7 @@ $( ".add-service-type__button" ).click(function() {
 
             // Добавляем новую строку в таблицу
             tableBody.append(newRow);
+            $('.service-type_name').val('');
         }
     });
 });

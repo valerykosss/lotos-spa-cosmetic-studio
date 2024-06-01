@@ -2,7 +2,7 @@
 session_start();
 require_once "../../database/db.php";
 
-$get_services=mysqli_query($link, "SELECT `service_name`, `id_service` FROM `service`");
+$get_services=mysqli_query($link, "SELECT `service_name`, `id_service`, `duration` FROM `service`");
 
 $services = [];
 

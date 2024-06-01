@@ -37,6 +37,8 @@ if (session_id() == '')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Лотос - Панель администратора</title>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
     <link rel="stylesheet" href="../css/generalStyles.css">
     <link rel="stylesheet" href="../css/popupSignInUp.css">
     <link rel="stylesheet" href="../css/header-white-admin-master.css">
@@ -309,9 +311,9 @@ if (session_id() == '')
                                 <tr>
                                     <th>Услуга</th>
                                     <th>Мастер</th>
-                                    <th>ID Клиента</th>
-                                    <th>Дата записи</th>
-                                    <th>Время записи</th>
+                                    <th>Клиент</th>
+                                    <th>Дата и время</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -326,9 +328,19 @@ if (session_id() == '')
                                             <option selected disabled>Выберите мастера</option>
                                         </select>
                                     </td>
-                                    <td><textarea class="client_name digitsOnly" name="client_name"></textarea></td>
+                                    <!-- <td><textarea class="client_name digitsOnly" name="client_name"></textarea></td>
                                     <td><input type="date" class="new-record_date" name="new-record_date"></td>
-                                    <td><input type="time" class="new-record_time" name="new-record_time"></td>
+                                    <td><input type="time" class="new-record_time" name="new-record_time"></td>-->
+                                    <td>
+                                        <select id="user">
+                                            <option selected disabled>Выберите юзера</option>
+                                        </select>
+                                    </td>
+                                    <td> 
+                                        <select id="dateTime">
+                                            <option selected disabled>Выберите дату и время</option>
+                                        </select>
+                                    </td>
                                     <td>
                                         <button class='add-record__button'></button>
                                     </td>

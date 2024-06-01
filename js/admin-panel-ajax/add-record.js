@@ -2,6 +2,8 @@ import { changeStatus } from './change_record_status.js';
 // Получаем ссылку на элемент <select> для услуги и работника
 const serviceSelect = document.getElementById("service");
 const masterSelect = document.getElementById("master");
+const dateTimeSelect = document.getElementById("dateTime");
+const userSelect = document.getElementById("user");
 
 (async () => {
     try {
@@ -13,10 +15,27 @@ const masterSelect = document.getElementById("master");
             const option = document.createElement('option');
             option.value = service[1];
             option.textContent = service[0];
+            option.setAttribute('data-duration', service[2]);
             serviceSelect.appendChild(option);
         });
     } catch (error) {
         console.error('Ошибка при получении данных о работниках:', error);
+    }
+
+    // Загружаем пользователей при загрузке страницы
+    try {
+        // Отправляем асинхронный запрос на сервер для получения пользователей
+        const response = await fetch(`../handlers/admin-panel-handlers/get_user_data_script.php`);
+        const users = await response.json();
+        // Обновляем список пользователей в <select>
+        users.forEach(user => {
+            const option = document.createElement('option');
+            option.value = user.id;
+            option.textContent = user.name;
+            userSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Ошибка при получении данных о пользователях:', error);
     }
     
   })()
@@ -46,6 +65,188 @@ serviceSelect.addEventListener("change", async function() {
         }
     }
 });
+
+
+// Обработчик для загрузки данных при выборе даты и времени
+dateTimeSelect.addEventListener("focus", async function() {
+    // Получаем выбранные значения услуги и мастера
+    const selectedServiceId = serviceSelect.value;
+    const selectedMasterId = masterSelect.value;
+
+    // Получаем data-duration выбранного элемента в serviceSelect
+    const selectedServiceOption = serviceSelect.options[serviceSelect.selectedIndex];
+    const serviceDuration = selectedServiceOption.getAttribute('data-duration');
+    
+    console.log('Selected Service Duration:', serviceDuration);
+    
+    // Проверяем, что выбраны и услуга, и мастер
+    if (selectedServiceId && selectedMasterId) {
+
+        function getMasterTimetable(id_master, start_date, end_date) {
+            return $.ajax({
+                url: '../handlers/getMasterTimetable.php',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    id_master: id_master,
+                    start_date: start_date,
+                    end_date: end_date
+                },
+                success: function (response) {
+                    if (response.error) {
+                        console.error('Ошибка при загрузке графика работы мастера:', response.error);
+                    }
+                },
+                error: function (error) {
+                    console.error('Ошибка при выполнении запроса на загрузку графика работы мастера:', error);
+                }
+            });
+        }
+
+
+        // Функция для получения занятых слотов времени ПРАВИЛЬНО++++++++++++++++++++++++++++++++++++++++++++++
+        function getBookedSlots(id_master, start_date, end_date) {
+            return $.ajax({
+                url: '../handlers/getBookedSlots.php',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    id_master: id_master,
+                    start_date: start_date,
+                    end_date: end_date
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error('Ошибка при загрузке занятых слотов:', textStatus, errorThrown);
+                    return Promise.reject('Ошибка при загрузке занятых слотов');
+                }
+            });
+        }
+
+        function getAvailableSlots(master_timetable, booked_slots, service_duration) {
+
+            const available_slots = [];
+            var slotsCount = Math.ceil(service_duration / 30);
+
+            master_timetable.forEach(function (slot) {
+
+                let masterStart = moment(slot.start);
+                console.log('');
+                console.log("masterStart");
+                console.log(masterStart.format('YYYY-MM-DD HH:mm:ss'));
+
+                const masterEnd = moment(slot.end);
+                console.log('');
+                console.log("masterEnd");
+                console.log(masterEnd.format('YYYY-MM-DD HH:mm:ss'));
+
+
+                while (masterStart.isBefore(masterEnd)) {
+                    const slotEnd = moment(masterStart).add(service_duration, 'minutes');
+                    console.log('');
+                    console.log("slotEnd");
+
+                    console.log(slotEnd.format('YYYY-MM-DD HH:mm:ss'));
+
+                    if (slotEnd.isAfter(masterEnd)) {
+                        break;
+                    }
+
+                    let isAvailable = true;
+
+                    // Проверяем тройные слоты
+                    for (let j = 0; j < slotsCount; j++) {
+                        console.log('');
+                        console.log('j:');
+                        console.log(j);
+                        const currentSlotStart = moment(masterStart).add(j * 30, 'minutes');
+                        const currentSlotEnd = moment(currentSlotStart).add(30, 'minutes');
+                        console.log('');
+                        console.log("currentSlotStart:");
+                        console.log(currentSlotStart.format('YYYY-MM-DD HH:mm:ss'));
+
+                        console.log('');
+                        console.log("currentSlotEnd:");
+                        console.log(currentSlotEnd.format('YYYY-MM-DD HH:mm:ss'));
+
+                        for (let i = 0; i < booked_slots.length; i++) {
+                            const bookedSlotStart = moment(booked_slots[i].record_date + ' ' + booked_slots[i].record_time);
+                            const bookedSlotEnd = moment(bookedSlotStart).add(booked_slots[i].duration, 'minutes');
+
+                            // (), []
+                            if (currentSlotStart.isBetween(bookedSlotStart, bookedSlotEnd, null, '()') ||
+                                currentSlotEnd.isBetween(bookedSlotStart, bookedSlotEnd, null, '(]')) {
+                                isAvailable = false;
+                                break;
+                            }
+                        }
+
+                        if (!isAvailable) {
+                            break;
+                        }
+                    }
+
+                    if (isAvailable) {
+                        available_slots.push({
+                            start: masterStart.clone().format('YYYY-MM-DD HH:mm'),
+                            end: slotEnd.clone().format('YYYY-MM-DD HH:mm')
+                        });
+                    }
+                    // Переход к следующему слоту
+                    masterStart.add(30, 'minutes');
+                }
+            });
+
+            return available_slots;
+        }
+
+
+        function loadAvailableDates(id_master, duration_service_selected) {
+            // console.log(duration_service_selected);
+            var service_duration = duration_service_selected;
+
+            getMasterTimetable(id_master, moment().format('YYYY-MM-DD HH:mm'), moment().add(1, 'months').format('YYYY-MM-DD  HH:mm'))
+                .then(function (master_timetable) {
+                    return getBookedSlots(id_master, moment().format('YYYY-MM-DD'), moment().add(1, 'months').format('YYYY-MM-DD'))
+                        .then(function (booked_slots) {
+                            var available_slots = getAvailableSlots(master_timetable, booked_slots, service_duration);
+                            updateSelectWithAvailableSlots(available_slots);
+
+                        });
+                })
+                .catch(function (error) {
+                    console.error('Ошибка при загрузке доступных дат:', error);
+                });
+        }
+
+        function updateSelectWithAvailableSlots(available_slots) {
+            // Очищаем существующие опции
+            dateTimeSelect.innerHTML = '<option selected disabled>Выберите дату и время</option>';
+        
+            // Функция для форматирования даты
+            function formatDate(dateStr) {
+                const date = new Date(dateStr);
+                const options = { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
+                return date.toLocaleString('ru-RU', options).replace(',', '');
+            }
+        
+            // Заполняем новыми опциями
+            available_slots.forEach(slot => {
+                const option = document.createElement('option');
+                option.value = slot.start;
+                const [date, time] = slot.start.split(' ');
+                option.textContent = formatDate(slot.start); // Форматируем отображаемый текст
+                option.setAttribute('data-date', date);
+                option.setAttribute('data-time', time);
+                dateTimeSelect.appendChild(option);
+            });
+        }
+
+        loadAvailableDates(selectedMasterId, serviceDuration);
+    }
+});
+
+
+
 
 $( ".add-record__button" ).click(function() {
     let service_name = $('select.service').val();
