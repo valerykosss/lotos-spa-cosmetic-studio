@@ -85,3 +85,119 @@ body, html{
 ._container .price-list_line:last-child{
     display: none;
 }
+
+@media screen and (max-width: 1280px) {
+    .service-type__header{
+        font-size: 60px;
+    }
+    .left-column {
+        width: 65%;
+    }
+
+}
+@media screen and (max-width: 1024px) {
+    .service-type__header{
+        font-size: 50px;
+    }
+    .left-column {
+        width: 70%;
+    }
+
+    .right-column{
+        width: max-content;
+    }
+
+    .service-name {
+        font-size: 30px;
+    }
+    
+}
+@media screen and (max-width: 834px) {
+    .service-description {
+        font-size: 15px;
+    }
+    .service-duration{
+        font-size: 16px;
+    }
+    .service-price {
+        font-size: 16px;
+    }
+
+}
+
+@media screen and (max-width: 640px) {
+.price-list_line{
+    transform: scale(0.7);
+}
+}
+
+@media screen and (max-width: 540px) {
+    .page__price-list {
+        padding-top: 30px;
+    }
+    .service-type__header {
+        font-size: 30px;
+        width: 100%;
+    }
+
+    .service-name {
+        font-size: 20px;
+    }
+
+    .service-description {
+        font-size: 10px;
+    }
+
+    .service-duration {
+        font-size: 14px;
+    }
+
+    .service-price {
+        font-size: 12px;
+        padding: 15px 20px;
+        border-radius: 60px;
+    }
+
+    .right-column{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .price-list_line{
+        transform: scale(0.4);
+    }
+    .price-list__body img{
+        margin: 40px 0px;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .service-name{
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 375px) {
+    .service-name{
+        font-size: 12px;
+    }
+
+    .service-description{
+        font-size: 8px;
+    }
+
+    .service-duration {
+        font-size: 10px;
+    }
+
+    .service-price{
+        font-size: 8px;
+        padding: 10px 15px;
+    }
+    .page__price-list {
+        padding-top: 0px;
+    }
+}
+@media screen and (max-width: 320px) {
+
+}
