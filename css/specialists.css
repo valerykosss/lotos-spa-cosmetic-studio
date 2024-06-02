@@ -229,3 +229,164 @@
     object-fit: cover; /* Сжимаем или растягиваем изображение, чтобы оно полностью заполнило контейнер */
     display: block; /* Отображаем изображение как блочный элемент */
 }
+
+@media screen and (max-width: 1280px) {
+	.card-specialist__body {
+		margin-right: 32px;
+	}
+	.specialist-img-block {
+		height: 25rem;
+	}
+	.specialists-page__info-block {
+		width: 50%;
+	}
+
+	.specialists-header{
+		font-size: 70px;
+	}
+
+	.need-consult-button {
+		font-size: 21px;
+	}
+}
+@media screen and (max-width: 1024px) {
+	.specialist-img-block {
+        height: 20rem;
+    }
+
+	.card-specialist__body {
+        margin-right: 20px;
+    }
+
+	.specialists-page__info-block {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 834px) {
+	.specialist-img-block {
+        height: 17rem;
+    }
+
+	.specialists-page__info-block {
+        width: 100%;
+		align-items: center;
+    }
+
+	.specialists-text{
+		text-align: center;
+	}
+
+	.filters__body {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.card-specialist__body {
+        margin-right: 24px;
+    }
+
+	.specialist-name{
+		font-size: 22px;
+	}
+
+	.specialist-description{
+		font-size: 13px;
+
+}
+}
+@media screen and (max-width: 736px) {
+	.specialists-header{
+		font-size: 60px;
+	}
+	.card-specialist__body {
+		width: 46%;
+	}
+
+	.filters__body {
+		width: 100%;
+		flex-wrap: wrap;
+		justify-content: center;
+
+	}
+
+	.card-specialist__body {
+        margin-right: 20px;
+    }
+
+	.filter__body-item:last-child{
+		margin-top: 15px;
+	}
+
+}
+@media screen and (max-width: 640px) {
+	.specialists-header{
+		font-size: 50px;
+	}
+
+	.specialists-text {
+        font-size: 13px;
+    }
+}
+@media screen and (max-width: 540px) {
+	.specialists-header{
+		font-size: 55px;
+	}
+	.filter__body-item:nth-child(2){
+		margin-top: 15px;
+	}
+
+	.page__speialists-page {
+		padding-top: 10px;
+	}
+
+	.card-specialist__body {
+		width: 100%;
+	}
+
+	.specialist-img-block {
+        height: 30rem;
+    }
+
+	.filters__body {
+		justify-content: center;
+	}
+
+	.specialists-text {
+		margin-bottom: 30px;
+	}
+	.specialists-button{
+		margin-bottom: 30px;
+	}
+	.specialist-name{
+		font-size: 25px;
+	}
+
+	.specialist-description{
+		font-size: 15px;
+
+}
+
+}
+
+@media screen and (max-width: 414px) {
+	.specialists-text{
+		font-size: 10px;
+	}
+
+	.card-specialist__body {
+        margin-right: 0px;
+    }
+
+	.specialist-img-block {
+        height: 25rem;
+    }
+
+}
+@media screen and (max-width: 375px) {
+	.specialists-header{
+		font-size: 40px;
+	}
+}
+@media screen and (max-width: 320px) {
+	
+}

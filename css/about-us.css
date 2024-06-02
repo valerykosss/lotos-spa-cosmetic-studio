@@ -86,6 +86,156 @@ html{
     padding-bottom: 95px;
 }
 .gallery__body{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+	column-gap: 0px;
+	row-gap: 0px;
+	grid-template-columns: 2fr 1fr 1fr 2fr;
+	grid-template-rows: repeat(2, 1fr);
+	grid-template-areas:
+    "img1 img2 img2 img3"
+    "img4 img4 img5 img5";
+}
+.gallery__body img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.gallery__body img:first-child {
+	grid-area: img1;
+  }
+  
+  .gallery__body img:nth-child(2) {
+	grid-area: img2;
+  }
+  
+  .gallery__body img:nth-child(3) {
+	grid-area: img3;
+  }
+
+  .gallery__body img:nth-child(4) {
+	grid-area: img4;
+  }
+
+  .gallery__body img:nth-child(5) {
+	grid-area: img5;
+  }
+
+@media screen and (max-width: 1280px) {
+	.info-block-page__header{
+		font-size: 70px;
+	}
+	.about-us-page__body{
+		flex-direction: column;
+	}
+	.about-us-page__info-block{
+		width: 100%;
+	}
+	.about-us__facts-block{
+		width: 100%;
+	}
+
+	.facts-block__row {
+		justify-content: space-around;
+	}
+
+	.about-us-page__body{
+		padding-bottom: 40px;
+	}
+
+	.info-block-page__text{
+		text-align: center;
+	}
+
+	.info-block-page__header{
+		text-align: center;
+	}
+
+}
+@media screen and (max-width: 834px) {
+.info-block-page__text{
+	margin-bottom: 50px;
+}
+
+}
+
+@media screen and (max-width: 736px) {
+	.info-block-page__header{
+		font-size: 60px;
+	}
+	.about-us__facts-block{
+		zoom: 0.7;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.info-block-page__header{
+		font-size: 55px;
+	}
+	.info-block-page__text{
+		font-size: 13px;
+	}
+	.about-us__facts-block{
+		zoom: 0.6;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.page__about-us-page{
+		padding-top: 10px;
+	}
+	.about-us__facts-block{
+		zoom: 0.6;
+	}
+	.info-block-page__text{
+		font-size: 13px;
+	}
+
+}
+
+@media screen and (max-width: 414px) {
+
+	.page__about-us-page {
+		padding-top: 10px;
+	}
+
+	.info-block-page__text{
+		font-size: 10px;
+	}
+
+	.facts-block__row .header {
+		font-size: 50px;
+	}
+
+
+	.facts-block__row {
+        justify-content: space-between;
+    }
+
+	.facts-block__row .text {
+		font-size: 13px;
+	}
+
+}
+@media screen and (max-width: 375px) {
+	.facts-block__row .header {
+        font-size: 43px;
+    }
+
+	.info-block-page__header {
+        font-size: 40px;
+    }
+	
+}
+@media screen and (max-width: 320px) {
+	.facts-block__row .header {
+        font-size: 30px;
+    }
+
+	.facts-block__row .fact-block {
+		padding-right: 30px;
+	}
+
+	.facts-block__row:nth-child(2) .fact-block:first-child{
+		padding-left: 30px;;
+	}
 }
