@@ -62,7 +62,8 @@ function russianMonth($monthNumber) {
     <link rel="stylesheet" href="../css/generalStyles.css">
     <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/specialist-page.css">
-    <link rel="stylesheet" href="../css/header-white.css">
+    <!-- <link rel="stylesheet" href="../css/header-white.css"> -->
+    <link rel="stylesheet" href="../css/header-green.css">
     <link rel="stylesheet" href="../css/footer-green.css">
 
     <link rel="stylesheet" href="../css/popUpErrorSuccess.css">
@@ -104,7 +105,9 @@ function russianMonth($monthNumber) {
             <div class="preloader__item"></div>
         </div>
     </div>
-    <?php require 'header-white.php' ?>
+    <!-- <?php require 'header-white.php' ?> -->
+    <?php require 'header-green.php' ?>
+    
     <main>
         <section class="page__speialist-profile">
             <div class="specialist-profile__body _container">

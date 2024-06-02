@@ -226,34 +226,125 @@ body, html{
 }
 
 @media screen and (max-width: 1280px) {
+.info-block-name{
+    font-size: 70px;
+}
 
+.review__card{
+    zoom: 0.8;
+}
 
 }
 @media screen and (max-width: 1024px) {
-	
+	.info-block-name{
+        font-size: 60px;
+    }
 }
 @media screen and (max-width: 834px) {
-	
+	.specialist-profile__body {
+        flex-direction: column;
+    }
+
+    .specialist-profile__photo {
+        width: 100%;
+    }
+
+    .specialist-profile__info-block{
+        width: 80%;
+        margin-left: 0px;
+        align-self: center;
+    }
+
+    .info-block-name, .info-block-specialization,.info-block-gray-title {
+        text-align: center;
+    }
+   
+    .info-block-rating-stars{
+        justify-content: center;
+    }
+
+    .specialist-profile__photo img {
+        height: 50rem;
+    }
+
+    .specialist-profile__info-block {
+        margin-top: 20px;
+    }
+
+    .specialist-button{
+        align-self: center;
+    }
+
+    .info-block-name{
+        font-size: 70px;
+    }
 
 }
 @media screen and (max-width: 736px) {
-	
+	.specialist-profile__photo img {
+        height: 40rem;
+    }
+
+    .specialist-profile__info-block{
+        width: 100%;
+    }
+
+    .review__card{
+        zoom: 0.7;
+    }
+
+    .page__review{
+        margin-bottom: 70px;
+    }
 
 }
 /* @media screen and (max-width: 640px) {
 } */
 @media screen and (max-width: 540px) {
-	
+    .specialist-profile__photo img {
+        height: 30rem;
+    }
+
+    .info-block-name{
+        font-size: 50px;
+    }
+    .swiper-button-next{
+        right: 50px;
+    }
+
+    .swiper-button-prev {
+        right: 110px;
+    }
+
+    .review__body-header p{
+        font-size: 50px;
+    }
 
 }
 
 @media screen and (max-width: 414px) {
-	
+    .review__card{
+        zoom: 0.6;
+        margin-left: 15px;
+    }
+
+    .swiper-navigation-container{
+        zoom: 0.8;
+    }
+
+    .swiper-button-next, .swiper-button-prev{
+        top: 27%;
+    }
 
 }
 @media screen and (max-width: 375px) {
-	
+
+    .info-block-name{
+        font-size: 40px;
+    }
 }
 @media screen and (max-width: 320px) {
-	
+    .review__card{
+        margin-left: 0px;
+    }
 }

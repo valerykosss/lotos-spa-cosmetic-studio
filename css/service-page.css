@@ -280,3 +280,68 @@ body, html{
     margin-right: 2px;
 }
 
+@media screen and (max-width: 1280px) {
+    .review__card{
+        zoom: 0.8;
+    }
+    
+    }
+    @media screen and (max-width: 1024px) {
+        
+    }
+    @media screen and (max-width: 834px) {
+    
+    }
+    @media screen and (max-width: 736px) {
+
+        .review__card{
+            zoom: 0.7;
+        }
+    
+        .page__review{
+            margin-bottom: 70px;
+        }
+    
+    }
+    /* @media screen and (max-width: 640px) {
+    } */
+    @media screen and (max-width: 540px) {
+
+        .swiper-button-next{
+            right: 50px;
+        }
+    
+        .swiper-button-prev {
+            right: 110px;
+        }
+    
+        .review__body-header p{
+            font-size: 50px;
+        }
+    
+    }
+    
+    @media screen and (max-width: 414px) {
+        .review__card{
+            zoom: 0.6;
+            margin-left: 15px;
+        }
+    
+        .swiper-navigation-container{
+            zoom: 0.8;
+        }
+    
+        .swiper-button-next, .swiper-button-prev{
+            top: 27%;
+        }
+    
+    }
+    @media screen and (max-width: 375px) {
+    
+        
+    }
+    @media screen and (max-width: 320px) {
+        .review__card{
+            margin-left: 0px;
+        }
+    }

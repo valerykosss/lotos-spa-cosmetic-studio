@@ -5,6 +5,32 @@ var swiper = new Swiper(".mySwiper", {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
         },
+        breakpoints: {
+            1024:{
+                slidesPerView: 2.5,
+            },
+            880: {
+              slidesPerView: 2,
+              spaceBetween: 20
+            },
+            727: {
+              slidesPerView: 1.6,
+              spaceBetween: 20
+            },
+            524: {
+                slidesPerView: 1.2,
+                spaceBetween: 20
+            },
+            320: {
+                slidesPerView: 1.1,
+                spaceBetween: 10
+            },
+            0: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            }
+
+          }
 });
 
 
