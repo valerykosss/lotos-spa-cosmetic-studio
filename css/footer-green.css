@@ -122,100 +122,30 @@ p.footer__contacts__sub-link-green{
 	margin-bottom: 2px;
 }
 
-/* @media(max-width: 840px){
-	body.lock{
-		overflow: hidden;
+
+@media screen and (max-width: 1260px) {
+	.footer__list-green>:first-child,
+	.footer__list-green>li:nth-child(2),
+	.footer__list-green>li:nth-child(3),
+	.footer__list-green>li:nth-child(4),
+	.footer__list-green>li:nth-child(5),
+	.footer__list-green>li:nth-child(6){
+		display: none;
 	}
-	.header__body {
-		display: flex;
-		justify-content: space-between;
+
+	.footer__list-green{
+		justify-content: center;
 	}
-	.header__logo{
-		flex: 2;
+
+	.footer__contacts__sub-list-green li{
+		text-align: center;
 	}
-	.header__burger{
-		display: block;
-		position: relative;
-		width: 35px;
-		height: 20px;
+
+}
+
+@media screen and (max-width: 375px) {
+	
+	.li-footer-logo{
+		zoom: 0.7;
 	}
-	.header__burger span {
-		position: absolute;
-		background-color: #668B5D;
-		left: 0;
-		width: 100%;
-		height: 3px;
-		top: 9px;
-		transition: all 0.3s ease 0s;
-	}
-	.header__burger:before,
-	.header__burger:after{
-		content: '';
-		background-color: #668B5D;
-		position: absolute;
-		width: 100%;
-		height: 3px;
-		left: 0;
-		transition: all 0.3s ease 0s;
-	}
-	.header__burger:before{
-		top: 0;
-	}
-	.header__burger:after{
-		bottom: 0;
-	}
-	.header__burger.active span{
-		transform: scale(0);
-	}
-	.header__burger.active:before{
-		transform: rotate(45deg);
-		top: 9px;
-	}
-	.header__burger.active:after{
-		transform: rotate(-45deg);
-		bottom: 9px;
-	}
-	.header__menu{
-		position: fixed;
-		top: -100%;
-		left: 0;
-		width: 100%;
-		height: 80%;
-		background-color: #ECF0E9;
-		padding: 115px 0px 0px 35px;
-		overflow: auto;
-	}
-	.header__menu.active{
-		top: 0;
-        display:flex;
-	}
-	.header__list{
-	    margin: 10px 0px 0px 5px;
-        display: block;
-        min-width:200px;
-	}
-    .header__body ul li:hover .header__menu__sub-list{
-        position: relative;
-        margin: 10px 0px -20px 30px;
-        opacity: 1;
-        transition: visibility 3s, opacity 1.2s linear;
-        visibility: visible;
-	}
-    .header__menu__sub-list{
-        position: absolute;
-        transition: visibility 0s, opacity 0.7s linear;
-        opacity: 0;
-        visibility: hidden;
-        background-color: #ECF0E9;
-    }
-	.header__list li{
-		margin: 0px 0px 10px 0px;
-        
-	}
-    .header__list ul > li{
-        border-bottom: 0px;
-    }
-	.header__link{
-        font-size: 20px;
-    }
-} */
+}

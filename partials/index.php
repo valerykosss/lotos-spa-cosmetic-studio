@@ -31,12 +31,12 @@ require_once "../handlers/get_swiper_data_script.php";
 </head>
 
 <body>
-    <!-- <div class="preloader">
+    <div class="preloader">
         <div class="preloader__row">
             <div class="preloader__item"></div>
             <div class="preloader__item"></div>
         </div>
-    </div> -->
+    </div>
     <?php require 'header-green.php' ?>
 
     <main class="page">

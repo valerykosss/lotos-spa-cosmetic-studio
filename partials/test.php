@@ -61,6 +61,7 @@ if (session_id() == '')
 
     <?php require 'footer-green.php' ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+    <script src="../js/header.js"></script>
     <script src="../js/test.js"></script>
     <script src="../js/openPopupSignInUp.js"></script>
     <script src="../js/preloader.js"></script>

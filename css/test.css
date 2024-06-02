@@ -42,7 +42,8 @@
 #questionContainer p {
     font-weight: 600;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    line-height: 160%;
 }
 #questionContainer div{
     margin-bottom: 10px;
@@ -90,6 +91,7 @@
     font-weight: 600;
     color: rgba(255, 255, 255, 0.4);
     text-transform: uppercase;
+    line-height: 160%;
 }
 
 .test__result-service-name{
@@ -107,6 +109,7 @@
     color:#ffffff;
     margin-bottom: 40px;
     width: 50%;
+    line-height: 160%;
 }
 
 .bookService, #restartTest{
@@ -117,4 +120,96 @@
     display: flex;
     width: 30%;
     justify-content: space-between;
+}
+
+@media screen and (max-width: 834px) {
+    .test-title{
+        font-size: 45px;
+        margin-bottom: 60px;
+    }
+
+    .test__result-service-name{
+        font-size: 70px;
+    }
+
+    .test__result-service-description{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 736px) {
+    .test__result-service-name{
+        font-size: 60px;
+    }
+
+    .test-title{
+        font-size: 45px;
+        margin-bottom: 40px;
+    }
+
+    #questionContainer {
+        font-size: 22px;
+    }
+
+    .buttons-container{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .test-title {
+        font-size: 38px;
+    }
+
+    .test-number{
+        font-size: 20px;
+        padding: 16px 0
+    }
+
+    #questionContainer {
+        font-size: 16px;
+    }
+    #resultsContainer .test__result-title {
+        font-size: 18px;
+    }
+    .test__result-service-name {
+        font-size: 45px;
+    }
+    .test__result-service-description {
+        font-size: 13px;
+    }
+
+    .buttons-container{
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 414px) {
+    .test-title {
+        font-size: 35px;
+        margin-bottom: 20px;
+    }
+
+    .page__test {
+        margin-top: 30px;
+    }
+
+    #resultsContainer .test__result-title {
+        font-size: 15px;
+    }
+
+}
+@media screen and (max-width: 375px) {
+    .test-title {
+        font-size: 30px;
+    }
+
+    .test__result-service-name{
+        font-size: 30px;
+    }
+
+    #questionContainer {
+        font-size: 13px;
+    }
+
 }
