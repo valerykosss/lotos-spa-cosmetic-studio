@@ -244,10 +244,6 @@
 	.specialists-header{
 		font-size: 70px;
 	}
-
-	.need-consult-button {
-		font-size: 21px;
-	}
 }
 @media screen and (max-width: 1024px) {
 	.specialist-img-block {
@@ -261,6 +257,10 @@
 	.specialists-page__info-block {
         width: 70%;
     }
+
+	.specialists-catalog__body {
+		margin-bottom: 60px;
+	}
 }
 @media screen and (max-width: 834px) {
 	.specialist-img-block {

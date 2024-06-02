@@ -88,3 +88,98 @@
 	color: #355D48;
 
 }
+
+/*------------------*/
+
+@media screen and (max-width: 1280px) {
+
+	.need-consult-button {
+		font-size: 21px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.need-consult-title{
+		font-size: 50px;
+	}
+
+	.need-consult-button {
+		font-size: 16px;
+		padding: 20px 40px;
+	}
+}
+
+@media screen and (max-width: 834px) {
+	.need-consult-button {
+		font-size: 15px;
+		padding: 22px 20px;
+	}
+
+	.need-consult-text{
+		width: 70%;
+	}
+}
+
+@media screen and (max-width: 736px) {
+	.need-consult-text {
+		width: 90%;
+	}
+
+	.label-input__group {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.need-consult-form {
+		width: 70%;
+	}
+
+	.need-consult-form input {
+		font-size: 16px;
+	}
+
+	.need-consult-button {
+        padding: 18px 20px;
+    }
+
+	.need-consult-button{
+		margin-top: 15px;
+	}
+
+	.need-consult__body {
+		padding-bottom: 52px;
+	}
+}
+@media screen and (max-width: 640px) {
+	.need-consult-text{
+		font-size: 13px;
+	}
+
+	.need-consult-title{
+		font-size: 45px;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	.need-consult-form {
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 414px) {
+	.need-consult-form input {
+		padding: 12px 40px;
+		font-size: 14px;
+	}
+
+	.need-consult-button {
+        padding: 12px 10px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+	.need-consult-button {
+        font-size: 13px;
+    }
+}
