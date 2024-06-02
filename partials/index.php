@@ -31,12 +31,12 @@ require_once "../handlers/get_swiper_data_script.php";
 </head>
 
 <body>
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="preloader__row">
             <div class="preloader__item"></div>
             <div class="preloader__item"></div>
         </div>
-    </div>
+    </div> -->
     <?php require 'header-green.php' ?>
 
     <main class="page">
@@ -446,6 +446,8 @@ require_once "../handlers/get_swiper_data_script.php";
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
     <script src="../libraries/jquery.maskedinput.min.js"></script>
     <!-- <script src="../js/signInUp.js"></script> -->
+
+    <script src="../js/header.js"></script>
 
     <script src="../js/wheel.js"></script>
     <script src="../js/preloader.js"></script>

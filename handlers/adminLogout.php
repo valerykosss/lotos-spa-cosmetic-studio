@@ -1,10 +1,7 @@
-<?php
-//Запускаем сессию
-if (session_id() == ''){
-    session_start();
-}
-unset($_SESSION['Name']);
-session_unset();
+<?php 
+	session_start();
+	session_destroy();
+	session_unset();
 
-header('Location: ../index.php');
+    header('Location: ../index.php');
 ?>

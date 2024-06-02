@@ -176,21 +176,21 @@ $('#sign-up__button').click(function (e) {
     })
 })
 
-/*выход*/
-$('#logout__button').click(function (e) {
-    e.preventDefault(); //тут отключаем стандартное поведение кнопки, т.е. отправку формы
-    $.ajax({
-        url: '../handlers/logout.php',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            exit: true
-        },
-        success(data) {
-            if (data) {
-                document.location.href = '../partials/index.php';
-            }
+// /*выход*/
+// $('#logout__button').click(function (e) {
+//     e.preventDefault(); //тут отключаем стандартное поведение кнопки, т.е. отправку формы
+//     $.ajax({
+//         url: '../handlers/logout.php',
+//         type: 'POST',
+//         dataType: 'json',
+//         data: {
+//             exit: true
+//         },
+//         success(data) {
+//             if (data) {
+//                 document.location.href = '../partials/index.php';
+//             }
 
-        }
-    })
-})
+//         }
+//     })
+// })

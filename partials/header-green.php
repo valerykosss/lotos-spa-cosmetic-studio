@@ -6,9 +6,38 @@
 ?>
 <header class="header">
         <div class="header__body _container">
-            <div class="header__burger">
-                <span></span>
-            </div>
+           <div class="burger-logo-profile__body">
+                <ul class="header__list-mobile">
+                    <div class="header__burger">
+                        <span></span>
+                    </div>
+                    <li class="li-header-logo">
+                            <a href="index.php" class="header__logo">
+                                <img src="../images/new-white-logo.png" alt="">
+                            </a>
+                    </li>
+                    <li>
+                            <a href="#" class="header__link">
+                                <img src="../images/icons/profile-icon-smaller.svg" alt="">
+                                <?php
+                                if (!empty($_SESSION['UserID'])) {
+                                    echo $_SESSION["Name"];
+                                }
+                            echo "</a>";
+                            echo "<ul class='header__menu__sub-list'>";
+                                    // if(isset($_SESSION['UserID'])){
+                                    if (empty($_SESSION['UserID'])) {
+                                        echo "<a class='header__menu__sub-link' id='sign-in__link'><li>ВОЙТИ</li></a>";
+                                    } else {
+                                        echo "<a class=\"header__menu__sub-link\" href='account.php'><li>Мой профиль</li></a>";
+
+                                        echo "<a class=\"header__menu__sub-link\" id=\"logout__button\" href=\"../handlers/logout.php\"><li>ВЫЙТИ</li></a>";
+                                    } 
+                                    ?>
+                            </ul>
+                        </li>
+                </ul>
+           </div>
             <nav class="header__menu">
                 <ul class="header__list">
                     <li>

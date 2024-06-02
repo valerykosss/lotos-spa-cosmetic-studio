@@ -71,6 +71,17 @@ var swiper2 = new Swiper('.swiper2', {
       return '<span class="' + className + '" style="text-transform: uppercase; color: #fff">' + slideNames[index] + '</span>'; // Использование названий из массива
     },
   },
+  breakpoints: {
+    541: {
+      slidesPerView: 2.5,
+      spaceBetween: 20
+    },
+    0: {
+      slidesPerView: 1,
+      spaceBetween: 20
+    },
+  }
+  
 });
 
 /*--------------------------------------------TABS--------------------------------------------*/
@@ -139,6 +150,20 @@ document.addEventListener('DOMContentLoaded', function () {
     autoScroll: {
       speed: -1,
     },
+    breakpoints: {
+      834: {
+        perPage: 3,
+      },
+      736: {
+          perPage: 2.5,
+      },
+      640: {
+        perPage: 2,
+      },
+      540: {
+        perPage: 1.5,
+      }
+  },
   } );
 
   splide.mount(window.splide.Extensions);
@@ -154,6 +179,20 @@ document.addEventListener('DOMContentLoaded', function () {
     autoScroll: {
       speed: -1,
     },
+    breakpoints: {
+      834: {
+        perPage: 3,
+      },
+      736: {
+          perPage: 2.5,
+      },
+      640: {
+        perPage: 2,
+      },
+      540: {
+        perPage: 1.5,
+      }
+  },
   } );
 
   splide.mount(window.splide.Extensions);
@@ -169,6 +208,20 @@ document.addEventListener('DOMContentLoaded', function () {
     autoScroll: {
       speed: -1,
     },
+    breakpoints: {
+      834: {
+        perPage: 3,
+      },
+      736: {
+          perPage: 2.5,
+      },
+      640: {
+        perPage: 2,
+      },
+      540: {
+        perPage: 1.5,
+      }
+  },
   } );
 
   splide.mount(window.splide.Extensions);
@@ -184,6 +237,20 @@ document.addEventListener('DOMContentLoaded', function () {
     autoScroll: {
       speed: -1,
     },
+    breakpoints: {
+      834: {
+        perPage: 3,
+      },
+      736: {
+          perPage: 2.5,
+      },
+      640: {
+        perPage: 2,
+      },
+      540: {
+        perPage: 1.5,
+      }
+  },
   } );
 
   splide.mount(window.splide.Extensions);

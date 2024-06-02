@@ -61,7 +61,7 @@
                                 } else {
                                     echo "<a class=\"header__menu__sub-link-white\" href='account.php'><li>Мой профиль</li></a>";
 
-                                    echo "<a class=\"header__menu__sub-link-white\" id=\"logout__button\" href=\"../handlers/logout.php\"><li>ВЫЙТИ</li></a>";
+                                    echo "<a class=\"header__menu__sub-link-white\" id=\"logout__button\" href=\"../handlers/adminLogout.php\"><li>ВЫЙТИ</li></a>";
                                 } 
                                 ?>
                         </ul>

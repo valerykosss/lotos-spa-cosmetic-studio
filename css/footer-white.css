@@ -120,3 +120,30 @@ p.footer__contacts__sub-link{
 	margin-top:14px;
 	margin-bottom: 2px;
 }
+
+@media screen and (max-width: 1260px) {
+	.footer__list>:first-child,
+	.footer__list>li:nth-child(2),
+	.footer__list>li:nth-child(3),
+	.footer__list>li:nth-child(4),
+	.footer__list>li:nth-child(5),
+	.footer__list>li:nth-child(6){
+		display: none;
+	}
+
+	.footer__list{
+		justify-content: center;
+	}
+
+	.footer__contacts__sub-list li{
+		text-align: center;
+	}
+
+}
+
+@media screen and (max-width: 375px) {
+	
+	.li-footer-logo{
+		zoom: 0.7;
+	}
+}
