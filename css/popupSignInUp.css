@@ -161,3 +161,81 @@ input:-webkit-autofill:focus {
         height: 25px;
     }
 } */
+
+@media screen and (max-width: 1024px) {
+    .popup__sign-in, .popup__sign-up {
+        width: 780px;
+    }
+}
+@media screen and (max-width: 834px) {
+    .popup__sign-in, .popup__sign-up {
+        width: 700px;
+    }
+
+}
+@media screen and (max-width: 736px) {
+    .popup__sign-in, .popup__sign-up {
+        width: 610px;
+    }
+
+}
+/*здесь уже надо адаптивить */
+@media screen and (max-width: 640px) {
+    .popup__sign-in, .popup__sign-up {
+        width: 510px;
+    }
+
+    .label-input__group label{
+        font-size: 10px;
+    }
+
+    .label-input__group input{
+        font-size: 12px;
+        padding: 8px 22px;
+    }
+
+    .label-input__group{
+        width: 55%;
+        margin-bottom: 16px;
+    }
+
+    .form__window-title {
+        font-size: 16px;
+    }
+
+    .form__retransfer-text{
+        font-size: 10px !important;
+    }
+
+    .form__data #sign-up__link, .form__data #sign-in__link{
+        font-size: 10px !important;
+    }
+}
+@media screen and (max-width: 540px) {
+    .popup__sign-in, .popup__sign-up {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .popup__sign-in, .popup__sign-up {
+        width: 370px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .popup__sign-in, .popup__sign-up {
+        width: 310px;
+    }
+
+    .form__window-title {
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .popup__sign-in, .popup__sign-up {
+        width: 280px;
+    }
+}
