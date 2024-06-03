@@ -16,7 +16,6 @@ if (session_id() == '')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/generalStyles.css">
     <link rel="stylesheet" href="../css/header-white.css">
-    <!-- <link rel="stylesheet" href="../css/header-green.css"> -->
     <link rel="stylesheet" href="../css/specialists.css">
     <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/popupSignInUp.css">
@@ -57,7 +56,6 @@ if (session_id() == '')
         </div>
     </div>
     <?php require 'header-white.php' ?>
-    <!-- <?php require 'header-green.php' ?> -->
 
     <main>
         <section class="page__speialists-page">
@@ -163,6 +161,8 @@ if (session_id() == '')
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <script src="../js/openPopupSignInUp.js"></script>
+
+    <script src="../js/header.js"></script>
 
     <script src="../js/specialistsFilter.js"></script>
     <script src="../js/preloader.js"></script>
