@@ -1,3 +1,18 @@
+$('.service_type').on('click', function() {
+    var select = $(this);
+    $.ajax({
+        url: '../handlers/admin-panel-handlers/get_service_types.php',
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            select.empty(); // Очистить текущие опции
+                select.append('<option selected disabled>Выберите тип услуги</option>');
+                $.each(data, function(index, service_type) {
+                    select.append('<option value="' + service_type.id_service_type + '">' + service_type.service_type_name + '</option>');
+                });
+        }
+    });
+});
 //добавление
 $(".add-service__button").click(function () {
     var formData = new FormData();

@@ -218,11 +218,6 @@ if (session_id() == '')
                                     <td>
                                         <select class="service_type">
                                             <option selected disabled>Выберите тип услуги</option>
-                                            <?php
-                                            foreach ($service_types as $type) {
-                                                echo ("<option value='" . $type[0] . "'>" . $type[1] . "</option>");
-                                            }
-                                            ?>
                                         </select>
                                     </td>
                                     <td><textarea class="service_name"></textarea></td>

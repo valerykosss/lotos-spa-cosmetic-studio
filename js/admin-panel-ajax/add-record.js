@@ -4,23 +4,37 @@ const serviceSelect = document.getElementById("service");
 const masterSelect = document.getElementById("master");
 const dateTimeSelect = document.getElementById("dateTime");
 const userSelect = document.getElementById("user");
-
+$('#service').on('click', function() {
+    var select = $(this);
+    $.ajax({
+        url: '../handlers/admin-panel-handlers/get_service_data_script.php',
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            select.empty(); // Очистить текущие опции
+                select.append('<option selected disabled>Выберите услугу</option>');
+                $.each(data, function(index, services) {
+                    select.append('<option data-duration="'+services[2]+'" value="' + services[1] + '">' + services[0] + '</option>');
+                });
+        }
+    });
+});
 (async () => {
-    try {
-        // Отправляем асинхронный запрос на сервер для получения услуг
-        const response = await fetch(`../handlers/admin-panel-handlers/get_service_data_script.php`);
-        const services = await response.json();
-        // Обновляем список работников в <select>
-        services.forEach(service => {
-            const option = document.createElement('option');
-            option.value = service[1];
-            option.textContent = service[0];
-            option.setAttribute('data-duration', service[2]);
-            serviceSelect.appendChild(option);
-        });
-    } catch (error) {
-        console.error('Ошибка при получении данных о работниках:', error);
-    }
+    // try {
+    //     // Отправляем асинхронный запрос на сервер для получения услуг
+    //     const response = await fetch(`../handlers/admin-panel-handlers/get_service_data_script.php`);
+    //     const services = await response.json();
+    //     // Обновляем список работников в <select>
+    //     services.forEach(service => {
+    //         const option = document.createElement('option');
+    //         option.value = service[1];
+    //         option.textContent = service[0];
+    //         option.setAttribute('data-duration', service[2]);
+    //         serviceSelect.appendChild(option);
+    //     });
+    // } catch (error) {
+    //     console.error('Ошибка при получении данных о работниках:', error);
+    // }
 
     // Загружаем пользователей при загрузке страницы
     try {

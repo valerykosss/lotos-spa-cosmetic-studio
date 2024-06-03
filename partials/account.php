@@ -17,6 +17,10 @@ $user_discount = mysqli_query($link, "SELECT wheel_discount.discount_name FROM `
                             WHERE `id_user`=$user_id");
 $user_discount = mysqli_fetch_assoc($user_discount);
 
+$user_discount_id = mysqli_query($link, "SELECT id_wheel_discount FROM `user` WHERE `id_user`=$user_id");
+$user_discount_id = mysqli_fetch_assoc($user_discount_id);
+
+
 $user_phone = mysqli_query($link, "SELECT telephone, name, email FROM user WHERE id_user=$user_id");
 $user_phone = mysqli_fetch_assoc($user_phone);
 
@@ -121,7 +125,7 @@ if ($user_avatar['avatar'] == NULL) {
             <div class="preloader__item"></div>
             <div class="preloader__item"></div>
         </div>
-    </div>
+    </div> 
     <?php
     require 'header-white.php';
     ?>
@@ -130,6 +134,7 @@ if ($user_avatar['avatar'] == NULL) {
 
         <section class="page__user-profile">
             <div class="user-profile__body _container">
+                <p class="burger-menu-account">кнопка</P>
                 <div class="profile__menu">
                     <div class="menu__user-avatar tooltiped">
                         <img class="avatar" src="<?php echo ($avatar); ?>" id="uploadButton">
@@ -140,7 +145,11 @@ if ($user_avatar['avatar'] == NULL) {
                     </div>
                     <div class="menu__user-name"><?php echo ($_SESSION['Name']); ?></div>
                     <div class="menu__user-tel"><?php echo ($user_phone['telephone']); ?></div>
+                    <?php
+                        if($user_discount_id['id_wheel_discount']!=NULL)
+                        { ?>
                     <div class="menu__user-discount"> Скидка колеса фортуны: <br> <span> <?php echo ($user_discount['discount_name']) ?> </span> </div>
+                    <?php } ?>
 
                     <div class="menu__header">Личная информация</div>
 
@@ -355,5 +364,35 @@ if ($user_avatar['avatar'] == NULL) {
 <script src="../js/timetable-user.js"></script>
 
 <script src="../js/openErrorSuccess.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const burger = document.querySelector('.burger-menu-account');
+    const navList = document.querySelector('.profile__menu');
+    const mediaQuery = window.matchMedia('(max-width: 736px)'); // Создать медиа-запрос для ширины экрана до 736px
+    const navItems = document.querySelectorAll('.menu-tab');
+
+    burger.addEventListener('click', function () {
+        navList.classList.toggle('active');
+        burger.classList.toggle('active');
+        updateBurgerPosition();
+    });
+
+    navItems.forEach(item => {
+        item.addEventListener('click', function () {
+            navList.classList.remove('active');
+            burger.style.left = '1rem'; // Восстановить начальное значение left для бургер-кнопки
+            burger.classList.toggle('active');
+        });
+    });
+
+    mediaQuery.addEventListener(function (e) {
+        if (!e.matches) {
+            navList.classList.remove('active'); // Удалить класс active для списка на больших экранах
+            burger.style.left = '1rem'; // Восстановить начальное значение left для бургер-кнопки
+        }
+    });
+});
+</script>
 
 </html>

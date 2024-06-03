@@ -32,6 +32,10 @@ if ($rating_length != 0) {
         $all_rating = $all_rating + (int)$item[3];
     }
     $rating = $all_rating / $rating_length;
+
+    $rating = round($rating, 2);
+
+
 }
 
 // Функция для получения русского названия месяца

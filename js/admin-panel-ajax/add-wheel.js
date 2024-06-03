@@ -1,23 +1,37 @@
-const wheelServiceSelect = document.getElementById("wheel_service");
+// const wheelServiceSelect = document.getElementById("wheel_service");
 
-(async () => {
-    try {
-        // Отправляем асинхронный запрос на сервер для получения услуг
-        const response = await fetch(`../handlers/admin-panel-handlers/get_service_data_script.php`);
-        const wheelServices = await response.json();
-        // Обновляем список работников в <select>
-        wheelServices.forEach(wheelService => {
-            const option = document.createElement('option');
-            option.value = wheelService[1];
-            option.textContent = wheelService[0];
-            wheelServiceSelect.appendChild(option);
-        });
-    } catch (error) {
-        console.error('Ошибка при получении данных о работниках:', error);
-    }
+// (async () => {
+//     try {
+//         // Отправляем асинхронный запрос на сервер для получения услуг
+//         const response = await fetch(`../handlers/admin-panel-handlers/get_service_data_script.php`);
+//         const wheelServices = await response.json();
+//         // Обновляем список работников в <select>
+//         wheelServices.forEach(wheelService => {
+//             const option = document.createElement('option');
+//             option.value = wheelService[1];
+//             option.textContent = wheelService[0];
+//             wheelServiceSelect.appendChild(option);
+//         });
+//     } catch (error) {
+//         console.error('Ошибка при получении данных о работниках:', error);
+//     }
 
-})()
-
+// })()
+$('#wheel_service').on('click', function() {
+    var select = $(this);
+    $.ajax({
+        url: '../handlers/admin-panel-handlers/get_service_data_script.php',
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            select.empty(); // Очистить текущие опции
+                select.append('<option selected disabled>Выберите услугу</option>');
+                $.each(data, function(index, services) {
+                    select.append('<option data-duration="'+services[2]+'" value="' + services[1] + '">' + services[0] + '</option>');
+                });
+        }
+    });
+});
 // добавление скидки
 $(".add-wheel__button").click(function () {
     let discount_name = $('.discount_name').val().trim();

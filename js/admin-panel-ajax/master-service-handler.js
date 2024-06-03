@@ -4,23 +4,38 @@
 const serviceMSSelect = document.getElementById("service_ms");
 const masterMSSelect = document.getElementById("master_ms");
 
-(async () => {
-    try {
-        // Отправляем асинхронный запрос на сервер для получения услуг
-        const response = await fetch(`../handlers/admin-panel-handlers/get_service_data_script.php`);
-        const services = await response.json();
-        // Обновляем список работников в <select>
-        services.forEach(service => {
-            const option = document.createElement('option');
-            option.value = service[1];
-            option.textContent = service[0];
-            serviceMSSelect.appendChild(option);
-        });
-    } catch (error) {
-        console.error('Ошибка при получении данных о работниках:', error);
-    }
+// (async () => {
+//     try {
+//         // Отправляем асинхронный запрос на сервер для получения услуг
+//         const response = await fetch(`../handlers/admin-panel-handlers/get_service_data_script.php`);
+//         const services = await response.json();
+//         // Обновляем список работников в <select>
+//         services.forEach(service => {
+//             const option = document.createElement('option');
+//             option.value = service[1];
+//             option.textContent = service[0];
+//             serviceMSSelect.appendChild(option);
+//         });
+//     } catch (error) {
+//         console.error('Ошибка при получении данных о работниках:', error);
+//     }
     
-  })()
+//   })()
+$('#service_ms').on('click', function() {
+    var select = $(this);
+    $.ajax({
+        url: '../handlers/admin-panel-handlers/get_service_data_script.php',
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            select.empty(); // Очистить текущие опции
+                select.append('<option selected disabled>Выберите услугу</option>');
+                $.each(data, function(index, services) {
+                    select.append('<option data-duration="'+services[2]+'" value="' + services[1] + '">' + services[0] + '</option>');
+                });
+        }
+    });
+});
 
 // Слушаем изменения в выборе услуги
 serviceMSSelect.addEventListener("change", async function() {

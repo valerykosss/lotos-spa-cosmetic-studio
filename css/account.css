@@ -18,7 +18,9 @@ a:focus, a:hover {
     display: flex;
     flex-direction: column;
 }
-
+.burger-menu-account{
+    display:none;
+}
 .menu__user-avatar{
     width: 33%;
     height: 0;
@@ -412,4 +414,22 @@ textarea{
     font-family: "SF Pro Text";
     color: rgba(255, 255, 255, 0.4);
     margin-top: 5px;
+}
+
+
+
+
+/**/
+@media screen and (max-width: 736px) {
+        .profile__menu {
+            position: absolute;
+            left: -100%;
+            transition: left 0.3s ease-in-out;
+        }
+    .profile__menu.active{
+        left:0;
+    }
+    .burger-menu-account{
+        display: flex;
+    }
 }
