@@ -581,3 +581,116 @@ h2{
     text-transform: uppercase;
 }
 
+
+
+
+
+@media screen and (max-width: 1280px) {
+    ._container-window{
+		max-width: 850px;
+    }
+    .popup{
+        width: 1000px;
+    }
+
+}
+@media screen and (max-width: 1024px) {
+
+    ._container-window{
+		max-width: 700px;
+    }
+    .popup{
+        width: 820px;
+    }
+
+    .service-name, .master-name, .date-month-year{
+        font-size: 13px;
+    }
+    .service-description, .master-position, .day-of-week{
+        font-size: 11px;
+    }
+
+    .service-price, .start-end{
+        font-size: 16px;
+    }
+
+    .master-rating-stars{
+        zoom: 0.7;
+    }
+    .book-procedure-form input {
+        font-size: 17px;
+    }
+    .book-procedure-form input {
+        padding: 10px 30px;
+    }
+}
+@media screen and (max-width: 834px) {
+
+    .popup{
+        width: 720px;
+    }
+
+    ._container-window{
+		max-width: 600px;
+    }
+
+}
+@media screen and (max-width: 736px) {
+    .popup{
+        width: 620px;
+    }
+
+    ._container-window{
+		max-width: 520px;
+    }
+
+    .service-price {
+        font-size: 12px;
+    }
+
+}
+@media screen and (max-width: 640px) {
+    .popup{
+        width: 520px;
+    }
+
+    ._container-window{
+		max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .popup{
+		max-width: 410px;
+	}
+
+    ._container-window{
+		max-width: 370px;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .popup{
+		max-width: 370px;
+	}
+    ._container-window{
+		max-width: 320px;
+    }
+
+}
+@media screen and (max-width: 375px) {
+    .popup{
+		max-width: 320px;
+	}
+    ._container-window{
+		max-width: 2900px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .popup{
+		max-width: 290px;
+	}
+    ._container-window{
+		max-width: 270px;
+    }
+}

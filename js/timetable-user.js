@@ -3,6 +3,7 @@ $(document).ready(function () {
 
     var calendar = $('#calendar').fullCalendar({
         editable: false,
+        height: "auto",
         header: {
             left: 'prev,next today',
             center: 'title',

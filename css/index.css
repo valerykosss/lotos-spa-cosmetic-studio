@@ -596,7 +596,7 @@
 }
 
 .specialists-button:hover:after,
-.specialists-button:focus:after {
+.specialists-button:hover:after {
 	width: 100%; /*устанавливаем значение 100% чтобы ссылка подчёркивалась полностью*/
 }
 

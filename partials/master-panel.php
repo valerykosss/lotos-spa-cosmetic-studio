@@ -5,6 +5,25 @@ require '../database/db.php';
 if (session_id() == '')
     session_start();
 
+    function russianMonth($monthNumber)
+    {
+        $months = array(
+            'января',
+            'февраля',
+            'марта',
+            'апреля',
+            'мая',
+            'июня',
+            'июля',
+            'августа',
+            'сентября',
+            'октября',
+            'ноября',
+            'декабря'
+        );
+        return $months[$monthNumber - 1];
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,11 +80,18 @@ if (session_id() == '')
                                 for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                                     $row = mysqli_fetch_row($result);
 
+                                    $date = strtotime($row[3]); // Преобразование строки в дату
+                                    $day = date('j', $date);
+                                    $month = date('n', $date);
+                                    $year = date('Y', $date);
+                                    $date = $day . ' ' . russianMonth($month) . ' '. $year;
+
+
                                     $trBlock .= "
                                                 <tr id='$row[0]'>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[1] . "</textarea></td>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[2] . "</textarea></td>
-                                                    <td><textarea id='" . $row[0] . "'>" . $row[3] . "</textarea></td>
+                                                    <td><textarea id='" . $row[0] . "'>" . $date . "</textarea></td>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[4] . "</textarea></td>
                                                     <td><textarea id='" . $row[0] . "'>" . $row[5] . "</textarea></td>
                                                     <td>

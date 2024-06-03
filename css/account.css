@@ -419,17 +419,85 @@ textarea{
 
 
 
-/**/
+/*
+.profile__menu {
+    zoom: 0.7;*/
+
+
+@media screen and (max-width: 834px) {
+    .profile__menu {
+        zoom: 0.7;
+    }
+    
+}
+
 @media screen and (max-width: 736px) {
-        .profile__menu {
-            position: absolute;
-            left: -100%;
-            transition: left 0.3s ease-in-out;
-        }
+    .profile__menu {
+        background-color: #fff;
+        padding-right: 20px;
+        position: absolute;
+        left: -100%;
+        transition: left 0.3s ease-in-out;
+        z-index: 100;
+        zoom: 0.65;
+        height: 120vh;
+    }
     .profile__menu.active{
-        left:0;
+        left:30px;
+        height: 120vh;
     }
     .burger-menu-account{
         display: flex;
+        margin-bottom: 20px;
     }
+    .profile__area{
+        width: 100%;
+    }
+
+}
+
+
+/* @media screen and (max-width: 640px) {
+} */
+@media screen and (max-width: 540px) {
+
+}
+
+@media screen and (max-width: 414px) {
+
+}
+@media screen and (max-width: 375px) {
+
+}
+@media screen and (max-width: 320px) {
+
+
+}
+
+.more-profile-button{
+	font-family: "SF Pro Text";
+	font-size: 15px;
+    text-transform: uppercase;
+	color: #232323;
+	position: relative;
+	cursor: pointer;
+	line-height: 1; /*задаём высоту строки*/
+	text-decoration: none; /*убираем подчёркивание*/
+}
+
+.more-profile-button:after {
+	display: block;
+	position: absolute;
+	top: 25px;
+	left: 0; /*изменить на right:0;, чтобы изменить направление подчёркивания */
+	width: 0;/*задаём длинну линии до наведения курсора*/
+	height: 1.5px; /*задаём ширину линии*/
+	background-color: #232323; /*задаём цвет линии*/
+	content: "";
+	transition: width 0.3s ease-out; /*задаём время анимации*/
+}
+
+.more-profile-button:hover:after,
+.more-profile-button:focus:after {
+	width: 150px; /*устанавливаем значение 100% чтобы ссылка подчёркивалась полностью*/
 }

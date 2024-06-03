@@ -133,8 +133,8 @@ if ($user_avatar['avatar'] == NULL) {
     <main class="page">
 
         <section class="page__user-profile">
+        <a class="burger-menu-account _container more-profile-button">СМОТРЕТЬ БОЛЬШЕ</a>
             <div class="user-profile__body _container">
-                <p class="burger-menu-account">кнопка</P>
                 <div class="profile__menu">
                     <div class="menu__user-avatar tooltiped">
                         <img class="avatar" src="<?php echo ($avatar); ?>" id="uploadButton">
@@ -376,7 +376,6 @@ if ($user_avatar['avatar'] == NULL) {
     burger.addEventListener('click', function () {
         navList.classList.toggle('active');
         burger.classList.toggle('active');
-        updateBurgerPosition();
     });
 
     navItems.forEach(item => {
