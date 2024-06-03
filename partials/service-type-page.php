@@ -92,6 +92,7 @@
     <script src="../js/preloader.js"></script>
 
     <script src="../js/openErrorSuccess.js"></script>
+    <script src="../js/header.js"></script>
 
 </body>
 

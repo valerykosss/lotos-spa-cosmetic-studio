@@ -215,6 +215,14 @@ $(document).ready(function () {
                         }
 
                         function updateCalendarWithAvailableSlots(available_slots) {
+                            function setCalendarView() {
+                                // Изменяет вид календаря в зависимости от ширины окна
+                                if (window.innerWidth < 736) {
+                                    $('#calendar').fullCalendar('changeView', 'listWeek'); // Меняет вид на список при ширине окна меньше 736px
+                                } else {
+                                    $('#calendar').fullCalendar('changeView', 'month'); // Меняет вид на месяц при ширине окна больше 736px
+                                }
+                            }
                             $('#calendar').fullCalendar('destroy');
 
                             $('#calendar').fullCalendar({
@@ -242,13 +250,17 @@ $(document).ready(function () {
                                     console.log('Массив кликнутых событий:', clickedEvents);
 
                                 },
+                                windowResize: function(view) {
+                                    setCalendarView(); // Изменяет вид календаря при изменении размера окна
+                                }
 
                             });
+                            setCalendarView();
 
                             // Обработчик клика по документу
                             $(document).on('click', function (event) {
                                 // Проверяем, является ли элемент, по которому кликнули, частью календаря
-                                if (!$(event.target).closest('.fc-content').length && !$(event.target).is('.fc-more') && !$(event.target).is('#nextBtnToDetails') && !$(event.target).is('#prevBtnToMaster') && !$(event.target).is('#nextBtnToDateTime') && !$(event.target).is('#prevBtnToDateTime')) {
+                                if (!$(event.target).closest('.fc-content').length && !$(event.target).is('.fc-more') && !$(event.target).is('#nextBtnToDetails') && !$(event.target).is('#prevBtnToMaster') && !$(event.target).is('#nextBtnToDateTime') && !$(event.target).is('#prevBtnToDateTime')&& !$(event.target).is('.fc-list-item-title') && !$(event.target).is('.fc-list-item-marker') && !$(event.target).is('.fc-list-item-time')) {
                                     // Если клик был вне календаря, обнуляем массив кликнутых событий
                                     clickedEvents = [];
                                     console.log('Массив кликнутых событий обнулен');

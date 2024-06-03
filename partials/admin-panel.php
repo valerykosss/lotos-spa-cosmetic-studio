@@ -578,6 +578,12 @@ if (session_id() == '')
                                 for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                                     $row = mysqli_fetch_row($result);
 
+                                    $date = strtotime($row[5]); // Преобразование строки в дату
+                                    $day = date('j', $date);
+                                    $month = date('n', $date);
+                                    $year = date('Y', $date);
+                                    $date = $day . ' ' . russianMonth($month) . ' '. $year;
+
                                     $options = "";
                                     if ($row[6] == "На рассмотрении") {
                                         $options = "
@@ -597,7 +603,7 @@ if (session_id() == '')
                                                     <td>" . $row[2] . "</td>
                                                     <td>" . $row[3] . "</td>
                                                     <td>" . $row[4] . "</td>
-                                                    <td>" . $row[5] . "</td>
+                                                    <td>" . $date . "</td>
                                                     <td>
                                                         <select class='master-review-status'>
                                                             " . $options . "
@@ -637,6 +643,12 @@ if (session_id() == '')
                                 for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                                     $row = mysqli_fetch_row($result);
 
+                                    $date = strtotime($row[5]); // Преобразование строки в дату
+                                    $day = date('j', $date);
+                                    $month = date('n', $date);
+                                    $year = date('Y', $date);
+                                    $date = $day . ' ' . russianMonth($month) . ' '. $year;
+
                                     $options = "";
                                     if ($row[6] == "На рассмотрении") {
                                         $options = "
@@ -656,7 +668,7 @@ if (session_id() == '')
                                                     <td>" . $row[1] . "</td>
                                                     <td>" . $row[4] . "</td>
                                                     <td>" . $row[3] . "</td>
-                                                    <td>" . $row[5] . "</td>
+                                                    <td>" . $date . "</td>
                                                     <td>
                                                         <select class='service-review-status'>
                                                             " . $options . "

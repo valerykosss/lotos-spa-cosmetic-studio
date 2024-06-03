@@ -364,6 +364,7 @@ if ($user_avatar['avatar'] == NULL) {
 <script src="../js/timetable-user.js"></script>
 
 <script src="../js/openErrorSuccess.js"></script>
+<script src="../js/header.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

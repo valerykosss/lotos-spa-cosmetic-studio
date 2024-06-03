@@ -68,6 +68,7 @@
     <script src="../js/header.js"></script>
     <script src="../js/openPopupSignInUp.js"></script>
     <script src="../js/preloader.js"></script>
+    <script src="../js/header.js"></script>
     
 </body>
 

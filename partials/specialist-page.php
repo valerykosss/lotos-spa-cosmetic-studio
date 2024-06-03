@@ -66,8 +66,8 @@ function russianMonth($monthNumber) {
     <link rel="stylesheet" href="../css/generalStyles.css">
     <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/specialist-page.css">
-    <!-- <link rel="stylesheet" href="../css/header-white.css"> -->
-    <link rel="stylesheet" href="../css/header-green.css">
+    <link rel="stylesheet" href="../css/header-white.css">
+    <!-- <link rel="stylesheet" href="../css/header-green.css"> -->
     <link rel="stylesheet" href="../css/footer-green.css">
 
     <link rel="stylesheet" href="../css/popUpErrorSuccess.css">
@@ -109,8 +109,7 @@ function russianMonth($monthNumber) {
             <div class="preloader__item"></div>
         </div>
     </div>
-    <!-- <?php require 'header-white.php' ?> -->
-    <?php require 'header-green.php' ?>
+    <?php require 'header-white.php' ?>
     
     <main>
         <section class="page__speialist-profile">
@@ -284,6 +283,7 @@ function russianMonth($monthNumber) {
     <script src="../js/fromMasterBooking.js"></script>
 
     <script src="../js/openErrorSuccess.js"></script>
+    <script src="../js/header.js"></script>
 
 
 </body>

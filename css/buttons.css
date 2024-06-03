@@ -135,3 +135,47 @@
 .wheel__body .sign-up-button{
 	margin-bottom: 58px;
 }
+
+@media screen and (max-width: 1280px) {
+	.button, .green-button{
+		zoom: 1;
+	}
+
+}
+@media screen and (max-width: 1024px) {
+	.button, .green-button{
+		zoom: 0.8;
+	}
+}
+@media screen and (max-width: 834px) {
+	
+
+}
+@media screen and (max-width: 736px) {
+	.button, .green-button{
+		zoom: 0.7;
+	}
+
+}
+@media screen and (max-width: 640px) {
+	.button, .green-button{
+		zoom: 0.6;
+	}
+}
+@media screen and (max-width: 540px) {
+	.button, .green-button{
+		zoom: 0.55;
+	}
+
+}
+
+@media screen and (max-width: 414px) {
+
+
+}
+@media screen and (max-width: 375px) {
+
+}
+@media screen and (max-width: 320px) {
+	
+}

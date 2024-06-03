@@ -267,6 +267,7 @@ function russianMonth($monthNumber) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 
 <script src="../libraries/swiper-bundle.min.js"></script>
+<script src="../js/header.js"></script>
 
 <script src="../js/openPopupSignInUp.js"></script>
 
