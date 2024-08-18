@@ -13,7 +13,7 @@
                     </div>
                     <li class="li-header-logo">
                             <a href="index.php" class="header__logo">
-                                <img src="../images/new-white-logo.png" alt="">
+                                <img src="../images/lotos_logo.png" alt="">
                             </a>
                     </li>
                     <li>
@@ -65,7 +65,7 @@
 
                     <li class="li-header-logo">
                         <a href="index.php" class="header__logo">
-                            <img src="../images/new-white-logo.png" alt="">
+                            <img src="../images/lotos_logo.png" alt="">
                         </a>
                     </li>
 

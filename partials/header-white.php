@@ -13,7 +13,7 @@ require_once "../handlers/get_header_info_script.php";
                 </div>
                 <li class="li-header-logo">
                     <a href="index.php" class="header__logo">
-                        <img src="../images/new-black-logo.png" alt="">
+                        <img src="../images/lotos_logo.png" alt="">
                     </a>
                 </li>
                 <li>
@@ -63,7 +63,7 @@ require_once "../handlers/get_header_info_script.php";
 
                 <li class="li-header-logo">
                     <a href="index.php" class="header__logo">
-                        <img src="../images/new-black-logo.png" alt="">
+                        <img src="../images/lotos_logo.png" alt="">
                     </a>
                 </li>
                 <li>
