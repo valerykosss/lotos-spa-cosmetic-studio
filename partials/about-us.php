@@ -83,11 +83,11 @@
         </section>
         <section class="page__gallery">
             <div class="gallery__body _container">
-                <img src="../images/about-us-page/photo-1.png">
-                <img src="../images/about-us-page/photo-2.png">
-                <img src="../images/about-us-page/photo-3.png">
-                <img src="../images/about-us-page/photo-4.png">
-                <img src="../images/about-us-page/photo-5.png">
+                <img src="../images/about-us-page/photo-1.png" alt="" title="">
+                <img src="../images/about-us-page/photo-2.png" alt="" title="">
+                <img src="../images/about-us-page/photo-3.png" alt="зал ожидания" title="интерьер зала ожидания центра">
+                <img src="../images/about-us-page/photo-4.png" alt="" title="">
+                <img src="../images/about-us-page/photo-5.png" alt="" title="">
             </div>
         </section>
     </main>

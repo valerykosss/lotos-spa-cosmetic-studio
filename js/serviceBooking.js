@@ -236,6 +236,7 @@ $(document).ready(function () {
                                         allDay: false,
                                     };
                                 }),
+                                timeFormat: 'H:mm', // uppercase H for 24-hour clock
 
                                 eventClick: function (event) {
 

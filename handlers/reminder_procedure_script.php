@@ -12,7 +12,7 @@
     $records=mysqli_fetch_all($get_records);
 
     $today=date("Y-m-d");
-    $delayDate=date("Y-m-d", strtotime("+ 1 day"));
+    $delayDate=date("Y-m-d", strtotime("+ 2 days"));
 
     foreach($records as $record){
         //если запись уже прошла пропускаем ее

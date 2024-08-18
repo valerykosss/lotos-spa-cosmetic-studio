@@ -8,8 +8,8 @@ const loadPrizesFromDatabase = () => {
         dataType: 'json',
         success: function(data) {
             if (data && data.length > 0) {
-                prizes = data; // Заполнение массива prizes новыми данными
-                setupWheel(); // Инициализация колеса с новыми данными
+                prizes = data; 
+                setupWheel();
             } else {
                 console.error('No data received from the server.');
             }

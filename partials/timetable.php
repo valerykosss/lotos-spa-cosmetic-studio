@@ -82,10 +82,10 @@ if (session_id() == '')
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="leaveAddBtn">Добавить</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal" id="leaveAddBtn">Добавить</button>
                                 <!-- <button type="button" class="btn btn-warning" data-dismiss="modal" id="leaveUpdateBtn">Update</button> -->
-                                <button type="button" class="btn btn-danger" data-dismiss="modal" id="leaveDeleteBtn">Удалить</button>
-                                <button type="button" class="btn btn-info" data-dismiss="modal">Отмена</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal" id="leaveDeleteBtn">Удалить</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Отмена</button>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@ if (session_id() == '')
                                 <p>Расписание было успешно добавлено!</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Закрыть</button>
                             </div>
                         </div>
                     </div>
@@ -123,7 +123,7 @@ if (session_id() == '')
                                 <p>Расписание было успешно обновлено!</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-info" data-dismiss="modal">Закрыть</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Закрыть</button>
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@ if (session_id() == '')
                                 <p>Расписание было успешно удалено!</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-info" data-dismiss="modal">Закрыть</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Закрыть</button>
                             </div>
                         </div>
                     </div>
